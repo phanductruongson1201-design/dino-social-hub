@@ -1,189 +1,875 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Dino Social Hub 3.0</title>
-<style>
-:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#7d8799;--line:#e7ebf2;--blue:#1769ff;--blue2:#0f57db;--green:#16a36a;--red:#e05252;--orange:#e89a25;--shadow:0 8px 28px #24365b0d}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
-button,input,textarea,select{font:inherit}button{cursor:pointer}.app{display:flex;min-height:100vh}
-.sidebar{width:240px;background:#fff;border-right:1px solid var(--line);padding:20px 14px;position:fixed;inset:0 auto 0 0;z-index:5}
-.brand{font-size:20px;font-weight:900;padding:4px 12px 24px}.brand span{color:var(--blue)}
-.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;text-align:left;padding:11px 12px;border-radius:9px;color:#687286;font-size:13px}.nav button:hover,.nav button.active{background:#edf4ff;color:var(--blue);font-weight:700}
-.nav .group{font-size:10px;color:#a3abba;text-transform:uppercase;padding:18px 12px 5px;letter-spacing:.08em}
-.main{margin-left:240px;width:calc(100% - 240px)}.topbar{height:64px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 28px;gap:16px;position:sticky;top:0;z-index:4}.crumb{font-weight:800}.search{margin-left:auto;width:280px;border:1px solid var(--line);padding:9px 12px;border-radius:9px;outline:0}.avatar{width:34px;height:34px;border-radius:50%;background:#dce9ff;color:var(--blue);display:grid;place-items:center;font-weight:800}
-.content{padding:28px;max-width:1500px;margin:auto}.page-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.page-head h1{margin:0 0 5px;font-size:24px}.page-head p{margin:0;color:var(--muted);font-size:12px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}.stat{padding:18px;display:flex;justify-content:space-between}.stat small{color:var(--muted);font-size:11px}.stat h2{margin:8px 0;font-size:25px}.trend{font-size:10px;color:var(--green)}.stat-icon{width:38px;height:38px;border-radius:10px;background:#edf4ff;color:var(--blue);display:grid;place-items:center;font-weight:900}
-.primary,.secondary,.danger{border-radius:8px;padding:9px 13px;font-size:11px;border:1px solid var(--line)}.primary{background:var(--blue);color:white;border-color:var(--blue)}.primary:hover{background:var(--blue2)}.secondary{background:#fff;color:#536078}.danger{background:#fff2f2;color:var(--red);border-color:#ffd9d9}
-.dashboard-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:18px}.section{padding:18px}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.section-head h3{margin:0;font-size:14px}.section-head span{color:var(--blue);font-size:11px;cursor:pointer}
-.post-row{display:grid;grid-template-columns:38px 1fr 150px 95px 55px;gap:10px;align-items:center;padding:11px 0;border-top:1px solid #f0f2f6}.thumb{height:38px;border-radius:7px;background:#edf2f8;display:grid;place-items:center;color:#748097}.post-title{font-size:11px;font-weight:700}.post-meta,.schedule-item p{font-size:9px;color:var(--muted);margin:4px 0 0}.platforms{display:flex;gap:4px}.platform{font-style:normal;width:22px;height:22px;border-radius:6px;background:#f0f4fa;display:grid;place-items:center;font-size:11px}.badge{padding:5px 7px;border-radius:20px;font-size:9px}.success{background:#e8f8f0;color:var(--green)}.schedule{background:#fff4df;color:#b87716}.gray{background:#eef1f5;color:#697386}.badge.danger{background:#fff0f0;color:var(--red);border:0}
-.schedule-item{display:flex;align-items:center;gap:11px;padding:11px 0;border-top:1px solid #f0f2f6}.date-box{width:40px;height:40px;border-radius:8px;background:#edf4ff;color:var(--blue);display:grid;place-items:center;line-height:12px}.schedule-time{margin-left:auto;font-size:10px;font-weight:800}
-.quick{padding:18px}.quick h3{margin:0 0 4px;font-size:14px}.quick p{font-size:10px;color:var(--muted)}.quick-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
-.composer-layout{display:grid;grid-template-columns:1fr 340px;gap:18px}.editor-card,.side-card{padding:20px}.editor-title,.side-title{font-weight:800;font-size:13px;margin-bottom:15px}.editor-tools{display:flex;gap:6px;margin-bottom:12px}.tool,.ai-btn{border:1px solid var(--line);background:#fff;border-radius:7px;padding:7px 10px;font-size:10px}.ai-btn{color:#704cff;background:#f5f1ff;border-color:#e5dcff}.field{margin:12px 0}.field label{display:block;font-size:10px;color:#687286;margin-bottom:6px;font-weight:700}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 10px;outline:0;background:#fff;color:var(--text)}textarea{min-height:140px;resize:vertical}.counter{text-align:right;color:var(--muted);font-size:9px}.upload{margin:16px 0;border:1.5px dashed #cbd6e6;border-radius:10px;padding:22px;text-align:center;color:#6f7b90}.upload-icon{font-size:25px;color:var(--blue)}.upload strong{font-size:11px}.upload p{font-size:9px}.media-preview,.media-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.media-item{height:90px;position:relative}.media-item img{width:100%;height:100%;object-fit:cover;border-radius:8px}.remove-media{position:absolute;right:4px;top:4px;border:0;background:#0009;color:#fff;border-radius:50%;width:21px;height:21px}.platform-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.platform-select{background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px;font-size:10px;color:#536078}.platform-select.selected{border-color:#8eb6ff;background:#f1f6ff;color:var(--blue)}.picon{display:block;font-size:18px;font-weight:800;margin-bottom:4px}.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-top:18px}.tab{border:0;background:#fff;padding:9px 12px;font-size:10px}.tab.active{color:var(--blue);border-bottom:2px solid var(--blue)}.radio{display:flex;gap:8px;font-size:11px;margin:11px 0}.date-time{display:grid;grid-template-columns:1fr 1fr;gap:7px}.status-line{display:flex;justify-content:space-between;border-top:1px solid #f0f2f6;padding:9px 0;font-size:10px}.side-actions{display:grid;gap:8px;margin-top:12px}
-.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:10px}.table th,.table td{padding:13px 8px;border-bottom:1px solid #edf0f4;text-align:left;vertical-align:top}.table th{color:#8a94a6;font-size:9px;text-transform:uppercase}.table td b{font-size:11px}
-.calendar{padding:18px}.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.cal-head h3{margin:0}.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.cal-cell{min-height:105px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px;font-size:10px}.event{margin-top:7px;background:#eaf2ff;color:var(--blue);border-radius:5px;padding:5px;font-size:8px;cursor:pointer}
-.account-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.account{padding:18px}.account-top{display:flex;gap:12px;align-items:center}.social-logo{width:42px;height:42px;border-radius:10px;background:#edf4ff;color:var(--blue);display:grid;place-items:center;font-weight:900;font-size:20px}.account h4{margin:0}.account p{margin:4px 0;color:var(--muted);font-size:10px}.connect{width:100%;margin-top:15px;border:1px dashed #cbd6e6;background:#fafcff;padding:9px;border-radius:8px;font-size:10px;color:var(--blue)}
-.media-card{overflow:hidden}.media-image{height:145px;background:#edf1f7;display:grid;place-items:center}.media-info{padding:12px}.media-info strong{font-size:10px}.media-info p{font-size:9px;color:var(--muted)}
-.toast{position:fixed;right:24px;bottom:24px;background:#172033;color:#fff;padding:11px 15px;border-radius:9px;font-size:11px;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s;z-index:20}.toast.show{opacity:1;transform:none}
-@media(max-width:1000px){.sidebar{width:190px}.main{margin-left:190px;width:calc(100% - 190px)}.stats{grid-template-columns:repeat(2,1fr)}.composer-layout,.dashboard-grid{grid-template-columns:1fr}.account-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:700px){.sidebar{position:fixed;bottom:auto;width:100%;height:auto;padding:8px;display:flex;overflow:auto}.brand,.nav .group{display:none}.nav{display:flex}.nav button{white-space:nowrap}.main{margin-left:0;margin-top:62px;width:100%}.topbar{display:none}.content{padding:15px}.stats{grid-template-columns:1fr 1fr}.platform-grid{grid-template-columns:repeat(2,1fr)}.account-grid{grid-template-columns:1fr}.post-row{grid-template-columns:34px 1fr}.post-row>div:nth-child(3),.post-row>div:nth-child(4),.post-row>div:nth-child(5){display:none}.media-preview,.media-grid{grid-template-columns:repeat(2,1fr)}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dino Social Hub 4.0 | One Powerful Hub</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { primary: '#2563EB', bg: '#F8FAFC', card: '#FFFFFF', border: '#E2E8F0', muted: '#64748B' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; color: #0F172A; overflow: hidden; }
+        .view-section { display: none; animation: fadeIn 0.3s ease; }
+        .view-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+        .platform-tab.active { border-bottom: 2px solid #2563EB; color: #2563EB; font-weight: 600; }
+        .modal { display: none; }
+        .modal.active { display: flex; animation: fadeIn 0.2s ease; }
+    </style>
 </head>
-<body>
-<div class="app">
-<aside class="sidebar">
-  <div class="brand">Dino<span>Social</span></div>
-  <div class="nav">
-    <div class="group">Tổng quan</div>
-    <button data-page="dashboard">▦ Dashboard</button>
-    <button data-page="composer">＋ Tạo bài viết</button>
-    <button data-page="posts">▤ Bài viết</button>
-    <button data-page="calendar">◷ Lịch đăng</button>
-    <div class="group">Quản lý</div>
-    <button data-page="accounts">◎ Tài khoản Social</button>
-    <button data-page="media">▧ Media Library</button>
-    <button data-page="analytics">◒ Thống kê</button>
-    <button data-page="notifications">♢ Thông báo</button>
-    <div class="group">Hệ thống</div>
-    <button data-page="settings">⚙ Cài đặt</button>
-  </div>
-</aside>
-<main class="main">
-<header class="topbar"><span class="crumb" id="crumb">Dashboard</span><input id="globalSearch" class="search" placeholder="⌕ Tìm bài viết..."><button id="notifyBtn" class="secondary">♢</button><div class="avatar">SD</div></header>
-<div class="content" id="app"></div>
-</main>
-</div>
-<div class="toast" id="toast"></div>
-<script>
-const KEY='dino_social_hub_3';
-const PL=[
-{id:'facebook',name:'Facebook',icon:'f'},{id:'tiktok',name:'TikTok',icon:'♪'},
-{id:'youtube',name:'YouTube',icon:'▶'},{id:'instagram',name:'Instagram',icon:'◎'},{id:'x',name:'X',icon:'𝕏'}];
-const seed={posts:[],media:[],accounts:{facebook:[],tiktok:[],youtube:[],instagram:[],x:[]},settings:{name:'Sơn Dino',email:'taynguyenfilm@gmail.com',timezone:'Asia/Ho_Chi_Minh'}};
-let db=load(),view='dashboard',composer=blank();
-function load(){try{return JSON.parse(localStorage.getItem(KEY))||structuredClone(seed)}catch{return structuredClone(seed)}}
-function save(){localStorage.setItem(KEY,JSON.stringify(db))}
-function blank(){return{editId:null,title:'',content:'',platforms:['facebook','tiktok'],media:[],schedule:'',mode:'now',pp:{},active:'facebook'}}
-function e(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-function p(id){return PL.find(x=>x.id===id)}
-function fmt(x){return x?new Date(x).toLocaleString('vi-VN',{dateStyle:'short',timeStyle:'short'}):'—'}
-function toast(s){let t=document.getElementById('toast');t.textContent=s;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400)}
-function go(v){view=v;document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===v));document.getElementById('crumb').textContent=({dashboard:'Dashboard',composer:'Tạo bài viết',posts:'Bài viết',calendar:'Lịch đăng',accounts:'Tài khoản Social',media:'Media Library',analytics:'Thống kê',notifications:'Thông báo',settings:'Cài đặt'})[v];render()}
-document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.page));
-document.getElementById('notifyBtn').onclick=()=>go('notifications');
-document.getElementById('globalSearch').oninput=()=>{if(view!=='posts')go('posts');render()};
+<body class="flex h-screen text-sm">
 
-function render(){
- const R={dashboard:dashboard,composer:composerView,posts:posts,calendar:calendar,accounts:accounts,media:media,analytics:analytics,notifications:notifications,settings:settings};
- document.getElementById('app').innerHTML=(R[view]||dashboard)();bind();
-}
-function btn(t,c='secondary',a=''){return `<button class="${c}" data-a="${a}">${t}</button>`}
-function dashboard(){
- let total=db.posts.length,pub=db.posts.filter(x=>x.status==='published').length,sch=db.posts.filter(x=>x.status==='scheduled').length,fail=db.posts.filter(x=>x.status==='failed').length;
- let rows=db.posts.slice().sort((a,b)=>b.created-a.created).slice(0,6);
- return `<div class="page-head"><div><h1>Xin chào, ${e(db.settings.name)} 👋</h1><p>Trung tâm quản lý Social Media của bạn.</p></div>${btn('＋ Tạo bài viết','primary','new')}</div>
- <div class="stats">${stat('Tổng bài viết',total,'▤')}${stat('Đã đăng',pub,'✓')}${stat('Đã lên lịch',sch,'◷')}${stat('Thất bại',fail,'!')}</div>
- <div class="card quick"><h3>Tạo nội dung mới</h3><p>Upload một lần, tùy chỉnh theo kênh và quản lý lịch đăng tập trung.</p><div class="quick-actions">${btn('＋ Tạo bài viết','primary','new')}${btn('▧ Media Library','secondary','media')}${btn('◷ Lịch đăng','secondary','calendar')}${btn('⇩ Sao lưu','secondary','export')}</div></div>
- <div class="dashboard-grid" style="margin-top:18px"><div class="card section"><div class="section-head"><h3>Bài viết gần đây</h3><span data-go="posts">Xem tất cả →</span></div>${rows.map(row).join('')||empty()}</div>
- <div class="card section"><div class="section-head"><h3>Sắp đăng</h3><span data-go="calendar">Lịch →</span></div>${db.posts.filter(x=>x.status==='scheduled').sort((a,b)=>new Date(a.schedule)-new Date(b.schedule)).slice(0,5).map(x=>`<div class="schedule-item"><div class="date-box">${new Date(x.schedule).getDate()}</div><div><b style="font-size:10px">${e(x.title)}</b><p>${x.platforms.map(y=>p(y).name).join(' · ')}</p></div><div class="schedule-time">${new Date(x.schedule).toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})}</div></div>`).join('')||empty()}</div></div>`;
-}
-function stat(l,n,i){return `<div class="card stat"><div><small>${l}</small><h2>${n}</h2><span class="trend">Dữ liệu hiện tại</span></div><div class="stat-icon">${i}</div></div>`}
-function row(x){return `<div class="post-row"><div class="thumb">${x.media?.length?'▧':'✎'}</div><div><div class="post-title">${e(x.title)}</div><div class="post-meta">${fmt(x.created)}</div></div><div class="platforms">${x.platforms.map(y=>`<i class="platform">${p(y).icon}</i>`).join('')}</div><div><span class="badge ${x.status==='published'?'success':x.status==='scheduled'?'schedule':x.status==='failed'?'danger':'gray'}">${({published:'Đã đăng',scheduled:'Đã lên lịch',draft:'Bản nháp',failed:'Thất bại'})[x.status]}</span></div>${btn('Sửa','secondary','edit:'+x.id)}</div>`}
-function empty(){return `<p style="color:var(--muted);font-size:11px">Chưa có dữ liệu.</p>`}
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-card border-r border-border flex flex-col flex-shrink-0 relative z-20">
+        <div class="h-16 flex items-center px-6 border-b border-border">
+            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3 shadow-md shadow-blue-600/30">
+                <i data-lucide="infinity" class="w-5 h-5 text-white"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-base tracking-tight leading-tight">DINO HUB</h1>
+                <p class="text-[10px] text-muted font-medium">VERSION 4.0</p>
+            </div>
+        </div>
+        
+        <div class="flex-1 overflow-y-auto py-4 px-3 space-y-6">
+            <div>
+                <p class="px-3 text-xs font-semibold text-muted mb-2 tracking-wider">TỔNG QUAN</p>
+                <nav class="space-y-1">
+                    <a href="#" onclick="app.navigate('dashboard')" class="nav-link dashboard flex items-center px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100 transition">
+                        <i data-lucide="layout-dashboard" class="w-4 h-4 mr-3 text-slate-400"></i> Dashboard
+                    </a>
+                    <a href="#" onclick="app.navigate('create')" class="nav-link create flex items-center px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100 transition">
+                        <i data-lucide="pen-tool" class="w-4 h-4 mr-3 text-slate-400"></i> Tạo bài viết
+                    </a>
+                    <a href="#" onclick="app.navigate('posts')" class="nav-link posts flex items-center px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100 transition flex justify-between">
+                        <div class="flex items-center"><i data-lucide="layers" class="w-4 h-4 mr-3 text-slate-400"></i> Quản lý Queue</div>
+                        <span id="queue-badge" class="bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full text-[10px] font-bold hidden">0</span>
+                    </a>
+                    <a href="#" onclick="app.navigate('calendar')" class="nav-link calendar flex items-center px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100 transition">
+                        <i data-lucide="calendar" class="w-4 h-4 mr-3 text-slate-400"></i> Lịch đăng
+                    </a>
+                </nav>
+            </div>
+            
+            <div>
+                <p class="px-3 text-xs font-semibold text-muted mb-2 tracking-wider">QUẢN LÝ</p>
+                <nav class="space-y-1">
+                    <a href="#" onclick="app.navigate('accounts')" class="nav-link accounts flex items-center px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100 transition">
+                        <i data-lucide="share-2" class="w-4 h-4 mr-3 text-slate-400"></i> Tài khoản Social
+                    </a>
+                    <a href="#" onclick="app.ui.showToast('Info', 'Tính năng đang phát triển trong bản demo')" class="flex items-center px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100 transition">
+                        <i data-lucide="upload-cloud" class="w-4 h-4 mr-3 text-slate-400"></i> Bulk Upload 100
+                    </a>
+                    <a href="#" onclick="app.ui.showToast('Info', 'Tính năng Analytics đang khóa')" class="flex items-center px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100 transition">
+                        <i data-lucide="bar-chart-3" class="w-4 h-4 mr-3 text-slate-400"></i> Analytics
+                    </a>
+                </nav>
+            </div>
+            
+            <div>
+                <p class="px-3 text-xs font-semibold text-muted mb-2 tracking-wider">HỆ THỐNG</p>
+                <nav class="space-y-1">
+                    <a href="#" onclick="app.ui.showToast('Info', 'Cài đặt Telegram / AI khóa trong demo')" class="flex items-center px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100 transition">
+                        <i data-lucide="settings" class="w-4 h-4 mr-3 text-slate-400"></i> Settings
+                    </a>
+                </nav>
+            </div>
+        </div>
 
-function composerView(){
- return `<div class="page-head"><div><h1>${composer.editId?'Chỉnh sửa bài viết':'Tạo bài viết'}</h1><p>Tạo một nội dung và phân phối tới nhiều nền tảng.</p></div><div>${btn('Lưu nháp','secondary','draft')} ${btn(composer.mode==='schedule'?'◷ Lên lịch':'🚀 Đăng ngay','primary','publish')}</div></div>
- <div class="composer-layout"><div class="card editor-card"><div class="editor-title">Nội dung</div>
- <div class="editor-tools">${btn('😊 Emoji','tool','emoji')}${btn('# Hashtag','tool','hash')}${btn('⌫ Xóa','tool','clear')}<button class="ai-btn" data-a="ai">✨ AI tạo content</button></div>
- <div class="field"><label>Tiêu đề</label><input id="title" value="${e(composer.title)}" placeholder="Tiêu đề bài viết"></div>
- <div class="field"><label>Nội dung</label><textarea id="content" placeholder="Viết nội dung...">${e(composer.content)}</textarea></div><div class="counter"><span id="count">${composer.content.length}</span> ký tự</div>
- <div class="upload" id="upload">⇧<br><strong>Upload hình ảnh / video</strong><p>JPG, PNG, WEBP, MP4, MOV · tối đa 30MB/file</p></div><input id="files" type="file" multiple accept="image/*,video/*" hidden>
- <div class="media-preview">${composer.media.map((m,i)=>`<div class="media-item"><img src="${m.url}"><button class="remove-media" data-rm="${i}">×</button></div>`).join('')}</div>
- <div class="field"><label>Chọn nền tảng</label><div class="platform-grid">${PL.map(x=>`<button class="platform-select ${composer.platforms.includes(x.id)?'selected':''}" data-pl="${x.id}"><span class="picon">${x.icon}</span>${x.name}</button>`).join('')}</div></div>
- <div class="tabs">${composer.platforms.map(x=>`<button class="tab ${composer.active===x?'active':''}" data-tab="${x}">${p(x).name}</button>`).join('')}</div>
- <div id="pp">${ppFields()}</div></div>
- <div><div class="card side-card"><div class="side-title">Lịch đăng</div><label class="radio"><input type="radio" name="mode" value="now" ${composer.mode==='now'?'checked':''}> Đăng ngay</label><label class="radio"><input type="radio" name="mode" value="schedule" ${composer.mode==='schedule'?'checked':''}> Đặt lịch</label>
- <div class="date-time"><input id="date" type="date" value="${composer.schedule?.slice(0,10)||new Date().toISOString().slice(0,10)}"><input id="time" type="time" value="${composer.schedule?.slice(11,16)||'19:30'}"></div><p style="font-size:9px;color:var(--muted)">Múi giờ: ${db.settings.timezone}</p></div>
- <div class="card side-card"><div class="side-title">Kiểm tra</div>${check('Nền tảng',composer.platforms.length)}${check('Media',composer.media.length)}${check('Nội dung',composer.content.trim()?'✓':'!')}</div>
- <div class="side-actions">${btn('✨ Tối ưu bằng AI','ai-btn','ai')}${btn(composer.mode==='schedule'?'◷ Lên lịch':'🚀 Đăng ngay','primary','publish')}</div></div></div>`
-}
-function check(a,b){return `<div class="status-line"><span>${a}</span><b>${b}</b></div>`}
-function ppFields(){let v=composer.pp[composer.active]||{};if(composer.active==='youtube')return `<div class="field"><label>Tiêu đề YouTube</label><input data-pp="title" value="${e(v.title||composer.title)}"></div><div class="field"><label>Mô tả</label><textarea data-pp="description">${e(v.description||composer.content)}</textarea></div>`;return `<div class="field"><label>Caption ${p(composer.active).name}</label><textarea data-pp="caption">${e(v.caption||composer.content)}</textarea></div><div class="field"><label>Hashtag</label><input data-pp="hashtags" value="${e(v.hashtags||'#DinoSocialHub #SocialMedia')}" ></div>`}
+        <div class="p-4 border-t border-border">
+            <div class="flex items-center gap-3">
+                <img src="https://ui-avatars.com/api/?name=Son+Dino&background=2563EB&color=fff" class="w-9 h-9 rounded-full border border-border" alt="Avatar">
+                <div class="overflow-hidden">
+                    <p class="font-bold text-slate-800 truncate">Sơn Dino</p>
+                    <p class="text-[10px] text-muted truncate">Admin Workspace</p>
+                </div>
+            </div>
+        </div>
+    </aside>
 
-function posts(){
- let q=(document.getElementById('q')?.value||document.getElementById('globalSearch').value||'').toLowerCase(),f=document.getElementById('filter')?.value||'';
- let arr=db.posts.filter(x=>(!q||(x.title+' '+x.content).toLowerCase().includes(q))&&(!f||x.status===f));
- return `<div class="page-head"><div><h1>Bài viết</h1><p>CRUD đầy đủ: tạo, sửa, nhân bản, xóa, tìm kiếm, lọc.</p></div>${btn('＋ Tạo bài viết','primary','new')}</div><div class="card section"><div class="section-head"><div style="display:flex;gap:8px"><input class="search" id="q" value="${e(q)}" placeholder="Tìm bài viết..." style="margin:0;width:240px"><select id="filter" class="secondary"><option value="">Tất cả</option><option value="published">Đã đăng</option><option value="scheduled">Đã lên lịch</option><option value="draft">Bản nháp</option><option value="failed">Thất bại</option></select></div><span>${arr.length} bài</span></div><div class="table-wrap"><table class="table"><thead><tr><th>Nội dung</th><th>Nền tảng</th><th>Thời gian</th><th>Trạng thái</th><th>Thao tác</th></tr></thead><tbody>${arr.map(x=>`<tr><td><b>${e(x.title)}</b><div style="color:var(--muted);margin-top:3px">${e(x.content.slice(0,90))}</div></td><td>${x.platforms.map(y=>p(y).name).join(' · ')}</td><td>${fmt(x.schedule||x.created)}</td><td><span class="badge ${x.status==='published'?'success':x.status==='scheduled'?'schedule':x.status==='failed'?'danger':'gray'}">${({published:'Đã đăng',scheduled:'Đã lên lịch',draft:'Bản nháp',failed:'Thất bại'})[x.status]}</span></td><td>${btn('Sửa','secondary','edit:'+x.id)} ${btn('Copy','secondary','dup:'+x.id)} ${btn('Xóa','danger','del:'+x.id)}</td></tr>`).join('')||`<tr><td colspan="5">${empty()}</td></tr>`}</tbody></table></div></div>`
-}
-function calendar(){
- let d=new Date(),y=d.getFullYear(),m=d.getMonth(),first=(new Date(y,m,1).getDay()+6)%7,days=new Date(y,m+1,0).getDate(),cells='';
- for(let i=0;i<first;i++)cells+='<div class="cal-cell"></div>';
- for(let day=1;day<=days;day++){let a=db.posts.filter(x=>x.status==='scheduled'&&x.schedule&&new Date(x.schedule).toDateString()===new Date(y,m,day).toDateString());cells+=`<div class="cal-cell"><strong>${day}</strong>${a.map(x=>`<div class="event" data-a="edit:${x.id}">${new Date(x.schedule).toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})} · ${e(x.title.slice(0,20))}</div>`).join('')}</div>`}
- return `<div class="page-head"><div><h1>Lịch đăng</h1><p>Hiển thị lịch từ dữ liệu bài viết đã lên lịch.</p></div>${btn('＋ Tạo bài viết','primary','new')}</div><div class="card calendar"><div class="cal-head"><h3>Tháng ${m+1}, ${y}</h3>${btn('Hôm nay','secondary','today')}</div><div class="cal-grid">${['T2','T3','T4','T5','T6','T7','CN'].map(x=>`<div class="cal-cell" style="min-height:auto;background:#f8fafc"><b>${x}</b></div>`).join('')}${cells}</div></div>`
-}
-function accounts(){
- return `<div class="page-head"><div><h1>Tài khoản Social</h1><p>Quản lý nhiều tài khoản/kênh. Kết nối API thật sẽ thực hiện ở backend.</p></div>${btn('＋ Thêm tài khoản','primary','addacc')}</div><div class="account-grid">${PL.map(x=>`<div class="card account"><div class="account-top"><div class="social-logo">${x.icon}</div><div><h4>${x.name}</h4><p>${(db.accounts[x.id]||[]).length} tài khoản</p></div></div>${(db.accounts[x.id]||[]).map(a=>`<div style="display:flex;justify-content:space-between;margin-top:13px;font-size:10px"><span>${e(a.name)}</span>${btn(a.connected?'Ngắt kết nối':'Kết nối lại','secondary','toggle:'+x.id+':'+a.id)}</div>`).join('')||empty()}<button class="connect" data-add="${x.id}">＋ Thêm ${x.name}</button></div>`).join('')}</div>`
-}
-function media(){return `<div class="page-head"><div><h1>Media Library</h1><p>Lưu và quản lý hình/video trên trình duyệt.</p></div>${btn('⇧ Upload Media','primary','mediaUpload')}<input id="mfiles" type="file" multiple accept="image/*,video/*" hidden></div><div class="media-grid">${db.media.map((m,i)=>`<div class="card media-card"><div class="media-image">${m.type.startsWith('image')?`<img src="${m.url}" style="width:100%;height:100%;object-fit:cover">`:'🎬'}</div><div class="media-info"><strong>${e(m.name)}</strong><p>${m.type} · ${Math.round(m.size/1024)} KB</p>${btn('Xóa','danger','mdel:'+i)}</div></div>`).join('')||`<div class="card section" style="grid-column:1/-1">${empty()}</div>`}</div>`}
-function analytics(){let total=db.posts.length;return `<div class="page-head"><div><h1>Thống kê</h1><p>Thống kê vận hành nội bộ của Dino Social Hub.</p></div></div><div class="stats">${stat('Tổng bài',total,'▤')}${stat('Media',db.media.length,'▧')}${stat('Tài khoản',Object.values(db.accounts).flat().length,'◎')}${stat('Đã đăng',db.posts.filter(x=>x.status==='published').length,'✓')}</div><div class="card section"><h3>Số bài theo nền tảng</h3>${PL.map(x=>{let n=db.posts.filter(y=>y.platforms.includes(x.id)).length;return `<div style="display:flex;gap:10px;align-items:center;margin:15px 0;font-size:10px"><b style="width:75px">${x.name}</b><div style="flex:1;height:10px;background:#edf2fa;border-radius:20px;overflow:hidden"><div style="height:100%;width:${total?Math.max(3,n/total*100):0}%;background:var(--blue)"></div></div><span>${n}</span></div>`}).join('')}</div>`}
-function notifications(){let fail=db.posts.filter(x=>x.status==='failed');return `<div class="page-head"><div><h1>Thông báo</h1><p>Sự kiện và lỗi cần xử lý.</p></div>${btn('Đánh dấu đã đọc','secondary','read')}</div><div class="card section"><div class="schedule-item"><div class="date-box">✓</div><div><b style="font-size:10px">Dino Social Hub đang hoạt động</b><p>Dữ liệu localStorage được lưu trên thiết bị này.</p></div></div>${fail.map(x=>`<div class="schedule-item"><div class="date-box">!</div><div><b style="font-size:10px">Bài đăng thất bại: ${e(x.title)}</b><p>Kiểm tra kết nối API và thử lại.</p></div></div>`).join('')}</div>`}
-function settings(){return `<div class="page-head"><div><h1>Cài đặt</h1><p>Hồ sơ, dữ liệu và cấu hình ứng dụng.</p></div></div><div class="card section" style="max-width:800px"><div class="field"><label>Tên hiển thị</label><input id="sn" value="${e(db.settings.name)}"></div><div class="field"><label>Email</label><input id="se" value="${e(db.settings.email)}"></div><div class="field"><label>Múi giờ</label><select id="st"><option>Asia/Ho_Chi_Minh</option><option>Asia/Bangkok</option><option>UTC</option></select></div>${btn('Lưu cài đặt','primary','saveSettings')} ${btn('⇩ Export JSON','secondary','export')} ${btn('⇧ Import JSON','secondary','import')} ${btn('↺ Reset demo','danger','reset')}<input id="json" type="file" accept=".json" hidden><div style="margin-top:18px;padding:12px;background:#fff8e8;border-radius:9px;font-size:10px;color:#7b6329"><b>Giai đoạn 3.0:</b> Đây là bản web frontend/local-first. CRUD, media, lịch, tài khoản, dashboard và dữ liệu đã hoạt động. Đăng thật lên Facebook/TikTok/YouTube/Instagram/X cần backend OAuth/API.</div></div>`}
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col h-screen overflow-hidden bg-bg relative">
+        
+        <!-- TOPBAR -->
+        <header class="h-16 bg-card border-b border-border flex items-center justify-between px-8 shrink-0 z-10">
+            <div class="flex items-center text-slate-500 font-medium" id="breadcrumb">
+                Dino Social Hub / <span class="text-slate-800 ml-1">Dashboard</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="relative">
+                    <i data-lucide="search" class="w-4 h-4 text-muted absolute left-3 top-1/2 -translate-y-1/2"></i>
+                    <input type="text" placeholder="Search posts..." class="pl-9 pr-4 py-2 bg-slate-50 border border-border rounded-lg outline-none focus:border-blue-500 w-64 text-sm transition">
+                </div>
+                <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-border text-slate-600 hover:bg-slate-50 relative">
+                    <i data-lucide="bell" class="w-4 h-4"></i>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+            </div>
+        </header>
 
-function bind(){
- document.querySelectorAll('[data-a]').forEach(x=>x.onclick=()=>action(x.dataset.a));
- document.querySelectorAll('[data-go]').forEach(x=>x.onclick=()=>go(x.dataset.go));
- document.querySelectorAll('[data-pl]').forEach(x=>x.onclick=()=>{let id=x.dataset.pl;if(composer.platforms.includes(id)){if(composer.platforms.length>1)composer.platforms=composer.platforms.filter(a=>a!==id)}else composer.platforms.push(id);if(!composer.platforms.includes(composer.active))composer.active=composer.platforms[0];render()});
- document.querySelectorAll('[data-tab]').forEach(x=>x.onclick=()=>{composer.active=x.dataset.tab;render()});
- document.querySelectorAll('[data-rm]').forEach(x=>x.onclick=()=>{composer.media.splice(+x.dataset.rm,1);render()});
- let c=document.getElementById('content');if(c)c.oninput=()=>{composer.content=c.value;document.getElementById('count').textContent=c.value.length};
- let t=document.getElementById('title');if(t)t.oninput=()=>composer.title=t.value;
- document.querySelectorAll('input[name=mode]').forEach(x=>x.onchange=()=>{composer.mode=x.value;render()});
- document.querySelectorAll('[data-pp]').forEach(x=>x.oninput=()=>{composer.pp[composer.active]??={};composer.pp[composer.active][x.dataset.pp]=x.value});
- let up=document.getElementById('upload');if(up)up.onclick=()=>document.getElementById('files').click();
- let fs=document.getElementById('files');if(fs)fs.onchange=ev=>read(ev.target.files,true);
- let mf=document.getElementById('mfiles');if(mf)mf.onchange=ev=>read(ev.target.files,false);
- let q=document.getElementById('q');if(q)q.oninput=()=>render();
- let f=document.getElementById('filter');if(f)f.onchange=()=>render();
- document.querySelectorAll('[data-add]').forEach(x=>x.onclick=()=>addAccount(x.dataset.add));
-}
-function action(a){
- if(a==='new'){composer=blank();go('composer')}
- else if(a==='publish'||a==='draft')savePost(a==='draft'?'draft':composer.mode==='schedule'?'scheduled':'published');
- else if(a==='emoji'){composer.content+=' 😊';render()}
- else if(a==='hash'){composer.content+=(composer.content?' ':'')+'#DinoSocialHub #SocialMedia #ContentMarketing';render()}
- else if(a==='clear'){composer.content='';render()}
- else if(a==='ai'){composer.content='🔥 '+(composer.title||'Nội dung mới')+'\\n\\nMột nội dung – nhiều nền tảng – tiết kiệm thời gian vận hành.\\n\\n✅ Upload hình/video một lần\\n✅ Tùy chỉnh từng kênh\\n✅ Lên lịch tự động\\n✅ Quản lý nhiều tài khoản\\n\\n#DinoSocialHub #SocialMedia';render();toast('✨ Đã tạo content mẫu')}
- else if(a==='media')go('media');
- else if(a==='calendar')go('calendar');
- else if(a==='posts')go('posts');
- else if(a==='export')exportData();
- else if(a==='import')document.getElementById('json').click();
- else if(a==='reset'){if(confirm('Reset dữ liệu?')){db=structuredClone(seed);save();render();toast('Đã reset')}}
- else if(a==='saveSettings'){db.settings.name=document.getElementById('sn').value;db.settings.email=document.getElementById('se').value;db.settings.timezone=document.getElementById('st').value;save();toast('✓ Đã lưu')}
- else if(a.startsWith('edit:'))edit(a.slice(5));
- else if(a.startsWith('del:'))del(a.slice(4));
- else if(a.startsWith('dup:'))dup(a.slice(4));
- else if(a.startsWith('mdel:')){db.media.splice(+a.slice(5),1);save();render()}
- else if(a.startsWith('toggle:')){let [pid,id]=a.slice(7).split(':');let z=db.accounts[pid].find(x=>x.id===id);z.connected=!z.connected;save();render()}
- else if(a==='addacc')addAccount('facebook');
- else if(a==='today')render();
- else if(a==='mediaUpload')document.getElementById('mfiles').click();
- else if(a==='read')toast('✓ Đã đánh dấu đã đọc');
-}
-function savePost(status){
- if(!composer.content.trim())return toast('⚠ Nhập nội dung trước');
- let date=document.getElementById('date')?.value,time=document.getElementById('time')?.value,schedule=composer.mode==='schedule'?date+'T'+time:'';
- let obj={id:composer.editId||crypto.randomUUID(),title:composer.title||composer.content.slice(0,55),content:composer.content,platforms:[...composer.platforms],media:[...composer.media],schedule,status,created:Date.now(),pp:composer.pp};
- if(composer.editId){let i=db.posts.findIndex(x=>x.id===composer.editId);db.posts[i]=obj}else db.posts.push(obj);save();toast(status==='scheduled'?'📅 Đã lên lịch':'✓ Đã lưu bài viết');go('posts')
-}
-function edit(id){let x=db.posts.find(x=>x.id===id);composer={editId:id,title:x.title,content:x.content,platforms:[...x.platforms],media:x.media||[],schedule:x.schedule||'',mode:x.status==='scheduled'?'schedule':'now',pp:x.pp||{},active:x.platforms[0]};go('composer')}
-function del(id){if(confirm('Xóa bài viết này?')){db.posts=db.posts.filter(x=>x.id!==id);save();render()}}
-function dup(id){let x=db.posts.find(x=>x.id===id);db.posts.push({...structuredClone(x),id:crypto.randomUUID(),title:x.title+' (Copy)',status:'draft',schedule:'',created:Date.now()});save();render();toast('✓ Đã nhân bản')}
-function addAccount(pid){let name=prompt('Tên tài khoản/kênh '+p(pid).name+':');if(name){db.accounts[pid].push({id:crypto.randomUUID(),name,connected:true});save();render();toast('✓ Đã thêm tài khoản')}}
-function read(files,forComposer){[...files].forEach(file=>{if(file.size>30*1024*1024)return toast('File quá lớn');let r=new FileReader();r.onload=()=>{let m={name:file.name,type:file.type,size:file.size,url:r.result};if(forComposer)composer.media.push(m);else db.media.push(m);save();render()};r.readAsDataURL(file)})}
-function exportData(){let b=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='dino-social-hub-backup.json';a.click()}
-document.addEventListener('change',ev=>{if(ev.target.id==='json'&&ev.target.files[0]){let r=new FileReader();r.onload=()=>{try{db=JSON.parse(r.result);save();render();toast('✓ Import thành công')}catch{toast('File JSON không hợp lệ')}};r.readAsText(ev.target.files[0])}});
-render();
-</script>
-</body></html>
+        <!-- VIEWS WRAPPER -->
+        <div class="flex-1 overflow-y-auto relative">
+            
+            <!-- 1. DASHBOARD -->
+            <div id="view-dashboard" class="view-section active p-8 max-w-7xl mx-auto">
+                <div class="flex justify-between items-end mb-8">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900">Xin chào, Sơn Dino 👋</h2>
+                        <p class="text-muted mt-1">Quản lý toàn bộ nội dung đa nền tảng của bạn từ một nơi duy nhất.</p>
+                    </div>
+                    <button onclick="app.navigate('create')" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-medium shadow-sm flex items-center transition">
+                        <i data-lucide="plus" class="w-4 h-4 mr-2"></i> Tạo nội dung
+                    </button>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-card p-6 rounded-xl border border-border shadow-sm flex flex-col justify-between">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-blue-50 text-blue-600 rounded-lg"><i data-lucide="layers"></i></div>
+                            <span class="text-green-600 text-xs font-bold bg-green-50 px-2 py-1 rounded">+12%</span>
+                        </div>
+                        <p class="text-muted font-medium mb-1">Tổng bài viết</p>
+                        <h3 class="text-3xl font-bold" id="stat-total">0</h3>
+                    </div>
+                    <div class="bg-card p-6 rounded-xl border border-border shadow-sm flex flex-col justify-between">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-green-50 text-green-600 rounded-lg"><i data-lucide="check-circle"></i></div>
+                        </div>
+                        <p class="text-muted font-medium mb-1">Đã đăng thành công</p>
+                        <h3 class="text-3xl font-bold" id="stat-published">0</h3>
+                    </div>
+                    <div class="bg-card p-6 rounded-xl border border-border shadow-sm flex flex-col justify-between">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-orange-50 text-orange-600 rounded-lg"><i data-lucide="clock"></i></div>
+                            <span class="text-orange-600 text-xs font-bold bg-orange-50 px-2 py-1 rounded">Queue</span>
+                        </div>
+                        <p class="text-muted font-medium mb-1">Đang chờ / Lên lịch</p>
+                        <h3 class="text-3xl font-bold" id="stat-scheduled">0</h3>
+                    </div>
+                    <div class="bg-card p-6 rounded-xl border border-border shadow-sm flex flex-col justify-between">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-red-50 text-red-600 rounded-lg"><i data-lucide="alert-triangle"></i></div>
+                        </div>
+                        <p class="text-muted font-medium mb-1">Đăng thất bại</p>
+                        <h3 class="text-3xl font-bold text-red-600" id="stat-failed">0</h3>
+                    </div>
+                </div>
+
+                <!-- Recent Posts -->
+                <div class="bg-card border border-border rounded-xl shadow-sm overflow-hidden">
+                    <div class="px-6 py-4 border-b border-border flex justify-between items-center bg-slate-50/50">
+                        <h3 class="font-bold text-slate-800">Hoạt động gần đây</h3>
+                        <button onclick="app.navigate('posts')" class="text-blue-600 font-medium hover:underline">Xem tất cả Queue</button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="text-muted border-b border-border bg-card">
+                                <tr>
+                                    <th class="px-6 py-3 font-medium">Nội dung</th>
+                                    <th class="px-6 py-3 font-medium">Nền tảng</th>
+                                    <th class="px-6 py-3 font-medium">Lịch trình</th>
+                                    <th class="px-6 py-3 font-medium">Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dash-recent-posts" class="divide-y divide-border">
+                                <!-- JS Injected -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. CREATE POST -->
+            <div id="view-create" class="view-section h-full flex flex-col">
+                <div class="flex-1 flex overflow-hidden">
+                    <!-- Left: Editor (70%) -->
+                    <div class="flex-1 p-8 overflow-y-auto border-r border-border">
+                        <div class="max-w-4xl mx-auto">
+                            <!-- Platform Selection -->
+                            <div class="mb-8">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="font-bold text-slate-800">1. Chọn Nền Tảng</h3>
+                                    <span class="text-xs text-muted">*Cần kết nối tài khoản ở mục Quản lý</span>
+                                </div>
+                                <div class="grid grid-cols-5 gap-4" id="create-platforms">
+                                    <!-- JS Injected -->
+                                </div>
+                            </div>
+
+                            <!-- Media Upload -->
+                            <div class="mb-8">
+                                <h3 class="font-bold text-slate-800 mb-4">2. Upload Media</h3>
+                                <div class="border-2 border-dashed border-slate-300 rounded-xl p-8 flex flex-col items-center justify-center bg-slate-50/50 hover:bg-slate-50 transition cursor-pointer" onclick="app.ui.showToast('Success', 'Upload Media (Demo) thành công')">
+                                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-3">
+                                        <i data-lucide="upload-cloud"></i>
+                                    </div>
+                                    <p class="font-medium text-slate-700">Kéo thả file hoặc Click để tải lên</p>
+                                    <p class="text-xs text-muted mt-1">Hỗ trợ JPG, PNG, MP4 (Tối đa 500MB)</p>
+                                </div>
+                            </div>
+
+                            <!-- Content Editor Tabs -->
+                            <div class="mb-4">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="font-bold text-slate-800">3. Nội Dung Từng Nền Tảng</h3>
+                                    <button onclick="app.openAIModal()" class="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white px-4 py-2 rounded-lg font-medium shadow-sm flex items-center transition text-xs">
+                                        <i data-lucide="sparkles" class="w-3.5 h-3.5 mr-1.5"></i> AI Generate
+                                    </button>
+                                </div>
+                                
+                                <div class="flex border-b border-border gap-6" id="create-tabs">
+                                    <!-- JS Injected Tabs -->
+                                </div>
+                            </div>
+
+                            <!-- Dynamic Editor Area -->
+                            <div id="dynamic-editor-area" class="bg-card border border-border rounded-xl p-5 shadow-sm min-h-[300px]">
+                                <!-- Replaced by JS based on Active Tab -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Schedule & Publish (30%) -->
+                    <div class="w-80 bg-slate-50 p-6 flex flex-col">
+                        <div class="bg-card border border-border rounded-xl p-5 mb-6 shadow-sm">
+                            <h3 class="font-bold text-slate-800 border-b border-border pb-3 mb-4 flex items-center"><i data-lucide="calendar" class="w-4 h-4 mr-2 text-blue-600"></i> Lịch Đăng</h3>
+                            <div class="space-y-3">
+                                <label class="flex items-center p-3 rounded-lg border border-blue-600 bg-blue-50 cursor-pointer" id="label-now">
+                                    <input type="radio" name="sched_type" value="now" checked onchange="app.toggleScheduleUI(false)" class="w-4 h-4 text-blue-600">
+                                    <span class="ml-3 font-medium">Đăng ngay (Add to Queue)</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-lg border border-border bg-card cursor-pointer hover:bg-slate-50 transition" id="label-sched">
+                                    <input type="radio" name="sched_type" value="schedule" onchange="app.toggleScheduleUI(true)" class="w-4 h-4 text-blue-600">
+                                    <span class="ml-3 font-medium">Lên lịch tự động</span>
+                                </label>
+                            </div>
+                            
+                            <div id="schedule-inputs" class="hidden mt-4 pt-4 border-t border-border space-y-3">
+                                <div>
+                                    <label class="text-xs font-semibold text-muted mb-1 block">Ngày đăng</label>
+                                    <input type="date" id="input-date" class="w-full px-3 py-2 border border-border rounded-lg outline-none focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label class="text-xs font-semibold text-muted mb-1 block">Giờ đăng (GMT+7)</label>
+                                    <input type="time" id="input-time" class="w-full px-3 py-2 border border-border rounded-lg outline-none focus:border-blue-500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-card border border-border rounded-xl p-5 mb-auto shadow-sm">
+                            <h3 class="font-bold text-slate-800 mb-3 text-sm">Targets</h3>
+                            <div id="target-summary" class="space-y-2 text-sm text-slate-600">
+                                <!-- JS Injected -->
+                            </div>
+                        </div>
+
+                        <button onclick="app.submitPost()" id="btn-submit" class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-blue-600/20 transition flex items-center justify-center">
+                            <i data-lucide="send" class="w-4 h-4 mr-2" id="submit-icon"></i>
+                            <span id="submit-text">Đẩy vào Queue Đăng</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. POSTS MANAGEMENT (QUEUE / RETRY) -->
+            <div id="view-posts" class="view-section p-8 max-w-7xl mx-auto h-full flex flex-col">
+                <div class="flex justify-between items-end mb-6 shrink-0">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900">Quản Lý Bài Viết & Queue</h2>
+                        <p class="text-muted mt-1">Theo dõi trạng thái, xử lý lỗi đăng bài và quản lý lịch trình.</p>
+                    </div>
+                </div>
+
+                <div class="bg-card border border-border rounded-xl shadow-sm flex flex-col flex-1 overflow-hidden">
+                    <div class="px-6 py-4 border-b border-border bg-slate-50/50 flex gap-6" id="post-filters">
+                        <!-- JS Injected -->
+                    </div>
+                    <div class="overflow-y-auto flex-1">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="text-muted bg-card sticky top-0 z-10 shadow-sm">
+                                <tr>
+                                    <th class="px-6 py-4 font-medium border-b border-border">Nội dung</th>
+                                    <th class="px-6 py-4 font-medium border-b border-border">Nền tảng</th>
+                                    <th class="px-6 py-4 font-medium border-b border-border">Lịch trình / Log</th>
+                                    <th class="px-6 py-4 font-medium border-b border-border">Trạng thái Job</th>
+                                    <th class="px-6 py-4 font-medium border-b border-border text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="posts-table-body" class="divide-y divide-border">
+                                <!-- JS Injected -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. ACCOUNTS -->
+            <div id="view-accounts" class="view-section p-8 max-w-7xl mx-auto">
+                <div class="flex justify-between items-end mb-8">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900">Kết nối Nền tảng</h2>
+                        <p class="text-muted mt-1">Quản lý OAuth Token cho các mạng xã hội của Workspace.</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="accounts-grid">
+                    <!-- JS Injected -->
+                </div>
+            </div>
+
+            <!-- 5. CALENDAR -->
+            <div id="view-calendar" class="view-section p-8 max-w-7xl mx-auto h-full flex flex-col">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6 shrink-0">Content Calendar</h2>
+                <div class="flex-1 bg-card border border-border rounded-xl shadow-sm overflow-hidden flex flex-col">
+                    <div class="grid grid-cols-7 border-b border-border bg-slate-50">
+                        <div class="py-3 text-center text-xs font-bold text-muted uppercase">T2</div>
+                        <div class="py-3 text-center text-xs font-bold text-muted uppercase">T3</div>
+                        <div class="py-3 text-center text-xs font-bold text-muted uppercase">T4</div>
+                        <div class="py-3 text-center text-xs font-bold text-muted uppercase">T5</div>
+                        <div class="py-3 text-center text-xs font-bold text-muted uppercase">T6</div>
+                        <div class="py-3 text-center text-xs font-bold text-muted uppercase">T7</div>
+                        <div class="py-3 text-center text-xs font-bold text-muted uppercase">CN</div>
+                    </div>
+                    <div class="grid grid-cols-7 flex-1" id="calendar-grid">
+                        <!-- JS Injected -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- AI GENERATE MODAL -->
+    <div id="modal-ai" class="modal fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 items-center justify-center">
+        <div class="bg-card w-full max-w-2xl rounded-2xl shadow-2xl border border-border overflow-hidden transform scale-95 transition-transform" id="modal-ai-content">
+            <div class="px-6 py-4 border-b border-border bg-slate-50 flex justify-between items-center">
+                <h3 class="font-bold text-slate-800 flex items-center"><i data-lucide="sparkles" class="w-5 h-5 mr-2 text-purple-600"></i> AI Caption Generator (GPT-4o)</h3>
+                <button onclick="app.closeAIModal()" class="text-muted hover:text-slate-800"><i data-lucide="x"></i></button>
+            </div>
+            <div class="p-6">
+                <div class="space-y-4 mb-6">
+                    <div>
+                        <label class="text-xs font-bold text-slate-700 block mb-1">Chủ đề / Yêu cầu</label>
+                        <input type="text" id="ai-topic" placeholder="Ví dụ: Giới thiệu khóa học thanh nhạc tháng 9..." class="w-full px-4 py-2 border border-border rounded-lg outline-none focus:border-purple-500">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs font-bold text-slate-700 block mb-1">Tone giọng</label>
+                            <select id="ai-tone" class="w-full px-4 py-2 border border-border rounded-lg outline-none focus:border-purple-500">
+                                <option>Professional & Trustworthy</option>
+                                <option>Viral & Gen-Z</option>
+                                <option>Sales & Call-to-Action</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-700 block mb-1">Mục tiêu (Goal)</label>
+                            <select class="w-full px-4 py-2 border border-border rounded-lg outline-none focus:border-purple-500">
+                                <option>Engagement</option>
+                                <option>Lead Generation</option>
+                                <option>Brand Awareness</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="app.generateAIContent()" id="btn-ai-generate" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-purple-600/20 transition flex items-center justify-center">
+                    ✨ Bắt đầu Generate riêng cho từng nền tảng
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST COMPONENT -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-card border border-border shadow-xl rounded-xl p-4 flex items-center gap-3 transition-transform duration-300 translate-x-[150%] z-50 min-w-[300px]">
+        <div id="toast-icon-wrapper" class="w-8 h-8 rounded-full flex items-center justify-center shrink-0"></div>
+        <div>
+            <h4 class="font-bold text-sm text-slate-800" id="toast-title">Thông báo</h4>
+            <p class="text-xs text-muted" id="toast-desc">Mô tả</p>
+        </div>
+    </div>
+
+    <!-- MAIN JAVASCRIPT LOGIC -->
+    <script>
+        const app = {
+            // DATABASE ẢO BẰNG LOCALSTORAGE
+            db: {
+                platforms: [
+                    { id: "facebook", name: "Facebook", brand: "text-blue-600", icon: "facebook", connected: true, fields: ['caption', 'hashtags'] },
+                    { id: "tiktok", name: "TikTok", brand: "text-black", icon: "music", connected: true, fields: ['caption', 'privacy'] },
+                    { id: "youtube", name: "YouTube", brand: "text-red-600", icon: "youtube", connected: true, fields: ['title', 'description', 'tags'] },
+                    { id: "instagram", name: "Instagram", brand: "text-pink-600", icon: "instagram", connected: false, fields: ['caption', 'location'] },
+                    { id: "x", name: "X (Twitter)", brand: "text-slate-800", icon: "twitter", connected: false, fields: ['caption'] }
+                ],
+                posts: JSON.parse(localStorage.getItem('dino_posts')) || [],
+            },
+            
+            state: {
+                selectedPlatforms: ['facebook'],
+                activeTab: 'facebook',
+                isScheduling: false,
+                postFilter: 'all', // all, queued, published, failed
+                postContents: {} // Tạm lưu content editor
+            },
+
+            init() {
+                // Khởi tạo Editor State
+                this.db.platforms.forEach(p => { this.state.postContents[p.id] = { caption: "", title: "", description: "" }; });
+                // Load UI
+                lucide.createIcons();
+                this.navigate('dashboard');
+                
+                // Seed Demo Data nếu rỗng
+                if (this.db.posts.length === 0) {
+                    this.db.posts = [
+                        { id: 1, title: "Lịch khai giảng khóa Content Creation", platforms: ["facebook", "tiktok"], scheduleText: "Vừa xong", timestamp: Date.now(), status: "published", contents: { facebook: { caption: "Khai giảng khóa mới..." } } },
+                        { id: 2, title: "Video Tutorial: Setup ánh sáng", platforms: ["youtube"], scheduleText: "Mai, 19:00", timestamp: Date.now() + 86400000, status: "scheduled", contents: { youtube: { title: "Hướng dẫn setup..." } } }
+                    ];
+                    this.saveDB();
+                }
+            },
+
+            saveDB() { localStorage.setItem('dino_posts', JSON.stringify(this.db.posts)); },
+
+            // CORE ROUTING
+            navigate(viewId) {
+                document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+                document.getElementById(`view-${viewId}`).classList.add('active');
+                
+                // Active Sidebar
+                document.querySelectorAll('.nav-link').forEach(el => {
+                    if(el.classList.contains(viewId)) {
+                        el.classList.add('bg-slate-100', 'font-semibold');
+                        el.querySelector('i').classList.replace('text-slate-400', 'text-blue-600');
+                    } else {
+                        el.classList.remove('bg-slate-100', 'font-semibold');
+                        el.querySelector('i').classList.replace('text-blue-600', 'text-slate-400');
+                    }
+                });
+
+                document.getElementById('breadcrumb').innerHTML = `Dino Social Hub / <span class="text-slate-800 ml-1 capitalize">${viewId}</span>`;
+
+                if(viewId === 'dashboard') this.renderDashboard();
+                if(viewId === 'create') this.renderCreateUI();
+                if(viewId === 'posts') this.renderPosts();
+                if(viewId === 'accounts') this.renderAccounts();
+                if(viewId === 'calendar') this.renderCalendar();
+                
+                this.updateGlobalQueueBadge();
+                lucide.createIcons();
+            },
+
+            // CORE RENDER: CREATE POST
+            renderCreateUI() {
+                // 1. Platforms
+                document.getElementById('create-platforms').innerHTML = this.db.platforms.map(p => {
+                    const isSelected = this.state.selectedPlatforms.includes(p.id);
+                    return `
+                        <div onclick="app.togglePlatformSelect('${p.id}', ${p.connected})" 
+                             class="relative h-24 rounded-xl border-2 flex flex-col items-center justify-center cursor-pointer transition-all 
+                             ${isSelected ? 'border-blue-600 bg-blue-50/50' : 'border-border bg-card hover:border-slate-300'} 
+                             ${!p.connected ? 'opacity-40 grayscale bg-slate-50 cursor-not-allowed' : ''}">
+                            ${isSelected ? '<i data-lucide="check-circle-2" class="absolute top-2 right-2 w-4 h-4 text-blue-600"></i>' : ''}
+                            <i data-lucide="${p.icon}" class="w-6 h-6 mb-2 ${p.brand}"></i>
+                            <div class="font-bold text-xs ${p.brand}">${p.name}</div>
+                        </div>
+                    `;
+                }).join('');
+
+                // 2. Tabs
+                if(this.state.selectedPlatforms.length === 0) {
+                    document.getElementById('create-tabs').innerHTML = `<span class="text-sm text-muted pb-2">Vui lòng chọn nền tảng</span>`;
+                    document.getElementById('dynamic-editor-area').innerHTML = `<p class="text-muted text-center mt-10">Chưa chọn nền tảng để viết nội dung.</p>`;
+                } else {
+                    document.getElementById('create-tabs').innerHTML = this.state.selectedPlatforms.map(id => {
+                        const p = this.db.platforms.find(x => x.id === id);
+                        return `<button onclick="app.setActiveTab('${id}')" class="pb-2 text-sm transition-all platform-tab ${this.state.activeTab === id ? 'active' : 'text-muted hover:text-slate-800'}">${p.name}</button>`;
+                    }).join('');
+                    this.renderDynamicEditor();
+                }
+
+                // 3. Targets Right Sidebar
+                document.getElementById('target-summary').innerHTML = this.state.selectedPlatforms.length === 0 
+                    ? `<p class="text-muted italic">Trống</p>` 
+                    : this.state.selectedPlatforms.map(id => `<div class="flex justify-between items-center py-1 border-b border-border last:border-0"><span class="font-medium text-slate-800">${this.db.platforms.find(x=>x.id===id).name}</span><span class="text-[10px] bg-slate-100 px-2 py-0.5 rounded font-bold uppercase">${this.state.isScheduling ? 'Schedule' : 'Ready'}</span></div>`).join('');
+                
+                lucide.createIcons();
+            },
+
+            setActiveTab(id) { this.state.activeTab = id; this.renderCreateUI(); },
+
+            togglePlatformSelect(id, connected) {
+                if(!connected) return this.ui.showToast('Warning', 'Tài khoản chưa kết nối. Vui lòng vào Quản lý Tài khoản.', true);
+                if(this.state.selectedPlatforms.includes(id)) {
+                    this.state.selectedPlatforms = this.state.selectedPlatforms.filter(p => p !== id);
+                } else { this.state.selectedPlatforms.push(id); }
+                if(this.state.selectedPlatforms.length > 0 && !this.state.selectedPlatforms.includes(this.state.activeTab)) {
+                    this.state.activeTab = this.state.selectedPlatforms[0];
+                }
+                this.renderCreateUI();
+            },
+
+            renderDynamicEditor() {
+                const plat = this.db.platforms.find(p => p.id === this.state.activeTab);
+                const content = this.state.postContents[plat.id];
+                let html = '';
+
+                if (plat.id === 'youtube') {
+                    html = `
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-xs font-bold text-slate-700 block mb-1">YouTube Video Title (SEO)</label>
+                                <input type="text" value="${content.title}" onkeyup="app.updateContent('title', this.value)" class="w-full px-4 py-2 border border-border rounded-lg outline-none focus:border-blue-500 font-medium">
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-700 block mb-1">Video Description</label>
+                                <textarea onkeyup="app.updateContent('description', this.value)" class="w-full h-32 p-4 border border-border rounded-lg outline-none focus:border-blue-500 resize-none">${content.description}</textarea>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    html = `
+                        <div class="flex items-center justify-between mb-2">
+                            <label class="text-xs font-bold text-slate-700 uppercase">${plat.name} Caption</label>
+                        </div>
+                        <textarea onkeyup="app.updateContent('caption', this.value)" class="w-full h-48 p-4 border border-border rounded-lg outline-none focus:border-blue-500 resize-none" placeholder="Viết nội dung cho ${plat.name} tại đây...">${content.caption}</textarea>
+                    `;
+                    // Extra fields
+                    if(plat.id === 'tiktok') html += `<div class="mt-4 flex gap-4"><label class="flex items-center text-sm"><input type="checkbox" checked class="mr-2"> Cho phép Comment</label><label class="flex items-center text-sm"><input type="checkbox" checked class="mr-2"> Cho phép Duet</label></div>`;
+                }
+                document.getElementById('dynamic-editor-area').innerHTML = html;
+            },
+
+            updateContent(field, val) { this.state.postContents[this.state.activeTab][field] = val; },
+
+            toggleScheduleUI(isSched) {
+                this.state.isScheduling = isSched;
+                document.getElementById('label-now').className = `flex items-center p-3 rounded-lg border cursor-pointer transition ${!isSched ? 'border-blue-600 bg-blue-50' : 'border-border bg-card'}`;
+                document.getElementById('label-sched').className = `flex items-center p-3 rounded-lg border cursor-pointer transition ${isSched ? 'border-blue-600 bg-blue-50' : 'border-border bg-card'}`;
+                document.getElementById('schedule-inputs').style.display = isSched ? 'block' : 'none';
+                
+                document.getElementById('submit-text').innerText = isSched ? "Lên Lịch Tự Động" : "Đẩy vào Queue Đăng";
+                document.getElementById('submit-icon').setAttribute('data-lucide', isSched ? 'calendar' : 'send');
+                this.renderCreateUI(); // re-render target tags
+            },
+
+            // CORE: QUEUE & SUBMIT LOGIC
+            submitPost() {
+                if(this.state.selectedPlatforms.length === 0) return this.ui.showToast('Error', 'Chọn ít nhất 1 nền tảng!', true);
+                
+                // Get summary title from first available content
+                const firstPlat = this.state.selectedPlatforms[0];
+                const contentText = this.state.postContents[firstPlat].caption || this.state.postContents[firstPlat].title || "Nội dung trống (Demo)";
+
+                let schedText = "Queue - Đang xử lý";
+                let tStamp = Date.now();
+                let status = "queued";
+
+                if(this.state.isScheduling) {
+                    const d = document.getElementById('input-date').value;
+                    const t = document.getElementById('input-time').value;
+                    if(!d || !t) return this.ui.showToast('Error', 'Thiếu ngày giờ đặt lịch!', true);
+                    schedText = `${d.split('-').reverse().join('/')}, ${t}`;
+                    tStamp = new Date(`${d}T${t}`).getTime();
+                    status = "scheduled";
+                }
+
+                // Simulate BullMQ Job Creation (Lưu vào LocalStorage)
+                const newPost = {
+                    id: Date.now(),
+                    title: contentText.substring(0, 50) + '...',
+                    platforms: [...this.state.selectedPlatforms],
+                    scheduleText: schedText,
+                    timestamp: tStamp,
+                    status: status,
+                    contents: JSON.parse(JSON.stringify(this.state.postContents))
+                };
+
+                this.db.posts.unshift(newPost);
+                this.saveDB();
+
+                // Button Loading State
+                const btn = document.getElementById('btn-submit');
+                const ogHTML = btn.innerHTML;
+                btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 mr-2 animate-spin"></i> Processing Job...`;
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    btn.innerHTML = ogHTML;
+                    btn.disabled = false;
+                    this.ui.showToast('Success', `Đã đẩy Job lên Queue cho ${this.state.selectedPlatforms.length} platforms.`);
+                    
+                    // Reset Form
+                    this.state.postContents = {};
+                    this.db.platforms.forEach(p => { this.state.postContents[p.id] = { caption: "", title: "", description: "" }; });
+                    
+                    // Route to Posts Management
+                    this.navigate('posts');
+                    
+                    // Nếu là Queue đăng ngay, giả lập Worker xử lý sau 3s chuyển thành Published
+                    if(status === 'queued') this.simulateWorkerProcessing(newPost.id);
+
+                }, 800);
+            },
+
+            simulateWorkerProcessing(postId) {
+                setTimeout(() => {
+                    const post = this.db.posts.find(p => p.id === postId);
+                    if(post) {
+                        // 10% tỷ lệ rớt (Failed) để demo tính năng Retry
+                        if(Math.random() > 0.9) {
+                            post.status = 'failed';
+                            post.errorLog = 'Lỗi Graph API: Access Token Expired';
+                            this.ui.showToast('Worker Alert', `Post #${postId} thất bại trên Facebook!`, true);
+                        } else {
+                            post.status = 'published';
+                            post.scheduleText = 'Đã đăng xong';
+                            this.ui.showToast('Worker Success', `Job đăng bài #${postId} hoàn tất!`);
+                        }
+                        this.saveDB();
+                        if(document.getElementById('view-posts').classList.contains('active')) this.renderPosts();
+                        this.updateGlobalQueueBadge();
+                    }
+                }, 3000);
+            },
+
+            // CORE RENDER: POSTS MANAGEMENT (QUEUE)
+            setFilter(f) { this.state.postFilter = f; this.renderPosts(); },
+            
+            renderPosts() {
+                const filters = [
+                    {id: 'all', name: 'Tất cả Jobs'}, {id: 'queued', name: 'Đang chờ (Queue)'}, 
+                    {id: 'scheduled', name: 'Đã lên lịch'}, {id: 'published', name: 'Thành công'}, {id: 'failed', name: 'Lỗi / Cần Retry'}
+                ];
+                
+                document.getElementById('post-filters').innerHTML = filters.map(f => 
+                    `<button onclick="app.setFilter('${f.id}')" class="text-sm font-semibold pb-1 border-b-2 transition ${this.state.postFilter === f.id ? 'text-blue-600 border-blue-600' : 'text-muted border-transparent hover:text-slate-800'}">${f.name}</button>`
+                ).join('');
+
+                let filtered = this.db.posts.filter(p => this.state.postFilter === 'all' ? true : p.status === this.state.postFilter);
+                
+                if(filtered.length === 0) {
+                    document.getElementById('posts-table-body').innerHTML = `<tr><td colspan="5" class="text-center py-12 text-muted">Không có dữ liệu Job trong hàng đợi.</td></tr>`;
+                    return;
+                }
+
+                document.getElementById('posts-table-body').innerHTML = filtered.map(p => {
+                    let badge = '';
+                    if(p.status === 'published') badge = '<span class="bg-green-100 text-green-700 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider"><i data-lucide="check" class="w-3 h-3 inline mr-1"></i>SUCCESS</span>';
+                    else if(p.status === 'scheduled') badge = '<span class="bg-blue-100 text-blue-700 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider"><i data-lucide="calendar" class="w-3 h-3 inline mr-1"></i>SCHED</span>';
+                    else if(p.status === 'queued') badge = '<span class="bg-orange-100 text-orange-600 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider"><i data-lucide="loader" class="w-3 h-3 inline mr-1 animate-spin"></i>QUEUE</span>';
+                    else if(p.status === 'failed') badge = `<span class="bg-red-100 text-red-700 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider"><i data-lucide="alert-triangle" class="w-3 h-3 inline mr-1"></i>FAILED</span> <div class="text-[10px] text-red-500 mt-1">${p.errorLog}</div>`;
+
+                    const plats = p.platforms.map(id => {
+                        const plat = this.db.platforms.find(x=>x.id===id);
+                        return `<i data-lucide="${plat.icon}" class="w-4 h-4 inline mr-1 ${plat.brand}"></i>`;
+                    }).join('');
+
+                    return `
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-medium text-slate-800 max-w-[250px] truncate text-sm">${p.title}</td>
+                            <td class="px-6 py-4">${plats}</td>
+                            <td class="px-6 py-4 text-xs font-medium text-slate-600">${p.scheduleText}</td>
+                            <td class="px-6 py-4">${badge}</td>
+                            <td class="px-6 py-4 text-right">
+                                ${p.status === 'failed' ? `<button class="text-orange-500 hover:bg-orange-50 p-2 rounded-lg mr-1 text-xs font-bold border border-orange-200" onclick="app.retryJob(${p.id})"><i data-lucide="refresh-cw" class="w-3 h-3 inline mr-1"></i>Retry Job</button>` : ''}
+                                <button class="text-slate-400 hover:text-red-600 p-2 rounded-lg transition hover:bg-red-50" onclick="app.deletePost(${p.id})"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+                lucide.createIcons();
+            },
+
+            retryJob(id) {
+                const post = this.db.posts.find(p => p.id === id);
+                if(post) {
+                    post.status = 'queued';
+                    post.errorLog = null;
+                    post.scheduleText = "Retrying in Queue";
+                    this.saveDB();
+                    this.renderPosts();
+                    this.ui.showToast('Info', `Job #${id} đã được đưa lại vào Hàng đợi.`);
+                    this.simulateWorkerProcessing(id);
+                }
+            },
+
+            deletePost(id) {
+                if(confirm("Bạn có chắc chắn muốn hủy Job/Bài viết này khỏi hệ thống?")) {
+                    this.db.posts = this.db.posts.filter(p => p.id !== id);
+                    this.saveDB();
+                    this.renderPosts();
+                    this.updateGlobalQueueBadge();
+                    this.ui.showToast('Success', 'Đã xóa bản ghi.');
+                }
+            },
+
+            // DASHBOARD METRICS
+            renderDashboard() {
+                document.getElementById('stat-total').innerText = this.db.posts.length;
+                document.getElementById('stat-published').innerText = this.db.posts.filter(p=>p.status==='published').length;
+                document.getElementById('stat-scheduled').innerText = this.db.posts.filter(p=>p.status==='scheduled' || p.status==='queued').length;
+                document.getElementById('stat-failed').innerText = this.db.posts.filter(p=>p.status==='failed').length;
+
+                const recent = this.db.posts.slice(0, 4);
+                document.getElementById('dash-recent-posts').innerHTML = recent.length ? recent.map(p => {
+                    const statusText = p.status.toUpperCase();
+                    const statusColor = p.status === 'published' ? 'text-green-600' : (p.status === 'failed' ? 'text-red-600' : 'text-orange-600');
+                    return `
+                        <tr class="hover:bg-slate-50">
+                            <td class="px-6 py-4 font-medium text-slate-800 max-w-[200px] truncate text-xs">${p.title}</td>
+                            <td class="px-6 py-4 text-xs">${p.platforms.length} platforms</td>
+                            <td class="px-6 py-4 text-muted text-xs">${p.scheduleText}</td>
+                            <td class="px-6 py-4 text-[10px] font-bold ${statusColor}">${statusText}</td>
+                        </tr>
+                    `;
+                }).join('') : `<tr><td colspan="4" class="text-center py-4 text-muted">Trống</td></tr>`;
+            },
+
+            // CALENDAR RENDER
+            renderCalendar() {
+                let calHTML = '';
+                const today = new Date().getDate();
+                for(let i=0; i<35; i++) {
+                    let date = i - 1; 
+                    let isCurrentMonth = date > 0 && date <= 31;
+                    let isToday = date === today;
+                    
+                    let dayEvents = '';
+                    if (isCurrentMonth) {
+                        const postsInDay = this.db.posts.filter(p => {
+                            if(p.status!=='scheduled' && p.status!=='published') return false;
+                            const postDate = new Date(p.timestamp).getDate();
+                            return postDate === date;
+                        });
+                        dayEvents = postsInDay.map(p => {
+                            const color = p.status === 'published' ? 'bg-green-100 text-green-700 border-green-200' : 'bg-blue-100 text-blue-700 border-blue-200';
+                            return `<div class="mt-1 mx-1 p-1 ${color} border text-[10px] font-bold rounded truncate cursor-pointer hover:opacity-80 transition">${p.title}</div>`;
+                        }).join('');
+                    }
+
+                    calHTML += `
+                        <div class="border-b border-r border-border min-h-[100px] p-1 flex flex-col ${!isCurrentMonth ? 'bg-slate-50' : 'bg-card'}">
+                            ${isCurrentMonth ? `<div class="${isToday ? 'bg-blue-600 text-white' : 'text-slate-500'} w-6 h-6 rounded-full flex items-center justify-center self-center text-xs font-bold mt-1 mb-1">${date}</div>` : ''}
+                            <div class="flex-1 overflow-y-auto overflow-x-hidden space-y-1">${dayEvents}</div>
+                        </div>
+                    `;
+                }
+                document.getElementById('calendar-grid').innerHTML = calHTML;
+            },
+
+            // ACCOUNTS RENDER
+            renderAccounts() {
+                document.getElementById('accounts-grid').innerHTML = this.db.platforms.map(p => `
+                    <div class="bg-card p-6 rounded-xl border border-border shadow-sm flex flex-col justify-between hover:shadow-md transition">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-slate-50 ${p.brand} rounded-xl flex items-center justify-center font-bold border border-border">
+                                <i data-lucide="${p.icon}"></i>
+                            </div>
+                            <span class="${p.connected ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-500'} px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">${p.connected ? 'Connected' : 'Disconnected'}</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-base">${p.name} API</h3>
+                        <p class="text-xs text-muted mb-6 mt-1">OAuth Token Management</p>
+                        <button onclick="app.toggleOAuth('${p.id}')" class="w-full py-2 font-medium text-sm rounded-lg transition-colors border ${p.connected ? 'bg-card text-red-600 border-red-200 hover:bg-red-50' : 'bg-slate-900 text-white hover:bg-slate-800 border-slate-900'}">
+                            ${p.connected ? 'Disconnect Token' : 'Connect API'}
+                        </button>
+                    </div>
+                `).join('');
+                lucide.createIcons();
+            },
+
+            toggleOAuth(id) {
+                const p = this.db.platforms.find(x => x.id === id);
+                p.connected = !p.connected;
+                this.renderAccounts();
+                this.ui.showToast('Auth System', p.connected ? `Successfully connected to ${p.name} API.` : `Token revoked for ${p.name}.`);
+            },
+
+            // BADGE UPDATE
+            updateGlobalQueueBadge() {
+                const queued = this.db.posts.filter(p => p.status === 'queued' || p.status === 'failed').length;
+                const b = document.getElementById('queue-badge');
+                if(queued > 0) { b.innerText = queued; b.style.display = 'block'; }
+                else { b.style.display = 'none'; }
+            },
+
+            // AI MODAL LOGIC (MOCK)
+            openAIModal() {
+                if(this.state.selectedPlatforms.length === 0) return this.ui.showToast('Error', 'Phải chọn nền tảng trước khi dùng AI', true);
+                document.getElementById('modal-ai').classList.add('active');
+            },
+            closeAIModal() { document.getElementById('modal-ai').classList.remove('active'); },
+            
+            generateAIContent() {
+                const topic = document.getElementById('ai-topic').value || "Mô tả nội dung mặc định";
+                const tone = document.getElementById('ai-tone').value;
+                
+                const btn = document.getElementById('btn-ai-generate');
+                btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 mr-2 animate-spin"></i> GPT-4o đang phân tích...`;
+                lucide.createIcons();
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    // Cấu trúc AI Mock tạo ra content riêng cho từng nền tảng
+                    this.state.selectedPlatforms.forEach(plat => {
+                        if(plat === 'facebook') this.state.postContents.facebook.caption = `🔥 [HOT] ${topic}\n\n👉 Bạn đã sẵn sàng khám phá bí mật đằng sau thành công này chưa? Hãy cùng đọc chi tiết tại bài viết dưới đây nhé!\n\n💡 Tone: ${tone}\n\n#DinoHub #SaaS #Content`;
+                        if(plat === 'tiktok') this.state.postContents.tiktok.caption = `OMG! ${topic} 😱 Cùng xem đến cuối để biết bí mật nhé! 👇 #fyp #trending #DinoHub`;
+                        if(plat === 'instagram') this.state.postContents.instagram.caption = `✨ ${topic}\nMột ngày tuyệt vời để chia sẻ những kiến thức giá trị. Cảm ơn mọi người đã luôn đồng hành.\n.\n.\n📍 Link in bio\n#aesthetic #knowledge #dinohub`;
+                        if(plat === 'x') this.state.postContents.x.caption = `Just dropping this here: ${topic}. What are your thoughts? Thread below 🧵👇 #tech #DinoHub`;
+                        if(plat === 'youtube') {
+                            this.state.postContents.youtube.title = `Bí Quyết: ${topic} (Cập nhật 2026)`;
+                            this.state.postContents.youtube.description = `Trong video này, chúng ta sẽ tìm hiểu về: ${topic}.\nĐừng quên Like và Subscribe!`;
+                        }
+                    });
+
+                    btn.innerHTML = `✨ Bắt đầu Generate riêng cho từng nền tảng`;
+                    btn.disabled = false;
+                    this.closeAIModal();
+                    this.renderCreateUI();
+                    this.ui.showToast('AI Success', 'GPT-4o đã sinh nội dung tối ưu cho từng nền tảng!');
+                }, 1500);
+            },
+
+            // UI HELPERS
+            ui: {
+                showToast(title, desc, isError = false) {
+                    const t = document.getElementById('toast');
+                    document.getElementById('toast-title').innerText = title;
+                    document.getElementById('toast-desc').innerText = desc;
+                    const w = document.getElementById('toast-icon-wrapper');
+                    
+                    if(isError) {
+                        w.className = "w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-red-100 text-red-600";
+                        w.innerHTML = `<i data-lucide="alert-triangle" class="w-4 h-4"></i>`;
+                    } else {
+                        w.className = "w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-green-100 text-green-600";
+                        w.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i>`;
+                    }
+                    lucide.createIcons();
+                    t.classList.remove('translate-x-[150%]');
+                    setTimeout(() => t.classList.add('translate-x-[150%]'), 3500);
+                }
+            }
+        };
+
+        // RUN SYSTEM
+        document.addEventListener('DOMContentLoaded', () => app.init());
+    </script>
+</body>
+</html>
