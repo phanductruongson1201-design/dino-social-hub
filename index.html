@@ -63,7 +63,9 @@ window.lucide.createIcons = function(){
     'message-square':'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
     'heart':'<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
     'bookmark':'<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>',
-    'more-horizontal':'<circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>'
+    'more-horizontal':'<circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>',
+    'smartphone':'<rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/>',
+    'monitor':'<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>'
   };
   document.querySelectorAll('i[data-lucide]').forEach(function(i){
     if(i.dataset.iconReady) return;
@@ -88,6 +90,7 @@ window.lucide.createIcons = function(){
 };
 </script>
 <style>
+/* CSS Variables & Reset */
 :root {
   --bg:#f6f8fb; --surface:#fff; --surface-2:#f9fafb; --line:#e5e7eb; --line-2:#eef0f3;
   --text:#172033; --muted:#667085; --primary:#2563eb; --primary-2:#1d4ed8; --primary-soft:#eff6ff;
@@ -95,16 +98,19 @@ window.lucide.createIcons = function(){
   --danger:#dc2626; --danger-soft:#fef2f2; --info:#0f766e; --info-soft:#ecfeff;
   --shadow:0 4px 18px rgba(15,23,42,.045); --sidebar:220px; --radius:8px;
 }
+
 html[data-theme="dark"] {
   --bg: #0f172a; --surface: #1e293b; --surface-2: #334155; --line: #334155; --line-2: #475569;      
   --text: #f1f5f9; --muted: #94a3b8; --shadow: 0 4px 18px rgba(0,0,0,.3); --primary-soft: rgba(37, 99, 235, 0.2);
 }
+
 * { box-sizing:border-box }
 html { font-size:13px; overflow-x:hidden; transition: background-color 0.3s ease; }
 body { margin:0; padding:0; font-family:Inter,ui-sans-serif,system-ui,sans-serif; color:var(--text); background:var(--bg); font-size:12px; line-height:1.4; overflow-x:hidden; min-height:100vh; transition: background-color 0.3s ease, color 0.3s ease; }
 button, input, select, textarea { font:inherit }
 .hidden { display: none !important; }
 
+/* Sizing cố định cho toàn bộ SVG */
 svg.lucide { width: 1.2em; height: 1.2em; vertical-align: middle; flex-shrink: 0; }
 .nav-item svg { width: 16px; height: 16px; flex: 0 0 auto; }
 .search svg { position: absolute; left: 10px; top: 8px; width: 15px; height: 15px; color: #98a2b3; }
@@ -153,6 +159,7 @@ html[data-theme="dark"] .account-avatar { background: var(--surface-2); }
 html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #93c5fd; border-color: #1d4ed8; }
 html[data-theme="dark"] .label { color: var(--muted); }
 
+/* THIẾT KẾ MÀN HÌNH ĐĂNG NHẬP */
 .login-wrap { position:fixed; inset:0; background:linear-gradient(135deg, #f5f7fa 0%, #e0e7ff 100%); display:flex; align-items:center; justify-content:center; z-index:9999; }
 .login-card { background:var(--surface); width:380px; padding:32px 28px; border-radius:14px; box-shadow:0 15px 35px rgba(37,99,235,0.1); border:1px solid var(--line); text-align:center; }
 .login-card .logo { margin: 0 auto 16px; width:48px; height:48px; border-radius:12px; background:linear-gradient(145deg,#2563eb,#3b82f6); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 18px rgba(37,99,235,.2); color: white; }
@@ -164,14 +171,18 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .demo-acc-btn:hover { border-color:var(--primary); background:var(--primary-soft); transform:translateY(-1px); }
 .demo-acc-btn b { color:var(--primary); font-size:12px; }
 
+/* Layout App */
 .app { display:flex; min-height:100vh }
 .sidebar { width:var(--sidebar); background:var(--surface); border-right:1px solid var(--line); position:fixed; inset:0 auto 0 0; z-index:30; display:flex; flex-direction:column; transition:.2s }
 .sidebar.collapsed { width:64px }
 .sidebar.collapsed .brand-name, .sidebar.collapsed .brand-version, .sidebar.collapsed .section-label, .sidebar.collapsed .nav-label, .sidebar.collapsed .user-meta, .sidebar.collapsed .collapse-text, .sidebar.collapsed .demo-badge { display:none }
 .sidebar.collapsed .brand { justify-content:center; padding:0 8px }
 .sidebar.collapsed .nav-item { justify-content:center; padding-left:8px; padding-right:8px }
+
 .main { margin-left:var(--sidebar); width:calc(100% - var(--sidebar)); transition:.2s }
 .sidebar.collapsed ~ .main { margin-left:64px; width:calc(100% - 64px) }
+
+/* Topbar & Sidebar details */
 .brand { height:56px; padding:0 14px; gap:10px; display:flex; align-items:center; border-bottom:1px solid var(--line-2); cursor:pointer; user-select:none; transition: opacity 0.2s; }
 .brand:hover { opacity: 0.8; }
 .logo { width:32px; height:32px; border-radius:8px; background:linear-gradient(145deg,#2563eb,#3b82f6); color:#fff; display:grid; place-items:center; box-shadow:0 8px 18px rgba(37,99,235,.2) }
@@ -186,6 +197,7 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .demo-badge { background:var(--warning-soft); border:1px solid var(--warning); color:var(--warning); padding:8px 10px; border-radius:8px; font-size:10px; line-height:1.4; opacity:0.9; }
 .collapse-btn { margin-top:10px; width:100%; border:1px solid var(--line); background:var(--surface); color:var(--text); opacity:0.8; padding:8px; border-radius:8px; display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer; font-size:10px; font-weight:600 }
 .collapse-btn:hover { background: var(--surface-2); opacity: 1; }
+
 .topbar { height:56px; background:rgba(255,255,255,.94); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); display:flex; align-items:center; padding:0 16px; gap:10px; position:sticky; top:0; z-index:20 }
 html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .breadcrumbs { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:6px; white-space:nowrap }
@@ -200,6 +212,8 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .user-btn { border:1px solid var(--line); background:var(--surface); padding:2px 8px 2px 2px; border-radius:10px; display:flex; align-items:center; gap:8px; cursor:pointer; color:var(--text); opacity:0.9; }
 .user-btn:hover { background: var(--surface-2); opacity:1; }
 .user-btn span { font-size:11px; font-weight:700 }
+
+/* Content structure */
 .content { padding:16px 20px; max-width:1360px; margin:auto }
 .page-header { display:flex; justify-content:space-between; gap:10px; align-items:flex-start; margin-bottom:12px }
 .page-title { margin:0; font-size:18px; letter-spacing:-.03em }
@@ -217,6 +231,8 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .card-pad { padding:14px }
 .grid { display:grid; gap:10px }
 .grid-8 { grid-template-columns:repeat(8,minmax(0,1fr)); gap:10px }
+
+/* Data Visualization */
 .stat-card { padding:12px; min-height:86px }
 .stat-top { display:flex; justify-content:space-between; align-items:center }
 .stat-icon { width:28px; height:28px; border-radius:8px; display:grid; place-items:center; background:var(--primary-soft); color:var(--primary) }
@@ -225,6 +241,7 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .stat-foot { font-size:9px; color:var(--muted); margin-top:4px }
 .pill { display:inline-flex; align-items:center; gap:5px; padding:4px 8px; border-radius:999px; font-size:9.5px; font-weight:700; border:1px solid transparent; white-space:nowrap }
 .dot { width:6px; height:6px; border-radius:50%; background:currentColor }
+
 .section-title { font-size:13px; font-weight:700 }
 .muted { color:var(--muted) }
 .two-col { display:grid; grid-template-columns:1.7fr 1fr; gap:10px; margin-top:10px }
@@ -233,6 +250,7 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .quick { border:1px solid var(--line); background:var(--surface); border-radius:8px; padding:10px; display:flex; align-items:center; gap:8px; cursor:pointer; text-align:left; color:var(--text); }
 .quick:hover { background:var(--surface-2) }
 .quick span { font-size:10.5px; font-weight:600 }
+
 .chart { height:190px; padding:12px 14px 10px }
 .chart svg { width:100%; height:100% }
 .chart-kpis { display:flex; gap:12px; flex-wrap:wrap; margin-top:10px }
@@ -240,15 +258,20 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .legend .swatch { width:8px; height:8px; border-radius:2px; background:var(--primary) }
 .donut { width:130px; height:130px; border-radius:50%; background:conic-gradient(#2563eb 0 36%,#14b8a6 36% 62%,#f59e0b 62% 78%,#a855f7 78% 90%,#64748b 90% 100%); position:relative; margin:auto }
 .donut-center { position:absolute; inset:0; display:grid; place-items:center; font-size:14px; font-weight:800; z-index:2; color:var(--text) }
+
 .timeline { display:flex; flex-direction:column; gap:10px }
 .timeline-item { display:flex; gap:10px }
 .timeline-dot { width:9px; height:9px; border-radius:50%; background:var(--primary); margin-top:5px; flex:none }
 .timeline-item b { font-size:11px }
 .timeline-item span { font-size:10px; color:var(--muted); display:block; margin-top:3px }
+
+/* Tables */
 .table-wrap { overflow:auto }
 .table { width:100%; border-collapse:collapse; min-width:720px }
 .table th { text-align:left; font-size:9px; letter-spacing:.05em; color:var(--muted); text-transform:uppercase; padding:10px 12px; border-bottom:1px solid var(--line); background:var(--surface-2) }
 .table td { padding:10px 12px; border-bottom:1px solid var(--line-2); font-size:11px; line-height:1.3; vertical-align:middle; color:var(--text) }
+
+/* Media & Form Elements */
 .thumb { width:40px; height:32px; border-radius:6px; border:1px solid var(--line); background:var(--surface-2); display:grid; place-items:center; overflow:hidden }
 .thumb img, .thumb video { width:100%; height:100%; object-fit:cover }
 .media-cell { display:flex; align-items:center; gap:10px; min-width:200px }
@@ -257,6 +280,7 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .platforms { display:flex; gap:5px; flex-wrap:wrap }
 .platform-badge { display:inline-flex; align-items:center; gap:4px; padding:3px 6px; border-radius:5px; background:var(--surface-2); border:1px solid var(--line); font-size:9.5px; font-weight:600 }
 .fb { color:#1877f2 } .tt { color:var(--text) } .yt { color:#ef4444 } .ig { color:#c026d3 } .xx { color:var(--text) }
+
 .form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px }
 .field { display:flex; flex-direction:column; gap:5px }
 .field.full { grid-column:1/-1 }
@@ -265,9 +289,11 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .textarea { min-height:86px; resize:vertical }
 .editor { min-height:120px }
 .help { font-size:9.5px; color:var(--muted) }
+
+/* Custom Drag Drop */
 .dropzone { border:1.5px dashed var(--line-2); border-radius:8px; background:var(--surface-2); padding:16px; text-align:center; cursor:pointer }
 .dropzone:hover { background:var(--surface); border-color:var(--primary) }
-.media-preview { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:8px; margin-top:10px }
+.media-preview-container { display:grid; grid-template-columns:repeat(auto-fill,minmax(115px,1fr)); gap:8px; margin-top:10px }
 .media-item { border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--surface); cursor:move }
 .media-item.drag-over { border-color:#2563eb; opacity:0.6 }
 .media-preview-box { height:86px; background:var(--bg); display:grid; place-items:center; overflow:hidden; position:relative }
@@ -275,6 +301,7 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .media-footer { padding:8px 10px }
 .drag-hint { font-size:9.5px; color:var(--muted) }
 .remove-media { position:absolute; right:6px; top:6px }
+
 .platform-selector { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; margin-bottom:12px }
 .platform-card { border:1px solid var(--line); background:var(--surface); border-radius:8px; padding:10px; cursor:pointer }
 .platform-card.selected { border-color:#93c5fd; background:var(--primary-soft) }
@@ -282,9 +309,11 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .platform-card .p-head { display:flex; justify-content:space-between; align-items:center }
 .platform-card b { font-size:10.5px }
 .platform-card small { font-size:8.5px; color:var(--muted); display:block; margin-top:4px }
+
 .tabs { display:flex; gap:4px; flex-wrap:wrap; border-bottom:1px solid var(--line); padding-bottom:6px; margin-bottom:12px }
 .tab { border:1px solid transparent; background:transparent; padding:8px 10px; border-radius:6px; font-size:10.5px; font-weight:600; color:var(--muted); cursor:pointer }
 .tab.active { background:var(--primary-soft); color:var(--primary); border-color:#dbeafe }
+
 .switch { position:relative; width:40px; height:24px; display:inline-block }
 .switch input { display:none }
 .slider { position:absolute; inset:0; border-radius:999px; background:var(--line-2); cursor:pointer }
@@ -299,6 +328,8 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .notice.danger { background:var(--danger-soft); border-color:var(--danger); color:var(--danger); }
 .empty { text-align:center; padding:30px 16px; color:var(--muted) }
 .empty b { display:block; color:var(--text); font-size:14px; margin-bottom:6px }
+
+/* Modals & Toasts */
 .modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:100; display:none; align-items:center; justify-content:center; padding:20px }
 .modal-backdrop.show { display:flex }
 .modal { width:min(680px,100%); max-height:92vh; overflow:auto; background:var(--surface); border-radius:12px; box-shadow:0 24px 70px rgba(0,0,0,.3) }
@@ -320,6 +351,8 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .loading.show { display:flex }
 .spinner { width:32px; height:32px; border:3px solid var(--line); border-top-color:var(--primary); border-radius:50%; animation:spin .8s linear infinite }
 @keyframes spin { to { transform:rotate(360deg) } }
+
+/* Complex Modules */
 .calendar-toolbar { display:flex; align-items:center; gap:8px }
 .cal-grid { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); border:1px solid var(--line); border-bottom:none; border-right:none; border-radius:10px; overflow:hidden }
 .cal-head, .cal-cell { border-right:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--surface) }
@@ -332,12 +365,14 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .event.published { background:var(--success-soft); color:var(--success); border-color:var(--success-soft) }
 .event b { display:block; font-size:10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
 .event span { display:none }
+
 .kanban { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px }
 .kanban-col { background:var(--bg); border:1px solid var(--line); border-radius:10px; padding:10px; min-height:240px }
 .kanban-head { display:flex; justify-content:space-between; font-size:12.5px; font-weight:700; margin-bottom:12px }
 .job { background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:10px; margin-bottom:10px }
 .job b { font-size:12.5px }
 .job-meta { font-size:10.5px; color:var(--muted); margin-top:6px; line-height:1.5 }
+
 .account-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px }
 .account-card { padding:12px; background:var(--surface); border:1px solid var(--line); border-radius:8px; }
 .account-top { display:flex; gap:12px; align-items:center }
@@ -348,12 +383,14 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .meta-box { border:1px solid var(--line-2); border-radius:6px; padding:10px }
 .meta-box span { display:block; font-size:10.5px; color:var(--muted) }
 .meta-box b { font-size:11.5px; display:block; margin-top:4px }
+
 .settings-tabs { display:flex; gap:8px; flex-wrap:wrap }
 .settings-tabs .tab { border:1px solid var(--line) }
 .settings-layout { display:grid; grid-template-columns:200px 1fr; gap:20px }
 .settings-nav { display:flex; flex-direction:column; gap:4px }
 .settings-nav button { border:0; background:transparent; text-align:left; padding:10px 14px; border-radius:6px; font-size:12.5px; cursor:pointer; color:var(--muted) }
 .settings-nav button.active { background:var(--primary-soft); color:var(--primary); font-weight:600 }
+
 .metric-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px }
 .metric { padding:10px }
 .metric b { font-size:15px }
@@ -362,6 +399,7 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .bar { flex:1; min-width:12px; border-radius:6px 6px 2px 2px; background:linear-gradient(180deg,#60a5fa,#2563eb) }
 .bar-labels { display:flex; gap:10px; padding:0 14px 10px }
 .bar-labels span { flex:1; text-align:center; font-size:10.5px; color:var(--muted) }
+
 .pagination { display:flex; justify-content:space-between; align-items:center; padding-top:14px }
 .pagination .btn { min-width:36px }
 .approval-step { display:flex; align-items:center; gap:10px; padding:10px; border:1px solid var(--line); border-radius:8px }
@@ -369,6 +407,7 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .file-input { display:none }
 .footer-note { font-size:10px; color:var(--muted); text-align:center; padding:16px 0 }
 .badge-count { min-width:20px; height:20px; border-radius:99px; background:var(--primary-soft); color:var(--primary); font-size:10px; display:inline-grid; place-items:center }
+
 .dropdown { position:fixed; z-index:120; right:16px; top:66px; width:200px; background:var(--surface); border:1px solid var(--line); box-shadow:var(--shadow); border-radius:8px; padding:8px; display:none }
 .dropdown.show { display:block }
 .dropdown button { width:100%; background:var(--surface); border:0; border-radius:6px; padding:10px; text-align:left; font-size:12.5px; cursor:pointer; color:var(--text); }
@@ -385,66 +424,30 @@ html[data-theme="dark"] .device-frame { border-color: #0f172a; background: #111;
 html[data-theme="dark"] .device-notch { background: #0f172a; }
 .preview-content { padding-top: 36px; height: 100%; overflow-y: auto; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; scrollbar-width: none; }
 .preview-content::-webkit-scrollbar { display: none; }
-.prev-fb-head { display:flex; gap:8px; padding:12px; align-items:center; }
-.prev-fb-avatar { width:36px; height:36px; border-radius:50%; background:#cbd5e1; }
-.prev-fb-name { font-weight:700; font-size:13px; margin-bottom:2px; }
-.prev-fb-time { font-size:11px; color:#64748b; }
-.prev-fb-text { padding:0 12px 12px; font-size:13px; line-height:1.4; word-wrap: break-word; white-space: pre-wrap; }
-.prev-fb-text .hashtag { color: #1877f2; }
-.prev-fb-img { width:100%; height:260px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-.prev-fb-img img, .prev-fb-img video { width:100%; height:100%; object-fit:cover; }
-.prev-fb-actions { display:flex; padding:10px 12px; border-top:1px solid #e2e8f0; border-bottom:8px solid #e2e8f0; color:#64748b; justify-content:space-between; }
-html[data-theme="dark"] .prev-fb-actions { border-color: #334155; }
-.prev-fb-action { display:flex; gap:6px; align-items:center; font-size:12px; font-weight:600; }
-.prev-tt-wrap { background: #000; height:100%; color:#fff; position:relative; }
-.prev-tt-img { width:100%; height:100%; background:#1f2937; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-.prev-tt-img img, .prev-tt-img video { width:100%; height:100%; object-fit:cover; }
-.prev-tt-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%); pointer-events:none; }
-.prev-tt-right { position:absolute; right:12px; bottom:20px; display:flex; flex-direction:column; gap:16px; align-items:center; }
-.prev-tt-icon { display:flex; flex-direction:column; align-items:center; gap:4px; font-size:10px; font-weight:600; }
-.prev-tt-icon svg { width:28px; height:28px; }
-.prev-tt-bottom { position:absolute; left:12px; bottom:20px; right:60px; }
-.prev-tt-name { font-weight:700; font-size:14px; margin-bottom:6px; display:block; }
-.prev-tt-text { font-size:13px; line-height:1.4; word-wrap: break-word; white-space: pre-wrap; }
-.prev-tt-text .hashtag { font-weight: 700; }
-.prev-ig-head { display:flex; justify-content:space-between; padding:10px 12px; align-items:center; }
-.prev-ig-user { display:flex; gap:8px; align-items:center; }
-.prev-ig-avatar { width:30px; height:30px; border-radius:50%; background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); padding:2px; }
-.prev-ig-avatar-inner { width:100%; height:100%; border-radius:50%; background:#fff; border:1px solid #fff; }
-.prev-ig-name { font-weight:600; font-size:12.5px; }
-.prev-ig-img { width:100%; aspect-ratio:1/1; background:#e2e8f0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-.prev-ig-img img, .prev-ig-img video { width:100%; height:100%; object-fit:cover; }
-.prev-ig-actions { display:flex; justify-content:space-between; padding:10px 12px 6px; }
-.prev-ig-action-left { display:flex; gap:12px; }
-.prev-ig-likes { padding:0 12px; font-weight:600; font-size:12.5px; margin-bottom:4px; }
-.prev-ig-text { padding:0 12px 12px; font-size:13px; line-height:1.4; word-wrap: break-word; white-space: pre-wrap; }
-.prev-ig-text .hashtag { color: #00376b; }
-html[data-theme="dark"] .prev-ig-text .hashtag { color: #e0f2fe; }
-.prev-yt-img { width:100%; aspect-ratio:16/9; background:#e2e8f0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-.prev-yt-img img, .prev-yt-img video { width:100%; height:100%; object-fit:cover; }
-.prev-yt-info { padding:12px; }
-.prev-yt-title { font-size:16px; font-weight:700; line-height:1.3; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-.prev-yt-meta { font-size:11.5px; color:#64748b; margin-bottom:12px; }
-.prev-yt-user { display:flex; gap:10px; align-items:center; margin-bottom:12px; }
-.prev-yt-avatar { width:32px; height:32px; border-radius:50%; background:#cbd5e1; }
-.prev-yt-name { font-weight:600; font-size:13.5px; }
-.prev-yt-desc { background:#f1f5f9; padding:10px; border-radius:8px; font-size:12.5px; line-height:1.4; white-space:pre-wrap; }
-html[data-theme="dark"] .prev-yt-desc { background:#1e293b; color:#cbd5e1; }
-.prev-yt-desc .hashtag { color: #2563eb; }
-.prev-x-wrap { padding:12px; display:flex; gap:10px; border-bottom:1px solid #e2e8f0; }
-html[data-theme="dark"] .prev-x-wrap { border-color:#334155; }
-.prev-x-avatar { width:40px; height:40px; border-radius:50%; background:#cbd5e1; flex-shrink:0; }
-.prev-x-content { flex:1; min-width:0; }
-.prev-x-head { display:flex; align-items:center; gap:4px; margin-bottom:2px; }
-.prev-x-name { font-weight:700; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.prev-x-user { color:#64748b; font-size:13px; }
-.prev-x-text { font-size:14px; line-height:1.4; word-wrap: break-word; white-space: pre-wrap; margin-bottom:10px; }
-.prev-x-text .hashtag { color: #1da1f2; }
-.prev-x-img { width:100%; border-radius:12px; overflow:hidden; border:1px solid #e2e8f0; margin-bottom:10px; }
-html[data-theme="dark"] .prev-x-img { border-color:#334155; }
-.prev-x-img img, .prev-x-img video { width:100%; max-height:280px; object-fit:cover; display:block; }
-.prev-x-actions { display:flex; justify-content:space-between; color:#64748b; padding-right:20px; }
-.prev-x-action { display:flex; gap:6px; align-items:center; font-size:12px; }
+
+/* Desktop Frame */
+.device-frame-desktop { width: 100%; border: 1px solid var(--line); border-radius: 8px; background: #fff; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); color: #000; display:flex; flex-direction:column; height: 560px; }
+html[data-theme="dark"] .device-frame-desktop { background: var(--surface); border-color: var(--line); color: #fff; }
+.desktop-header { height: 28px; background: #f1f5f9; border-bottom: 1px solid var(--line); display: flex; align-items: center; padding: 0 12px; flex-shrink:0; }
+html[data-theme="dark"] .desktop-header { background: #0f172a; border-color: var(--line); }
+.desktop-header .dots { display: flex; gap: 6px; }
+.desktop-header .dots span { width: 10px; height: 10px; border-radius: 50%; background: #cbd5e1; }
+.desktop-header .dots span:nth-child(1) { background: #f87171; }
+.desktop-header .dots span:nth-child(2) { background: #fbbf24; }
+.desktop-header .dots span:nth-child(3) { background: #34d399; }
+.device-frame-desktop .preview-content { padding-top: 0; height: auto; overflow-y: auto; flex:1; }
+
+/* Grid Media Preview */
+.preview-grid { display: grid; gap: 2px; width: 100%; background: #fff; }
+html[data-theme="dark"] .preview-grid { background: var(--surface); }
+.preview-grid-2 { grid-template-columns: 1fr 1fr; height: 260px; }
+.preview-grid-3 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; aspect-ratio: 1/1; }
+.preview-grid-3 .grid-cell:first-child { grid-column: 1 / -1; }
+.preview-grid-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; aspect-ratio: 1/1; }
+.grid-cell { position: relative; overflow: hidden; width: 100%; height: 100%; display:flex; align-items:center; justify-content:center; background:#e2e8f0; }
+html[data-theme="dark"] .grid-cell { background: #334155; }
+.grid-cell img, .grid-cell video { width: 100%; height: 100%; object-fit: cover; }
+.more-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; }
 
 /* Inbox Styles */
 .inbox-layout { display: grid; grid-template-columns: 300px 1fr; height: calc(100vh - 150px); border: 1px solid var(--line); border-radius: 8px; background: var(--surface); overflow: hidden; }
@@ -464,6 +467,7 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
 .inbox-name { font-size: 12px; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .inbox-time { font-size: 10px; color: var(--muted); }
 .inbox-preview { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
 .inbox-chat { display: flex; flex-direction: column; background: var(--surface); }
 .chat-head { padding: 14px 20px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
 .chat-user-info { display: flex; align-items: center; gap: 12px; }
@@ -483,10 +487,67 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
 .chat-send-btn { width: 44px; height: 44px; border-radius: 8px; background: var(--primary); color: #fff; display: grid; place-items: center; border: none; cursor: pointer; flex-shrink: 0; }
 .chat-send-btn:hover { background: var(--primary-2); }
 
-@media(max-width:1300px) { .grid-8 { grid-template-columns:repeat(4,minmax(0,1fr)) } .account-grid { grid-template-columns:repeat(2,minmax(0,1fr)) } .quick-grid { grid-template-columns:repeat(3,minmax(0,1fr)) } }
-@media(max-width:980px) { .sidebar { width:58px } .sidebar .brand-name, .sidebar .brand-version, .sidebar .section-label, .sidebar .nav-label, .sidebar .user-meta, .sidebar .collapse-text, .sidebar .demo-badge { display:none } .sidebar .brand { justify-content:center } .sidebar .nav-item { justify-content:center } .main, .sidebar.collapsed ~ .main { margin-left:58px; width:calc(100% - 58px) } .two-col, .three-col { grid-template-columns:1fr } .settings-layout { grid-template-columns:1fr } .settings-nav { flex-direction:row; overflow:auto } .metric-grid { grid-template-columns:repeat(2,minmax(0,1fr)) } .kanban { grid-template-columns:1fr 1fr } .platform-selector { grid-template-columns:repeat(3,minmax(0,1fr)) } .inbox-layout { grid-template-columns: 220px 1fr; } }
-@media(max-width:700px) { .sidebar { display:none } .main, .sidebar.collapsed ~ .main { margin-left:0!important; width:100%!important } .content { padding:10px 10px 65px } .topbar { padding:0 9px; height:50px; gap:8px } .breadcrumbs { display:none } .search { max-width:none } .search input { font-size:11px } .top-actions .user-btn span { display:none } .grid-8 { grid-template-columns:repeat(2,minmax(0,1fr)) } .quick-grid { grid-template-columns:repeat(2,minmax(0,1fr)) } .platform-selector { grid-template-columns:repeat(2,minmax(0,1fr)) } .form-grid { grid-template-columns:1fr } .field.full { grid-column:auto } .account-grid { grid-template-columns:1fr } .kanban { grid-template-columns:1fr } .page-header { flex-direction:column } .page-header .actions { width:100% } .page-header .actions .btn { flex:1 } .mobile-bottom { display:flex; position:fixed; inset:auto 0 0 0; height:50px; background:var(--surface); border-top:1px solid var(--line); z-index:50 } .mobile-bottom button { flex:1; border:0; background:var(--surface); font-size:9px; color:var(--muted); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px } .mobile-bottom button.active { color:var(--primary); font-weight:800 } .modal { max-height:88vh } .cal-cell { min-height:72px; padding:6px } .event span { display:none } .event { padding:5px } .metric-grid { grid-template-columns:repeat(2,minmax(0,1fr)) } .inbox-layout { grid-template-columns: 1fr; } .inbox-chat { display: none; } }
-@media(max-width:420px) { .topbar { padding:0 7px; gap:6px } .search { min-width:0 } .search input { padding-left:32px } .top-actions { gap:4px } #helpBtn { display:none } .user-btn { border:0; padding:2px } .grid-8, .metric-grid { grid-template-columns:1fr 1fr } .quick-grid { grid-template-columns:1fr 1fr } .btn { padding-left:7px; padding-right:7px } }
+
+@media(max-width:1300px) {
+  .grid-8 { grid-template-columns:repeat(4,minmax(0,1fr)) }
+  .account-grid { grid-template-columns:repeat(2,minmax(0,1fr)) }
+  .quick-grid { grid-template-columns:repeat(3,minmax(0,1fr)) }
+}
+@media(max-width:980px) {
+  .sidebar { width:58px }
+  .sidebar .brand-name, .sidebar .brand-version, .sidebar .section-label, .sidebar .nav-label, .sidebar .user-meta, .sidebar .collapse-text, .sidebar .demo-badge { display:none }
+  .sidebar .brand { justify-content:center }
+  .sidebar .nav-item { justify-content:center }
+  .main, .sidebar.collapsed ~ .main { margin-left:58px; width:calc(100% - 58px) }
+  .two-col, .three-col { grid-template-columns:1fr }
+  .settings-layout { grid-template-columns:1fr }
+  .settings-nav { flex-direction:row; overflow:auto }
+  .metric-grid { grid-template-columns:repeat(2,minmax(0,1fr)) }
+  .kanban { grid-template-columns:1fr 1fr }
+  .platform-selector { grid-template-columns:repeat(3,minmax(0,1fr)) }
+  .inbox-layout { grid-template-columns: 220px 1fr; }
+}
+@media(max-width:700px) {
+  .sidebar { display:none }
+  .main, .sidebar.collapsed ~ .main { margin-left:0!important; width:100%!important }
+  .content { padding:10px 10px 65px }
+  .topbar { padding:0 9px; height:50px; gap:8px }
+  .breadcrumbs { display:none }
+  .search { max-width:none }
+  .search input { font-size:11px }
+  .top-actions .user-btn span { display:none }
+  .grid-8 { grid-template-columns:repeat(2,minmax(0,1fr)) }
+  .quick-grid { grid-template-columns:repeat(2,minmax(0,1fr)) }
+  .platform-selector { grid-template-columns:repeat(2,minmax(0,1fr)) }
+  .form-grid { grid-template-columns:1fr }
+  .field.full { grid-column:auto }
+  .account-grid { grid-template-columns:1fr }
+  .kanban { grid-template-columns:1fr }
+  .page-header { flex-direction:column }
+  .page-header .actions { width:100% }
+  .page-header .actions .btn { flex:1 }
+  .mobile-bottom { display:flex; position:fixed; inset:auto 0 0 0; height:50px; background:var(--surface); border-top:1px solid var(--line); z-index:50 }
+  .mobile-bottom button { flex:1; border:0; background:var(--surface); font-size:9px; color:var(--muted); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px }
+  .mobile-bottom button.active { color:var(--primary); font-weight:800 }
+  .modal { max-height:88vh }
+  .cal-cell { min-height:72px; padding:6px }
+  .event span { display:none }
+  .event { padding:5px }
+  .metric-grid { grid-template-columns:repeat(2,minmax(0,1fr)) }
+  .inbox-layout { grid-template-columns: 1fr; }
+  .inbox-chat { display: none; }
+}
+@media(max-width:420px) {
+  .topbar { padding:0 7px; gap:6px }
+  .search { min-width:0 }
+  .search input { padding-left:32px }
+  .top-actions { gap:4px }
+  #helpBtn { display:none }
+  .user-btn { border:0; padding:2px }
+  .grid-8, .metric-grid { grid-template-columns:1fr 1fr }
+  .quick-grid { grid-template-columns:1fr 1fr }
+  .btn { padding-left:7px; padding-right:7px }
+}
 </style>
 </head>
 <body>
@@ -867,61 +928,159 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     return html;
   }
 
-  function renderInbox() {
-    let html = pageShell('Hộp thư hợp nhất', 'Quản lý Tin nhắn và Bình luận từ Facebook, TikTok, Instagram tại một nơi duy nhất.');
-    const messages = state.inbox || [];
-    const activeMsg = messages.find(m => m.id === activeInboxId) || messages[0];
-    
-    html += `<div class="inbox-layout"><div class="inbox-sidebar"><div class="inbox-head"><div class="search" style="max-width:100%"><i data-lucide="search"></i><input placeholder="Tìm người gửi, nội dung..." style="height:32px; background:var(--surface-2)"/></div><div class="inbox-filters"><button class="inbox-filter-btn active">Tất cả</button><button class="inbox-filter-btn">Chưa đọc</button><button class="inbox-filter-btn">Tin nhắn</button></div></div><div class="inbox-list">${messages.map(m => {const mMeta = platformMeta[m.platform];return `<div class="inbox-item ${m.id === activeInboxId ? 'active' : ''}" onclick="app.selectInbox('${m.id}')"><div class="inbox-avatar"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px">${m.avatar}</div><div class="inbox-plat-icon" style="background:#fff; color:${mMeta.cls==='fb'?'#1877f2':mMeta.cls==='ig'?'#c026d3':mMeta.cls==='yt'?'#ef4444':'#111'}"><i data-lucide="${mMeta.icon}" style="width:8px;height:8px"></i></div></div><div class="inbox-info"><div class="inbox-name-row"><span class="inbox-name" style="${!m.read?'font-weight:800;color:var(--primary)':''}">${escape(m.name)}</span><span class="inbox-time">${m.time}</span></div><div class="inbox-preview" style="${!m.read?'font-weight:600;color:var(--text)':''}">${escape(m.type)}: ${escape(m.text)}</div></div></div>`}).join('')}</div></div><div class="inbox-chat">${activeMsg ? `<div class="chat-head"><div class="chat-user-info"><div class="inbox-avatar" style="width:42px;height:42px"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px">${activeMsg.avatar}</div></div><div class="chat-meta"><b style="font-size:14px">${escape(activeMsg.name)}</b><span>Qua ${activeMsg.type} ${activeMsg.platform}</span></div></div><div class="actions"><button class="btn small"><i data-lucide="check-check"></i> Đánh dấu xong</button><button class="btn small"><i data-lucide="more-horizontal"></i></button></div></div><div class="chat-body"><div class="chat-bubble-row them"><div class="inbox-avatar" style="width:28px;height:28px"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:10px">${activeMsg.avatar}</div></div><div><div class="chat-bubble">${escape(activeMsg.text)}</div><div class="chat-time">${activeMsg.time}</div></div></div>${activeMsg.replied ? `<div class="chat-bubble-row me"><div><div class="chat-bubble">${escape(activeMsg.replyText)}</div><div class="chat-time">Vừa xong</div></div></div>` : ''}</div><div class="chat-foot"><div class="chat-input-wrap"><button class="icon-btn" style="border:none;background:transparent;color:var(--muted)"><i data-lucide="image"></i></button><button class="icon-btn" style="border:none;background:transparent;color:var(--muted);margin-right:8px" onclick="toast('Tính năng AI gợi ý trả lời đang được phát triển.','info')"><i data-lucide="sparkles"></i></button><textarea id="inboxReply" class="chat-textarea" placeholder="Nhập câu trả lời... (Enter để gửi)"></textarea><button class="chat-send-btn" onclick="app.sendInboxReply()"><i data-lucide="send"></i></button></div></div>` : `<div class="empty" style="margin:auto"><i data-lucide="message-square"></i><b>Chọn một cuộc hội thoại để bắt đầu</b></div>`}</div></div>`;
-    return html;
+  window.app.setPreviewMode = function(mode) {
+    if(state.draft) state.draft.previewMode = mode;
+    render();
   }
-  
-  window.app = window.app || {};
-  window.app.selectInbox = function(id) { activeInboxId = id; const msg = state.inbox.find(m => m.id === id); if(msg && !msg.read) { msg.read = true; save(); } render(); }
-  window.app.sendInboxReply = function() { const text = document.getElementById('inboxReply').value.trim(); if(!text) return; const msg = state.inbox.find(m => m.id === activeInboxId); if(msg) { msg.replied = true; msg.replyText = text; save(); render(); toast('Đã gửi phản hồi', 'success'); } }
 
   function defaultDraft() {
-    return { title:'', globalCaption:'', selectedPlatforms:['Facebook','TikTok','Instagram'], activeTab:'Facebook', scheduleMode:'now', scheduleDate:new Date().toISOString().slice(0,10), scheduleTime:'18:30', timezone:state.profile.timezone, mediaIds:[], platforms: { Facebook:{caption:'', hashtag:'', link:'', accountIds:[]}, TikTok:{caption:'', hashtag:'', privacy:'Mọi người (Public)', comments:true, duet:true, stitch:true, accountIds:[]}, YouTube:{title:'', description:'', tags:'', category:'Giáo dục', privacy:'Công khai', thumbnailId:'', accountIds:[]}, Instagram:{caption:'', hashtag:'', location:'', accountIds:[]}, X:{text:'', thread:[''], accountIds:[]} } };
+    return {
+      title:'', selectedPlatforms:['Facebook','TikTok','Instagram'], activeTab:'Facebook', 
+      scheduleMode:'now', scheduleDate:new Date().toISOString().slice(0,10), scheduleTime:'18:30', 
+      timezone:state.profile.timezone, mediaIds:[], previewMode: 'mobile',
+      platforms: {
+        Facebook:{caption:'', hashtag:'', link:'', accountIds:[]}, 
+        TikTok:{caption:'', hashtag:'', privacy:'Mọi người (Public)', comments:true, duet:true, stitch:true, accountIds:[]}, 
+        YouTube:{title:'', description:'', tags:'', category:'Giáo dục', privacy:'Công khai', thumbnailId:'', accountIds:[]}, 
+        Instagram:{caption:'', hashtag:'', location:'', accountIds:[]}, 
+        X:{text:'', thread:[''], accountIds:[]}
+      }
+    };
   }
 
   function draftFromPost(post) {
-    const d = defaultDraft(); d.title = post.title; d.selectedPlatforms = Object.keys(post.platforms || {}); d.activeTab = d.selectedPlatforms[0] || 'Facebook'; d.mediaIds = post.mediaIds || [];
+    const d = defaultDraft();
+    d.title = post.title;
+    d.selectedPlatforms = Object.keys(post.platforms || {});
+    d.activeTab = d.selectedPlatforms[0] || 'Facebook';
+    d.mediaIds = post.mediaIds || [];
     for(const p of d.selectedPlatforms) d.platforms[p] = { ...d.platforms[p], ...(post.platforms[p] || {}) };
     d.scheduleMode = post.status === 'Scheduled' || post.status === 'Queued' ? 'schedule' : 'now'; 
-    if(post.schedule) { const x = new Date(post.schedule); d.scheduleDate = x.toISOString().slice(0,10); d.scheduleTime = x.toISOString().slice(11,16); } 
+    if(post.schedule) {
+      const x = new Date(post.schedule);
+      d.scheduleDate = x.toISOString().slice(0,10);
+      d.scheduleTime = x.toISOString().slice(11,16);
+    } 
     return d;
   }
   
-  function renderDevicePreview(tab, content, mediaIds) {
-    const hasMedia = mediaIds && mediaIds.length > 0;
-    const mediaObj = hasMedia ? (state.media.find(x => x.id === mediaIds[0]) || state.bulk.find(x => x.id === mediaIds[0])) : null;
-    const mediaHTML = mediaObj && mediaObj.preview ? (mediaObj.type === 'video' ? `<video src="${mediaObj.preview}" muted loop autoplay></video>` : `<img src="${mediaObj.preview}">`) : `<div style="text-align:center;color:#94a3b8"><i data-lucide="image" style="width:40px;height:40px;margin-bottom:8px"></i><br>Khu vực Ảnh/Video</div>`;
+  function renderDevicePreview(tab, content, mediaIds, previewMode) {
+    let mediaHTML = '';
+    if (mediaIds && mediaIds.length > 0) {
+      const mediaObjs = mediaIds.map(id => state.media.find(x => x.id === id) || state.bulk.find(x => x.id === id)).filter(Boolean);
+      if (mediaObjs.length === 1) {
+        mediaHTML = mediaObjs[0].type === 'video' ? `<video src="${mediaObjs[0].preview}" muted loop autoplay style="width:100%;height:100%;object-fit:cover;"></video>` : `<img src="${mediaObjs[0].preview}" style="width:100%;height:100%;object-fit:cover;">`;
+      } else if (mediaObjs.length > 1) {
+        let gridClass = 'preview-grid-' + Math.min(mediaObjs.length, 4);
+        mediaHTML = `<div class="preview-grid ${gridClass}">`;
+        mediaObjs.slice(0, 4).forEach((m, idx) => {
+          let extra = '';
+          if (idx === 3 && mediaObjs.length > 4) { extra = `<div class="more-overlay">+${mediaObjs.length - 4}</div>`; }
+          mediaHTML += `<div class="grid-cell">${m.type === 'video' ? `<video src="${m.preview}" muted loop autoplay></video>` : `<img src="${m.preview}">`}${extra}</div>`;
+        });
+        mediaHTML += `</div>`;
+      }
+    } else {
+      mediaHTML = `<div style="text-align:center;color:#94a3b8;padding:40px 0;"><i data-lucide="image" style="width:40px;height:40px;margin-bottom:8px"></i><br>Khu vực Ảnh/Video</div>`;
+    }
+
     const selectedAccId = (content.accountIds && content.accountIds.length > 0) ? content.accountIds[0] : null;
     const selectedAcc = selectedAccId ? state.accounts.find(a => a.id === selectedAccId) : null;
     const accName = selectedAcc ? selectedAcc.name : 'Tên Tài Khoản';
     const accUsername = selectedAcc ? selectedAcc.username : '@username';
-    let html = `<div class="device-wrapper"><div class="device-frame"><div class="device-notch"></div><div class="preview-content">`;
+
+    const isDesktop = previewMode === 'desktop';
+    const frameClass = isDesktop ? 'device-frame-desktop' : 'device-frame';
+    const notchHTML = isDesktop ? `<div class="desktop-header"><div class="dots"><span></span><span></span><span></span></div></div>` : `<div class="device-notch"></div>`;
+
+    let html = `<div class="device-wrapper"><div class="${frameClass}">${notchHTML}<div class="preview-content">`;
     
     if (tab === 'Facebook') {
       const combinedText = formatPreviewText(`${content.caption||''} ${content.hashtag||''}`);
-      html += `<div class="prev-fb-head"><div class="prev-fb-avatar"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px">${accName.split(' ').map(x=>x[0]).join('').slice(-2)}</div></div><div><div class="prev-fb-name">${escape(accName)}</div><div class="prev-fb-time">Vừa xong · 🌎</div></div></div><div class="prev-fb-text" id="preview-text">${combinedText || 'Văn bản của bạn sẽ hiển thị ở đây...'}</div><div class="prev-fb-img">${mediaHTML}</div><div class="prev-fb-actions"><div class="prev-fb-action"><i data-lucide="heart" style="width:16px"></i> Thích</div><div class="prev-fb-action"><i data-lucide="message-square" style="width:16px"></i> Bình luận</div><div class="prev-fb-action"><i data-lucide="share-2" style="width:16px"></i> Chia sẻ</div></div>`;
+      html += `
+        <div class="prev-fb-head">
+          <div class="prev-fb-avatar"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px">${accName.split(' ').map(x=>x[0]).join('').slice(-2)}</div></div>
+          <div><div class="prev-fb-name">${escape(accName)}</div><div class="prev-fb-time">Vừa xong · 🌎</div></div>
+        </div>
+        <div class="prev-fb-text" id="preview-text">${combinedText || 'Văn bản của bạn sẽ hiển thị ở đây...'}</div>
+        <div class="prev-fb-img" style="${mediaIds.length > 1 ? 'height:auto; aspect-ratio:1/1;' : ''}">${mediaHTML}</div>
+        <div class="prev-fb-actions">
+          <div class="prev-fb-action"><i data-lucide="heart" style="width:16px"></i> Thích</div>
+          <div class="prev-fb-action"><i data-lucide="message-square" style="width:16px"></i> Bình luận</div>
+          <div class="prev-fb-action"><i data-lucide="share-2" style="width:16px"></i> Chia sẻ</div>
+        </div>
+      `;
     } else if (tab === 'TikTok') {
       const combinedText = formatPreviewText(`${content.caption||''} ${content.hashtag||''}`);
-      html += `<div class="prev-tt-wrap"><div class="prev-tt-img">${mediaHTML}</div><div class="prev-tt-overlay"></div><div class="prev-tt-right"><div class="prev-fb-avatar" style="border:1px solid #fff"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px">${accName.split(' ').map(x=>x[0]).join('').slice(-2)}</div></div><div class="prev-tt-icon"><i data-lucide="heart"></i> 1.2M</div><div class="prev-tt-icon"><i data-lucide="message-square"></i> 45K</div><div class="prev-tt-icon"><i data-lucide="bookmark"></i> 8K</div><div class="prev-tt-icon"><i data-lucide="share-2"></i> 12K</div></div><div class="prev-tt-bottom"><span class="prev-tt-name">${escape(accUsername)}</span><div class="prev-tt-text" id="preview-text">${combinedText || 'Caption của bạn...'}</div></div></div>`;
+      html += `
+        <div class="prev-tt-wrap" style="${isDesktop ? 'max-width:400px; margin: 0 auto; border-radius:12px; overflow:hidden;' : ''}">
+          <div class="prev-tt-img">${mediaHTML}</div>
+          <div class="prev-tt-overlay"></div>
+          <div class="prev-tt-right">
+            <div class="prev-fb-avatar" style="border:1px solid #fff"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px">${accName.split(' ').map(x=>x[0]).join('').slice(-2)}</div></div>
+            <div class="prev-tt-icon"><i data-lucide="heart"></i> 1.2M</div>
+            <div class="prev-tt-icon"><i data-lucide="message-square"></i> 45K</div>
+            <div class="prev-tt-icon"><i data-lucide="bookmark"></i> 8K</div>
+            <div class="prev-tt-icon"><i data-lucide="share-2"></i> 12K</div>
+          </div>
+          <div class="prev-tt-bottom">
+            <span class="prev-tt-name">${escape(accUsername)}</span>
+            <div class="prev-tt-text" id="preview-text">${combinedText || 'Caption của bạn...'}</div>
+          </div>
+        </div>
+      `;
     } else if (tab === 'Instagram') {
       const combinedText = formatPreviewText(`${content.caption||''} ${content.hashtag||''}`);
-      html += `<div class="prev-ig-head"><div class="prev-ig-user"><div class="prev-ig-avatar"><div class="prev-ig-avatar-inner" style="display:grid;place-items:center;font-weight:700;font-size:10px;color:var(--primary)">${accName.split(' ').map(x=>x[0]).join('').slice(-2)}</div></div><div class="prev-ig-name">${escape(accUsername.replace('@',''))}</div></div><i data-lucide="more-horizontal"></i></div><div class="prev-ig-img" style="aspect-ratio:1/1;">${mediaHTML}</div><div class="prev-ig-actions"><div class="prev-ig-action-left"><i data-lucide="heart"></i><i data-lucide="message-square"></i><i data-lucide="send"></i></div><i data-lucide="bookmark"></i></div><div class="prev-ig-likes">8,932 lượt thích</div><div class="prev-ig-text"><b style="font-weight:600">${escape(accUsername.replace('@',''))}</b> <span id="preview-text">${combinedText || 'Văn bản của bạn...'}</span></div>`;
+      html += `
+        <div class="prev-ig-head" style="${isDesktop ? 'max-width:480px; margin: 0 auto;' : ''}">
+          <div class="prev-ig-user"><div class="prev-ig-avatar"><div class="prev-ig-avatar-inner" style="display:grid;place-items:center;font-weight:700;font-size:10px;color:var(--primary)">${accName.split(' ').map(x=>x[0]).join('').slice(-2)}</div></div><div class="prev-ig-name">${escape(accUsername.replace('@',''))}</div></div>
+          <i data-lucide="more-horizontal"></i>
+        </div>
+        <div class="prev-ig-img" style="aspect-ratio:1/1; ${isDesktop ? 'max-width:480px; margin: 0 auto;' : ''}">${mediaHTML}</div>
+        <div class="prev-ig-actions" style="${isDesktop ? 'max-width:480px; margin: 0 auto;' : ''}">
+          <div class="prev-ig-action-left"><i data-lucide="heart"></i><i data-lucide="message-square"></i><i data-lucide="send"></i></div>
+          <i data-lucide="bookmark"></i>
+        </div>
+        <div class="prev-ig-likes" style="${isDesktop ? 'max-width:480px; margin: 0 auto;' : ''}">8,932 lượt thích</div>
+        <div class="prev-ig-text" style="${isDesktop ? 'max-width:480px; margin: 0 auto;' : ''}"><b style="font-weight:600">${escape(accUsername.replace('@',''))}</b> <span id="preview-text">${combinedText || 'Văn bản của bạn...'}</span></div>
+      `;
     } else if (tab === 'YouTube') {
-      html += `<div class="prev-yt-img">${mediaHTML}</div><div class="prev-yt-info"><div class="prev-yt-title" id="preview-yt-title">${escape(content.title) || 'Tiêu đề Video YouTube của bạn'}</div><div class="prev-yt-meta">12N lượt xem · Vừa xong</div><div class="prev-yt-user"><div class="prev-yt-avatar" style="display:grid;place-items:center;font-weight:700;font-size:12px;color:var(--primary);background:var(--primary-soft)">${accName.split(' ').map(x=>x[0]).join('').slice(-2)}</div><div class="prev-yt-name">${escape(accName)}</div></div><div class="prev-yt-desc" id="preview-text">${formatPreviewText(content.description) || 'Mô tả video sẽ nằm ở đây...'}</div></div>`;
+      html += `
+        <div class="prev-yt-img">${mediaHTML}</div>
+        <div class="prev-yt-info">
+          <div class="prev-yt-title" id="preview-yt-title">${escape(content.title) || 'Tiêu đề Video YouTube của bạn'}</div>
+          <div class="prev-yt-meta">12N lượt xem · Vừa xong</div>
+          <div class="prev-yt-user"><div class="prev-yt-avatar" style="display:grid;place-items:center;font-weight:700;font-size:12px;color:var(--primary);background:var(--primary-soft)">${accName.split(' ').map(x=>x[0]).join('').slice(-2)}</div><div class="prev-yt-name">${escape(accName)}</div></div>
+          <div class="prev-yt-desc" id="preview-text">${formatPreviewText(content.description) || 'Mô tả video sẽ nằm ở đây...'}</div>
+        </div>
+      `;
     } else if (tab === 'X') {
-      html += `<div class="prev-x-wrap"><div class="prev-x-avatar" style="display:grid;place-items:center;font-weight:700;font-size:14px;color:var(--primary);background:var(--primary-soft)">${accName.split(' ').map(x=>x[0]).join('').slice(-2)}</div><div class="prev-x-content"><div class="prev-x-head"><span class="prev-x-name">${escape(accName)}</span><span class="prev-x-user">${escape(accUsername)} · 1m</span></div><div class="prev-x-text" id="preview-text">${formatPreviewText(content.text) || "What's happening?"}</div>${hasMedia ? `<div class="prev-x-img">${mediaHTML}</div>` : ''}<div class="prev-x-actions"><div class="prev-x-action"><i data-lucide="message-square" style="width:14px"></i> 12</div><div class="prev-x-action"><i data-lucide="refresh-cw" style="width:14px"></i> 4</div><div class="prev-x-action"><i data-lucide="heart" style="width:14px"></i> 89</div><div class="prev-x-action"><i data-lucide="chart-no-axes-combined" style="width:14px"></i> 1.2K</div></div></div></div>`;
+      html += `
+        <div class="prev-x-wrap" style="${isDesktop ? 'max-width:600px; margin: 0 auto;' : ''}">
+          <div class="prev-x-avatar" style="display:grid;place-items:center;font-weight:700;font-size:14px;color:var(--primary);background:var(--primary-soft)">${accName.split(' ').map(x=>x[0]).join('').slice(-2)}</div>
+          <div class="prev-x-content">
+            <div class="prev-x-head"><span class="prev-x-name">${escape(accName)}</span><span class="prev-x-user">${escape(accUsername)} · 1m</span></div>
+            <div class="prev-x-text" id="preview-text">${formatPreviewText(content.text) || "What's happening?"}</div>
+            ${hasMedia ? `<div class="prev-x-img">${mediaHTML}</div>` : ''}
+            <div class="prev-x-actions">
+              <div class="prev-x-action"><i data-lucide="message-square" style="width:14px"></i> 12</div>
+              <div class="prev-x-action"><i data-lucide="refresh-cw" style="width:14px"></i> 4</div>
+              <div class="prev-x-action"><i data-lucide="heart" style="width:14px"></i> 89</div>
+              <div class="prev-x-action"><i data-lucide="chart-no-axes-combined" style="width:14px"></i> 1.2K</div>
+            </div>
+          </div>
+        </div>
+      `;
     }
+    
     html += `</div></div></div>`;
     return html;
   }
 
   window.app.updatePreviewText = function(val, fieldType) {
-    if(!state.draft) return; const tab = state.draft.activeTab; state.draft.platforms[tab][fieldType] = val;
+    if(!state.draft) return;
+    const tab = state.draft.activeTab;
+    state.draft.platforms[tab][fieldType] = val; 
     const el = document.getElementById(fieldType === 'title' ? 'preview-yt-title' : 'preview-text');
     if(el) {
       if(tab === 'YouTube' && fieldType === 'title') { el.innerHTML = escape(val) || 'Tiêu đề Video YouTube của bạn'; } 
@@ -935,17 +1094,63 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
 
   function renderCreate() {
     if(!state.draft) state.draft = defaultDraft(); 
-    const d = state.draft; const tab = d.activeTab; const platformContent = d.platforms[tab] || {};
+    const d = state.draft; 
+    const tab = d.activeTab; 
+    const platformContent = d.platforms[tab] || {};
+    
     let html = pageShell(editingPostId ? 'Chỉnh sửa bài viết' : 'Tạo bài viết', 'Soạn một nội dung và phân phối theo từng nền tảng.', `<button class="btn" id="resetDraft">Làm mới</button><button class="btn primary" id="saveDraft"><i data-lucide="save"></i>Lưu nháp</button>`);
-    html += `<div class="notice info" style="margin-bottom:12px"><b>Chế độ Demo.</b> Bấm Đăng bài sẽ mô phỏng đẩy vào Queue và đổi trạng thái ảo.</div><div style="display:flex; gap:16px; align-items:flex-start;"><div style="flex:1; min-width:0;"><div class="card card-pad"><div class="form-grid"><label class="field full"><span class="label">Tên chiến dịch / Tiêu đề nội bộ</span><input class="input" id="draftTitle" value="${escape(d.title)}" placeholder="VD: Khai giảng khóa học tháng 9"></label><label class="field full"><span class="label">Nội dung chung (Global Content)</span><textarea class="textarea editor" id="draftGlobalCaption" placeholder="Ghi chú chung hoặc ý tưởng gốc...">${escape(d.globalCaption)}</textarea></label></div><div class="split" style="margin-top:14px"><div><div class="label">1. Chọn Nền Tảng Đăng</div><div class="help">Bật/tắt các nền tảng bạn muốn bài viết xuất hiện.</div></div></div><div class="platform-selector" style="margin-top:9px">${platforms.map(p => {const sel = d.selectedPlatforms.includes(p);const m = platformMeta[p];return `<label class="platform-card ${sel?'selected':''}"><input type="checkbox" data-platform-check="${p}" ${sel?'checked':''}><div class="p-head"><span>${platformBadge(p)}</span>${sel?'<i data-lucide="check-circle-2" style="width:15px;color:#2563eb"></i>':'<i data-lucide="circle" style="width:15px;color:#cbd5e1"></i>'}</div><small>${p==='Facebook'?'Caption + link':p==='TikTok'?'Caption + privacy':p==='YouTube'?'SEO title + description':p==='Instagram'?'Caption + location':'Text + thread'}</small></label>`}).join('')}</div>`;
+    html += `<div class="notice info" style="margin-bottom:12px"><b>Chế độ Demo.</b> Bấm Đăng bài sẽ mô phỏng đẩy vào Queue và đổi trạng thái ảo. Tên bài viết sẽ được tự động tạo dựa trên nội dung bạn nhập.</div>`;
+    
+    const rightColWidth = d.previewMode === 'desktop' ? '460px' : '320px';
+
+    html += `<div style="display:flex; gap:16px; align-items:flex-start;">`;
+    html += `<div style="flex:1; min-width:0;">`;
+    
+    html += `<div class="card card-pad">
+      <div class="split"><div><div class="label">1. Chọn Nền Tảng Đăng</div><div class="help">Bật/tắt các nền tảng bạn muốn bài viết xuất hiện.</div></div></div>
+      <div class="platform-selector" style="margin-top:9px">
+        ${platforms.map(p => {
+          const sel = d.selectedPlatforms.includes(p);
+          const m = platformMeta[p];
+          return `<label class="platform-card ${sel?'selected':''}"><input type="checkbox" data-platform-check="${p}" ${sel?'checked':''}><div class="p-head"><span>${platformBadge(p)}</span>${sel?'<i data-lucide="check-circle-2" style="width:15px;color:#2563eb"></i>':'<i data-lucide="circle" style="width:15px;color:#cbd5e1"></i>'}</div><small>${p==='Facebook'?'Caption + link':p==='TikTok'?'Caption + privacy':p==='YouTube'?'SEO title + description':p==='Instagram'?'Caption + location':'Text + thread'}</small></label>`
+        }).join('')}
+      </div>`;
       
     if(d.selectedPlatforms.length) {
-      html += `<div class="split" style="margin-top:18px"><div><div class="label">2. Tùy Chỉnh Nội Dung Từng Nền Tảng</div></div><button class="btn small" id="generateAIInline"><i data-lucide="sparkles"></i>Dùng AI Viết Lại</button></div><div class="tabs" style="margin-top:8px">${d.selectedPlatforms.map(p => `<button class="tab ${d.activeTab===p?'active':''}" data-platform-tab="${p}">${escape(p)}</button>`).join('')}</div>${renderPlatformEditor(tab, platformContent, d)}`;
+      html += `<div class="split" style="margin-top:18px"><div><div class="label">2. Tùy Chỉnh Nội Dung Từng Nền Tảng</div></div><button class="btn small" id="generateAIInline"><i data-lucide="sparkles"></i>Dùng AI Viết Lại</button></div>`;
+      html += `<div class="tabs" style="margin-top:8px">${d.selectedPlatforms.map(p => `<button class="tab ${d.activeTab===p?'active':''}" data-platform-tab="${p}">${escape(p)}</button>`).join('')}</div>`;
+      html += renderPlatformEditor(tab, platformContent, d);
     }
     
-    html += `<div style="margin-top:18px"><div class="split"><div><div class="label">3. Tải Lên Ảnh / Video (Media)</div><div class="help">Kéo thả để đổi thứ tự ưu tiên hiển thị trên bài viết.</div></div><button class="btn small" id="browseMedia"><i data-lucide="upload"></i>Chọn file</button></div><div class="dropzone" id="createDrop" style="margin-top:9px"><i data-lucide="cloud-upload" style="width:23px;color:#2563eb"></i><div style="font-size:12px;font-weight:800;margin-top:6px">Kéo & thả media vào đây để gắn vào Post</div><div class="help">JPG, PNG, WEBP, MP4, MOV. (Tối đa 25MB Demo)</div></div><div class="media-preview" id="createMediaPreview">${renderDraftMedia(d.mediaIds)}</div></div></div></div><div style="width:320px; flex-shrink:0; display:flex; flex-direction:column; gap:16px;"><div class="card card-pad"><div class="label" style="margin-bottom:8px">Lịch Đăng Bài</div><div style="display:flex;gap:10px;flex-wrap:wrap;"><label class="inline"><input type="radio" name="scheduleMode" value="now" ${d.scheduleMode==='now'?'checked':''}> Đăng ngay</label><label class="inline"><input type="radio" name="scheduleMode" value="schedule" ${d.scheduleMode==='schedule'?'checked':''}> Lên lịch</label></div>${d.scheduleMode === 'schedule' ? `<div class="form-grid" style="margin-top:10px"><label class="field full"><span class="label">Ngày</span><input type="date" class="input" id="draftDate" value="${d.scheduleDate}"></label><label class="field full"><span class="label">Giờ</span><input type="time" class="input" id="draftTime" value="${d.scheduleTime}"></label></div>` : ''}<button class="btn primary" id="publishOrSchedule" style="width:100%; margin-top:14px; height:36px;"><i data-lucide="send"></i>${d.scheduleMode==='schedule'?'Xác nhận Lên Lịch':'Đẩy vào Hàng Đợi (Đăng)'}</button></div>`;
+    html += `<div style="margin-top:18px"><div class="split"><div><div class="label">3. Tải Lên Ảnh / Video (Media)</div><div class="help">Kéo thả để đổi thứ tự ưu tiên hiển thị trên bài viết.</div></div><button class="btn small" id="browseMedia"><i data-lucide="upload"></i>Chọn file</button></div>
+      <div class="dropzone" id="createDrop" onclick="document.getElementById('hiddenFile').click()" style="margin-top:9px"><i data-lucide="cloud-upload" style="width:23px;color:#2563eb"></i><div style="font-size:12px;font-weight:800;margin-top:6px">Kéo & thả hoặc Bấm vào đây để tải Media cho Post</div><div class="help">JPG, PNG, WEBP, MP4, MOV. (Tối đa 25MB Demo)</div></div>
+      <div class="media-preview-container" id="createMediaPreview">${renderDraftMedia(d.mediaIds)}</div></div>`;
+      
+    html += `</div></div>`; 
 
-    if(d.selectedPlatforms.length) { html += `<div class="card card-pad" style="background:var(--surface-2)"><div class="split" style="margin-bottom:12px"><div class="label">Xem Trước (${tab})</div></div>${renderDevicePreview(tab, platformContent, d.mediaIds)}</div>`; }
+    // CỘT PHẢI
+    html += `<div style="width:${rightColWidth}; flex-shrink:0; display:flex; flex-direction:column; gap:16px; transition: width 0.3s ease;">`;
+    
+    html += `<div class="card card-pad">
+      <div class="label" style="margin-bottom:8px">Lịch Đăng Bài</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <label class="inline"><input type="radio" name="scheduleMode" value="now" ${d.scheduleMode==='now'?'checked':''}> Đăng ngay</label>
+        <label class="inline"><input type="radio" name="scheduleMode" value="schedule" ${d.scheduleMode==='schedule'?'checked':''}> Lên lịch</label>
+      </div>
+      ${d.scheduleMode === 'schedule' ? `<div class="form-grid" style="margin-top:10px"><label class="field full"><span class="label">Ngày</span><input type="date" class="input" id="draftDate" value="${d.scheduleDate}"></label><label class="field full"><span class="label">Giờ</span><input type="time" class="input" id="draftTime" value="${d.scheduleTime}"></label></div>` : ''}
+      <button class="btn primary" id="publishOrSchedule" style="width:100%; margin-top:14px; height:36px;"><i data-lucide="send"></i>${d.scheduleMode==='schedule'?'Xác nhận Lên Lịch':'Đẩy vào Hàng Đợi (Đăng)'}</button>
+    </div>`;
+
+    if(d.selectedPlatforms.length) {
+      html += `<div class="card card-pad" style="background:var(--surface-2)">
+        <div class="split" style="margin-bottom:12px"><div class="label">Xem Trước (${tab})</div></div>
+        <div class="actions" style="margin-bottom:12px; justify-content:center;">
+           <button class="btn small ${d.previewMode==='desktop'?'':'primary'}" onclick="app.setPreviewMode('mobile')"><i data-lucide="smartphone"></i> Mobile</button>
+           <button class="btn small ${d.previewMode==='desktop'?'primary':''}" onclick="app.setPreviewMode('desktop')"><i data-lucide="monitor"></i> Desktop</button>
+        </div>
+        ${renderDevicePreview(tab, platformContent, d.mediaIds, d.previewMode)}
+      </div>`;
+    }
 
     html += `</div></div>`; 
     return html;
@@ -956,10 +1161,10 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     const platAccounts = state.accounts.filter(a => a.platform === tab && a.status === 'Connected');
     let accountSelectorHtml = `<div class="field full" style="margin-bottom:12px; background:var(--surface-2); padding:10px; border-radius:8px; border:1px solid var(--line);"><span class="label" style="margin-bottom:8px; display:block;">Chọn tài khoản đăng lên (${tab})</span>${platAccounts.length > 0 ? `<div style="display:flex; gap:10px; flex-wrap:wrap; flex-direction:column;">${platAccounts.map(acc => {const isChecked = (d.platforms[tab].accountIds || []).includes(acc.id);return `<label class="inline" style="background:var(--surface); padding:8px; border-radius:6px; border:1px solid var(--line); cursor:pointer;"><input type="checkbox" data-draft-account="${tab}:${acc.id}" ${isChecked ? 'checked' : ''} style="accent-color:var(--primary); width:14px; height:14px;"> <div style="display:flex; align-items:center; gap:6px;"><div style="width:20px;height:20px;border-radius:4px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;font-weight:700;font-size:8px;">${acc.name.split(' ').map(x=>x[0]).join('').slice(-2)}</div><b>${escape(acc.name)}</b> <span style="color:var(--muted); font-size:11px;">(${escape(acc.username)})</span></div></label>`;}).join('')}</div>` : `<div class="help" style="color:var(--danger)">⚠️ Chưa có tài khoản ${tab} nào được kết nối vào hệ thống. Hãy vào phần "Quản lý > Tài khoản" để kết nối.</div>`}</div>`;
 
-    if(tab==='Facebook') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Caption Facebook</span><textarea class="textarea editor" data-draft-field="Facebook.caption" oninput="app.updatePreviewText(this.value, 'caption')" placeholder="Viết nội dung sẽ hiển thị trên Fanpage..."></textarea></label><label class="field"><span class="label">Hashtags</span><input class="input" data-draft-field="Facebook.hashtag" oninput="app.updatePreviewText(this.value, 'hashtag')" placeholder="#education #skills"></label><label class="field"><span class="label">Link đính kèm</span><input class="input" data-draft-field="Facebook.link" placeholder="https://..."></label></div>`;
-    if(tab==='TikTok') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Caption TikTok</span><textarea class="textarea editor" data-draft-field="TikTok.caption" oninput="app.updatePreviewText(this.value, 'caption')" placeholder="Hook giật gân + Kêu gọi hành động (CTA)..."></textarea></label><label class="field"><span class="label">Hashtags</span><input class="input" data-draft-field="TikTok.hashtag" oninput="app.updatePreviewText(this.value, 'hashtag')" placeholder="#xuhuong #trending"></label><label class="field"><span class="label">Quyền riêng tư</span><select class="select" data-draft-field="TikTok.privacy"><option>Mọi người (Public)</option><option>Bạn bè</option><option>Chỉ mình tôi</option></select></label><div class="field"><span class="label">Bình luận</span><label class="inline" style="margin-top:6px"><span class="switch"><input type="checkbox" data-draft-bool="TikTok.comments"><span class="slider"></span></span> Cho phép</label></div><div class="field"><span class="label">Duet</span><label class="inline" style="margin-top:6px"><span class="switch"><input type="checkbox" data-draft-bool="TikTok.duet"><span class="slider"></span></span> Cho phép</label></div><div class="field"><span class="label">Stitch</span><label class="inline" style="margin-top:6px"><span class="switch"><input type="checkbox" data-draft-bool="TikTok.stitch"><span class="slider"></span></span> Cho phép</label></div></div>`;
+    if(tab==='Facebook') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Nội dung (Caption)</span><textarea class="textarea editor" data-draft-field="Facebook.caption" oninput="app.updatePreviewText(this.value, 'caption')" placeholder="Viết nội dung sẽ hiển thị trên Fanpage..."></textarea></label><label class="field"><span class="label">Hashtags</span><input class="input" data-draft-field="Facebook.hashtag" oninput="app.updatePreviewText(this.value, 'hashtag')" placeholder="#education #skills"></label><label class="field"><span class="label">Liên kết đính kèm</span><input class="input" data-draft-field="Facebook.link" placeholder="https://..."></label></div>`;
+    if(tab==='TikTok') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Nội dung (Caption)</span><textarea class="textarea editor" data-draft-field="TikTok.caption" oninput="app.updatePreviewText(this.value, 'caption')" placeholder="Hook giật gân + Kêu gọi hành động (CTA)..."></textarea></label><label class="field"><span class="label">Hashtags</span><input class="input" data-draft-field="TikTok.hashtag" oninput="app.updatePreviewText(this.value, 'hashtag')" placeholder="#xuhuong #trending"></label><label class="field"><span class="label">Quyền riêng tư</span><select class="select" data-draft-field="TikTok.privacy"><option>Mọi người (Public)</option><option>Bạn bè</option><option>Chỉ mình tôi</option></select></label><div class="field"><span class="label">Bình luận</span><label class="inline" style="margin-top:6px"><span class="switch"><input type="checkbox" data-draft-bool="TikTok.comments"><span class="slider"></span></span> Cho phép</label></div><div class="field"><span class="label">Duet</span><label class="inline" style="margin-top:6px"><span class="switch"><input type="checkbox" data-draft-bool="TikTok.duet"><span class="slider"></span></span> Cho phép</label></div><div class="field"><span class="label">Stitch</span><label class="inline" style="margin-top:6px"><span class="switch"><input type="checkbox" data-draft-bool="TikTok.stitch"><span class="slider"></span></span> Cho phép</label></div></div>`;
     if(tab==='YouTube') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Tiêu đề Video (Chuẩn SEO)</span><input class="input" data-draft-field="YouTube.title" oninput="app.updatePreviewText(this.value, 'title')"></label><label class="field full"><span class="label">Mô tả chi tiết</span><textarea class="textarea editor" data-draft-field="YouTube.description" oninput="app.updatePreviewText(this.value, 'description')"></textarea></label><label class="field"><span class="label">Thẻ (Tags)</span><input class="input" data-draft-field="YouTube.tags" placeholder="kỹ năng, giao tiếp, youtube"></label><label class="field"><span class="label">Danh mục</span><select class="select" data-draft-field="YouTube.category"><option>Giáo dục</option><option>Giải trí</option><option>Vlog</option></select></label><label class="field"><span class="label">Chế độ hiển thị</span><select class="select" data-draft-field="YouTube.privacy"><option>Công khai</option><option>Không công khai</option><option>Riêng tư</option></select></label><label class="field"><span class="label">Ảnh bìa (Thumbnail)</span><select class="select" data-draft-field="YouTube.thumbnailId"><option value="">Lấy từ Video</option>${state.media.filter(m=>m.type==='image').map(m=>`<option value="${m.id}">${escape(m.name)}</option>`).join('')}</select></label></div>`;
-    if(tab==='Instagram') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Caption Instagram</span><textarea class="textarea editor" data-draft-field="Instagram.caption" oninput="app.updatePreviewText(this.value, 'caption')"></textarea></label><label class="field"><span class="label">Hashtags</span><input class="input" data-draft-field="Instagram.hashtag" oninput="app.updatePreviewText(this.value, 'hashtag')" placeholder="#aesthetic #lifestyle"></label><label class="field"><span class="label">Vị trí (Check-in)</span><input class="input" data-draft-field="Instagram.location" placeholder="TP. Hồ Chí Minh"></label></div>`;
+    if(tab==='Instagram') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Nội dung (Caption)</span><textarea class="textarea editor" data-draft-field="Instagram.caption" oninput="app.updatePreviewText(this.value, 'caption')"></textarea></label><label class="field"><span class="label">Hashtags</span><input class="input" data-draft-field="Instagram.hashtag" oninput="app.updatePreviewText(this.value, 'hashtag')" placeholder="#aesthetic #lifestyle"></label><label class="field"><span class="label">Vị trí (Check-in)</span><input class="input" data-draft-field="Instagram.location" placeholder="TP. Hồ Chí Minh"></label></div>`;
     if(tab==='X') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Nội dung Tweet</span><textarea class="textarea editor" data-draft-field="X.text" oninput="app.updatePreviewText(this.value, 'text')" maxlength="280"></textarea><div class="help" id="xCount"></div></label><label class="field full"><span class="label">Tạo chuỗi (Thread)</span>${(c.thread||['']).map((t,i)=>`<div style="display:flex;gap:7px;margin-bottom:6px"><input class="input" data-thread-index="${i}" value="${escape(t)}" placeholder="Tweet thứ ${i+1}">${i>0?`<button class="btn small" data-remove-thread="${i}"><i data-lucide="minus"></i></button>`:''}</div>`).join('')}<button class="btn small" id="addThread"><i data-lucide="plus"></i>Thêm Tweet mới</button></label></div>`;
     
     setTimeout(() => {
@@ -975,15 +1180,17 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     return (ids || []).map((id, idx) => {
       const m = state.media.find(x => x.id === id) || state.bulk.find(x => x.id === id);
       if(!m) return '';
-      return `<div class="media-item" draggable="true" data-draft-media="${id}"><div class="media-preview-box">${m.preview ? (m.type==='video'?`<video src="${m.preview}" muted></video>`:`<img src="${m.preview}" alt="">`) : m.type === 'video' ? '<i data-lucide="video" style="width:28px;color:#94a3b8"></i>' : '<i data-lucide="image" style="width:28px;color:#94a3b8"></i>'}<button class="btn small remove-media" data-remove-draft-media="${id}">×</button></div><div class="media-footer"><b style="font-size:10px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escape(m.name)}</b><span class="drag-hint">Kéo để đổi thứ tự</span></div></div>`;
+      return `<div class="media-item" draggable="true" data-draft-media="${id}">
+        <div class="media-preview-box">${m.preview ? (m.type==='video'?`<video src="${m.preview}" muted></video>`:`<img src="${m.preview}" alt="">`) : m.type === 'video' ? '<i data-lucide="video" style="width:28px;color:#94a3b8"></i>' : '<i data-lucide="image" style="width:28px;color:#94a3b8"></i>'}
+        <button class="btn small remove-media" data-remove-draft-media="${id}">×</button></div>
+        <div class="media-footer"><b style="font-size:10px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escape(m.name)}</b><span class="drag-hint">Kéo để đổi thứ tự</span></div>
+      </div>`;
     }).join('');
   }
 
   function readDraftFromUI() {
     if(!state.draft) return;
     const d = state.draft;
-    d.title = document.getElementById('draftTitle')?.value || d.title;
-    d.globalCaption = document.getElementById('draftGlobalCaption')?.value || '';
     
     document.querySelectorAll('[data-draft-account]').forEach(el => {
       const [plat, accId] = el.dataset.draftAccount.split(':');
@@ -1005,11 +1212,27 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
 
   function renderPosts() {
     let q = state.postSearch.toLowerCase();
-    let list = state.posts.filter(p => state.postFilter === 'All' || p.status === state.postFilter).filter(p => !q || p.title.toLowerCase().includes(q) || p.createdBy.toLowerCase().includes(q) || Object.keys(p.platforms||{}).some(x=>x.toLowerCase().includes(q)));
+    let list = state.posts.filter(p => state.postFilter === 'All' || p.status === state.postFilter)
+      .filter(p => !q || p.title.toLowerCase().includes(q) || p.createdBy.toLowerCase().includes(q) || Object.keys(p.platforms||{}).some(x=>x.toLowerCase().includes(q)));
+    
     let sortVal = document.getElementById('sortPosts')?.value || 'createdDesc';
     list.sort((a,b) => sortVal==='title' ? a.title.localeCompare(b.title) : sortVal==='schedule' ? new Date(a.schedule||'2999')-new Date(b.schedule||'2999') : new Date(b.createdAt)-new Date(a.createdAt));
+    
     let html = pageShell('Danh sách bài viết', 'Quản lý vòng đời nội dung từ bản nháp đến lúc đăng thành công.', `<button class="btn" id="aiLibrary"><i data-lucide="sparkles"></i>Gợi ý AI</button><button class="btn primary" data-page="create"><i data-lucide="plus"></i>Tạo bài viết</button>`);
-    html += `<div class="card card-pad"><div class="split"><div class="actions" style="gap:5px">${['All','Draft','Scheduled','Queued','Publishing','Published','Failed','Cancelled'].map(f=>{const dict = {All:'Tất cả', Draft:'Bản nháp', Scheduled:'Đã lên lịch', Queued:'Chờ đăng', Publishing:'Đang đăng', Published:'Thành công', Failed:'Lỗi', Cancelled:'Đã hủy'}; return `<button class="tab ${state.postFilter===f?'active':''}" data-post-filter="${f}">${dict[f]||f}</button>`}).join('')}</div><div class="actions"><input class="input" id="postSearch" style="width:220px" placeholder="Tìm tên bài, người tạo..." value="${escape(state.postSearch)}"><select class="select" id="sortPosts" style="width:150px"><option value="createdDesc" ${sortVal==='createdDesc'?'selected':''}>Mới tạo nhất</option><option value="title" ${sortVal==='title'?'selected':''}>Tên bài A-Z</option><option value="schedule" ${sortVal==='schedule'?'selected':''}>Theo lịch đăng</option></select></div></div><div class="table-wrap" style="margin-top:12px"><table class="table"><thead><tr><th>Thumbnail</th><th>Tiêu đề</th><th>Nền tảng</th><th>Lịch đăng</th><th>Trạng thái</th><th>Người tạo</th><th>Ngày tạo</th><th>Thao tác</th></tr></thead><tbody>${list.length ? list.map(p=>`<tr><td><div class="thumb"><i data-lucide="file-text" style="width:16px;color:#98a2b3"></i></div></td><td><b>${escape(p.title)}</b>${p.error?`<div class="subline" style="color:#dc2626">${escape(p.error)}</div>`:''}</td><td><div class="platforms">${platformListForPost(p)}</div></td><td>${fmtDate(p.schedule)}</td><td>${statusPill(p.status)}</td><td>${escape(p.createdBy)}</td><td>${fmtDate(p.createdAt,false)}</td><td><div class="actions" style="gap:5px">${['View','Edit'].map(x=>`<button class="btn small" data-${x.toLowerCase()}-post="${p.id}">${x==='View'?'Xem':'Sửa'}</button>`).join('')}<button class="btn small" data-duplicate-post="${p.id}" title="Nhân bản">⌘</button>${p.status==='Failed'?`<button class="btn small" data-retry-post="${p.id}">Thử lại</button>`:''}${['Scheduled','Queued','Draft'].includes(p.status)?`<button class="btn small" data-cancel-post="${p.id}">Hủy</button>`:''}<button class="btn small danger" data-delete-post="${p.id}">Xóa</button></div></td></tr>`).join('') : `<tr><td colspan="8"><div class="empty"><i data-lucide="inbox"></i><b>Không tìm thấy bài viết</b><span>Hãy thử đổi bộ lọc hoặc tạo mới.</span></div></td></tr>`}</tbody></table></div><div class="pagination"><span class="help">Tổng ${list.length} bài</span><div class="actions"><button class="btn small" disabled>Trang 1</button></div></div></div>`;
+    html += `<div class="card card-pad">
+      <div class="split"><div class="actions" style="gap:5px">${['All','Draft','Scheduled','Queued','Publishing','Published','Failed','Cancelled'].map(f=>{
+        const dict = {All:'Tất cả', Draft:'Bản nháp', Scheduled:'Đã lên lịch', Queued:'Chờ đăng', Publishing:'Đang đăng', Published:'Thành công', Failed:'Lỗi', Cancelled:'Đã hủy'};
+        return `<button class="tab ${state.postFilter===f?'active':''}" data-post-filter="${f}">${dict[f]||f}</button>`
+      }).join('')}</div>
+      <div class="actions"><input class="input" id="postSearch" style="width:220px" placeholder="Tìm tên bài, người tạo..." value="${escape(state.postSearch)}"><select class="select" id="sortPosts" style="width:150px"><option value="createdDesc" ${sortVal==='createdDesc'?'selected':''}>Mới tạo nhất</option><option value="title" ${sortVal==='title'?'selected':''}>Tên bài A-Z</option><option value="schedule" ${sortVal==='schedule'?'selected':''}>Theo lịch đăng</option></select></div></div>
+      <div class="table-wrap" style="margin-top:12px">
+        <table class="table"><thead><tr><th>Thumbnail</th><th>Tiêu đề</th><th>Nền tảng</th><th>Lịch đăng</th><th>Trạng thái</th><th>Người tạo</th><th>Ngày tạo</th><th>Thao tác</th></tr></thead>
+        <tbody>
+          ${list.length ? list.map(p=>`<tr><td><div class="thumb"><i data-lucide="file-text" style="width:16px;color:#98a2b3"></i></div></td><td><b>${escape(p.title)}</b>${p.error?`<div class="subline" style="color:#dc2626">${escape(p.error)}</div>`:''}</td><td><div class="platforms">${platformListForPost(p)}</div></td><td>${fmtDate(p.schedule)}</td><td>${statusPill(p.status)}</td><td>${escape(p.createdBy)}</td><td>${fmtDate(p.createdAt,false)}</td><td><div class="actions" style="gap:5px">${['View','Edit'].map(x=>`<button class="btn small" data-${x.toLowerCase()}-post="${p.id}">${x==='View'?'Xem':'Sửa'}</button>`).join('')}<button class="btn small" data-duplicate-post="${p.id}" title="Nhân bản">⌘</button>${p.status==='Failed'?`<button class="btn small" data-retry-post="${p.id}">Thử lại</button>`:''}${['Scheduled','Queued','Draft'].includes(p.status)?`<button class="btn small" data-cancel-post="${p.id}">Hủy</button>`:''}<button class="btn small danger" data-delete-post="${p.id}">Xóa</button></div></td></tr>`).join('') : `<tr><td colspan="8"><div class="empty"><i data-lucide="inbox"></i><b>Không tìm thấy bài viết</b><span>Hãy thử đổi bộ lọc hoặc tạo mới.</span></div></td></tr>`}
+        </tbody></table>
+      </div>
+      <div class="pagination"><span class="help">Tổng ${list.length} bài</span><div class="actions"><button class="btn small" disabled>Trang 1</button></div></div>
+    </div>`;
     return html;
   }
 
@@ -1068,7 +1291,7 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
   function renderBulk() {
     let ready = state.bulk.filter(x => x.status === 'Ready').length;
     let html = pageShell('Tải lên hàng loạt (Bulk Upload)', 'Quy trình tạo hàng trăm post tự động từ 1 thư mục Media.', `<button class="btn" id="bulkReset">Làm lại từ đầu</button><button class="btn primary" id="bulkFiles"><i data-lucide="upload-cloud"></i>Chọn tối đa 100 files</button>`);
-    html += `<div class="notice info" style="margin-bottom:12px"><b>Quy trình:</b> Tải File → Đợi hệ thống xử lý (Ready) → Chọn Kênh & Ngày bắt đầu → AI Tự động viết Caption → Nhấn Tạo Post.</div><div class="card card-pad"><div class="dropzone" id="bulkDrop"><i data-lucide="files" style="width:26px;color:#2563eb"></i><div style="font-size:13px;font-weight:800;margin-top:6px">Kéo & thả tối đa 100 files vào đây</div><div class="help">JPG, PNG, WEBP, MP4, MOV.</div></div><div class="table-wrap" style="margin-top:14px"><table class="table"><thead><tr><th>Tên File</th><th>Ảnh thu nhỏ</th><th>Kích thước</th><th>Thời lượng</th><th>Trạng thái</th><th>Tiến độ</th><th>Thao tác</th></tr></thead><tbody>${state.bulk.length ? state.bulk.map(b=>`<tr><td><b>${escape(b.name)}</b></td><td><div class="thumb">${b.preview?(b.type==='video'?`<video src="${b.preview}"></video>`:`<img src="${b.preview}">`):`<i data-lucide="${b.type==='video'?'video':'image'}"></i>`}</div></td><td>${formatSize(b.size)}</td><td>${escape(b.duration||'—')}</td><td>${statusPill(b.status)}</td><td><div style="width:120px;height:6px;background:#eef2f7;border-radius:99px;overflow:hidden"><div style="height:100%;width:${b.progress||0}%;background:#2563eb"></div></div><div class="help" style="margin-top:4px">${b.progress||0}%</div></td><td><div class="actions"><button class="btn small" data-bulk-preview="${b.id}">Xem</button>${b.status==='Failed'?`<button class="btn small" data-bulk-retry="${b.id}">Thử lại</button>`:''}<button class="btn small danger" data-bulk-remove="${b.id}">Bỏ file</button></div></td></tr>`).join('') : `<tr><td colspan="7"><div class="empty"><i data-lucide="upload-cloud"></i><b>Chưa có file nào</b><span>Kéo thả để bắt đầu.</span></div></td></tr>`}</tbody></table></div></div>`;
+    html += `<div class="notice info" style="margin-bottom:12px"><b>Quy trình:</b> Tải File → Đợi hệ thống xử lý (Ready) → Chọn Kênh & Ngày bắt đầu → AI Tự động viết Caption → Nhấn Tạo Post.</div><div class="card card-pad"><div class="dropzone" id="bulkDrop" onclick="document.getElementById('hiddenFile').click()"><i data-lucide="files" style="width:26px;color:#2563eb"></i><div style="font-size:13px;font-weight:800;margin-top:6px">Kéo & thả tối đa 100 files vào đây</div><div class="help">JPG, PNG, WEBP, MP4, MOV.</div></div><div class="table-wrap" style="margin-top:14px"><table class="table"><thead><tr><th>Tên File</th><th>Ảnh thu nhỏ</th><th>Kích thước</th><th>Thời lượng</th><th>Trạng thái</th><th>Tiến độ</th><th>Thao tác</th></tr></thead><tbody>${state.bulk.length ? state.bulk.map(b=>`<tr><td><b>${escape(b.name)}</b></td><td><div class="thumb">${b.preview?(b.type==='video'?`<video src="${b.preview}"></video>`:`<img src="${b.preview}">`):`<i data-lucide="${b.type==='video'?'video':'image'}"></i>`}</div></td><td>${formatSize(b.size)}</td><td>${escape(b.duration||'—')}</td><td>${statusPill(b.status)}</td><td><div style="width:120px;height:6px;background:#eef2f7;border-radius:99px;overflow:hidden"><div style="height:100%;width:${b.progress||0}%;background:#2563eb"></div></div><div class="help" style="margin-top:4px">${b.progress||0}%</div></td><td><div class="actions"><button class="btn small" data-bulk-preview="${b.id}">Xem</button>${b.status==='Failed'?`<button class="btn small" data-bulk-retry="${b.id}">Thử lại</button>`:''}<button class="btn small danger" data-bulk-remove="${b.id}">Bỏ file</button></div></td></tr>`).join('') : `<tr><td colspan="7"><div class="empty"><i data-lucide="upload-cloud"></i><b>Chưa có file nào</b><span>Kéo thả để bắt đầu.</span></div></td></tr>`}</tbody></table></div></div>`;
     html += `<div class="card card-pad" style="margin-top:14px"><div class="split"><div><div class="section-title">Khởi tạo Bài viết Tự động</div><div class="muted" style="font-size:10px;margin-top:4px">${ready}/${state.bulk.length} file đã Sẵn sàng.</div></div><button class="btn primary" id="generateBulkCaptions" ${ready?'':'disabled'}><i data-lucide="sparkles"></i>Dùng AI Viết hàng loạt Caption</button></div><div class="form-grid" style="margin-top:13px"><label class="field"><span class="label">Đăng lên Nền tảng</span><select class="select" id="bulkPlatform"><option>Facebook</option><option>TikTok</option><option>YouTube</option><option>Instagram</option><option>X</option></select></label><label class="field"><span class="label">Tài khoản đích</span><select class="select" id="bulkAccount">${state.accounts.map(a=>`<option value="${a.id}">${escape(a.platform)} · ${escape(a.username)}</option>`).join('')}</select></label><label class="field"><span class="label">Lịch bắt đầu (Mỗi bài cách nhau 1 ngày)</span><input class="input" type="datetime-local" id="bulkSchedule" value="2026-09-01T18:30"></label><label class="field"><span class="label">Áp dụng cấu hình này cho tất cả file</span><div class="inline" style="height:38px"><span class="switch"><input type="checkbox" id="bulkApplyAll"><span class="slider"></span></span><span class="help">Ghi đè nếu có setting cũ</span></div></label></div><div class="actions" style="margin-top:12px"><button class="btn" id="applyBulkAll">Áp dụng setting</button><button class="btn primary" id="createBulkPosts" ${ready?'':'disabled'}>Tạo ${ready} bài viết vào Lịch</button></div><div id="bulkCaptionPreview" style="margin-top:13px"></div></div>`;
     return html;
   }
@@ -1274,7 +1497,7 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     document.querySelectorAll('[data-platform-tab]').forEach(el => el.onclick = () => { readDraftFromUI(); state.draft.activeTab = el.dataset.platformTab; save(); render(); });
     document.querySelectorAll('[data-remove-draft-media]').forEach(el => el.onclick = () => { state.draft.mediaIds = state.draft.mediaIds.filter(x => x !== el.dataset.removeDraftMedia); save(); render(); });
     
-    // Lắng nghe sự kiện Checkbox cho Việc Chọn Account (Khắc phục lỗi chưa save UI ngay lập tức)
+    // Lắng nghe sự kiện Checkbox cho Việc Chọn Account
     document.querySelectorAll('[data-draft-account]').forEach(el => el.onchange = () => {
       readDraftFromUI();
       render();
@@ -1346,7 +1569,7 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
       };
     });
     
-    // Explicit Button Bindings (using .onclick to prevent multiple attachments)
+    // Explicit Button Bindings
     ['openAI', 'aiLibrary', 'helpBtn'].forEach(id => {
       const el = document.getElementById(id);
       if(el) el.onclick = () => id === 'helpBtn' ? openHelp() : openAIGenerator();
@@ -1377,6 +1600,9 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     if(addThreadEl) addThreadEl.onclick = () => { readDraftFromUI(); state.draft.platforms.X.thread.push(''); save(); render(); };
     
     document.querySelectorAll('[data-remove-thread]').forEach(el => el.onclick = () => { readDraftFromUI(); state.draft.platforms.X.thread.splice(Number(el.dataset.removeThread), 1); save(); render(); });
+    
+    const xText = document.querySelector('[data-draft-field="X.text"]');
+    if(xText) xText.oninput = e => { document.getElementById('xCount').textContent = `${e.target.value.length}/280 ký tự`; };
     
     const postSearch = document.getElementById('postSearch');
     if(postSearch) postSearch.oninput = e => { state.postSearch = e.target.value; save(); clearTimeout(window.__searchTimer); window.__searchTimer = setTimeout(render, 180); };
@@ -1441,7 +1667,6 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     const deleteRead = document.getElementById('deleteRead');
     if(deleteRead) deleteRead.onclick = () => { state.notifications = state.notifications.filter(n => !n.read); save(); toast('Đã dọn sạch thông báo cũ'); render(); };
     
-    // Settings Actions & Dark Mode logic
     const saveProfile = document.getElementById('saveProfile');
     if(saveProfile) saveProfile.onclick = () => { state.profile.name = document.getElementById('profileName').value.trim() || 'Sơn Dino'; save(); audit('Updated Profile', 'Profile'); toast('Đã cập nhật Hồ sơ'); render(); };
     
@@ -1508,10 +1733,23 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
 
   function saveDraft() {
     readDraftFromUI();
-    if(!state.draft.title.trim()) { toast('Cần có Tiêu đề để định danh chiến dịch', 'error'); return; }
     const existing = editingPostId ? state.posts.find(p => p.id === editingPostId) : null;
+    
+    let autoTitle = '';
+    for(const p of state.draft.selectedPlatforms) {
+       const content = state.draft.platforms[p];
+       if(content.caption) { autoTitle = content.caption; break; }
+       if(content.text) { autoTitle = content.text; break; }
+       if(content.title) { autoTitle = content.title; break; }
+    }
+    if(autoTitle) {
+       autoTitle = autoTitle.replace(/\n/g, ' ').trim();
+       if(autoTitle.length > 40) autoTitle = autoTitle.substring(0, 40) + '...';
+    }
+    const finalTitle = autoTitle || `Bài viết nháp - ${fmtDate(nowISO(), true)}`;
+
     if(existing) {
-      existing.title = state.draft.title;
+      existing.title = finalTitle;
       existing.platforms = deepClone(Object.fromEntries(state.draft.selectedPlatforms.map(p => [p, state.draft.platforms[p]])));
       existing.mediaIds = [...state.draft.mediaIds];
       existing.status = 'Draft';
@@ -1519,6 +1757,7 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
       toast('Bản nháp đã được ghi đè', 'success');
     } else {
       const p = createPostFromDraft('Draft');
+      p.title = finalTitle;
       state.posts.unshift(p);
       audit('Created Draft', `Post #${p.id}`);
       toast('Đã lưu nháp an toàn', 'success');
@@ -1530,8 +1769,22 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     const d = deepClone(state.draft);
     let schedule = '';
     if(d.scheduleMode === 'schedule') schedule = `${d.scheduleDate}T${d.scheduleTime}:00+07:00`;
+    
+    let autoTitle = '';
+    for(const p of d.selectedPlatforms) {
+       const content = d.platforms[p];
+       if(content.caption) { autoTitle = content.caption; break; }
+       if(content.text) { autoTitle = content.text; break; }
+       if(content.title) { autoTitle = content.title; break; }
+    }
+    if(autoTitle) {
+       autoTitle = autoTitle.replace(/\n/g, ' ').trim();
+       if(autoTitle.length > 40) autoTitle = autoTitle.substring(0, 40) + '...';
+    }
+    const finalTitle = autoTitle || `Bài viết - ${fmtDate(nowISO(), true)}`;
+
     return {
-      id: uid('p'), title: d.title || 'Bài viết chưa đặt tên', createdBy: state.profile.name,
+      id: uid('p'), title: finalTitle, createdBy: state.profile.name,
       createdAt: nowISO(), status, schedule,
       platforms: Object.fromEntries(d.selectedPlatforms.map(p => [p, d.platforms[p]])),
       mediaIds: [...d.mediaIds]
@@ -1540,15 +1793,28 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
 
   function savePostFromDraft() {
     readDraftFromUI();
-    if(!state.draft.title.trim()) { toast('Tiêu đề bài viết không được để trống', 'error'); return; }
     if(!state.draft.selectedPlatforms.length) { toast('Cần kích chọn ít nhất một mạng xã hội đích', 'error'); return; }
     
     const status = state.draft.scheduleMode === 'schedule' ? 'Scheduled' : 'Published';
     if(state.draft.scheduleMode === 'schedule' && !state.draft.scheduleDate) { toast('Lỗi: Bạn quên chưa chọn lịch hệ thống.', 'error'); return; }
     
     let p = editingPostId ? state.posts.find(x => x.id === editingPostId) : null;
+    
+    let autoTitle = '';
+    for(const plat of state.draft.selectedPlatforms) {
+       const content = state.draft.platforms[plat];
+       if(content.caption) { autoTitle = content.caption; break; }
+       if(content.text) { autoTitle = content.text; break; }
+       if(content.title) { autoTitle = content.title; break; }
+    }
+    if(autoTitle) {
+       autoTitle = autoTitle.replace(/\n/g, ' ').trim();
+       if(autoTitle.length > 40) autoTitle = autoTitle.substring(0, 40) + '...';
+    }
+    const finalTitle = autoTitle || `Bài viết - ${fmtDate(nowISO(), true)}`;
+
     if(p) {
-      p.title = state.draft.title;
+      p.title = finalTitle;
       p.platforms = Object.fromEntries(state.draft.selectedPlatforms.map(x => [x, state.draft.platforms[x]]));
       p.mediaIds = [...state.draft.mediaIds];
       p.status = status;
@@ -1558,8 +1824,8 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
       state.posts.unshift(p);
     }
     
-    if(status === 'Published') { addNotification('Success', 'Push hoàn tất', `${p.title} đã đẩy thẳng lên MXH ảo.`); } 
-    else { addNotification('Info', 'Vào Lịch đăng', `${p.title} đã ghi nhận lịch phát sóng.`); }
+    if(status === 'Published') { addNotification('Success', 'Push hoàn tất', `Chiến dịch đã đẩy thẳng lên MXH ảo.`); } 
+    else { addNotification('Info', 'Vào Lịch đăng', `Chiến dịch đã ghi nhận lịch phát sóng.`); }
     
     audit(status === 'Published' ? 'Published Demo Post' : 'Scheduled Post', `Post #${p.id}`);
     if(status === 'Published') queueForPost(p, 'Demo');
@@ -1574,10 +1840,7 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
   function queueForPost(p, platformOverride) {
     const ps = platformOverride === 'Demo' ? Object.keys(p.platforms) : Object.keys(p.platforms || {});
     ps.forEach(platform => {
-      // Lấy danh sách accountIds đã chọn cho nền tảng này
       const selectedAccountIds = p.platforms[platform].accountIds || [];
-
-      // Nếu người dùng có chọn account, tạo queue cho từng account
       if (selectedAccountIds.length > 0) {
         selectedAccountIds.forEach(accId => {
           const acc = state.accounts.find(a => a.id === accId);
@@ -1589,7 +1852,6 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
           });
         });
       } else {
-         // Fallback nếu quên chọn account (Demo flow)
          const acc = state.accounts.find(a => a.platform === platform);
          state.queue.unshift({
             id: uid('j'), postId: p.id, platform, accountId: acc?.id || '',
@@ -1627,7 +1889,7 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
   function deletePost(id) {
     const p = state.posts.find(x => x.id === id);
     if(!p) return;
-    confirmModal('Cảnh báo Xóa bài', `Bạn có chắc chắn muốn HỦY và XÓA HOÀN TOÀN chiến dịch "${p.title}" không?`, () => {
+    confirmModal('Cảnh báo Xóa bài', `Bạn có chắc chắn muốn HỦY và XÓA HOÀN TOÀN chiến dịch không?`, () => {
       state.posts = state.posts.filter(x => x.id !== id);
       state.queue = state.queue.filter(x => x.postId !== id);
       audit('Deleted Post', `Post #${id}`);
@@ -1728,7 +1990,6 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
       }, 90);
     } else {
       state.media.unshift(rec);
-      // NẾU ĐANG TẠO BÀI (target === 'create'), TỰ ĐỘNG GẮN VÀO DRAFT
       if (target === 'create' && state.draft) {
         if(!state.draft.mediaIds) state.draft.mediaIds = [];
         state.draft.mediaIds.push(rec.id);
@@ -1928,7 +2189,6 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     `);
   }
 
-  // FIXED: KHAI BÁO HÀM XUẤT NHẬP DỮ LIỆU ĐỂ TRÁNH UNDEFINED ERROR TRONG SETTINGS
   function exportWorkspace() {
     const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
     const url = URL.createObjectURL(blob);
@@ -1949,22 +2209,10 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     r.readAsText(file);
   }
 
-  // GLOBAL EVENT DELEGATION
   document.addEventListener('click', e => {
-    // 1. Modal Close Handling
-    if (e.target.closest('[data-close-modal]')) {
-      closeModal();
-      return; 
-    }
+    if (e.target.closest('[data-close-modal]')) { closeModal(); return; }
+    if (e.target.closest('#logoToggleSidebar')) { state.sidebarCollapsed = !state.sidebarCollapsed; save(); render(); return; }
 
-    // 2. Toggle Sidebar
-    if (e.target.closest('#logoToggleSidebar')) {
-      state.sidebarCollapsed = !state.sidebarCollapsed;
-      save(); render();
-      return;
-    }
-
-    // 3. Action Handling
     const el = e.target.closest('[data-action]');
     if(el) {
       const a = el.dataset.action;
@@ -1975,7 +2223,6 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
       if(a === 'logout') window.doLogout();
     }
     
-    // 4. AI Module Handling
     const copy = e.target.closest('[data-copy-ai]');
     if(copy) {
       const p = copy.dataset.copyAi;
@@ -1997,8 +2244,6 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     if(!e.target.closest('#userMenuBtn') && !e.target.closest('#userMenu')) document.getElementById('userMenu').classList.remove('show');
   });
   
-  document.getElementById('modalBackdrop').addEventListener('click', e => { if(e.target.id === 'modalBackdrop') closeModal(); });
-  
   window.addEventListener('keydown', e => {
     if(e.key === 'Escape') closeModal();
     if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); document.getElementById('globalSearch').focus(); }
@@ -2016,10 +2261,8 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     input.onchange = () => input.files[0] && importWorkspace(input.files[0]); input.click();
   };
 
-  // Áp dụng Theme Dark/Light
   document.documentElement.setAttribute('data-theme', (state.settings?.theme || 'Light').toLowerCase());
 
-  // Initialize
   state.page = state.page || 'dashboard'; 
   save(); 
   checkAuth();
