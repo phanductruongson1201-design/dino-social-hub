@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dino Social Hub - Quản lý Social Media</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { bglight: '#F8FAFC' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #F8FAFC; overflow: hidden; }
+        .view-section { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .view-section.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+    </style>
+</head>
+<body class="flex h-screen text-slate-900 font-sans">
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed top-5 right-5 bg-white border border-slate-200 shadow-lg rounded-xl p-4 flex items-center gap-3 transition-all duration-300 transform translate-x-[150%] z-50">
+        <i data-lucide="check-circle-2" class="text-green-500 w-6 h-6"></i>
+        <div>
+            <h4 class="font-bold text-sm" id="toast-title">Thành công</h4>
+            <p class="text-xs text-slate-500" id="toast-desc">Đã gửi bài viết lên hệ thống.</p>
+        </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="w-[260px] h-screen bg-white border-r border-slate-200 flex flex-col flex-shrink-0 z-20">
+        <div class="h-16 flex items-center px-6 border-b border-slate-100">
+            <i data-lucide="rocket" class="w-6 h-6 text-blue-600 mr-2"></i>
+            <span class="font-bold text-xl text-slate-800 tracking-tight">DINO HUB</span>
+        </div>
+        
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto" id="main-nav">
+            <a href="#" onclick="switchView('dashboard')" class="nav-item flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 bg-blue-50 text-blue-600 font-medium" data-target="dashboard">
+                <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3"></i> Dashboard
+            </a>
+            <a href="#" onclick="switchView('create')" class="nav-item flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-target="create">
+                <i data-lucide="pen-square" class="w-5 h-5 mr-3"></i> Tạo bài viết
+            </a>
+            <a href="#" class="flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+                <i data-lucide="file-text" class="w-5 h-5 mr-3"></i> Bài viết
+            </a>
+            <a href="#" class="flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+                <i data-lucide="calendar" class="w-5 h-5 mr-3"></i> Lịch đăng
+            </a>
+            <a href="#" class="flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+                <i data-lucide="share-2" class="w-5 h-5 mr-3"></i> Tài khoản Social
+            </a>
+            <a href="#" class="flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+                <i data-lucide="bar-chart-3" class="w-5 h-5 mr-3"></i> Thống kê
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-100">
+            <div class="flex items-center p-3 rounded-xl hover:bg-slate-50 cursor-pointer transition-colors border border-transparent hover:border-slate-200">
+                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 text-white flex items-center justify-center font-bold">
+                    S
+                </div>
+                <div class="ml-3 overflow-hidden">
+                    <p class="text-sm font-semibold text-slate-800">Sơn Trần</p>
+                    <p class="text-xs text-slate-500 truncate">son@dinohub.com</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 h-screen overflow-hidden bg-bglight relative">
+        
+        <!-- DASHBOARD VIEW -->
+        <div id="dashboard" class="view-section active w-full h-full overflow-y-auto p-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h1 class="text-2xl font-bold text-slate-900">Xin chào, Sơn 👋</h1>
+                        <p class="text-slate-500 mt-1">Quản lý toàn bộ nội dung Social Media của bạn từ một nơi.</p>
+                    </div>
+                    <button onclick="switchView('create')" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-medium flex items-center transition-all shadow-sm">
+                        <i data-lucide="plus" class="w-5 h-5 mr-2"></i> Tạo bài viết
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <!-- Stat Card -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                        <div class="flex justify-between items-start">
+                            <div class="p-3 rounded-xl bg-blue-100"><i data-lucide="file-text" class="w-6 h-6 text-blue-600"></i></div>
+                            <span class="flex items-center text-sm font-medium text-green-600"><i data-lucide="arrow-up-right" class="w-4 h-4 mr-1"></i> +12.5%</span>
+                        </div>
+                        <h3 class="text-slate-500 text-sm mt-4">Tổng bài viết</h3>
+                        <p class="text-2xl font-bold text-slate-900 mt-1">1,248</p>
+                    </div>
+                    <!-- Stat Card -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                        <div class="flex justify-between items-start">
+                            <div class="p-3 rounded-xl bg-green-100"><i data-lucide="check-circle-2" class="w-6 h-6 text-green-600"></i></div>
+                            <span class="flex items-center text-sm font-medium text-green-600"><i data-lucide="arrow-up-right" class="w-4 h-4 mr-1"></i> +8.2%</span>
+                        </div>
+                        <h3 class="text-slate-500 text-sm mt-4">Đã đăng</h3>
+                        <p class="text-2xl font-bold text-slate-900 mt-1">982</p>
+                    </div>
+                    <!-- Stat Card -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                        <div class="flex justify-between items-start">
+                            <div class="p-3 rounded-xl bg-orange-100"><i data-lucide="clock" class="w-6 h-6 text-orange-600"></i></div>
+                            <span class="flex items-center text-sm font-medium text-green-600"><i data-lucide="arrow-up-right" class="w-4 h-4 mr-1"></i> +15.4%</span>
+                        </div>
+                        <h3 class="text-slate-500 text-sm mt-4">Đã lên lịch</h3>
+                        <p class="text-2xl font-bold text-slate-900 mt-1">126</p>
+                    </div>
+                    <!-- Stat Card -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                        <div class="flex justify-between items-start">
+                            <div class="p-3 rounded-xl bg-red-100"><i data-lucide="x-circle" class="w-6 h-6 text-red-600"></i></div>
+                            <span class="flex items-center text-sm font-medium text-red-600"><i data-lucide="arrow-down-right" class="w-4 h-4 mr-1"></i> -4.5%</span>
+                        </div>
+                        <h3 class="text-slate-500 text-sm mt-4">Đăng thất bại</h3>
+                        <p class="text-2xl font-bold text-slate-900 mt-1">18</p>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+                    <h2 class="text-lg font-bold mb-4">Bài viết gần đây</h2>
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="text-slate-400 text-sm border-b border-slate-100">
+                                <th class="pb-3 font-medium">Nội dung</th>
+                                <th class="pb-3 font-medium">Nền tảng</th>
+                                <th class="pb-3 font-medium">Thời gian</th>
+                                <th class="pb-3 font-medium">Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr class="border-b border-slate-50">
+                                <td class="py-4 font-medium max-w-[300px] truncate">Bí quyết xây dựng thương hiệu cá nhân 2026...</td>
+                                <td class="py-4 font-medium text-slate-600">Facebook, TikTok</td>
+                                <td class="py-4 text-slate-500">Hôm nay, 10:30</td>
+                                <td class="py-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Đã đăng</span></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 font-medium max-w-[300px] truncate">Quy trình tự động hóa Social Media...</td>
+                                <td class="py-4 font-medium text-slate-600">YouTube, X</td>
+                                <td class="py-4 text-slate-500">Ngày mai, 19:00</td>
+                                <td class="py-4"><span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-bold">Đã lên lịch</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- CREATE POST VIEW (CONTENT COMPOSER) -->
+        <div id="create" class="view-section h-full flex flex-col bg-bglight">
+            <!-- Header Composer -->
+            <div class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 shrink-0">
+                <h1 class="font-bold text-lg">Tạo bài viết mới</h1>
+                <div class="flex gap-3">
+                    <button class="px-4 py-2 text-slate-600 hover:bg-slate-100 rounded-lg text-sm font-medium transition">Lưu nháp</button>
+                    <button class="px-4 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg text-sm font-medium transition">Xem trước</button>
+                </div>
+            </div>
+
+            <div class="flex flex-1 overflow-hidden">
+                <!-- LEFT: EDITOR (70%) -->
+                <div class="w-[70%] p-8 overflow-y-auto">
+                    <!-- Chọn nền tảng -->
+                    <div class="mb-8">
+                        <h2 class="text-sm font-bold text-slate-700 mb-3">1. Chọn nền tảng</h2>
+                        <div class="flex gap-4" id="platform-selector">
+                            <!-- JS will render cards here -->
+                        </div>
+                    </div>
+
+                    <!-- Upload Media -->
+                    <div class="mb-8">
+                        <h2 class="text-sm font-bold text-slate-700 mb-3">2. Media</h2>
+                        <div class="border-2 border-dashed border-slate-300 rounded-2xl h-32 flex flex-col items-center justify-center bg-slate-50 hover:bg-slate-100 transition cursor-pointer text-slate-500">
+                            <i data-lucide="upload-cloud" class="w-8 h-8 mb-2 text-blue-500"></i>
+                            <p class="text-sm font-medium">Kéo thả hình ảnh/video hoặc <span class="text-blue-600">Chọn file</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Tùy chỉnh nội dung -->
+                    <div>
+                        <h2 class="text-sm font-bold text-slate-700 mb-3">3. Tùy chỉnh nội dung</h2>
+                        <div class="flex gap-1 border-b border-slate-200 mb-4" id="content-tabs">
+                            <!-- JS will render tabs here -->
+                        </div>
+                        
+                        <!-- Editor Box -->
+                        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden focus-within:border-blue-500 transition-all shadow-sm">
+                            <textarea id="post-content" class="w-full h-40 p-5 outline-none resize-none text-slate-700 placeholder:text-slate-400" placeholder="Viết nội dung của bạn..."></textarea>
+                            <div class="bg-slate-50 px-5 py-3 border-t border-slate-100 flex justify-between items-center">
+                                <div class="flex gap-3">
+                                    <button class="text-slate-400 hover:text-slate-700"><i data-lucide="image" class="w-5 h-5"></i></button>
+                                    <button class="text-slate-400 hover:text-slate-700"><i data-lucide="smile" class="w-5 h-5"></i></button>
+                                    <button class="text-purple-500 hover:text-purple-600 flex items-center text-sm font-medium gap-1 bg-purple-100 px-2 py-1 rounded-md transition-colors">
+                                        <i data-lucide="sparkles" class="w-4 h-4"></i> AI Viết
+                                    </button>
+                                </div>
+                                <span class="text-xs text-slate-400 font-medium" id="char-count">0 ký tự</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: SCHEDULER & STATUS (30%) -->
+                <div class="w-[30%] bg-white border-l border-slate-200 p-6 flex flex-col">
+                    <!-- Lịch đăng -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 mb-6 shadow-sm">
+                        <h3 class="font-bold text-slate-800 mb-4 flex items-center"><i data-lucide="calendar" class="w-5 h-5 mr-2 text-blue-600"></i> Lịch đăng</h3>
+                        <div class="space-y-3">
+                            <label class="schedule-radio flex items-center p-3 rounded-xl border border-blue-600 bg-blue-50 cursor-pointer transition" id="radio-now">
+                                <input type="radio" name="schedule" value="now" checked class="w-4 h-4 text-blue-600 cursor-pointer">
+                                <span class="ml-3 font-medium text-sm">Đăng ngay lập tức</span>
+                            </label>
+                            <label class="schedule-radio flex items-center p-3 rounded-xl border border-slate-200 bg-white cursor-pointer transition" id="radio-schedule">
+                                <input type="radio" name="schedule" value="schedule" class="w-4 h-4 text-blue-600 cursor-pointer">
+                                <span class="ml-3 font-medium text-sm">Đặt lịch đăng</span>
+                            </label>
+                        </div>
+                        <div id="datetime-picker" class="hidden mt-4 pt-4 border-t border-slate-100 space-y-3">
+                            <input type="date" class="w-full p-2.5 text-sm border border-slate-200 rounded-lg outline-none focus:border-blue-500">
+                            <input type="time" class="w-full p-2.5 text-sm border border-slate-200 rounded-lg outline-none focus:border-blue-500">
+                        </div>
+                    </div>
+
+                    <!-- Preview Trạng thái -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 mb-auto shadow-sm">
+                        <h3 class="font-bold text-slate-800 mb-4">Nền tảng đã chọn</h3>
+                        <div class="space-y-3" id="status-preview">
+                            <!-- JS render here -->
+                        </div>
+                    </div>
+
+                    <!-- Nút Đăng -->
+                    <button id="btn-submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-blue-600/20 flex items-center justify-center transition-all mt-6 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i data-lucide="send" class="w-5 h-5 mr-2" id="submit-icon"></i>
+                        <span id="submit-text">🚀 Đăng ngay</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SYSTEM LOGIC SCRIPT -->
+    <script>
+        // Init Icons
+        lucide.createIcons();
+
+        // Application State
+        const platformsData = [
+            { id: "facebook", name: "Facebook", connected: true, colorClass: "text-blue-600" },
+            { id: "tiktok", name: "TikTok", connected: true, colorClass: "text-black" },
+            { id: "youtube", name: "YouTube", connected: true, colorClass: "text-red-600" },
+            { id: "instagram", name: "Instagram", connected: false, colorClass: "text-pink-600" }, // Demo chưa kết nối
+            { id: "x", name: "X (Twitter)", connected: true, colorClass: "text-slate-800" },
+        ];
+        
+        let state = {
+            selectedPlatforms: ['facebook'],
+            activeTab: 'facebook',
+            isScheduling: false
+        };
+
+        // DOM Elements
+        const platformSelectorEl = document.getElementById('platform-selector');
+        const contentTabsEl = document.getElementById('content-tabs');
+        const statusPreviewEl = document.getElementById('status-preview');
+        const postContentEl = document.getElementById('post-content');
+        const charCountEl = document.getElementById('char-count');
+        
+        // --- VIEW ROUTING ---
+        function switchView(viewId) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+
+            // Update sidebar UI
+            document.querySelectorAll('.nav-item').forEach(el => {
+                if(el.dataset.target === viewId) {
+                    el.className = "nav-item flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 bg-blue-50 text-blue-600 font-medium";
+                    el.querySelector('i').classList.add('text-blue-600');
+                } else {
+                    el.className = "nav-item flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900";
+                    el.querySelector('i').classList.remove('text-blue-600');
+                }
+            });
+        }
+
+        // --- PLATFORM SELECTOR RENDER ---
+        function renderPlatformCards() {
+            platformSelectorEl.innerHTML = platformsData.map(p => {
+                const isSelected = state.selectedPlatforms.includes(p.id);
+                const borderClass = isSelected ? "border-blue-600 bg-blue-50/50" : "border-slate-200 hover:border-slate-300 bg-white";
+                const opacityClass = !p.connected ? "opacity-50 grayscale" : "";
+                const checkIcon = isSelected ? `<i data-lucide="check-circle-2" class="absolute top-2 right-2 w-4 h-4 text-blue-600"></i>` : '';
+                
+                return `
+                    <div onclick="togglePlatform('${p.id}', ${p.connected})" 
+                         class="relative w-28 h-24 rounded-xl border-2 flex flex-col items-center justify-center cursor-pointer transition-all ${borderClass} ${opacityClass}">
+                        ${checkIcon}
+                        <div class="font-bold text-sm mt-1 ${p.colorClass}">${p.name}</div>
+                        <span class="text-[10px] mt-1 ${p.connected ? 'text-green-600' : 'text-slate-400'}">${p.connected ? "Đã kết nối" : "Chưa kết nối"}</span>
+                    </div>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        function togglePlatform(id, connected) {
+            if(!connected) {
+                alert("Vui lòng kết nối tài khoản này trong cài đặt trước.");
+                return;
+            }
+            if(state.selectedPlatforms.includes(id)) {
+                state.selectedPlatforms = state.selectedPlatforms.filter(p => p !== id);
+            } else {
+                state.selectedPlatforms.push(id);
+            }
+            
+            // Adjust active tab if active tab was removed
+            if(state.selectedPlatforms.length > 0 && !state.selectedPlatforms.includes(state.activeTab)) {
+                state.activeTab = state.selectedPlatforms[0];
+            }
+
+            renderAll();
+        }
+
+        // --- TABS RENDER ---
+        function renderTabs() {
+            if(state.selectedPlatforms.length === 0) {
+                contentTabsEl.innerHTML = `<span class="text-sm text-slate-400 py-2">Vui lòng chọn nền tảng ở trên.</span>`;
+                postContentEl.disabled = true;
+                postContentEl.placeholder = "Chọn nền tảng để viết nội dung...";
+                return;
+            }
+            
+            postContentEl.disabled = false;
+            postContentEl.placeholder = `Viết nội dung cho ${platformsData.find(p => p.id === state.activeTab)?.name}...`;
+
+            contentTabsEl.innerHTML = state.selectedPlatforms.map(id => {
+                const p = platformsData.find(x => x.id === id);
+                const isActive = state.activeTab === id;
+                const activeClass = isActive ? "border-blue-600 text-blue-600 font-bold" : "border-transparent text-slate-500 hover:text-slate-800";
+                return `
+                    <button onclick="setActiveTab('${id}')" class="px-5 py-2.5 text-sm font-medium border-b-2 transition-all ${activeClass}">
+                        ${p.name}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function setActiveTab(id) {
+            state.activeTab = id;
+            renderTabs();
+        }
+
+        // --- STATUS PREVIEW RENDER ---
+        function renderStatus() {
+            const btnSubmit = document.getElementById('btn-submit');
+            if(state.selectedPlatforms.length === 0) {
+                statusPreviewEl.innerHTML = `<p class="text-xs text-slate-400 italic">Chưa chọn nền tảng.</p>`;
+                btnSubmit.disabled = true;
+                return;
+            }
+            btnSubmit.disabled = false;
+            statusPreviewEl.innerHTML = state.selectedPlatforms.map(id => {
+                const p = platformsData.find(x => x.id === id);
+                return `
+                    <div class="flex justify-between items-center text-sm border-b border-slate-50 pb-2 last:border-0 last:pb-0">
+                        <span class="text-slate-700 font-medium flex items-center">
+                            <span class="w-2 h-2 rounded-full bg-slate-300 mr-2"></span>${p.name}
+                        </span>
+                        <span class="text-xs bg-slate-100 text-slate-500 px-2 py-1 rounded font-medium">Chờ ${state.isScheduling ? 'lên lịch' : 'đăng'}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // --- CORE RENDER WRAPPER ---
+        function renderAll() {
+            renderPlatformCards();
+            renderTabs();
+            renderStatus();
+        }
+
+        // --- EVENT LISTENERS ---
+        
+        // Character count
+        postContentEl.addEventListener('input', (e) => {
+            charCountEl.innerText = `${e.target.value.length} ký tự`;
+        });
+
+        // Schedule Toggle
+        const radios = document.querySelectorAll('input[name="schedule"]');
+        radios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                state.isScheduling = e.target.value === 'schedule';
+                
+                // Toggle UI styles
+                document.getElementById('radio-now').className = `schedule-radio flex items-center p-3 rounded-xl border cursor-pointer transition ${!state.isScheduling ? 'border-blue-600 bg-blue-50' : 'border-slate-200 bg-white'}`;
+                document.getElementById('radio-schedule').className = `schedule-radio flex items-center p-3 rounded-xl border cursor-pointer transition ${state.isScheduling ? 'border-blue-600 bg-blue-50' : 'border-slate-200 bg-white'}`;
+                
+                // Toggle Date Picker
+                document.getElementById('datetime-picker').style.display = state.isScheduling ? 'block' : 'none';
+                
+                // Update Button Text
+                document.getElementById('submit-text').innerText = state.isScheduling ? "📅 Đặt lịch đăng" : "🚀 Đăng ngay";
+                document.getElementById('submit-icon').setAttribute('data-lucide', state.isScheduling ? 'calendar' : 'send');
+                lucide.createIcons();
+                
+                renderStatus();
+            });
+        });
+
+        // Submit (Mock API)
+        document.getElementById('btn-submit').addEventListener('click', () => {
+            const btn = document.getElementById('btn-submit');
+            const originalText = btn.innerHTML;
+            
+            // Loading State
+            btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 mr-2 animate-spin"></i> Đang xử lý...`;
+            lucide.createIcons();
+            btn.disabled = true;
+
+            // Fake API Delay 1.5s
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                lucide.createIcons();
+                
+                // Show Toast
+                const toast = document.getElementById('toast');
+                document.getElementById('toast-title').innerText = state.isScheduling ? "Đã đặt lịch!" : "Đăng thành công!";
+                document.getElementById('toast-desc').innerText = `Hệ thống đang xử lý đăng bài lên ${state.selectedPlatforms.length} nền tảng.`;
+                
+                toast.classList.remove('translate-x-[150%]');
+                setTimeout(() => { toast.classList.add('translate-x-[150%]'); }, 4000);
+
+                // Reset Form
+                postContentEl.value = "";
+                charCountEl.innerText = "0 ký tự";
+            }, 1500);
+        });
+
+        // Init
+        renderAll();
+
+    </script>
+</body>
+</html>
