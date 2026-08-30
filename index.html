@@ -7,7 +7,6 @@
 <meta name="description" content="DINO SOCIAL HUB 4.0 — Một Nội Dung. Mọi Nền Tảng." />
 
 <script>
-/* Local icon renderer */
 window.lucide = window.lucide || {};
 window.lucide.createIcons = function(){
   const icons = {
@@ -89,7 +88,6 @@ window.lucide.createIcons = function(){
 };
 </script>
 <style>
-/* CSS Variables & Reset */
 :root {
   --bg:#f6f8fb; --surface:#fff; --surface-2:#f9fafb; --line:#e5e7eb; --line-2:#eef0f3;
   --text:#172033; --muted:#667085; --primary:#2563eb; --primary-2:#1d4ed8; --primary-soft:#eff6ff;
@@ -97,27 +95,16 @@ window.lucide.createIcons = function(){
   --danger:#dc2626; --danger-soft:#fef2f2; --info:#0f766e; --info-soft:#ecfeff;
   --shadow:0 4px 18px rgba(15,23,42,.045); --sidebar:220px; --radius:8px;
 }
-
-/* 🌙 DARK MODE VARIABLES OVERRIDE */
 html[data-theme="dark"] {
-  --bg: #0f172a;          
-  --surface: #1e293b;     
-  --surface-2: #334155;   
-  --line: #334155;        
-  --line-2: #475569;      
-  --text: #f1f5f9;        
-  --muted: #94a3b8;       
-  --shadow: 0 4px 18px rgba(0,0,0,.3);
-  --primary-soft: rgba(37, 99, 235, 0.2);
+  --bg: #0f172a; --surface: #1e293b; --surface-2: #334155; --line: #334155; --line-2: #475569;      
+  --text: #f1f5f9; --muted: #94a3b8; --shadow: 0 4px 18px rgba(0,0,0,.3); --primary-soft: rgba(37, 99, 235, 0.2);
 }
-
 * { box-sizing:border-box }
 html { font-size:13px; overflow-x:hidden; transition: background-color 0.3s ease; }
 body { margin:0; padding:0; font-family:Inter,ui-sans-serif,system-ui,sans-serif; color:var(--text); background:var(--bg); font-size:12px; line-height:1.4; overflow-x:hidden; min-height:100vh; transition: background-color 0.3s ease, color 0.3s ease; }
 button, input, select, textarea { font:inherit }
 .hidden { display: none !important; }
 
-/* Sizing cố định cho toàn bộ SVG */
 svg.lucide { width: 1.2em; height: 1.2em; vertical-align: middle; flex-shrink: 0; }
 .nav-item svg { width: 16px; height: 16px; flex: 0 0 auto; }
 .search svg { position: absolute; left: 10px; top: 8px; width: 15px; height: 15px; color: #98a2b3; }
@@ -129,7 +116,6 @@ svg.lucide { width: 1.2em; height: 1.2em; vertical-align: middle; flex-shrink: 0
 .stat-icon svg { width: 16px; height: 16px; }
 .logo svg { width: 18px; height: 18px; }
 
-/* 🌙 DARK MODE ELEMENTS */
 html[data-theme="dark"] .sidebar, html[data-theme="dark"] .topbar, html[data-theme="dark"] .card, html[data-theme="dark"] .modal, html[data-theme="dark"] .dropdown, html[data-theme="dark"] .mobile-bottom, html[data-theme="dark"] .account-card { background: var(--surface); border-color: var(--line); color: var(--text); }
 html[data-theme="dark"] .nav-item:hover, html[data-theme="dark"] .quick:hover, html[data-theme="dark"] .table tr:hover td, html[data-theme="dark"] .dropdown button:hover { background: var(--surface-2); }
 html[data-theme="dark"] .input, html[data-theme="dark"] .textarea, html[data-theme="dark"] .select { background: var(--surface-2); border-color: var(--line); color: var(--text); }
@@ -167,7 +153,6 @@ html[data-theme="dark"] .account-avatar { background: var(--surface-2); }
 html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #93c5fd; border-color: #1d4ed8; }
 html[data-theme="dark"] .label { color: var(--muted); }
 
-/* THIẾT KẾ MÀN HÌNH ĐĂNG NHẬP */
 .login-wrap { position:fixed; inset:0; background:linear-gradient(135deg, #f5f7fa 0%, #e0e7ff 100%); display:flex; align-items:center; justify-content:center; z-index:9999; }
 .login-card { background:var(--surface); width:380px; padding:32px 28px; border-radius:14px; box-shadow:0 15px 35px rgba(37,99,235,0.1); border:1px solid var(--line); text-align:center; }
 .login-card .logo { margin: 0 auto 16px; width:48px; height:48px; border-radius:12px; background:linear-gradient(145deg,#2563eb,#3b82f6); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 18px rgba(37,99,235,.2); color: white; }
@@ -179,18 +164,14 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .demo-acc-btn:hover { border-color:var(--primary); background:var(--primary-soft); transform:translateY(-1px); }
 .demo-acc-btn b { color:var(--primary); font-size:12px; }
 
-/* Layout App */
 .app { display:flex; min-height:100vh }
 .sidebar { width:var(--sidebar); background:var(--surface); border-right:1px solid var(--line); position:fixed; inset:0 auto 0 0; z-index:30; display:flex; flex-direction:column; transition:.2s }
 .sidebar.collapsed { width:64px }
 .sidebar.collapsed .brand-name, .sidebar.collapsed .brand-version, .sidebar.collapsed .section-label, .sidebar.collapsed .nav-label, .sidebar.collapsed .user-meta, .sidebar.collapsed .collapse-text, .sidebar.collapsed .demo-badge { display:none }
 .sidebar.collapsed .brand { justify-content:center; padding:0 8px }
 .sidebar.collapsed .nav-item { justify-content:center; padding-left:8px; padding-right:8px }
-
 .main { margin-left:var(--sidebar); width:calc(100% - var(--sidebar)); transition:.2s }
 .sidebar.collapsed ~ .main { margin-left:64px; width:calc(100% - 64px) }
-
-/* Topbar & Sidebar details */
 .brand { height:56px; padding:0 14px; gap:10px; display:flex; align-items:center; border-bottom:1px solid var(--line-2); cursor:pointer; user-select:none; transition: opacity 0.2s; }
 .brand:hover { opacity: 0.8; }
 .logo { width:32px; height:32px; border-radius:8px; background:linear-gradient(145deg,#2563eb,#3b82f6); color:#fff; display:grid; place-items:center; box-shadow:0 8px 18px rgba(37,99,235,.2) }
@@ -205,8 +186,8 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .demo-badge { background:var(--warning-soft); border:1px solid var(--warning); color:var(--warning); padding:8px 10px; border-radius:8px; font-size:10px; line-height:1.4; opacity:0.9; }
 .collapse-btn { margin-top:10px; width:100%; border:1px solid var(--line); background:var(--surface); color:var(--text); opacity:0.8; padding:8px; border-radius:8px; display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer; font-size:10px; font-weight:600 }
 .collapse-btn:hover { background: var(--surface-2); opacity: 1; }
-
 .topbar { height:56px; background:rgba(255,255,255,.94); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); display:flex; align-items:center; padding:0 16px; gap:10px; position:sticky; top:0; z-index:20 }
+html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .breadcrumbs { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:6px; white-space:nowrap }
 .breadcrumbs b { color:var(--text) }
 .search { position:relative; max-width:380px; flex:1; margin-left:auto }
@@ -219,8 +200,6 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .user-btn { border:1px solid var(--line); background:var(--surface); padding:2px 8px 2px 2px; border-radius:10px; display:flex; align-items:center; gap:8px; cursor:pointer; color:var(--text); opacity:0.9; }
 .user-btn:hover { background: var(--surface-2); opacity:1; }
 .user-btn span { font-size:11px; font-weight:700 }
-
-/* Content structure */
 .content { padding:16px 20px; max-width:1360px; margin:auto }
 .page-header { display:flex; justify-content:space-between; gap:10px; align-items:flex-start; margin-bottom:12px }
 .page-title { margin:0; font-size:18px; letter-spacing:-.03em }
@@ -238,8 +217,6 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .card-pad { padding:14px }
 .grid { display:grid; gap:10px }
 .grid-8 { grid-template-columns:repeat(8,minmax(0,1fr)); gap:10px }
-
-/* Data Visualization */
 .stat-card { padding:12px; min-height:86px }
 .stat-top { display:flex; justify-content:space-between; align-items:center }
 .stat-icon { width:28px; height:28px; border-radius:8px; display:grid; place-items:center; background:var(--primary-soft); color:var(--primary) }
@@ -248,7 +225,6 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .stat-foot { font-size:9px; color:var(--muted); margin-top:4px }
 .pill { display:inline-flex; align-items:center; gap:5px; padding:4px 8px; border-radius:999px; font-size:9.5px; font-weight:700; border:1px solid transparent; white-space:nowrap }
 .dot { width:6px; height:6px; border-radius:50%; background:currentColor }
-
 .section-title { font-size:13px; font-weight:700 }
 .muted { color:var(--muted) }
 .two-col { display:grid; grid-template-columns:1.7fr 1fr; gap:10px; margin-top:10px }
@@ -257,7 +233,6 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .quick { border:1px solid var(--line); background:var(--surface); border-radius:8px; padding:10px; display:flex; align-items:center; gap:8px; cursor:pointer; text-align:left; color:var(--text); }
 .quick:hover { background:var(--surface-2) }
 .quick span { font-size:10.5px; font-weight:600 }
-
 .chart { height:190px; padding:12px 14px 10px }
 .chart svg { width:100%; height:100% }
 .chart-kpis { display:flex; gap:12px; flex-wrap:wrap; margin-top:10px }
@@ -265,20 +240,15 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .legend .swatch { width:8px; height:8px; border-radius:2px; background:var(--primary) }
 .donut { width:130px; height:130px; border-radius:50%; background:conic-gradient(#2563eb 0 36%,#14b8a6 36% 62%,#f59e0b 62% 78%,#a855f7 78% 90%,#64748b 90% 100%); position:relative; margin:auto }
 .donut-center { position:absolute; inset:0; display:grid; place-items:center; font-size:14px; font-weight:800; z-index:2; color:var(--text) }
-
 .timeline { display:flex; flex-direction:column; gap:10px }
 .timeline-item { display:flex; gap:10px }
 .timeline-dot { width:9px; height:9px; border-radius:50%; background:var(--primary); margin-top:5px; flex:none }
 .timeline-item b { font-size:11px }
 .timeline-item span { font-size:10px; color:var(--muted); display:block; margin-top:3px }
-
-/* Tables */
 .table-wrap { overflow:auto }
 .table { width:100%; border-collapse:collapse; min-width:720px }
 .table th { text-align:left; font-size:9px; letter-spacing:.05em; color:var(--muted); text-transform:uppercase; padding:10px 12px; border-bottom:1px solid var(--line); background:var(--surface-2) }
 .table td { padding:10px 12px; border-bottom:1px solid var(--line-2); font-size:11px; line-height:1.3; vertical-align:middle; color:var(--text) }
-
-/* Media & Form Elements */
 .thumb { width:40px; height:32px; border-radius:6px; border:1px solid var(--line); background:var(--surface-2); display:grid; place-items:center; overflow:hidden }
 .thumb img, .thumb video { width:100%; height:100%; object-fit:cover }
 .media-cell { display:flex; align-items:center; gap:10px; min-width:200px }
@@ -287,13 +257,14 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .platforms { display:flex; gap:5px; flex-wrap:wrap }
 .platform-badge { display:inline-flex; align-items:center; gap:4px; padding:3px 6px; border-radius:5px; background:var(--surface-2); border:1px solid var(--line); font-size:9.5px; font-weight:600 }
 .fb { color:#1877f2 } .tt { color:var(--text) } .yt { color:#ef4444 } .ig { color:#c026d3 } .xx { color:var(--text) }
-
 .form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px }
 .field { display:flex; flex-direction:column; gap:5px }
 .field.full { grid-column:1/-1 }
 .label { font-size:10.5px; font-weight:600; color:var(--muted) }
-
-/* Custom Drag Drop */
+.input, .select, .textarea { width:100%; border:1px solid var(--line); border-radius:6px; background:var(--surface); padding:8px 10px; font:inherit; font-size:11.5px; outline:none; color:var(--text) }
+.textarea { min-height:86px; resize:vertical }
+.editor { min-height:120px }
+.help { font-size:9.5px; color:var(--muted) }
 .dropzone { border:1.5px dashed var(--line-2); border-radius:8px; background:var(--surface-2); padding:16px; text-align:center; cursor:pointer }
 .dropzone:hover { background:var(--surface); border-color:var(--primary) }
 .media-preview { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:8px; margin-top:10px }
@@ -304,7 +275,6 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .media-footer { padding:8px 10px }
 .drag-hint { font-size:9.5px; color:var(--muted) }
 .remove-media { position:absolute; right:6px; top:6px }
-
 .platform-selector { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; margin-bottom:12px }
 .platform-card { border:1px solid var(--line); background:var(--surface); border-radius:8px; padding:10px; cursor:pointer }
 .platform-card.selected { border-color:#93c5fd; background:var(--primary-soft) }
@@ -312,11 +282,9 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .platform-card .p-head { display:flex; justify-content:space-between; align-items:center }
 .platform-card b { font-size:10.5px }
 .platform-card small { font-size:8.5px; color:var(--muted); display:block; margin-top:4px }
-
 .tabs { display:flex; gap:4px; flex-wrap:wrap; border-bottom:1px solid var(--line); padding-bottom:6px; margin-bottom:12px }
 .tab { border:1px solid transparent; background:transparent; padding:8px 10px; border-radius:6px; font-size:10.5px; font-weight:600; color:var(--muted); cursor:pointer }
 .tab.active { background:var(--primary-soft); color:var(--primary); border-color:#dbeafe }
-
 .switch { position:relative; width:40px; height:24px; display:inline-block }
 .switch input { display:none }
 .slider { position:absolute; inset:0; border-radius:999px; background:var(--line-2); cursor:pointer }
@@ -331,8 +299,6 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .notice.danger { background:var(--danger-soft); border-color:var(--danger); color:var(--danger); }
 .empty { text-align:center; padding:30px 16px; color:var(--muted) }
 .empty b { display:block; color:var(--text); font-size:14px; margin-bottom:6px }
-
-/* Modals & Toasts */
 .modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:100; display:none; align-items:center; justify-content:center; padding:20px }
 .modal-backdrop.show { display:flex }
 .modal { width:min(680px,100%); max-height:92vh; overflow:auto; background:var(--surface); border-radius:12px; box-shadow:0 24px 70px rgba(0,0,0,.3) }
@@ -354,8 +320,6 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .loading.show { display:flex }
 .spinner { width:32px; height:32px; border:3px solid var(--line); border-top-color:var(--primary); border-radius:50%; animation:spin .8s linear infinite }
 @keyframes spin { to { transform:rotate(360deg) } }
-
-/* Complex Modules */
 .calendar-toolbar { display:flex; align-items:center; gap:8px }
 .cal-grid { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); border:1px solid var(--line); border-bottom:none; border-right:none; border-radius:10px; overflow:hidden }
 .cal-head, .cal-cell { border-right:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--surface) }
@@ -368,14 +332,12 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .event.published { background:var(--success-soft); color:var(--success); border-color:var(--success-soft) }
 .event b { display:block; font-size:10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
 .event span { display:none }
-
 .kanban { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px }
 .kanban-col { background:var(--bg); border:1px solid var(--line); border-radius:10px; padding:10px; min-height:240px }
 .kanban-head { display:flex; justify-content:space-between; font-size:12.5px; font-weight:700; margin-bottom:12px }
 .job { background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:10px; margin-bottom:10px }
 .job b { font-size:12.5px }
 .job-meta { font-size:10.5px; color:var(--muted); margin-top:6px; line-height:1.5 }
-
 .account-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px }
 .account-card { padding:12px; background:var(--surface); border:1px solid var(--line); border-radius:8px; }
 .account-top { display:flex; gap:12px; align-items:center }
@@ -386,14 +348,12 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .meta-box { border:1px solid var(--line-2); border-radius:6px; padding:10px }
 .meta-box span { display:block; font-size:10.5px; color:var(--muted) }
 .meta-box b { font-size:11.5px; display:block; margin-top:4px }
-
 .settings-tabs { display:flex; gap:8px; flex-wrap:wrap }
 .settings-tabs .tab { border:1px solid var(--line) }
 .settings-layout { display:grid; grid-template-columns:200px 1fr; gap:20px }
 .settings-nav { display:flex; flex-direction:column; gap:4px }
 .settings-nav button { border:0; background:transparent; text-align:left; padding:10px 14px; border-radius:6px; font-size:12.5px; cursor:pointer; color:var(--muted) }
 .settings-nav button.active { background:var(--primary-soft); color:var(--primary); font-weight:600 }
-
 .metric-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px }
 .metric { padding:10px }
 .metric b { font-size:15px }
@@ -402,7 +362,6 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .bar { flex:1; min-width:12px; border-radius:6px 6px 2px 2px; background:linear-gradient(180deg,#60a5fa,#2563eb) }
 .bar-labels { display:flex; gap:10px; padding:0 14px 10px }
 .bar-labels span { flex:1; text-align:center; font-size:10.5px; color:var(--muted) }
-
 .pagination { display:flex; justify-content:space-between; align-items:center; padding-top:14px }
 .pagination .btn { min-width:36px }
 .approval-step { display:flex; align-items:center; gap:10px; padding:10px; border:1px solid var(--line); border-radius:8px }
@@ -410,7 +369,6 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .file-input { display:none }
 .footer-note { font-size:10px; color:var(--muted); text-align:center; padding:16px 0 }
 .badge-count { min-width:20px; height:20px; border-radius:99px; background:var(--primary-soft); color:var(--primary); font-size:10px; display:inline-grid; place-items:center }
-
 .dropdown { position:fixed; z-index:120; right:16px; top:66px; width:200px; background:var(--surface); border:1px solid var(--line); box-shadow:var(--shadow); border-radius:8px; padding:8px; display:none }
 .dropdown.show { display:block }
 .dropdown button { width:100%; background:var(--surface); border:0; border-radius:6px; padding:10px; text-align:left; font-size:12.5px; cursor:pointer; color:var(--text); }
@@ -427,6 +385,66 @@ html[data-theme="dark"] .device-frame { border-color: #0f172a; background: #111;
 html[data-theme="dark"] .device-notch { background: #0f172a; }
 .preview-content { padding-top: 36px; height: 100%; overflow-y: auto; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; scrollbar-width: none; }
 .preview-content::-webkit-scrollbar { display: none; }
+.prev-fb-head { display:flex; gap:8px; padding:12px; align-items:center; }
+.prev-fb-avatar { width:36px; height:36px; border-radius:50%; background:#cbd5e1; }
+.prev-fb-name { font-weight:700; font-size:13px; margin-bottom:2px; }
+.prev-fb-time { font-size:11px; color:#64748b; }
+.prev-fb-text { padding:0 12px 12px; font-size:13px; line-height:1.4; word-wrap: break-word; white-space: pre-wrap; }
+.prev-fb-text .hashtag { color: #1877f2; }
+.prev-fb-img { width:100%; height:260px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.prev-fb-img img, .prev-fb-img video { width:100%; height:100%; object-fit:cover; }
+.prev-fb-actions { display:flex; padding:10px 12px; border-top:1px solid #e2e8f0; border-bottom:8px solid #e2e8f0; color:#64748b; justify-content:space-between; }
+html[data-theme="dark"] .prev-fb-actions { border-color: #334155; }
+.prev-fb-action { display:flex; gap:6px; align-items:center; font-size:12px; font-weight:600; }
+.prev-tt-wrap { background: #000; height:100%; color:#fff; position:relative; }
+.prev-tt-img { width:100%; height:100%; background:#1f2937; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.prev-tt-img img, .prev-tt-img video { width:100%; height:100%; object-fit:cover; }
+.prev-tt-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%); pointer-events:none; }
+.prev-tt-right { position:absolute; right:12px; bottom:20px; display:flex; flex-direction:column; gap:16px; align-items:center; }
+.prev-tt-icon { display:flex; flex-direction:column; align-items:center; gap:4px; font-size:10px; font-weight:600; }
+.prev-tt-icon svg { width:28px; height:28px; }
+.prev-tt-bottom { position:absolute; left:12px; bottom:20px; right:60px; }
+.prev-tt-name { font-weight:700; font-size:14px; margin-bottom:6px; display:block; }
+.prev-tt-text { font-size:13px; line-height:1.4; word-wrap: break-word; white-space: pre-wrap; }
+.prev-tt-text .hashtag { font-weight: 700; }
+.prev-ig-head { display:flex; justify-content:space-between; padding:10px 12px; align-items:center; }
+.prev-ig-user { display:flex; gap:8px; align-items:center; }
+.prev-ig-avatar { width:30px; height:30px; border-radius:50%; background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); padding:2px; }
+.prev-ig-avatar-inner { width:100%; height:100%; border-radius:50%; background:#fff; border:1px solid #fff; }
+.prev-ig-name { font-weight:600; font-size:12.5px; }
+.prev-ig-img { width:100%; aspect-ratio:1/1; background:#e2e8f0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.prev-ig-img img, .prev-ig-img video { width:100%; height:100%; object-fit:cover; }
+.prev-ig-actions { display:flex; justify-content:space-between; padding:10px 12px 6px; }
+.prev-ig-action-left { display:flex; gap:12px; }
+.prev-ig-likes { padding:0 12px; font-weight:600; font-size:12.5px; margin-bottom:4px; }
+.prev-ig-text { padding:0 12px 12px; font-size:13px; line-height:1.4; word-wrap: break-word; white-space: pre-wrap; }
+.prev-ig-text .hashtag { color: #00376b; }
+html[data-theme="dark"] .prev-ig-text .hashtag { color: #e0f2fe; }
+.prev-yt-img { width:100%; aspect-ratio:16/9; background:#e2e8f0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.prev-yt-img img, .prev-yt-img video { width:100%; height:100%; object-fit:cover; }
+.prev-yt-info { padding:12px; }
+.prev-yt-title { font-size:16px; font-weight:700; line-height:1.3; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.prev-yt-meta { font-size:11.5px; color:#64748b; margin-bottom:12px; }
+.prev-yt-user { display:flex; gap:10px; align-items:center; margin-bottom:12px; }
+.prev-yt-avatar { width:32px; height:32px; border-radius:50%; background:#cbd5e1; }
+.prev-yt-name { font-weight:600; font-size:13.5px; }
+.prev-yt-desc { background:#f1f5f9; padding:10px; border-radius:8px; font-size:12.5px; line-height:1.4; white-space:pre-wrap; }
+html[data-theme="dark"] .prev-yt-desc { background:#1e293b; color:#cbd5e1; }
+.prev-yt-desc .hashtag { color: #2563eb; }
+.prev-x-wrap { padding:12px; display:flex; gap:10px; border-bottom:1px solid #e2e8f0; }
+html[data-theme="dark"] .prev-x-wrap { border-color:#334155; }
+.prev-x-avatar { width:40px; height:40px; border-radius:50%; background:#cbd5e1; flex-shrink:0; }
+.prev-x-content { flex:1; min-width:0; }
+.prev-x-head { display:flex; align-items:center; gap:4px; margin-bottom:2px; }
+.prev-x-name { font-weight:700; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.prev-x-user { color:#64748b; font-size:13px; }
+.prev-x-text { font-size:14px; line-height:1.4; word-wrap: break-word; white-space: pre-wrap; margin-bottom:10px; }
+.prev-x-text .hashtag { color: #1da1f2; }
+.prev-x-img { width:100%; border-radius:12px; overflow:hidden; border:1px solid #e2e8f0; margin-bottom:10px; }
+html[data-theme="dark"] .prev-x-img { border-color:#334155; }
+.prev-x-img img, .prev-x-img video { width:100%; max-height:280px; object-fit:cover; display:block; }
+.prev-x-actions { display:flex; justify-content:space-between; color:#64748b; padding-right:20px; }
+.prev-x-action { display:flex; gap:6px; align-items:center; font-size:12px; }
 
 /* Inbox Styles */
 .inbox-layout { display: grid; grid-template-columns: 300px 1fr; height: calc(100vh - 150px); border: 1px solid var(--line); border-radius: 8px; background: var(--surface); overflow: hidden; }
@@ -446,7 +464,6 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
 .inbox-name { font-size: 12px; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .inbox-time { font-size: 10px; color: var(--muted); }
 .inbox-preview { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
 .inbox-chat { display: flex; flex-direction: column; background: var(--surface); }
 .chat-head { padding: 14px 20px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
 .chat-user-info { display: flex; align-items: center; gap: 12px; }
@@ -466,67 +483,10 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
 .chat-send-btn { width: 44px; height: 44px; border-radius: 8px; background: var(--primary); color: #fff; display: grid; place-items: center; border: none; cursor: pointer; flex-shrink: 0; }
 .chat-send-btn:hover { background: var(--primary-2); }
 
-
-@media(max-width:1300px) {
-  .grid-8 { grid-template-columns:repeat(4,minmax(0,1fr)) }
-  .account-grid { grid-template-columns:repeat(2,minmax(0,1fr)) }
-  .quick-grid { grid-template-columns:repeat(3,minmax(0,1fr)) }
-}
-@media(max-width:980px) {
-  .sidebar { width:58px }
-  .sidebar .brand-name, .sidebar .brand-version, .sidebar .section-label, .sidebar .nav-label, .sidebar .user-meta, .sidebar .collapse-text, .sidebar .demo-badge { display:none }
-  .sidebar .brand { justify-content:center }
-  .sidebar .nav-item { justify-content:center }
-  .main, .sidebar.collapsed ~ .main { margin-left:58px; width:calc(100% - 58px) }
-  .two-col, .three-col { grid-template-columns:1fr }
-  .settings-layout { grid-template-columns:1fr }
-  .settings-nav { flex-direction:row; overflow:auto }
-  .metric-grid { grid-template-columns:repeat(2,minmax(0,1fr)) }
-  .kanban { grid-template-columns:1fr 1fr }
-  .platform-selector { grid-template-columns:repeat(3,minmax(0,1fr)) }
-  .inbox-layout { grid-template-columns: 220px 1fr; }
-}
-@media(max-width:700px) {
-  .sidebar { display:none }
-  .main, .sidebar.collapsed ~ .main { margin-left:0!important; width:100%!important }
-  .content { padding:10px 10px 65px }
-  .topbar { padding:0 9px; height:50px; gap:8px }
-  .breadcrumbs { display:none }
-  .search { max-width:none }
-  .search input { font-size:11px }
-  .top-actions .user-btn span { display:none }
-  .grid-8 { grid-template-columns:repeat(2,minmax(0,1fr)) }
-  .quick-grid { grid-template-columns:repeat(2,minmax(0,1fr)) }
-  .platform-selector { grid-template-columns:repeat(2,minmax(0,1fr)) }
-  .form-grid { grid-template-columns:1fr }
-  .field.full { grid-column:auto }
-  .account-grid { grid-template-columns:1fr }
-  .kanban { grid-template-columns:1fr }
-  .page-header { flex-direction:column }
-  .page-header .actions { width:100% }
-  .page-header .actions .btn { flex:1 }
-  .mobile-bottom { display:flex; position:fixed; inset:auto 0 0 0; height:50px; background:var(--surface); border-top:1px solid var(--line); z-index:50 }
-  .mobile-bottom button { flex:1; border:0; background:var(--surface); font-size:9px; color:var(--muted); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px }
-  .mobile-bottom button.active { color:var(--primary); font-weight:800 }
-  .modal { max-height:88vh }
-  .cal-cell { min-height:72px; padding:6px }
-  .event span { display:none }
-  .event { padding:5px }
-  .metric-grid { grid-template-columns:repeat(2,minmax(0,1fr)) }
-  .inbox-layout { grid-template-columns: 1fr; }
-  .inbox-chat { display: none; }
-}
-@media(max-width:420px) {
-  .topbar { padding:0 7px; gap:6px }
-  .search { min-width:0 }
-  .search input { padding-left:32px }
-  .top-actions { gap:4px }
-  #helpBtn { display:none }
-  .user-btn { border:0; padding:2px }
-  .grid-8, .metric-grid { grid-template-columns:1fr 1fr }
-  .quick-grid { grid-template-columns:1fr 1fr }
-  .btn { padding-left:7px; padding-right:7px }
-}
+@media(max-width:1300px) { .grid-8 { grid-template-columns:repeat(4,minmax(0,1fr)) } .account-grid { grid-template-columns:repeat(2,minmax(0,1fr)) } .quick-grid { grid-template-columns:repeat(3,minmax(0,1fr)) } }
+@media(max-width:980px) { .sidebar { width:58px } .sidebar .brand-name, .sidebar .brand-version, .sidebar .section-label, .sidebar .nav-label, .sidebar .user-meta, .sidebar .collapse-text, .sidebar .demo-badge { display:none } .sidebar .brand { justify-content:center } .sidebar .nav-item { justify-content:center } .main, .sidebar.collapsed ~ .main { margin-left:58px; width:calc(100% - 58px) } .two-col, .three-col { grid-template-columns:1fr } .settings-layout { grid-template-columns:1fr } .settings-nav { flex-direction:row; overflow:auto } .metric-grid { grid-template-columns:repeat(2,minmax(0,1fr)) } .kanban { grid-template-columns:1fr 1fr } .platform-selector { grid-template-columns:repeat(3,minmax(0,1fr)) } .inbox-layout { grid-template-columns: 220px 1fr; } }
+@media(max-width:700px) { .sidebar { display:none } .main, .sidebar.collapsed ~ .main { margin-left:0!important; width:100%!important } .content { padding:10px 10px 65px } .topbar { padding:0 9px; height:50px; gap:8px } .breadcrumbs { display:none } .search { max-width:none } .search input { font-size:11px } .top-actions .user-btn span { display:none } .grid-8 { grid-template-columns:repeat(2,minmax(0,1fr)) } .quick-grid { grid-template-columns:repeat(2,minmax(0,1fr)) } .platform-selector { grid-template-columns:repeat(2,minmax(0,1fr)) } .form-grid { grid-template-columns:1fr } .field.full { grid-column:auto } .account-grid { grid-template-columns:1fr } .kanban { grid-template-columns:1fr } .page-header { flex-direction:column } .page-header .actions { width:100% } .page-header .actions .btn { flex:1 } .mobile-bottom { display:flex; position:fixed; inset:auto 0 0 0; height:50px; background:var(--surface); border-top:1px solid var(--line); z-index:50 } .mobile-bottom button { flex:1; border:0; background:var(--surface); font-size:9px; color:var(--muted); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px } .mobile-bottom button.active { color:var(--primary); font-weight:800 } .modal { max-height:88vh } .cal-cell { min-height:72px; padding:6px } .event span { display:none } .event { padding:5px } .metric-grid { grid-template-columns:repeat(2,minmax(0,1fr)) } .inbox-layout { grid-template-columns: 1fr; } .inbox-chat { display: none; } }
+@media(max-width:420px) { .topbar { padding:0 7px; gap:6px } .search { min-width:0 } .search input { padding-left:32px } .top-actions { gap:4px } #helpBtn { display:none } .user-btn { border:0; padding:2px } .grid-8, .metric-grid { grid-template-columns:1fr 1fr } .quick-grid { grid-template-columns:1fr 1fr } .btn { padding-left:7px; padding-right:7px } }
 </style>
 </head>
 <body>
@@ -836,7 +796,6 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
     return `<button class="quick" data-page="${page}"><i data-lucide="${icon}"></i><span>${escape(label)}</span></button>`;
   }
 
-  // --- Auth & RBAC Logic ---
   window.doLogin = function(emailOverride) {
     const e = emailOverride || document.getElementById('loginEmail').value.trim();
     const u = state.users.find(x => x.email === e);
@@ -882,51 +841,18 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
     const u = state.users.find(x => x.email === state.loggedInUserEmail);
     if(!u) return;
     const role = u.role; 
-    
     const hideSelector = (sel) => { const el = document.querySelector(sel); if(el) el.classList.add('hidden'); }
     
-    // Reset ALL menus to visible first
     document.querySelectorAll('.nav-item, .section-label').forEach(el => el.classList.remove('hidden'));
     
-    if(role === 'MANAGER') {
-      hideSelector('[data-page="settings"]');
-      hideSelector('#label-hethong');
-    }
+    if(role === 'MANAGER') { hideSelector('[data-page="settings"]'); hideSelector('#label-hethong'); }
+    if(role === 'EDITOR') { hideSelector('[data-page="accounts"]'); hideSelector('[data-page="team"]'); hideSelector('[data-page="analytics"]'); hideSelector('[data-page="settings"]'); hideSelector('#label-hethong'); }
+    if(role === 'VIEWER') { hideSelector('[data-page="create"]'); hideSelector('[data-page="bulk"]'); hideSelector('[data-page="queue"]'); hideSelector('[data-page="accounts"]'); hideSelector('[data-page="team"]'); hideSelector('[data-page="analytics"]'); hideSelector('[data-page="settings"]'); hideSelector('#label-quanly'); hideSelector('#label-hethong'); }
     
-    if(role === 'EDITOR') {
-      hideSelector('[data-page="accounts"]');
-      hideSelector('[data-page="team"]');
-      hideSelector('[data-page="analytics"]');
-      hideSelector('[data-page="settings"]');
-      hideSelector('#label-hethong');
-    }
-    
-    if(role === 'VIEWER') {
-      hideSelector('[data-page="create"]');
-      hideSelector('[data-page="bulk"]');
-      hideSelector('[data-page="queue"]');
-      hideSelector('[data-page="accounts"]');
-      hideSelector('[data-page="team"]');
-      hideSelector('[data-page="analytics"]');
-      hideSelector('[data-page="settings"]');
-      hideSelector('#label-quanly');
-      hideSelector('#label-hethong');
-    }
-    
-    // Enforce Route protection
-    const forbidden = {
-      MANAGER: ['settings'],
-      EDITOR: ['accounts', 'team', 'analytics', 'settings'],
-      VIEWER: ['create', 'bulk', 'queue', 'accounts', 'team', 'analytics', 'settings']
-    };
-    
-    if(forbidden[role] && forbidden[role].includes(state.page)) {
-      state.page = 'dashboard';
-      save();
-    }
+    const forbidden = { MANAGER: ['settings'], EDITOR: ['accounts', 'team', 'analytics', 'settings'], VIEWER: ['create', 'bulk', 'queue', 'accounts', 'team', 'analytics', 'settings'] };
+    if(forbidden[role] && forbidden[role].includes(state.page)) { state.page = 'dashboard'; save(); }
   }
 
-  // --- Views ---
   function renderDashboard() {
     const c = counts(); 
     const recent = [...state.posts].sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0,5); 
@@ -934,70 +860,10 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
     
     let html = pageShell(`Xin chào, ${state.profile.name} 👋`, 'Tổng quan workspace và hoạt động social của bạn.', `<button class="btn" data-action="export"><i data-lucide="download"></i>Xuất dữ liệu</button><button class="btn primary" data-page="create"><i data-lucide="plus"></i>Tạo bài viết</button>`);
     
-    html += `<div class="grid grid-8">
-      ${stat('Tổng bài viết', c.posts, 'files', 'Tất cả trạng thái')}
-      ${stat('Đã đăng', c.published, 'send', 'Demo published')}
-      ${stat('Đã lên lịch', c.scheduled, 'calendar-clock', 'Có lịch trong workspace')}
-      ${stat('Chờ đăng', c.queue, 'list-checks', 'Hàng đợi hệ thống')}
-      ${stat('Lỗi / Thất bại', c.failed, 'circle-x', 'Cần kiểm tra lại')}
-      ${stat('Kho lưu trữ', c.media, 'images', 'Hình ảnh & Video')}
-      ${stat('Đã kết nối', c.accounts, 'link-2', 'Tài khoản mạng xã hội')}
-      ${stat('Nhân sự', c.team, 'users', 'Thành viên Workspace')}
-    </div>`;
-    
-    html += `<div class="card card-pad" style="margin-top:14px">
-      <div class="split"><div><div class="section-title">Phím tắt nhanh</div><div class="muted" style="font-size:10px;margin-top:4px">Các tác vụ thường dùng</div></div></div>
-      <div class="quick-grid">
-        ${quickAction('create','Tạo bài viết','square-pen')}
-        ${quickAction('inbox','Hộp thư chung','message-square')}
-        <button class="quick" id="openAI"><i data-lucide="sparkles"></i><span>Dùng AI viết bài</span></button>
-        ${quickAction('schedule','Lên lịch','calendar-clock')}
-        ${quickAction('accounts','Kết nối tài khoản','link-2')}
-      </div>
-    </div>`;
-    
-    html += `<div class="two-col">
-      <div class="card chart">
-        <div class="split"><div><div class="section-title">Lượng bài đăng</div><div class="muted" style="font-size:10px">30 ngày gần đây</div></div><div class="pill success">+18.4%</div></div>
-        <svg viewBox="0 0 700 190" preserveAspectRatio="none" aria-label="posts chart">
-          <path d="M0 160 C80 152 110 110 170 126 S250 150 310 98 S420 110 470 70 S560 95 620 55 S670 48 700 28" fill="none" stroke="#2563eb" stroke-width="3"/>
-          <path d="M0 160 C80 152 110 110 170 126 S250 150 310 98 S420 110 470 70 S560 95 620 55 S670 48 700 28 L700 190 L0 190 Z" fill="rgba(37,99,235,0.15)" opacity=".8"/>
-          <g font-size="9" fill="#98a2b3"><text x="0" y="184">01</text><text x="110" y="184">05</text><text x="220" y="184">10</text><text x="330" y="184">15</text><text x="440" y="184">20</text><text x="550" y="184">25</text><text x="660" y="184">30</text></g>
-        </svg>
-        <div class="chart-kpis">
-          <div class="legend"><span class="swatch"></span>Đã đăng: ${c.published}</div>
-          <div class="legend"><span class="swatch" style="background:#14b8a6"></span>Đã lên lịch: ${c.scheduled}</div>
-          <div class="legend"><span class="swatch" style="background:#f59e0b"></span>Lỗi: ${c.failed}</div>
-        </div>
-      </div>
-      <div class="card chart">
-        <div class="section-title">Phân bổ Nền tảng</div><div class="muted" style="font-size:10px;margin-top:4px">Tỉ lệ bài viết theo MXH</div>
-        <div style="display:flex;align-items:center;gap:18px;height:188px">
-          <div class="donut"><div class="donut-center">${state.posts.length}</div></div>
-          <div class="timeline" style="flex:1">
-            ${platforms.map((p,i)=>`<div class="timeline-item"><div class="timeline-dot" style="background:${['#2563eb','#111827','#ef4444','#c026d3','#64748b'][i]}"></div><div><b>${escape(p)}</b><span>${state.posts.filter(x=>Object.keys(x.platforms||{}).includes(p)).length} bài / ${Math.round((state.posts.filter(x=>Object.keys(x.platforms||{}).includes(p)).length/Math.max(1,state.posts.length))*100)}%</span></div></div>`).join('')}
-          </div>
-        </div>
-      </div>
-    </div>`;
-    
-    html += `<div class="two-col">
-      <div class="card card-pad">
-        <div class="split"><div class="section-title">Hoạt động gần đây</div><button class="btn small" data-page="posts">Xem tất cả</button></div>
-        <div class="table-wrap" style="margin-top:8px">
-          <table class="table"><thead><tr><th>Tiêu đề bài viết</th><th>Nền tảng</th><th>Thời gian</th><th>Trạng thái</th><th></th></tr></thead>
-          <tbody>
-            ${recent.length ? recent.map(p=>`<tr><td><div class="media-cell"><div class="thumb"><i data-lucide="file-text" style="width:16px;color:#98a2b3"></i></div><div><b>${escape(p.title)}</b><div class="subline">${escape(p.createdBy)} · ${fmtDate(p.createdAt)}</div></div></div></td><td><div class="platforms">${platformListForPost(p)}</div></td><td>${fmtDate(p.schedule)}</td><td>${statusPill(p.status)}</td><td><button class="btn small" data-view-post="${p.id}">Chi tiết</button></td></tr>`).join('') : `<tr><td colspan="5"><div class="empty"><b>Chưa có bài viết</b></div></td></tr>`}
-          </tbody></table>
-        </div>
-      </div>
-      <div class="card card-pad">
-        <div class="split"><div class="section-title">Lịch sắp tới</div><button class="btn small" data-page="schedule">Mở Lịch</button></div>
-        <div style="margin-top:10px" class="timeline">
-          ${upcoming.length ? upcoming.map(p=>`<div class="timeline-item"><div class="timeline-dot"></div><div style="width:100%"><div class="split"><b>${escape(p.title)}</b>${statusPill(p.status)}</div><span>${fmtDate(p.schedule)} · ${Object.keys(p.platforms||{})[0]||'—'}</span></div></div>`).join('') : `<div class="empty"><b>Không có lịch sắp tới</b></div>`}
-        </div>
-      </div>
-    </div>`;
+    html += `<div class="grid grid-8">${stat('Tổng bài viết', c.posts, 'files', 'Tất cả trạng thái')}${stat('Đã đăng', c.published, 'send', 'Demo published')}${stat('Đã lên lịch', c.scheduled, 'calendar-clock', 'Có lịch trong workspace')}${stat('Chờ đăng', c.queue, 'list-checks', 'Hàng đợi hệ thống')}${stat('Lỗi / Thất bại', c.failed, 'circle-x', 'Cần kiểm tra lại')}${stat('Kho lưu trữ', c.media, 'images', 'Hình ảnh & Video')}${stat('Đã kết nối', c.accounts, 'link-2', 'Tài khoản mạng xã hội')}${stat('Nhân sự', c.team, 'users', 'Thành viên Workspace')}</div>`;
+    html += `<div class="card card-pad" style="margin-top:14px"><div class="split"><div><div class="section-title">Phím tắt nhanh</div><div class="muted" style="font-size:10px;margin-top:4px">Các tác vụ thường dùng</div></div></div><div class="quick-grid">${quickAction('create','Tạo bài viết','square-pen')}${quickAction('inbox','Hộp thư chung','message-square')}<button class="quick" id="openAI"><i data-lucide="sparkles"></i><span>Dùng AI viết bài</span></button>${quickAction('schedule','Lên lịch','calendar-clock')}${quickAction('accounts','Kết nối tài khoản','link-2')}</div></div>`;
+    html += `<div class="two-col"><div class="card chart"><div class="split"><div><div class="section-title">Lượng bài đăng</div><div class="muted" style="font-size:10px">30 ngày gần đây</div></div><div class="pill success">+18.4%</div></div><svg viewBox="0 0 700 190" preserveAspectRatio="none" aria-label="posts chart"><path d="M0 160 C80 152 110 110 170 126 S250 150 310 98 S420 110 470 70 S560 95 620 55 S670 48 700 28" fill="none" stroke="#2563eb" stroke-width="3"/><path d="M0 160 C80 152 110 110 170 126 S250 150 310 98 S420 110 470 70 S560 95 620 55 S670 48 700 28 L700 190 L0 190 Z" fill="rgba(37,99,235,0.15)" opacity=".8"/><g font-size="9" fill="#98a2b3"><text x="0" y="184">01</text><text x="110" y="184">05</text><text x="220" y="184">10</text><text x="330" y="184">15</text><text x="440" y="184">20</text><text x="550" y="184">25</text><text x="660" y="184">30</text></g></svg><div class="chart-kpis"><div class="legend"><span class="swatch"></span>Đã đăng: ${c.published}</div><div class="legend"><span class="swatch" style="background:#14b8a6"></span>Đã lên lịch: ${c.scheduled}</div><div class="legend"><span class="swatch" style="background:#f59e0b"></span>Lỗi: ${c.failed}</div></div></div><div class="card chart"><div class="section-title">Phân bổ Nền tảng</div><div class="muted" style="font-size:10px;margin-top:4px">Tỉ lệ bài viết theo MXH</div><div style="display:flex;align-items:center;gap:18px;height:188px"><div class="donut"><div class="donut-center">${state.posts.length}</div></div><div class="timeline" style="flex:1">${platforms.map((p,i)=>`<div class="timeline-item"><div class="timeline-dot" style="background:${['#2563eb','#111827','#ef4444','#c026d3','#64748b'][i]}"></div><div><b>${escape(p)}</b><span>${state.posts.filter(x=>Object.keys(x.platforms||{}).includes(p)).length} bài / ${Math.round((state.posts.filter(x=>Object.keys(x.platforms||{}).includes(p)).length/Math.max(1,state.posts.length))*100)}%</span></div></div>`).join('')}</div></div></div></div>`;
+    html += `<div class="two-col"><div class="card card-pad"><div class="split"><div class="section-title">Hoạt động gần đây</div><button class="btn small" data-page="posts">Xem tất cả</button></div><div class="table-wrap" style="margin-top:8px"><table class="table"><thead><tr><th>Tiêu đề bài viết</th><th>Nền tảng</th><th>Thời gian</th><th>Trạng thái</th><th></th></tr></thead><tbody>${recent.length ? recent.map(p=>`<tr><td><div class="media-cell"><div class="thumb"><i data-lucide="file-text" style="width:16px;color:#98a2b3"></i></div><div><b>${escape(p.title)}</b><div class="subline">${escape(p.createdBy)} · ${fmtDate(p.createdAt)}</div></div></div></td><td><div class="platforms">${platformListForPost(p)}</div></td><td>${fmtDate(p.schedule)}</td><td>${statusPill(p.status)}</td><td><button class="btn small" data-view-post="${p.id}">Chi tiết</button></td></tr>`).join('') : `<tr><td colspan="5"><div class="empty"><b>Chưa có bài viết</b></div></td></tr>`}</tbody></table></div></div><div class="card card-pad"><div class="split"><div class="section-title">Lịch sắp tới</div><button class="btn small" data-page="schedule">Mở Lịch</button></div><div style="margin-top:10px" class="timeline">${upcoming.length ? upcoming.map(p=>`<div class="timeline-item"><div class="timeline-dot"></div><div style="width:100%"><div class="split"><b>${escape(p.title)}</b>${statusPill(p.status)}</div><span>${fmtDate(p.schedule)} · ${Object.keys(p.platforms||{})[0]||'—'}</span></div></div>`).join('') : `<div class="empty"><b>Không có lịch sắp tới</b></div>`}</div></div></div>`;
     return html;
   }
 
@@ -1006,155 +872,62 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
     const messages = state.inbox || [];
     const activeMsg = messages.find(m => m.id === activeInboxId) || messages[0];
     
-    html += `<div class="inbox-layout">
-      <div class="inbox-sidebar">
-        <div class="inbox-head">
-          <div class="search" style="max-width:100%"><i data-lucide="search"></i><input placeholder="Tìm người gửi, nội dung..." style="height:32px; background:var(--surface-2)"/></div>
-          <div class="inbox-filters">
-            <button class="inbox-filter-btn active">Tất cả</button>
-            <button class="inbox-filter-btn">Chưa đọc</button>
-            <button class="inbox-filter-btn">Tin nhắn</button>
-          </div>
-        </div>
-        <div class="inbox-list">
-          ${messages.map(m => {
-            const mMeta = platformMeta[m.platform];
-            return `<div class="inbox-item ${m.id === activeInboxId ? 'active' : ''}" onclick="app.selectInbox('${m.id}')">
-              <div class="inbox-avatar">
-                <div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px">${m.avatar}</div>
-                <div class="inbox-plat-icon" style="background:#fff; color:${mMeta.cls==='fb'?'#1877f2':mMeta.cls==='ig'?'#c026d3':mMeta.cls==='yt'?'#ef4444':'#111'}"><i data-lucide="${mMeta.icon}" style="width:8px;height:8px"></i></div>
-              </div>
-              <div class="inbox-info">
-                <div class="inbox-name-row"><span class="inbox-name" style="${!m.read?'font-weight:800;color:var(--primary)':''}">${escape(m.name)}</span><span class="inbox-time">${m.time}</span></div>
-                <div class="inbox-preview" style="${!m.read?'font-weight:600;color:var(--text)':''}">${escape(m.type)}: ${escape(m.text)}</div>
-              </div>
-            </div>`
-          }).join('')}
-        </div>
-      </div>
-      <div class="inbox-chat">
-        ${activeMsg ? `
-        <div class="chat-head">
-          <div class="chat-user-info">
-            <div class="inbox-avatar" style="width:42px;height:42px"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px">${activeMsg.avatar}</div></div>
-            <div class="chat-meta">
-              <b style="font-size:14px">${escape(activeMsg.name)}</b>
-              <span>Qua ${activeMsg.type} ${activeMsg.platform}</span>
-            </div>
-          </div>
-          <div class="actions">
-            <button class="btn small"><i data-lucide="check-check"></i> Đánh dấu xong</button>
-            <button class="btn small"><i data-lucide="more-horizontal"></i></button>
-          </div>
-        </div>
-        <div class="chat-body">
-          <div class="chat-bubble-row them">
-            <div class="inbox-avatar" style="width:28px;height:28px"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:10px">${activeMsg.avatar}</div></div>
-            <div>
-              <div class="chat-bubble">${escape(activeMsg.text)}</div>
-              <div class="chat-time">${activeMsg.time}</div>
-            </div>
-          </div>
-          ${activeMsg.replied ? `
-          <div class="chat-bubble-row me">
-            <div>
-              <div class="chat-bubble">${escape(activeMsg.replyText)}</div>
-              <div class="chat-time">Vừa xong</div>
-            </div>
-          </div>` : ''}
-        </div>
-        <div class="chat-foot">
-          <div class="chat-input-wrap">
-            <button class="icon-btn" style="border:none;background:transparent;color:var(--muted)"><i data-lucide="image"></i></button>
-            <button class="icon-btn" style="border:none;background:transparent;color:var(--muted);margin-right:8px" onclick="app.ui.showToast('Gợi ý câu trả lời AI','Tính năng đang phát triển','info')"><i data-lucide="sparkles"></i></button>
-            <textarea id="inboxReply" class="chat-textarea" placeholder="Nhập câu trả lời... (Enter để gửi)"></textarea>
-            <button class="chat-send-btn" onclick="app.sendInboxReply()"><i data-lucide="send"></i></button>
-          </div>
-        </div>
-        ` : `<div class="empty" style="margin:auto"><i data-lucide="message-square"></i><b>Chọn một cuộc hội thoại để bắt đầu</b></div>`}
-      </div>
-    </div>`;
+    html += `<div class="inbox-layout"><div class="inbox-sidebar"><div class="inbox-head"><div class="search" style="max-width:100%"><i data-lucide="search"></i><input placeholder="Tìm người gửi, nội dung..." style="height:32px; background:var(--surface-2)"/></div><div class="inbox-filters"><button class="inbox-filter-btn active">Tất cả</button><button class="inbox-filter-btn">Chưa đọc</button><button class="inbox-filter-btn">Tin nhắn</button></div></div><div class="inbox-list">${messages.map(m => {const mMeta = platformMeta[m.platform];return `<div class="inbox-item ${m.id === activeInboxId ? 'active' : ''}" onclick="app.selectInbox('${m.id}')"><div class="inbox-avatar"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px">${m.avatar}</div><div class="inbox-plat-icon" style="background:#fff; color:${mMeta.cls==='fb'?'#1877f2':mMeta.cls==='ig'?'#c026d3':mMeta.cls==='yt'?'#ef4444':'#111'}"><i data-lucide="${mMeta.icon}" style="width:8px;height:8px"></i></div></div><div class="inbox-info"><div class="inbox-name-row"><span class="inbox-name" style="${!m.read?'font-weight:800;color:var(--primary)':''}">${escape(m.name)}</span><span class="inbox-time">${m.time}</span></div><div class="inbox-preview" style="${!m.read?'font-weight:600;color:var(--text)':''}">${escape(m.type)}: ${escape(m.text)}</div></div></div>`}).join('')}</div></div><div class="inbox-chat">${activeMsg ? `<div class="chat-head"><div class="chat-user-info"><div class="inbox-avatar" style="width:42px;height:42px"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px">${activeMsg.avatar}</div></div><div class="chat-meta"><b style="font-size:14px">${escape(activeMsg.name)}</b><span>Qua ${activeMsg.type} ${activeMsg.platform}</span></div></div><div class="actions"><button class="btn small"><i data-lucide="check-check"></i> Đánh dấu xong</button><button class="btn small"><i data-lucide="more-horizontal"></i></button></div></div><div class="chat-body"><div class="chat-bubble-row them"><div class="inbox-avatar" style="width:28px;height:28px"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:10px">${activeMsg.avatar}</div></div><div><div class="chat-bubble">${escape(activeMsg.text)}</div><div class="chat-time">${activeMsg.time}</div></div></div>${activeMsg.replied ? `<div class="chat-bubble-row me"><div><div class="chat-bubble">${escape(activeMsg.replyText)}</div><div class="chat-time">Vừa xong</div></div></div>` : ''}</div><div class="chat-foot"><div class="chat-input-wrap"><button class="icon-btn" style="border:none;background:transparent;color:var(--muted)"><i data-lucide="image"></i></button><button class="icon-btn" style="border:none;background:transparent;color:var(--muted);margin-right:8px" onclick="toast('Tính năng AI gợi ý trả lời đang được phát triển.','info')"><i data-lucide="sparkles"></i></button><textarea id="inboxReply" class="chat-textarea" placeholder="Nhập câu trả lời... (Enter để gửi)"></textarea><button class="chat-send-btn" onclick="app.sendInboxReply()"><i data-lucide="send"></i></button></div></div>` : `<div class="empty" style="margin:auto"><i data-lucide="message-square"></i><b>Chọn một cuộc hội thoại để bắt đầu</b></div>`}</div></div>`;
     return html;
   }
   
   window.app = window.app || {};
   window.app.selectInbox = function(id) { activeInboxId = id; const msg = state.inbox.find(m => m.id === id); if(msg && !msg.read) { msg.read = true; save(); } render(); }
   window.app.sendInboxReply = function() { const text = document.getElementById('inboxReply').value.trim(); if(!text) return; const msg = state.inbox.find(m => m.id === activeInboxId); if(msg) { msg.replied = true; msg.replyText = text; save(); render(); toast('Đã gửi phản hồi', 'success'); } }
-  window.app.ui = { showToast: toast };
 
+  function defaultDraft() {
+    return { title:'', globalCaption:'', selectedPlatforms:['Facebook','TikTok','Instagram'], activeTab:'Facebook', scheduleMode:'now', scheduleDate:new Date().toISOString().slice(0,10), scheduleTime:'18:30', timezone:state.profile.timezone, mediaIds:[], platforms: { Facebook:{caption:'', hashtag:'', link:'', accountIds:[]}, TikTok:{caption:'', hashtag:'', privacy:'Mọi người (Public)', comments:true, duet:true, stitch:true, accountIds:[]}, YouTube:{title:'', description:'', tags:'', category:'Giáo dục', privacy:'Công khai', thumbnailId:'', accountIds:[]}, Instagram:{caption:'', hashtag:'', location:'', accountIds:[]}, X:{text:'', thread:[''], accountIds:[]} } };
+  }
+
+  function draftFromPost(post) {
+    const d = defaultDraft(); d.title = post.title; d.selectedPlatforms = Object.keys(post.platforms || {}); d.activeTab = d.selectedPlatforms[0] || 'Facebook'; d.mediaIds = post.mediaIds || [];
+    for(const p of d.selectedPlatforms) d.platforms[p] = { ...d.platforms[p], ...(post.platforms[p] || {}) };
+    d.scheduleMode = post.status === 'Scheduled' || post.status === 'Queued' ? 'schedule' : 'now'; 
+    if(post.schedule) { const x = new Date(post.schedule); d.scheduleDate = x.toISOString().slice(0,10); d.scheduleTime = x.toISOString().slice(11,16); } 
+    return d;
+  }
+  
   function renderDevicePreview(tab, content, mediaIds) {
     const hasMedia = mediaIds && mediaIds.length > 0;
     const mediaObj = hasMedia ? (state.media.find(x => x.id === mediaIds[0]) || state.bulk.find(x => x.id === mediaIds[0])) : null;
     const mediaHTML = mediaObj && mediaObj.preview ? (mediaObj.type === 'video' ? `<video src="${mediaObj.preview}" muted loop autoplay></video>` : `<img src="${mediaObj.preview}">`) : `<div style="text-align:center;color:#94a3b8"><i data-lucide="image" style="width:40px;height:40px;margin-bottom:8px"></i><br>Khu vực Ảnh/Video</div>`;
+    const selectedAccId = (content.accountIds && content.accountIds.length > 0) ? content.accountIds[0] : null;
+    const selectedAcc = selectedAccId ? state.accounts.find(a => a.id === selectedAccId) : null;
+    const accName = selectedAcc ? selectedAcc.name : 'Tên Tài Khoản';
+    const accUsername = selectedAcc ? selectedAcc.username : '@username';
     let html = `<div class="device-wrapper"><div class="device-frame"><div class="device-notch"></div><div class="preview-content">`;
+    
     if (tab === 'Facebook') {
       const combinedText = formatPreviewText(`${content.caption||''} ${content.hashtag||''}`);
-      html += `
-        <div class="prev-fb-head"><div class="prev-fb-avatar"></div><div><div class="prev-fb-name">Tây Nguyên Phim</div><div class="prev-fb-time">Vừa xong · 🌎</div></div></div>
-        <div class="prev-fb-text" id="preview-text">${combinedText || 'Văn bản của bạn sẽ hiển thị ở đây...'}</div>
-        <div class="prev-fb-img">${mediaHTML}</div>
-        <div class="prev-fb-actions"><div class="prev-fb-action"><i data-lucide="heart" style="width:16px"></i> Thích</div><div class="prev-fb-action"><i data-lucide="message-square" style="width:16px"></i> Bình luận</div><div class="prev-fb-action"><i data-lucide="share-2" style="width:16px"></i> Chia sẻ</div></div>
-      `;
+      html += `<div class="prev-fb-head"><div class="prev-fb-avatar"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px">${accName.split(' ').map(x=>x[0]).join('').slice(-2)}</div></div><div><div class="prev-fb-name">${escape(accName)}</div><div class="prev-fb-time">Vừa xong · 🌎</div></div></div><div class="prev-fb-text" id="preview-text">${combinedText || 'Văn bản của bạn sẽ hiển thị ở đây...'}</div><div class="prev-fb-img">${mediaHTML}</div><div class="prev-fb-actions"><div class="prev-fb-action"><i data-lucide="heart" style="width:16px"></i> Thích</div><div class="prev-fb-action"><i data-lucide="message-square" style="width:16px"></i> Bình luận</div><div class="prev-fb-action"><i data-lucide="share-2" style="width:16px"></i> Chia sẻ</div></div>`;
     } else if (tab === 'TikTok') {
       const combinedText = formatPreviewText(`${content.caption||''} ${content.hashtag||''}`);
-      html += `
-        <div class="prev-tt-wrap">
-          <div class="prev-tt-img">${mediaHTML}</div><div class="prev-tt-overlay"></div>
-          <div class="prev-tt-right"><div class="prev-fb-avatar" style="border:1px solid #fff"></div><div class="prev-tt-icon"><i data-lucide="heart"></i> 1.2M</div><div class="prev-tt-icon"><i data-lucide="message-square"></i> 45K</div><div class="prev-tt-icon"><i data-lucide="bookmark"></i> 8K</div><div class="prev-tt-icon"><i data-lucide="share-2"></i> 12K</div></div>
-          <div class="prev-tt-bottom"><span class="prev-tt-name">@taynguyenphim</span><div class="prev-tt-text" id="preview-text">${combinedText || 'Caption của bạn...'}</div></div>
-        </div>
-      `;
+      html += `<div class="prev-tt-wrap"><div class="prev-tt-img">${mediaHTML}</div><div class="prev-tt-overlay"></div><div class="prev-tt-right"><div class="prev-fb-avatar" style="border:1px solid #fff"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px">${accName.split(' ').map(x=>x[0]).join('').slice(-2)}</div></div><div class="prev-tt-icon"><i data-lucide="heart"></i> 1.2M</div><div class="prev-tt-icon"><i data-lucide="message-square"></i> 45K</div><div class="prev-tt-icon"><i data-lucide="bookmark"></i> 8K</div><div class="prev-tt-icon"><i data-lucide="share-2"></i> 12K</div></div><div class="prev-tt-bottom"><span class="prev-tt-name">${escape(accUsername)}</span><div class="prev-tt-text" id="preview-text">${combinedText || 'Caption của bạn...'}</div></div></div>`;
     } else if (tab === 'Instagram') {
       const combinedText = formatPreviewText(`${content.caption||''} ${content.hashtag||''}`);
-      html += `
-        <div class="prev-ig-head"><div class="prev-ig-user"><div class="prev-ig-avatar"><div class="prev-ig-avatar-inner"></div></div><div class="prev-ig-name">taynguyenphim.vn</div></div><i data-lucide="more-horizontal"></i></div>
-        <div class="prev-ig-img" style="aspect-ratio:1/1;">${mediaHTML}</div>
-        <div class="prev-ig-actions"><div class="prev-ig-action-left"><i data-lucide="heart"></i><i data-lucide="message-square"></i><i data-lucide="send"></i></div><i data-lucide="bookmark"></i></div>
-        <div class="prev-ig-likes">8,932 lượt thích</div>
-        <div class="prev-ig-text"><b style="font-weight:600">taynguyenphim.vn</b> <span id="preview-text">${combinedText || 'Văn bản của bạn...'}</span></div>
-      `;
+      html += `<div class="prev-ig-head"><div class="prev-ig-user"><div class="prev-ig-avatar"><div class="prev-ig-avatar-inner" style="display:grid;place-items:center;font-weight:700;font-size:10px;color:var(--primary)">${accName.split(' ').map(x=>x[0]).join('').slice(-2)}</div></div><div class="prev-ig-name">${escape(accUsername.replace('@',''))}</div></div><i data-lucide="more-horizontal"></i></div><div class="prev-ig-img" style="aspect-ratio:1/1;">${mediaHTML}</div><div class="prev-ig-actions"><div class="prev-ig-action-left"><i data-lucide="heart"></i><i data-lucide="message-square"></i><i data-lucide="send"></i></div><i data-lucide="bookmark"></i></div><div class="prev-ig-likes">8,932 lượt thích</div><div class="prev-ig-text"><b style="font-weight:600">${escape(accUsername.replace('@',''))}</b> <span id="preview-text">${combinedText || 'Văn bản của bạn...'}</span></div>`;
     } else if (tab === 'YouTube') {
-      html += `
-        <div class="prev-yt-img">${mediaHTML}</div>
-        <div class="prev-yt-info">
-          <div class="prev-yt-title" id="preview-yt-title">${escape(content.title) || 'Tiêu đề Video YouTube của bạn'}</div>
-          <div class="prev-yt-meta">12N lượt xem · Vừa xong</div>
-          <div class="prev-yt-user"><div class="prev-yt-avatar"></div><div class="prev-yt-name">Tây Nguyên Phim Official</div></div>
-          <div class="prev-yt-desc" id="preview-text">${formatPreviewText(content.description) || 'Mô tả video sẽ nằm ở đây...'}</div>
-        </div>
-      `;
+      html += `<div class="prev-yt-img">${mediaHTML}</div><div class="prev-yt-info"><div class="prev-yt-title" id="preview-yt-title">${escape(content.title) || 'Tiêu đề Video YouTube của bạn'}</div><div class="prev-yt-meta">12N lượt xem · Vừa xong</div><div class="prev-yt-user"><div class="prev-yt-avatar" style="display:grid;place-items:center;font-weight:700;font-size:12px;color:var(--primary);background:var(--primary-soft)">${accName.split(' ').map(x=>x[0]).join('').slice(-2)}</div><div class="prev-yt-name">${escape(accName)}</div></div><div class="prev-yt-desc" id="preview-text">${formatPreviewText(content.description) || 'Mô tả video sẽ nằm ở đây...'}</div></div>`;
     } else if (tab === 'X') {
-      html += `
-        <div class="prev-x-wrap">
-          <div class="prev-x-avatar"></div>
-          <div class="prev-x-content">
-            <div class="prev-x-head"><span class="prev-x-name">Dino Hub</span><span class="prev-x-user">@dinohub · 1m</span></div>
-            <div class="prev-x-text" id="preview-text">${formatPreviewText(content.text) || "What's happening?"}</div>
-            ${hasMedia ? `<div class="prev-x-img">${mediaHTML}</div>` : ''}
-            <div class="prev-x-actions"><div class="prev-x-action"><i data-lucide="message-square" style="width:14px"></i> 12</div><div class="prev-x-action"><i data-lucide="refresh-cw" style="width:14px"></i> 4</div><div class="prev-x-action"><i data-lucide="heart" style="width:14px"></i> 89</div><div class="prev-x-action"><i data-lucide="chart-no-axes-combined" style="width:14px"></i> 1.2K</div></div>
-          </div>
-        </div>
-      `;
+      html += `<div class="prev-x-wrap"><div class="prev-x-avatar" style="display:grid;place-items:center;font-weight:700;font-size:14px;color:var(--primary);background:var(--primary-soft)">${accName.split(' ').map(x=>x[0]).join('').slice(-2)}</div><div class="prev-x-content"><div class="prev-x-head"><span class="prev-x-name">${escape(accName)}</span><span class="prev-x-user">${escape(accUsername)} · 1m</span></div><div class="prev-x-text" id="preview-text">${formatPreviewText(content.text) || "What's happening?"}</div>${hasMedia ? `<div class="prev-x-img">${mediaHTML}</div>` : ''}<div class="prev-x-actions"><div class="prev-x-action"><i data-lucide="message-square" style="width:14px"></i> 12</div><div class="prev-x-action"><i data-lucide="refresh-cw" style="width:14px"></i> 4</div><div class="prev-x-action"><i data-lucide="heart" style="width:14px"></i> 89</div><div class="prev-x-action"><i data-lucide="chart-no-axes-combined" style="width:14px"></i> 1.2K</div></div></div></div>`;
     }
     html += `</div></div></div>`;
     return html;
   }
 
   window.app.updatePreviewText = function(val, fieldType) {
-    if(!state.draft) return;
-    const tab = state.draft.activeTab;
-    state.draft.platforms[tab][fieldType] = val; 
+    if(!state.draft) return; const tab = state.draft.activeTab; state.draft.platforms[tab][fieldType] = val;
     const el = document.getElementById(fieldType === 'title' ? 'preview-yt-title' : 'preview-text');
     if(el) {
-      if(tab === 'YouTube' && fieldType === 'title') {
-        el.innerHTML = escape(val) || 'Tiêu đề Video YouTube của bạn';
-      } else {
+      if(tab === 'YouTube' && fieldType === 'title') { el.innerHTML = escape(val) || 'Tiêu đề Video YouTube của bạn'; } 
+      else {
         let fullText = val;
-        if(tab === 'Facebook' || tab === 'TikTok' || tab === 'Instagram') {
-          const caption = fieldType === 'caption' ? val : state.draft.platforms[tab].caption || '';
-          const hash = fieldType === 'hashtag' ? val : state.draft.platforms[tab].hashtag || '';
-          fullText = `${caption} ${hash}`;
-        }
+        if(tab === 'Facebook' || tab === 'TikTok' || tab === 'Instagram') { const caption = fieldType === 'caption' ? val : state.draft.platforms[tab].caption || ''; const hash = fieldType === 'hashtag' ? val : state.draft.platforms[tab].hashtag || ''; fullText = `${caption} ${hash}`; }
         el.innerHTML = formatPreviewText(fullText) || 'Văn bản của bạn sẽ hiển thị ở đây...';
       }
     }
@@ -1162,57 +935,17 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
 
   function renderCreate() {
     if(!state.draft) state.draft = defaultDraft(); 
-    const d = state.draft; 
-    const tab = d.activeTab; 
-    const platformContent = d.platforms[tab] || {};
-    
+    const d = state.draft; const tab = d.activeTab; const platformContent = d.platforms[tab] || {};
     let html = pageShell(editingPostId ? 'Chỉnh sửa bài viết' : 'Tạo bài viết', 'Soạn một nội dung và phân phối theo từng nền tảng.', `<button class="btn" id="resetDraft">Làm mới</button><button class="btn primary" id="saveDraft"><i data-lucide="save"></i>Lưu nháp</button>`);
-    html += `<div class="notice info" style="margin-bottom:12px"><b>Chế độ Demo.</b> Bấm Đăng bài sẽ mô phỏng đẩy vào Queue và đổi trạng thái ảo.</div>`;
-    
-    html += `<div style="display:flex; gap:16px; align-items:flex-start;">`;
-    html += `<div style="flex:1; min-width:0;">`;
-    html += `<div class="card card-pad">
-      <div class="form-grid">
-        <label class="field full"><span class="label">Tên chiến dịch / Tiêu đề nội bộ</span><input class="input" id="draftTitle" value="${escape(d.title)}" placeholder="VD: Khai giảng khóa học tháng 9"></label>
-        <label class="field full"><span class="label">Nội dung chung (Global Content)</span><textarea class="textarea editor" id="draftGlobalCaption" placeholder="Ghi chú chung hoặc ý tưởng gốc...">${escape(d.globalCaption)}</textarea></label>
-      </div>
-      <div class="split" style="margin-top:14px"><div><div class="label">1. Chọn Nền Tảng Đăng</div><div class="help">Bật/tắt các nền tảng bạn muốn bài viết xuất hiện.</div></div></div>
-      <div class="platform-selector" style="margin-top:9px">
-        ${platforms.map(p => {
-          const sel = d.selectedPlatforms.includes(p);
-          const m = platformMeta[p];
-          return `<label class="platform-card ${sel?'selected':''}"><input type="checkbox" data-platform-check="${p}" ${sel?'checked':''}><div class="p-head"><span>${platformBadge(p)}</span>${sel?'<i data-lucide="check-circle-2" style="width:15px;color:#2563eb"></i>':'<i data-lucide="circle" style="width:15px;color:#cbd5e1"></i>'}</div><small>${p==='Facebook'?'Caption + link':p==='TikTok'?'Caption + privacy':p==='YouTube'?'SEO title + description':p==='Instagram'?'Caption + location':'Text + thread'}</small></label>`
-        }).join('')}
-      </div>`;
+    html += `<div class="notice info" style="margin-bottom:12px"><b>Chế độ Demo.</b> Bấm Đăng bài sẽ mô phỏng đẩy vào Queue và đổi trạng thái ảo.</div><div style="display:flex; gap:16px; align-items:flex-start;"><div style="flex:1; min-width:0;"><div class="card card-pad"><div class="form-grid"><label class="field full"><span class="label">Tên chiến dịch / Tiêu đề nội bộ</span><input class="input" id="draftTitle" value="${escape(d.title)}" placeholder="VD: Khai giảng khóa học tháng 9"></label><label class="field full"><span class="label">Nội dung chung (Global Content)</span><textarea class="textarea editor" id="draftGlobalCaption" placeholder="Ghi chú chung hoặc ý tưởng gốc...">${escape(d.globalCaption)}</textarea></label></div><div class="split" style="margin-top:14px"><div><div class="label">1. Chọn Nền Tảng Đăng</div><div class="help">Bật/tắt các nền tảng bạn muốn bài viết xuất hiện.</div></div></div><div class="platform-selector" style="margin-top:9px">${platforms.map(p => {const sel = d.selectedPlatforms.includes(p);const m = platformMeta[p];return `<label class="platform-card ${sel?'selected':''}"><input type="checkbox" data-platform-check="${p}" ${sel?'checked':''}><div class="p-head"><span>${platformBadge(p)}</span>${sel?'<i data-lucide="check-circle-2" style="width:15px;color:#2563eb"></i>':'<i data-lucide="circle" style="width:15px;color:#cbd5e1"></i>'}</div><small>${p==='Facebook'?'Caption + link':p==='TikTok'?'Caption + privacy':p==='YouTube'?'SEO title + description':p==='Instagram'?'Caption + location':'Text + thread'}</small></label>`}).join('')}</div>`;
       
     if(d.selectedPlatforms.length) {
-      html += `<div class="split" style="margin-top:18px"><div><div class="label">2. Tùy Chỉnh Nội Dung Từng Nền Tảng</div></div><button class="btn small" id="generateAIInline"><i data-lucide="sparkles"></i>Dùng AI Viết Lại</button></div>`;
-      html += `<div class="tabs" style="margin-top:8px">${d.selectedPlatforms.map(p => `<button class="tab ${d.activeTab===p?'active':''}" data-platform-tab="${p}">${escape(p)}</button>`).join('')}</div>`;
-      html += renderPlatformEditor(tab, platformContent, d);
+      html += `<div class="split" style="margin-top:18px"><div><div class="label">2. Tùy Chỉnh Nội Dung Từng Nền Tảng</div></div><button class="btn small" id="generateAIInline"><i data-lucide="sparkles"></i>Dùng AI Viết Lại</button></div><div class="tabs" style="margin-top:8px">${d.selectedPlatforms.map(p => `<button class="tab ${d.activeTab===p?'active':''}" data-platform-tab="${p}">${escape(p)}</button>`).join('')}</div>${renderPlatformEditor(tab, platformContent, d)}`;
     }
     
-    html += `<div style="margin-top:18px"><div class="split"><div><div class="label">3. Tải Lên Ảnh / Video</div><div class="help">Kéo thả để đổi thứ tự ưu tiên hiển thị.</div></div><button class="btn small" id="browseMedia"><i data-lucide="upload"></i>Chọn file</button></div>
-      <div class="dropzone" id="createDrop" style="margin-top:9px"><i data-lucide="cloud-upload" style="width:23px;color:#2563eb"></i><div style="font-size:12px;font-weight:800;margin-top:6px">Kéo & thả media vào đây</div><div class="help">JPG, PNG, WEBP, MP4, MOV. (Tối đa 25MB Demo)</div></div>
-      <div class="media-preview" id="createMediaPreview">${renderDraftMedia(d.mediaIds)}</div></div>`;
-    html += `</div></div>`; 
+    html += `<div style="margin-top:18px"><div class="split"><div><div class="label">3. Tải Lên Ảnh / Video (Media)</div><div class="help">Kéo thả để đổi thứ tự ưu tiên hiển thị trên bài viết.</div></div><button class="btn small" id="browseMedia"><i data-lucide="upload"></i>Chọn file</button></div><div class="dropzone" id="createDrop" style="margin-top:9px"><i data-lucide="cloud-upload" style="width:23px;color:#2563eb"></i><div style="font-size:12px;font-weight:800;margin-top:6px">Kéo & thả media vào đây để gắn vào Post</div><div class="help">JPG, PNG, WEBP, MP4, MOV. (Tối đa 25MB Demo)</div></div><div class="media-preview" id="createMediaPreview">${renderDraftMedia(d.mediaIds)}</div></div></div></div><div style="width:320px; flex-shrink:0; display:flex; flex-direction:column; gap:16px;"><div class="card card-pad"><div class="label" style="margin-bottom:8px">Lịch Đăng Bài</div><div style="display:flex;gap:10px;flex-wrap:wrap;"><label class="inline"><input type="radio" name="scheduleMode" value="now" ${d.scheduleMode==='now'?'checked':''}> Đăng ngay</label><label class="inline"><input type="radio" name="scheduleMode" value="schedule" ${d.scheduleMode==='schedule'?'checked':''}> Lên lịch</label></div>${d.scheduleMode === 'schedule' ? `<div class="form-grid" style="margin-top:10px"><label class="field full"><span class="label">Ngày</span><input type="date" class="input" id="draftDate" value="${d.scheduleDate}"></label><label class="field full"><span class="label">Giờ</span><input type="time" class="input" id="draftTime" value="${d.scheduleTime}"></label></div>` : ''}<button class="btn primary" id="publishOrSchedule" style="width:100%; margin-top:14px; height:36px;"><i data-lucide="send"></i>${d.scheduleMode==='schedule'?'Xác nhận Lên Lịch':'Đẩy vào Hàng Đợi (Đăng)'}</button></div>`;
 
-    html += `<div style="width:320px; flex-shrink:0; display:flex; flex-direction:column; gap:16px;">`;
-    html += `<div class="card card-pad">
-      <div class="label" style="margin-bottom:8px">Lịch Đăng Bài</div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <label class="inline"><input type="radio" name="scheduleMode" value="now" ${d.scheduleMode==='now'?'checked':''}> Đăng ngay</label>
-        <label class="inline"><input type="radio" name="scheduleMode" value="schedule" ${d.scheduleMode==='schedule'?'checked':''}> Lên lịch</label>
-      </div>
-      ${d.scheduleMode === 'schedule' ? `<div class="form-grid" style="margin-top:10px"><label class="field full"><span class="label">Ngày</span><input type="date" class="input" id="draftDate" value="${d.scheduleDate}"></label><label class="field full"><span class="label">Giờ</span><input type="time" class="input" id="draftTime" value="${d.scheduleTime}"></label></div>` : ''}
-      <button class="btn primary" id="publishOrSchedule" style="width:100%; margin-top:14px; height:36px;"><i data-lucide="send"></i>${d.scheduleMode==='schedule'?'Xác nhận Lên Lịch':'Đẩy vào Hàng Đợi (Đăng)'}</button>
-    </div>`;
-
-    if(d.selectedPlatforms.length) {
-      html += `<div class="card card-pad" style="background:var(--surface-2)">
-        <div class="split" style="margin-bottom:12px"><div class="label">Xem Trước (${tab})</div></div>
-        ${renderDevicePreview(tab, platformContent, d.mediaIds)}
-      </div>`;
-    }
+    if(d.selectedPlatforms.length) { html += `<div class="card card-pad" style="background:var(--surface-2)"><div class="split" style="margin-bottom:12px"><div class="label">Xem Trước (${tab})</div></div>${renderDevicePreview(tab, platformContent, d.mediaIds)}</div>`; }
 
     html += `</div></div>`; 
     return html;
@@ -1220,21 +953,18 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
   
   function renderPlatformEditor(tab, c, d) {
     let html='';
-    if(tab==='Facebook') html = `<div class="form-grid"><label class="field full"><span class="label">Caption Facebook</span><textarea class="textarea editor" data-draft-field="Facebook.caption" oninput="app.updatePreviewText(this.value, 'caption')" placeholder="Viết nội dung sẽ hiển thị trên Fanpage..."></textarea></label><label class="field"><span class="label">Hashtags</span><input class="input" data-draft-field="Facebook.hashtag" oninput="app.updatePreviewText(this.value, 'hashtag')" placeholder="#education #skills"></label><label class="field"><span class="label">Link đính kèm</span><input class="input" data-draft-field="Facebook.link" placeholder="https://..."></label></div>`;
-    if(tab==='TikTok') html = `<div class="form-grid"><label class="field full"><span class="label">Caption TikTok</span><textarea class="textarea editor" data-draft-field="TikTok.caption" oninput="app.updatePreviewText(this.value, 'caption')" placeholder="Hook giật gân + Kêu gọi hành động (CTA)..."></textarea></label><label class="field"><span class="label">Hashtags</span><input class="input" data-draft-field="TikTok.hashtag" oninput="app.updatePreviewText(this.value, 'hashtag')" placeholder="#xuhuong #trending"></label><label class="field"><span class="label">Quyền riêng tư</span><select class="select" data-draft-field="TikTok.privacy"><option>Mọi người (Public)</option><option>Bạn bè</option><option>Chỉ mình tôi</option></select></label><div class="field"><span class="label">Bình luận</span><label class="inline" style="margin-top:6px"><span class="switch"><input type="checkbox" data-draft-bool="TikTok.comments"><span class="slider"></span></span> Cho phép</label></div><div class="field"><span class="label">Duet</span><label class="inline" style="margin-top:6px"><span class="switch"><input type="checkbox" data-draft-bool="TikTok.duet"><span class="slider"></span></span> Cho phép</label></div><div class="field"><span class="label">Stitch</span><label class="inline" style="margin-top:6px"><span class="switch"><input type="checkbox" data-draft-bool="TikTok.stitch"><span class="slider"></span></span> Cho phép</label></div></div>`;
-    if(tab==='YouTube') html = `<div class="form-grid"><label class="field full"><span class="label">Tiêu đề Video (Chuẩn SEO)</span><input class="input" data-draft-field="YouTube.title" oninput="app.updatePreviewText(this.value, 'title')"></label><label class="field full"><span class="label">Mô tả chi tiết</span><textarea class="textarea editor" data-draft-field="YouTube.description" oninput="app.updatePreviewText(this.value, 'description')"></textarea></label><label class="field"><span class="label">Thẻ (Tags)</span><input class="input" data-draft-field="YouTube.tags" placeholder="kỹ năng, giao tiếp, youtube"></label><label class="field"><span class="label">Danh mục</span><select class="select" data-draft-field="YouTube.category"><option>Giáo dục</option><option>Giải trí</option><option>Vlog</option></select></label><label class="field"><span class="label">Chế độ hiển thị</span><select class="select" data-draft-field="YouTube.privacy"><option>Công khai</option><option>Không công khai</option><option>Riêng tư</option></select></label><label class="field"><span class="label">Ảnh bìa (Thumbnail)</span><select class="select" data-draft-field="YouTube.thumbnailId"><option value="">Lấy từ Video</option>${state.media.filter(m=>m.type==='image').map(m=>`<option value="${m.id}">${escape(m.name)}</option>`).join('')}</select></label></div>`;
-    if(tab==='Instagram') html = `<div class="form-grid"><label class="field full"><span class="label">Caption Instagram</span><textarea class="textarea editor" data-draft-field="Instagram.caption" oninput="app.updatePreviewText(this.value, 'caption')"></textarea></label><label class="field"><span class="label">Hashtags</span><input class="input" data-draft-field="Instagram.hashtag" oninput="app.updatePreviewText(this.value, 'hashtag')" placeholder="#aesthetic #lifestyle"></label><label class="field"><span class="label">Vị trí (Check-in)</span><input class="input" data-draft-field="Instagram.location" placeholder="TP. Hồ Chí Minh"></label></div>`;
-    if(tab==='X') html = `<div class="form-grid"><label class="field full"><span class="label">Nội dung Tweet</span><textarea class="textarea editor" data-draft-field="X.text" oninput="app.updatePreviewText(this.value, 'text')" maxlength="280"></textarea><div class="help" id="xCount"></div></label><label class="field full"><span class="label">Tạo chuỗi (Thread)</span>${(c.thread||['']).map((t,i)=>`<div style="display:flex;gap:7px;margin-bottom:6px"><input class="input" data-thread-index="${i}" value="${escape(t)}" placeholder="Tweet thứ ${i+1}">${i>0?`<button class="btn small" data-remove-thread="${i}"><i data-lucide="minus"></i></button>`:''}</div>`).join('')}<button class="btn small" id="addThread"><i data-lucide="plus"></i>Thêm Tweet mới</button></label></div>`;
+    const platAccounts = state.accounts.filter(a => a.platform === tab && a.status === 'Connected');
+    let accountSelectorHtml = `<div class="field full" style="margin-bottom:12px; background:var(--surface-2); padding:10px; border-radius:8px; border:1px solid var(--line);"><span class="label" style="margin-bottom:8px; display:block;">Chọn tài khoản đăng lên (${tab})</span>${platAccounts.length > 0 ? `<div style="display:flex; gap:10px; flex-wrap:wrap; flex-direction:column;">${platAccounts.map(acc => {const isChecked = (d.platforms[tab].accountIds || []).includes(acc.id);return `<label class="inline" style="background:var(--surface); padding:8px; border-radius:6px; border:1px solid var(--line); cursor:pointer;"><input type="checkbox" data-draft-account="${tab}:${acc.id}" ${isChecked ? 'checked' : ''} style="accent-color:var(--primary); width:14px; height:14px;"> <div style="display:flex; align-items:center; gap:6px;"><div style="width:20px;height:20px;border-radius:4px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;font-weight:700;font-size:8px;">${acc.name.split(' ').map(x=>x[0]).join('').slice(-2)}</div><b>${escape(acc.name)}</b> <span style="color:var(--muted); font-size:11px;">(${escape(acc.username)})</span></div></label>`;}).join('')}</div>` : `<div class="help" style="color:var(--danger)">⚠️ Chưa có tài khoản ${tab} nào được kết nối vào hệ thống. Hãy vào phần "Quản lý > Tài khoản" để kết nối.</div>`}</div>`;
+
+    if(tab==='Facebook') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Caption Facebook</span><textarea class="textarea editor" data-draft-field="Facebook.caption" oninput="app.updatePreviewText(this.value, 'caption')" placeholder="Viết nội dung sẽ hiển thị trên Fanpage..."></textarea></label><label class="field"><span class="label">Hashtags</span><input class="input" data-draft-field="Facebook.hashtag" oninput="app.updatePreviewText(this.value, 'hashtag')" placeholder="#education #skills"></label><label class="field"><span class="label">Link đính kèm</span><input class="input" data-draft-field="Facebook.link" placeholder="https://..."></label></div>`;
+    if(tab==='TikTok') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Caption TikTok</span><textarea class="textarea editor" data-draft-field="TikTok.caption" oninput="app.updatePreviewText(this.value, 'caption')" placeholder="Hook giật gân + Kêu gọi hành động (CTA)..."></textarea></label><label class="field"><span class="label">Hashtags</span><input class="input" data-draft-field="TikTok.hashtag" oninput="app.updatePreviewText(this.value, 'hashtag')" placeholder="#xuhuong #trending"></label><label class="field"><span class="label">Quyền riêng tư</span><select class="select" data-draft-field="TikTok.privacy"><option>Mọi người (Public)</option><option>Bạn bè</option><option>Chỉ mình tôi</option></select></label><div class="field"><span class="label">Bình luận</span><label class="inline" style="margin-top:6px"><span class="switch"><input type="checkbox" data-draft-bool="TikTok.comments"><span class="slider"></span></span> Cho phép</label></div><div class="field"><span class="label">Duet</span><label class="inline" style="margin-top:6px"><span class="switch"><input type="checkbox" data-draft-bool="TikTok.duet"><span class="slider"></span></span> Cho phép</label></div><div class="field"><span class="label">Stitch</span><label class="inline" style="margin-top:6px"><span class="switch"><input type="checkbox" data-draft-bool="TikTok.stitch"><span class="slider"></span></span> Cho phép</label></div></div>`;
+    if(tab==='YouTube') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Tiêu đề Video (Chuẩn SEO)</span><input class="input" data-draft-field="YouTube.title" oninput="app.updatePreviewText(this.value, 'title')"></label><label class="field full"><span class="label">Mô tả chi tiết</span><textarea class="textarea editor" data-draft-field="YouTube.description" oninput="app.updatePreviewText(this.value, 'description')"></textarea></label><label class="field"><span class="label">Thẻ (Tags)</span><input class="input" data-draft-field="YouTube.tags" placeholder="kỹ năng, giao tiếp, youtube"></label><label class="field"><span class="label">Danh mục</span><select class="select" data-draft-field="YouTube.category"><option>Giáo dục</option><option>Giải trí</option><option>Vlog</option></select></label><label class="field"><span class="label">Chế độ hiển thị</span><select class="select" data-draft-field="YouTube.privacy"><option>Công khai</option><option>Không công khai</option><option>Riêng tư</option></select></label><label class="field"><span class="label">Ảnh bìa (Thumbnail)</span><select class="select" data-draft-field="YouTube.thumbnailId"><option value="">Lấy từ Video</option>${state.media.filter(m=>m.type==='image').map(m=>`<option value="${m.id}">${escape(m.name)}</option>`).join('')}</select></label></div>`;
+    if(tab==='Instagram') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Caption Instagram</span><textarea class="textarea editor" data-draft-field="Instagram.caption" oninput="app.updatePreviewText(this.value, 'caption')"></textarea></label><label class="field"><span class="label">Hashtags</span><input class="input" data-draft-field="Instagram.hashtag" oninput="app.updatePreviewText(this.value, 'hashtag')" placeholder="#aesthetic #lifestyle"></label><label class="field"><span class="label">Vị trí (Check-in)</span><input class="input" data-draft-field="Instagram.location" placeholder="TP. Hồ Chí Minh"></label></div>`;
+    if(tab==='X') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Nội dung Tweet</span><textarea class="textarea editor" data-draft-field="X.text" oninput="app.updatePreviewText(this.value, 'text')" maxlength="280"></textarea><div class="help" id="xCount"></div></label><label class="field full"><span class="label">Tạo chuỗi (Thread)</span>${(c.thread||['']).map((t,i)=>`<div style="display:flex;gap:7px;margin-bottom:6px"><input class="input" data-thread-index="${i}" value="${escape(t)}" placeholder="Tweet thứ ${i+1}">${i>0?`<button class="btn small" data-remove-thread="${i}"><i data-lucide="minus"></i></button>`:''}</div>`).join('')}<button class="btn small" id="addThread"><i data-lucide="plus"></i>Thêm Tweet mới</button></label></div>`;
     
     setTimeout(() => {
-      document.querySelectorAll('[data-draft-field]').forEach(el => {
-        const [p,k] = el.dataset.draftField.split('.');
-        el.value = (d.platforms[p] || {})[k] ?? '';
-      });
-      document.querySelectorAll('[data-draft-bool]').forEach(el => {
-        const [p,k] = el.dataset.draftBool.split('.');
-        el.checked = Boolean((d.platforms[p] || {})[k]);
-      });
+      document.querySelectorAll('[data-draft-field]').forEach(el => { const [p,k] = el.dataset.draftField.split('.'); el.value = (d.platforms[p] || {})[k] ?? ''; });
+      document.querySelectorAll('[data-draft-bool]').forEach(el => { const [p,k] = el.dataset.draftBool.split('.'); el.checked = Boolean((d.platforms[p] || {})[k]); });
       const x = document.querySelector('[data-draft-field="X.text"]');
       if(x) document.getElementById('xCount').textContent = `${x.value.length}/280 ký tự`;
     }, 0);
@@ -1245,11 +975,7 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
     return (ids || []).map((id, idx) => {
       const m = state.media.find(x => x.id === id) || state.bulk.find(x => x.id === id);
       if(!m) return '';
-      return `<div class="media-item" draggable="true" data-draft-media="${id}">
-        <div class="media-preview-box">${m.preview ? (m.type==='video'?`<video src="${m.preview}" muted></video>`:`<img src="${m.preview}" alt="">`) : m.type === 'video' ? '<i data-lucide="video" style="width:28px;color:#94a3b8"></i>' : '<i data-lucide="image" style="width:28px;color:#94a3b8"></i>'}
-        <button class="btn small remove-media" data-remove-draft-media="${id}">×</button></div>
-        <div class="media-footer"><b style="font-size:10px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escape(m.name)}</b><span class="drag-hint">Kéo để đổi thứ tự</span></div>
-      </div>`;
+      return `<div class="media-item" draggable="true" data-draft-media="${id}"><div class="media-preview-box">${m.preview ? (m.type==='video'?`<video src="${m.preview}" muted></video>`:`<img src="${m.preview}" alt="">`) : m.type === 'video' ? '<i data-lucide="video" style="width:28px;color:#94a3b8"></i>' : '<i data-lucide="image" style="width:28px;color:#94a3b8"></i>'}<button class="btn small remove-media" data-remove-draft-media="${id}">×</button></div><div class="media-footer"><b style="font-size:10px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escape(m.name)}</b><span class="drag-hint">Kéo để đổi thứ tự</span></div></div>`;
     }).join('');
   }
 
@@ -1259,20 +985,17 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
     d.title = document.getElementById('draftTitle')?.value || d.title;
     d.globalCaption = document.getElementById('draftGlobalCaption')?.value || '';
     
-    document.querySelectorAll('[data-draft-field]').forEach(el => {
-      const [p,k] = el.dataset.draftField.split('.');
-      d.platforms[p] = d.platforms[p] || {};
-      d.platforms[p][k] = el.value;
+    document.querySelectorAll('[data-draft-account]').forEach(el => {
+      const [plat, accId] = el.dataset.draftAccount.split(':');
+      d.platforms[plat] = d.platforms[plat] || {};
+      if (!d.platforms[plat].accountIds) d.platforms[plat].accountIds = [];
+      if (el.checked) { if (!d.platforms[plat].accountIds.includes(accId)) d.platforms[plat].accountIds.push(accId); } 
+      else { d.platforms[plat].accountIds = d.platforms[plat].accountIds.filter(id => id !== accId); }
     });
-    document.querySelectorAll('[data-draft-bool]').forEach(el => {
-      const [p,k] = el.dataset.draftBool.split('.');
-      d.platforms[p] = d.platforms[p] || {};
-      d.platforms[p][k] = el.checked;
-    });
-    document.querySelectorAll('[data-thread-index]').forEach(el => {
-      d.platforms.X.thread = d.platforms.X.thread || [];
-      d.platforms.X.thread[Number(el.dataset.threadIndex)] = el.value;
-    });
+
+    document.querySelectorAll('[data-draft-field]').forEach(el => { const [p,k] = el.dataset.draftField.split('.'); d.platforms[p] = d.platforms[p] || {}; d.platforms[p][k] = el.value; });
+    document.querySelectorAll('[data-draft-bool]').forEach(el => { const [p,k] = el.dataset.draftBool.split('.'); d.platforms[p] = d.platforms[p] || {}; d.platforms[p][k] = el.checked; });
+    document.querySelectorAll('[data-thread-index]').forEach(el => { d.platforms.X.thread = d.platforms.X.thread || []; d.platforms.X.thread[Number(el.dataset.threadIndex)] = el.value; });
     d.scheduleMode = document.querySelector('input[name=scheduleMode]:checked')?.value || d.scheduleMode;
     d.scheduleDate = document.getElementById('draftDate')?.value || d.scheduleDate;
     d.scheduleTime = document.getElementById('draftTime')?.value || d.scheduleTime;
@@ -1282,27 +1005,11 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
 
   function renderPosts() {
     let q = state.postSearch.toLowerCase();
-    let list = state.posts.filter(p => state.postFilter === 'All' || p.status === state.postFilter)
-      .filter(p => !q || p.title.toLowerCase().includes(q) || p.createdBy.toLowerCase().includes(q) || Object.keys(p.platforms||{}).some(x=>x.toLowerCase().includes(q)));
-    
+    let list = state.posts.filter(p => state.postFilter === 'All' || p.status === state.postFilter).filter(p => !q || p.title.toLowerCase().includes(q) || p.createdBy.toLowerCase().includes(q) || Object.keys(p.platforms||{}).some(x=>x.toLowerCase().includes(q)));
     let sortVal = document.getElementById('sortPosts')?.value || 'createdDesc';
     list.sort((a,b) => sortVal==='title' ? a.title.localeCompare(b.title) : sortVal==='schedule' ? new Date(a.schedule||'2999')-new Date(b.schedule||'2999') : new Date(b.createdAt)-new Date(a.createdAt));
-    
     let html = pageShell('Danh sách bài viết', 'Quản lý vòng đời nội dung từ bản nháp đến lúc đăng thành công.', `<button class="btn" id="aiLibrary"><i data-lucide="sparkles"></i>Gợi ý AI</button><button class="btn primary" data-page="create"><i data-lucide="plus"></i>Tạo bài viết</button>`);
-    html += `<div class="card card-pad">
-      <div class="split"><div class="actions" style="gap:5px">${['All','Draft','Scheduled','Queued','Publishing','Published','Failed','Cancelled'].map(f=>{
-        const dict = {All:'Tất cả', Draft:'Bản nháp', Scheduled:'Đã lên lịch', Queued:'Chờ đăng', Publishing:'Đang đăng', Published:'Thành công', Failed:'Lỗi', Cancelled:'Đã hủy'};
-        return `<button class="tab ${state.postFilter===f?'active':''}" data-post-filter="${f}">${dict[f]||f}</button>`
-      }).join('')}</div>
-      <div class="actions"><input class="input" id="postSearch" style="width:220px" placeholder="Tìm tên bài, người tạo..." value="${escape(state.postSearch)}"><select class="select" id="sortPosts" style="width:150px"><option value="createdDesc" ${sortVal==='createdDesc'?'selected':''}>Mới tạo nhất</option><option value="title" ${sortVal==='title'?'selected':''}>Tên bài A-Z</option><option value="schedule" ${sortVal==='schedule'?'selected':''}>Theo lịch đăng</option></select></div></div>
-      <div class="table-wrap" style="margin-top:12px">
-        <table class="table"><thead><tr><th>Thumbnail</th><th>Tiêu đề</th><th>Nền tảng</th><th>Lịch đăng</th><th>Trạng thái</th><th>Người tạo</th><th>Ngày tạo</th><th>Thao tác</th></tr></thead>
-        <tbody>
-          ${list.length ? list.map(p=>`<tr><td><div class="thumb"><i data-lucide="file-text" style="width:16px;color:#98a2b3"></i></div></td><td><b>${escape(p.title)}</b>${p.error?`<div class="subline" style="color:#dc2626">${escape(p.error)}</div>`:''}</td><td><div class="platforms">${platformListForPost(p)}</div></td><td>${fmtDate(p.schedule)}</td><td>${statusPill(p.status)}</td><td>${escape(p.createdBy)}</td><td>${fmtDate(p.createdAt,false)}</td><td><div class="actions" style="gap:5px">${['View','Edit'].map(x=>`<button class="btn small" data-${x.toLowerCase()}-post="${p.id}">${x==='View'?'Xem':'Sửa'}</button>`).join('')}<button class="btn small" data-duplicate-post="${p.id}" title="Nhân bản">⌘</button>${p.status==='Failed'?`<button class="btn small" data-retry-post="${p.id}">Thử lại</button>`:''}${['Scheduled','Queued','Draft'].includes(p.status)?`<button class="btn small" data-cancel-post="${p.id}">Hủy</button>`:''}<button class="btn small danger" data-delete-post="${p.id}">Xóa</button></div></td></tr>`).join('') : `<tr><td colspan="8"><div class="empty"><i data-lucide="inbox"></i><b>Không tìm thấy bài viết</b><span>Hãy thử đổi bộ lọc hoặc tạo mới.</span></div></td></tr>`}
-        </tbody></table>
-      </div>
-      <div class="pagination"><span class="help">Tổng ${list.length} bài</span><div class="actions"><button class="btn small" disabled>Trang 1</button></div></div>
-    </div>`;
+    html += `<div class="card card-pad"><div class="split"><div class="actions" style="gap:5px">${['All','Draft','Scheduled','Queued','Publishing','Published','Failed','Cancelled'].map(f=>{const dict = {All:'Tất cả', Draft:'Bản nháp', Scheduled:'Đã lên lịch', Queued:'Chờ đăng', Publishing:'Đang đăng', Published:'Thành công', Failed:'Lỗi', Cancelled:'Đã hủy'}; return `<button class="tab ${state.postFilter===f?'active':''}" data-post-filter="${f}">${dict[f]||f}</button>`}).join('')}</div><div class="actions"><input class="input" id="postSearch" style="width:220px" placeholder="Tìm tên bài, người tạo..." value="${escape(state.postSearch)}"><select class="select" id="sortPosts" style="width:150px"><option value="createdDesc" ${sortVal==='createdDesc'?'selected':''}>Mới tạo nhất</option><option value="title" ${sortVal==='title'?'selected':''}>Tên bài A-Z</option><option value="schedule" ${sortVal==='schedule'?'selected':''}>Theo lịch đăng</option></select></div></div><div class="table-wrap" style="margin-top:12px"><table class="table"><thead><tr><th>Thumbnail</th><th>Tiêu đề</th><th>Nền tảng</th><th>Lịch đăng</th><th>Trạng thái</th><th>Người tạo</th><th>Ngày tạo</th><th>Thao tác</th></tr></thead><tbody>${list.length ? list.map(p=>`<tr><td><div class="thumb"><i data-lucide="file-text" style="width:16px;color:#98a2b3"></i></div></td><td><b>${escape(p.title)}</b>${p.error?`<div class="subline" style="color:#dc2626">${escape(p.error)}</div>`:''}</td><td><div class="platforms">${platformListForPost(p)}</div></td><td>${fmtDate(p.schedule)}</td><td>${statusPill(p.status)}</td><td>${escape(p.createdBy)}</td><td>${fmtDate(p.createdAt,false)}</td><td><div class="actions" style="gap:5px">${['View','Edit'].map(x=>`<button class="btn small" data-${x.toLowerCase()}-post="${p.id}">${x==='View'?'Xem':'Sửa'}</button>`).join('')}<button class="btn small" data-duplicate-post="${p.id}" title="Nhân bản">⌘</button>${p.status==='Failed'?`<button class="btn small" data-retry-post="${p.id}">Thử lại</button>`:''}${['Scheduled','Queued','Draft'].includes(p.status)?`<button class="btn small" data-cancel-post="${p.id}">Hủy</button>`:''}<button class="btn small danger" data-delete-post="${p.id}">Xóa</button></div></td></tr>`).join('') : `<tr><td colspan="8"><div class="empty"><i data-lucide="inbox"></i><b>Không tìm thấy bài viết</b><span>Hãy thử đổi bộ lọc hoặc tạo mới.</span></div></td></tr>`}</tbody></table></div><div class="pagination"><span class="help">Tổng ${list.length} bài</span><div class="actions"><button class="btn small" disabled>Trang 1</button></div></div></div>`;
     return html;
   }
 
@@ -1312,7 +1019,6 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
     let start = new Date(y, m, 1);
     let end = new Date(y, m+1, 0);
     let cells = [];
-    
     for(let i=0; i<start.getDay(); i++) cells.push({date: new Date(y, m, -i), muted: true});
     cells = cells.reverse();
     let total = Math.ceil((cells.length + end.getDate()) / 7) * 7;
@@ -1320,53 +1026,21 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
     while(cells.length < total) { cells.push({date: new Date(y, m+1, cells.length - end.getDate() + 1), muted: true}); }
     
     const byDay = {};
-    state.posts.filter(p => p.schedule).forEach(p => {
-      const key = p.schedule.slice(0,10);
-      (byDay[key] || (byDay[key]=[])).push(p);
-    });
+    state.posts.filter(p => p.schedule).forEach(p => { const key = p.schedule.slice(0,10); (byDay[key] || (byDay[key]=[])).push(p); });
     
     let html = pageShell('Lịch đăng bài', 'Kiểm soát nội dung theo Tháng, Tuần hoặc Ngày.', `<button class="btn" id="todayCal">Về Hôm nay</button><button class="btn primary" data-page="create"><i data-lucide="plus"></i>Đặt lịch mới</button>`);
-    html += `<div class="card card-pad">
-      <div class="split">
-        <div class="calendar-toolbar"><button class="btn small" id="prevMonth"><i data-lucide="chevron-left"></i></button><b style="font-size:13px">${d.toLocaleDateString('vi-VN',{month:'long',year:'numeric'})}</b><button class="btn small" id="nextMonth"><i data-lucide="chevron-right"></i></button></div>
-        <div class="actions"><button class="tab ${state.calendarMode==='Month'?'active':''}" data-cal-mode="Month">Tháng</button><button class="tab ${state.calendarMode==='Week'?'active':''}" data-cal-mode="Week">Tuần</button><button class="tab ${state.calendarMode==='Day'?'active':''}" data-cal-mode="Day">Ngày</button></div>
-      </div>`;
-      
+    html += `<div class="card card-pad"><div class="split"><div class="calendar-toolbar"><button class="btn small" id="prevMonth"><i data-lucide="chevron-left"></i></button><b style="font-size:13px">${d.toLocaleDateString('vi-VN',{month:'long',year:'numeric'})}</b><button class="btn small" id="nextMonth"><i data-lucide="chevron-right"></i></button></div><div class="actions"><button class="tab ${state.calendarMode==='Month'?'active':''}" data-cal-mode="Month">Tháng</button><button class="tab ${state.calendarMode==='Week'?'active':''}" data-cal-mode="Week">Tuần</button><button class="tab ${state.calendarMode==='Day'?'active':''}" data-cal-mode="Day">Ngày</button></div></div>`;
     if(state.calendarMode === 'Month') {
-      html += `<div class="cal-grid" style="margin-top:14px"><div class="cal-head">CN</div><div class="cal-head">T2</div><div class="cal-head">T3</div><div class="cal-head">T4</div><div class="cal-head">T5</div><div class="cal-head">T6</div><div class="cal-head">T7</div>
-        ${cells.map(c => {
-          const key = c.date.toISOString().slice(0,10);
-          const events = (byDay[key] || []);
-          return `<div class="cal-cell ${c.muted?'muted-day':''}" data-cal-cell="${key}"><div class="day-num">${c.date.getDate()}</div>
-            ${events.slice(0,4).map(p => `<div class="event ${p.status==='Failed'?'failed':p.status==='Published'?'published':''}" draggable="true" data-cal-post="${p.id}" title="Kéo sang ngày khác để đổi lịch"><b>${fmtDate(p.schedule).split(',')[1]?.trim()||p.schedule.slice(11,16)} · ${escape(p.title)}</b><span>${Object.keys(p.platforms||{})[0]||'—'} · ${statusTextAccount(p)}</span></div>`).join('')}
-            ${events.length > 4 ? `<div class="help">+${events.length-4} bài nữa</div>` : ''}</div>`
-        }).join('')}</div>`;
-    } else {
-      html += renderWeekDayCalendar(d, byDay);
-    }
-    html += `</div>`;
-    return html;
+      html += `<div class="cal-grid" style="margin-top:14px"><div class="cal-head">CN</div><div class="cal-head">T2</div><div class="cal-head">T3</div><div class="cal-head">T4</div><div class="cal-head">T5</div><div class="cal-head">T6</div><div class="cal-head">T7</div>${cells.map(c => { const key = c.date.toISOString().slice(0,10); const events = (byDay[key] || []); return `<div class="cal-cell ${c.muted?'muted-day':''}" data-cal-cell="${key}"><div class="day-num">${c.date.getDate()}</div>${events.slice(0,4).map(p => `<div class="event ${p.status==='Failed'?'failed':p.status==='Published'?'published':''}" draggable="true" data-cal-post="${p.id}" title="Kéo sang ngày khác để đổi lịch"><b>${fmtDate(p.schedule).split(',')[1]?.trim()||p.schedule.slice(11,16)} · ${escape(p.title)}</b><span>${Object.keys(p.platforms||{})[0]||'—'} · ${statusTextAccount(p)}</span></div>`).join('')}${events.length > 4 ? `<div class="help">+${events.length-4} bài nữa</div>` : ''}</div>`}).join('')}</div>`;
+    } else { html += renderWeekDayCalendar(d, byDay); }
+    html += `</div>`; return html;
   }
   
-  function statusTextAccount(p) {
-    const first = Object.keys(p.platforms || {})[0];
-    const acc = state.accounts.find(a => a.platform === first && a.status === 'Connected');
-    return acc ? acc.username : 'Demo account';
-  }
-  
+  function statusTextAccount(p) { const first = Object.keys(p.platforms || {})[0]; const acc = state.accounts.find(a => a.platform === first && a.status === 'Connected'); return acc ? acc.username : 'Demo account'; }
   function renderWeekDayCalendar(anchor, byDay) {
-    const base = new Date(anchor);
-    let days = [];
+    const base = new Date(anchor); let days = [];
     if(state.calendarMode === 'Day') days = [base];
-    else {
-      const sunday = new Date(base);
-      sunday.setDate(base.getDate() - base.getDay());
-      for(let i=0; i<7; i++) {
-        const x = new Date(sunday);
-        x.setDate(sunday.getDate() + i);
-        days.push(x);
-      }
-    }
+    else { const sunday = new Date(base); sunday.setDate(base.getDate() - base.getDay()); for(let i=0; i<7; i++) { const x = new Date(sunday); x.setDate(sunday.getDate() + i); days.push(x); } }
     return `<div style="margin-top:14px" class="table-wrap"><table class="table"><thead><tr>${days.map(x=>`<th>${x.toLocaleDateString('vi-VN',{weekday:'short',day:'2-digit',month:'2-digit'})}</th>`).join('')}</tr></thead><tbody><tr>${days.map(x=>{const key=x.toISOString().slice(0,10);return `<td style="vertical-align:top;height:280px">${(byDay[key]||[]).sort((a,b)=>new Date(a.schedule)-new Date(b.schedule)).map(p=>`<div class="event ${p.status==='Failed'?'failed':p.status==='Published'?'published':''}" data-cal-post="${p.id}" draggable="true"><b>${p.schedule.slice(11,16)} · ${escape(p.title)}</b><span>${Object.keys(p.platforms||{})[0]}</span></div>`).join('')||'<div class="help">Không có lịch</div>'}</td>`}).join('')}</tr></tbody></table></div>`;
   }
 
@@ -1379,38 +1053,23 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
   function renderMedia() {
     let q = state.postSearch.toLowerCase();
     let list = state.media.filter(m => state.mediaFilter === 'All' || m.type === state.mediaFilter).filter(m => !q || m.name.toLowerCase().includes(q));
-    
     let html = pageShell('Kho lưu trữ (Media Library)', 'Nơi tập trung tải lên hình ảnh và video của workspace.', `<button class="btn" id="mediaListToggle"><i data-lucide="list"></i>Danh sách / Lưới</button><button class="btn primary" id="uploadMediaBtn"><i data-lucide="upload"></i>Tải Media lên</button>`);
     html += `<div class="card card-pad"><div class="split"><div class="actions"><button class="tab ${state.mediaFilter==='All'?'active':''}" data-media-filter="All">Tất cả</button><button class="tab ${state.mediaFilter==='image'?'active':''}" data-media-filter="image">Ảnh</button><button class="tab ${state.mediaFilter==='video'?'active':''}" data-media-filter="video">Video</button></div><input class="input" id="mediaSearch" style="width:250px" placeholder="Tìm tên file..." value="${escape(state.postSearch)}"></div>`;
-    
     if(state.mediaView === 'grid') {
       html += `<div class="media-preview" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:14px">${list.length ? list.map(m=>`<div class="media-item"><div class="media-preview-box">${m.preview?(m.type==='video'?`<video src="${m.preview}"></video>`:`<img src="${m.preview}">`):m.type==='video'?'<i data-lucide="video" style="width:38px;color:#64748b"></i>':'<i data-lucide="image" style="width:38px;color:#64748b"></i>'}</div><div class="media-footer"><b>${escape(m.name)}</b><div class="subline">${m.type.toUpperCase()} · ${formatSize(m.size)}</div><div class="actions" style="margin-top:7px"><button class="btn small" data-preview-media="${m.id}">Xem</button><button class="btn small" data-download-media="${m.id}">Tải về</button><button class="btn small" data-copy-media-url="${m.id}">Copy Link</button><button class="btn small" data-rename-media="${m.id}">Đổi tên</button><button class="btn small danger" data-delete-media="${m.id}">Xóa</button></div></div></div>`).join('') : `<div class="empty"><b>Kho Media đang trống</b><span>Tải ảnh hoặc video lên để bắt đầu.</span></div>`}</div>`;
     } else {
       html += `<div class="table-wrap" style="margin-top:12px"><table class="table"><thead><tr><th>Tên File</th><th>Loại</th><th>Dung lượng</th><th>Thời lượng</th><th>Ngày tạo</th><th>Lần dùng</th><th>Thao tác</th></tr></thead><tbody>${list.length ? list.map(m=>`<tr><td><div class="media-cell"><div class="thumb">${m.preview?(m.type==='video'?`<video src="${m.preview}"></video>`:`<img src="${m.preview}">`):'<i data-lucide="file"></i>'}</div><div><b>${escape(m.name)}</b></div></div></td><td>${escape(m.type==='image'?'Ảnh':'Video')}</td><td>${formatSize(m.size)}</td><td>${escape(m.duration||'—')}</td><td>${fmtDate(m.createdAt,false)}</td><td>${m.usedCount||0}</td><td><div class="actions"><button class="btn small" data-preview-media="${m.id}">Xem</button><button class="btn small" data-download-media="${m.id}">Tải</button><button class="btn small" data-copy-media-url="${m.id}">Copy Link</button><button class="btn small" data-rename-media="${m.id}">Đổi tên</button><button class="btn small danger" data-delete-media="${m.id}">Xóa</button></div></td></tr>`).join('') : `<tr><td colspan="7"><div class="empty"><b>Kho Media đang trống</b></div></td></tr>`}</tbody></table></div>`;
     }
-    html += `</div>`;
-    return html;
+    html += `</div>`; return html;
   }
   
-  function formatSize(bytes) {
-    if(!bytes) return '0 B';
-    const units = ['B','KB','MB','GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(1024));
-    return `${(bytes / Math.pow(1024, i)).toFixed(i ? 1 : 0)} ${units[i]}`;
-  }
+  function formatSize(bytes) { if(!bytes) return '0 B'; const units = ['B','KB','MB','GB']; const i = Math.floor(Math.log(bytes) / Math.log(1024)); return `${(bytes / Math.pow(1024, i)).toFixed(i ? 1 : 0)} ${units[i]}`; }
 
   function renderBulk() {
     let ready = state.bulk.filter(x => x.status === 'Ready').length;
     let html = pageShell('Tải lên hàng loạt (Bulk Upload)', 'Quy trình tạo hàng trăm post tự động từ 1 thư mục Media.', `<button class="btn" id="bulkReset">Làm lại từ đầu</button><button class="btn primary" id="bulkFiles"><i data-lucide="upload-cloud"></i>Chọn tối đa 100 files</button>`);
-    
-    html += `<div class="notice info" style="margin-bottom:12px"><b>Quy trình:</b> Tải File → Đợi hệ thống xử lý (Ready) → Chọn Kênh & Ngày bắt đầu → AI Tự động viết Caption → Nhấn Tạo Post.</div>
-      <div class="card card-pad"><div class="dropzone" id="bulkDrop"><i data-lucide="files" style="width:26px;color:#2563eb"></i><div style="font-size:13px;font-weight:800;margin-top:6px">Kéo & thả tối đa 100 files vào đây</div><div class="help">JPG, PNG, WEBP, MP4, MOV.</div></div>
-      <div class="table-wrap" style="margin-top:14px"><table class="table"><thead><tr><th>Tên File</th><th>Ảnh thu nhỏ</th><th>Kích thước</th><th>Thời lượng</th><th>Trạng thái</th><th>Tiến độ</th><th>Thao tác</th></tr></thead>
-      <tbody>${state.bulk.length ? state.bulk.map(b=>`<tr><td><b>${escape(b.name)}</b></td><td><div class="thumb">${b.preview?(b.type==='video'?`<video src="${b.preview}"></video>`:`<img src="${b.preview}">`):`<i data-lucide="${b.type==='video'?'video':'image'}"></i>`}</div></td><td>${formatSize(b.size)}</td><td>${escape(b.duration||'—')}</td><td>${statusPill(b.status)}</td><td><div style="width:120px;height:6px;background:#eef2f7;border-radius:99px;overflow:hidden"><div style="height:100%;width:${b.progress||0}%;background:#2563eb"></div></div><div class="help" style="margin-top:4px">${b.progress||0}%</div></td><td><div class="actions"><button class="btn small" data-bulk-preview="${b.id}">Xem</button>${b.status==='Failed'?`<button class="btn small" data-bulk-retry="${b.id}">Thử lại</button>`:''}<button class="btn small danger" data-bulk-remove="${b.id}">Bỏ file</button></div></td></tr>`).join('') : `<tr><td colspan="7"><div class="empty"><i data-lucide="upload-cloud"></i><b>Chưa có file nào</b><span>Kéo thả để bắt đầu.</span></div></td></tr>`}</tbody></table></div></div>`;
-      
-    html += `<div class="card card-pad" style="margin-top:14px"><div class="split"><div><div class="section-title">Khởi tạo Bài viết Tự động</div><div class="muted" style="font-size:10px;margin-top:4px">${ready}/${state.bulk.length} file đã Sẵn sàng.</div></div><button class="btn primary" id="generateBulkCaptions" ${ready?'':'disabled'}><i data-lucide="sparkles"></i>Dùng AI Viết hàng loạt Caption</button></div>
-      <div class="form-grid" style="margin-top:13px"><label class="field"><span class="label">Đăng lên Nền tảng</span><select class="select" id="bulkPlatform"><option>Facebook</option><option>TikTok</option><option>YouTube</option><option>Instagram</option><option>X</option></select></label><label class="field"><span class="label">Tài khoản đích</span><select class="select" id="bulkAccount">${state.accounts.map(a=>`<option value="${a.id}">${escape(a.platform)} · ${escape(a.username)}</option>`).join('')}</select></label><label class="field"><span class="label">Lịch bắt đầu (Mỗi bài cách nhau 1 ngày)</span><input class="input" type="datetime-local" id="bulkSchedule" value="2026-09-01T18:30"></label><label class="field"><span class="label">Áp dụng cấu hình này cho tất cả file</span><div class="inline" style="height:38px"><span class="switch"><input type="checkbox" id="bulkApplyAll"><span class="slider"></span></span><span class="help">Ghi đè nếu có setting cũ</span></div></label></div>
-      <div class="actions" style="margin-top:12px"><button class="btn" id="applyBulkAll">Áp dụng setting</button><button class="btn primary" id="createBulkPosts" ${ready?'':'disabled'}>Tạo ${ready} bài viết vào Lịch</button></div><div id="bulkCaptionPreview" style="margin-top:13px"></div></div>`;
+    html += `<div class="notice info" style="margin-bottom:12px"><b>Quy trình:</b> Tải File → Đợi hệ thống xử lý (Ready) → Chọn Kênh & Ngày bắt đầu → AI Tự động viết Caption → Nhấn Tạo Post.</div><div class="card card-pad"><div class="dropzone" id="bulkDrop"><i data-lucide="files" style="width:26px;color:#2563eb"></i><div style="font-size:13px;font-weight:800;margin-top:6px">Kéo & thả tối đa 100 files vào đây</div><div class="help">JPG, PNG, WEBP, MP4, MOV.</div></div><div class="table-wrap" style="margin-top:14px"><table class="table"><thead><tr><th>Tên File</th><th>Ảnh thu nhỏ</th><th>Kích thước</th><th>Thời lượng</th><th>Trạng thái</th><th>Tiến độ</th><th>Thao tác</th></tr></thead><tbody>${state.bulk.length ? state.bulk.map(b=>`<tr><td><b>${escape(b.name)}</b></td><td><div class="thumb">${b.preview?(b.type==='video'?`<video src="${b.preview}"></video>`:`<img src="${b.preview}">`):`<i data-lucide="${b.type==='video'?'video':'image'}"></i>`}</div></td><td>${formatSize(b.size)}</td><td>${escape(b.duration||'—')}</td><td>${statusPill(b.status)}</td><td><div style="width:120px;height:6px;background:#eef2f7;border-radius:99px;overflow:hidden"><div style="height:100%;width:${b.progress||0}%;background:#2563eb"></div></div><div class="help" style="margin-top:4px">${b.progress||0}%</div></td><td><div class="actions"><button class="btn small" data-bulk-preview="${b.id}">Xem</button>${b.status==='Failed'?`<button class="btn small" data-bulk-retry="${b.id}">Thử lại</button>`:''}<button class="btn small danger" data-bulk-remove="${b.id}">Bỏ file</button></div></td></tr>`).join('') : `<tr><td colspan="7"><div class="empty"><i data-lucide="upload-cloud"></i><b>Chưa có file nào</b><span>Kéo thả để bắt đầu.</span></div></td></tr>`}</tbody></table></div></div>`;
+    html += `<div class="card card-pad" style="margin-top:14px"><div class="split"><div><div class="section-title">Khởi tạo Bài viết Tự động</div><div class="muted" style="font-size:10px;margin-top:4px">${ready}/${state.bulk.length} file đã Sẵn sàng.</div></div><button class="btn primary" id="generateBulkCaptions" ${ready?'':'disabled'}><i data-lucide="sparkles"></i>Dùng AI Viết hàng loạt Caption</button></div><div class="form-grid" style="margin-top:13px"><label class="field"><span class="label">Đăng lên Nền tảng</span><select class="select" id="bulkPlatform"><option>Facebook</option><option>TikTok</option><option>YouTube</option><option>Instagram</option><option>X</option></select></label><label class="field"><span class="label">Tài khoản đích</span><select class="select" id="bulkAccount">${state.accounts.map(a=>`<option value="${a.id}">${escape(a.platform)} · ${escape(a.username)}</option>`).join('')}</select></label><label class="field"><span class="label">Lịch bắt đầu (Mỗi bài cách nhau 1 ngày)</span><input class="input" type="datetime-local" id="bulkSchedule" value="2026-09-01T18:30"></label><label class="field"><span class="label">Áp dụng cấu hình này cho tất cả file</span><div class="inline" style="height:38px"><span class="switch"><input type="checkbox" id="bulkApplyAll"><span class="slider"></span></span><span class="help">Ghi đè nếu có setting cũ</span></div></label></div><div class="actions" style="margin-top:12px"><button class="btn" id="applyBulkAll">Áp dụng setting</button><button class="btn primary" id="createBulkPosts" ${ready?'':'disabled'}>Tạo ${ready} bài viết vào Lịch</button></div><div id="bulkCaptionPreview" style="margin-top:13px"></div></div>`;
     return html;
   }
 
@@ -1418,59 +1077,24 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
     const groups = ['Waiting','Processing','Retrying','Success','Failed','Authentication Required'];
     const names = { Waiting:'Đang chờ', Processing:'Đang xử lý đẩy', Retrying:'Đang thử lại', Success:'Thành công', Failed:'Thất bại', 'Authentication Required': 'Mất kết nối API' };
     let html = pageShell('Hàng đợi Hệ thống (Queue Worker)', 'Theo dõi tiến trình đẩy bài thật sự qua API các mạng xã hội. Hỗ trợ Retry 5 lần.', `<button class="btn" id="processQueue"><i data-lucide="play"></i>Chạy giả lập Queue</button><button class="btn primary" id="clearSuccess"><i data-lucide="broom"></i>Dọn dẹp log Thành công</button>`);
-    
-    html += `<div class="kanban">${groups.map(g => {
-      const jobs = state.queue.filter(j => j.status === g);
-      return `<div class="kanban-col"><div class="kanban-head"><span>${names[g]}</span><span class="badge-count">${jobs.length}</span></div>
-        ${jobs.map(j => {
-          const p = state.posts.find(x => x.id === j.postId);
-          return `<div class="job"><div class="split"><b>${escape(j.id)}</b>${statusPill(j.status)}</div><div class="job-meta">Bài viết: ${escape(p?.title||j.postId)}<br>Gửi đến: ${escape(j.platform)} · ${escape(accountFor(j.accountId))}<br>Lần thử: ${j.attempts}/5<br>Tạo lúc: ${fmtDate(j.created)}<br>Lần thử tiếp: ${escape(j.nextRetry||'—')}${j.error?`<br><span style="color:#dc2626">${escape(j.error)}</span>`:''}</div><div class="actions" style="margin-top:8px">${j.status==='Failed'||j.status==='Authentication Required'?`<button class="btn small" data-retry-job="${j.id}">Thử lại ngay</button>`:''}${j.status==='Authentication Required'?`<button class="btn small" data-reconnect-account="${j.accountId}">Mở kết nối</button>`:''}${j.status!=='Success'?`<button class="btn small" data-view-job="${j.id}">Chi tiết</button>`:''}</div></div>`
-        }).join('') || `<div class="help" style="padding:12px 3px">Trống</div>`}</div>`
-    }).join('')}</div>`;
-    
-    html += `<div class="two-col" style="margin-top:14px"><div class="card card-pad"><div class="section-title">Quy tắc Thử lại (Exponential Backoff)</div><div class="muted" style="font-size:10px;margin:5px 0 10px">Hệ thống không chạy vòng lặp vô hạn để tránh bị Facebook cấm IP. Lỗi token sẽ phải nối lại tay.</div><div class="timeline">${['1 phút','5 phút','15 phút','1 giờ','6 giờ'].map((x,i)=>`<div class="timeline-item"><div class="timeline-dot"></div><div><b>Lần ${i+1}</b><span>Sau ${x}</span></div></div>`).join('')}</div></div>
-      <div class="card card-pad"><div class="section-title">Nhật ký lỗi (Error Logs)</div><div class="timeline" style="margin-top:10px">${state.retryLogs.slice(0,6).map(r=>`<div class="timeline-item"><div class="timeline-dot" style="background:#dc2626"></div><div><b>Thử nghiệm lần ${r.attempt} · ${escape(r.status)}</b><span>${fmtDate(r.time)} · ${escape(r.error)}</span></div></div>`).join('')||'<div class="empty">Chưa có log lỗi</div>'}</div></div></div>`;
+    html += `<div class="kanban">${groups.map(g => { const jobs = state.queue.filter(j => j.status === g); return `<div class="kanban-col"><div class="kanban-head"><span>${names[g]}</span><span class="badge-count">${jobs.length}</span></div>${jobs.map(j => { const p = state.posts.find(x => x.id === j.postId); return `<div class="job"><div class="split"><b>${escape(j.id)}</b>${statusPill(j.status)}</div><div class="job-meta">Bài viết: ${escape(p?.title||j.postId)}<br>Gửi đến: ${escape(j.platform)} · ${escape(accountFor(j.accountId))}<br>Lần thử: ${j.attempts}/5<br>Tạo lúc: ${fmtDate(j.created)}<br>Lần thử tiếp: ${escape(j.nextRetry||'—')}${j.error?`<br><span style="color:#dc2626">${escape(j.error)}</span>`:''}</div><div class="actions" style="margin-top:8px">${j.status==='Failed'||j.status==='Authentication Required'?`<button class="btn small" data-retry-job="${j.id}">Thử lại ngay</button>`:''}${j.status==='Authentication Required'?`<button class="btn small" data-reconnect-account="${j.accountId}">Mở kết nối</button>`:''}${j.status!=='Success'?`<button class="btn small" data-view-job="${j.id}">Chi tiết</button>`:''}</div></div>` }).join('') || `<div class="help" style="padding:12px 3px">Trống</div>`}</div>` }).join('')}</div>`;
+    html += `<div class="two-col" style="margin-top:14px"><div class="card card-pad"><div class="section-title">Quy tắc Thử lại (Exponential Backoff)</div><div class="muted" style="font-size:10px;margin:5px 0 10px">Hệ thống không chạy vòng lặp vô hạn để tránh bị Facebook cấm IP. Lỗi token sẽ phải nối lại tay.</div><div class="timeline">${['1 phút','5 phút','15 phút','1 giờ','6 giờ'].map((x,i)=>`<div class="timeline-item"><div class="timeline-dot"></div><div><b>Lần ${i+1}</b><span>Sau ${x}</span></div></div>`).join('')}</div></div><div class="card card-pad"><div class="section-title">Nhật ký lỗi (Error Logs)</div><div class="timeline" style="margin-top:10px">${state.retryLogs.slice(0,6).map(r=>`<div class="timeline-item"><div class="timeline-dot" style="background:#dc2626"></div><div><b>Thử nghiệm lần ${r.attempt} · ${escape(r.status)}</b><span>${fmtDate(r.time)} · ${escape(r.error)}</span></div></div>`).join('')||'<div class="empty">Chưa có log lỗi</div>'}</div></div></div>`;
     return html;
   }
 
   function renderTeam() {
     let html = pageShell('Nhân sự & Phân quyền', 'Quản lý tài khoản đăng nhập của nhân viên dựa trên hệ thống RBAC.', `<button class="btn" id="rbacInfo"><i data-lucide="shield-check"></i>Chi tiết Phân quyền</button><button class="btn primary" id="addTeam"><i data-lucide="user-plus"></i>Tạo tài khoản</button>`);
-    html += `<div class="card card-pad"><div class="table-wrap"><table class="table"><thead><tr><th>Avatar</th><th>Họ Tên</th><th>Email đăng nhập</th><th>Chức vụ</th><th>Trạng thái</th><th>Hoạt động cuối</th><th>Thao tác</th></tr></thead>
-      <tbody>${state.users.map(u=>`<tr><td><div class="avatar">${u.name.split(' ').map(x=>x[0]).join('').slice(-2)}</div></td><td><b>${escape(u.name)}</b></td><td>${escape(u.email)}</td><td><span class="pill neutral">${u.role}</span></td><td>${statusPill(u.status)}</td><td>${fmtDate(u.lastActive)}</td><td><div class="actions"><button class="btn small" data-edit-user="${u.id}">Sửa</button><button class="btn small" data-disable-user="${u.id}">${u.status==='Active'?'Khóa':'Mở khóa'}</button><button class="btn small" data-reset-user="${u.id}">Đổi Pass</button>${u.role!=='ADMIN'?`<button class="btn small danger" data-delete-user="${u.id}">Xóa</button>`:''}</div></td></tr>`).join('')}</tbody></table></div></div>`;
-    
-    html += `<div class="two-col" style="margin-top:14px">
-      <div class="card card-pad">
-        <div class="split"><b style="font-size:12px; color:var(--primary);">ADMIN & MANAGER</b><i data-lucide="shield"></i></div>
-        <ul style="padding-left:14px; margin-top:8px; font-size:11px; color:var(--muted); line-height:1.6;">
-          <li><b>ADMIN:</b> Toàn quyền hệ thống. Thêm/Xóa nhân sự, xem Audit Log, cấu hình Cài đặt lõi.</li>
-          <li><b>MANAGER:</b> Quản lý nhân sự cấp dưới, duyệt Bài viết, xem Thống kê, thao tác Token MXH. <i>(Bị cấm vào mục Cài đặt hệ thống)</i>.</li>
-        </ul>
-      </div>
-      <div class="card card-pad">
-        <div class="split"><b style="font-size:12px; color:var(--primary);">EDITOR & VIEWER</b><i data-lucide="eye"></i></div>
-        <ul style="padding-left:14px; margin-top:8px; font-size:11px; color:var(--muted); line-height:1.6;">
-          <li><b>EDITOR:</b> Chuyên viên Content. Được Tạo bài, dùng AI, Tải Media, Lên lịch. <i>(Bị cấm xem Thống kê và Quản trị nhân sự)</i>.</li>
-          <li><b>VIEWER:</b> Khách hàng (Client). Chỉ được xem tiến độ bài đăng. Không được can thiệp vào data.</li>
-        </ul>
-      </div>
-    </div>`;
+    html += `<div class="card card-pad"><div class="table-wrap"><table class="table"><thead><tr><th>Avatar</th><th>Họ Tên</th><th>Email đăng nhập</th><th>Chức vụ</th><th>Trạng thái</th><th>Hoạt động cuối</th><th>Thao tác</th></tr></thead><tbody>${state.users.map(u=>`<tr><td><div class="avatar">${u.name.split(' ').map(x=>x[0]).join('').slice(-2)}</div></td><td><b>${escape(u.name)}</b></td><td>${escape(u.email)}</td><td><span class="pill neutral">${u.role}</span></td><td>${statusPill(u.status)}</td><td>${fmtDate(u.lastActive)}</td><td><div class="actions"><button class="btn small" data-edit-user="${u.id}">Sửa</button><button class="btn small" data-disable-user="${u.id}">${u.status==='Active'?'Khóa':'Mở khóa'}</button><button class="btn small" data-reset-user="${u.id}">Đổi Pass</button>${u.role!=='ADMIN'?`<button class="btn small danger" data-delete-user="${u.id}">Xóa</button>`:''}</div></td></tr>`).join('')}</tbody></table></div></div>`;
+    html += `<div class="two-col" style="margin-top:14px"><div class="card card-pad"><div class="split"><b style="font-size:12px; color:var(--primary);">ADMIN & MANAGER</b><i data-lucide="shield"></i></div><ul style="padding-left:14px; margin-top:8px; font-size:11px; color:var(--muted); line-height:1.6;"><li><b>ADMIN:</b> Toàn quyền hệ thống. Thêm/Xóa nhân sự, xem Audit Log, cấu hình Cài đặt lõi.</li><li><b>MANAGER:</b> Quản lý nhân sự cấp dưới, duyệt Bài viết, xem Thống kê, thao tác Token MXH. <i>(Bị cấm vào mục Cài đặt hệ thống)</i>.</li></ul></div><div class="card card-pad"><div class="split"><b style="font-size:12px; color:var(--primary);">EDITOR & VIEWER</b><i data-lucide="eye"></i></div><ul style="padding-left:14px; margin-top:8px; font-size:11px; color:var(--muted); line-height:1.6;"><li><b>EDITOR:</b> Chuyên viên Content. Được Tạo bài, dùng AI, Tải Media, Lên lịch. <i>(Bị cấm xem Thống kê và Quản trị nhân sự)</i>.</li><li><b>VIEWER:</b> Khách hàng (Client). Chỉ được xem tiến độ bài đăng. Không được can thiệp vào data.</li></ul></div></div>`;
     return html;
   }
 
   function renderAnalytics() {
-    const a = state.analyticsSeed;
-    const total = state.posts.length;
+    const a = state.analyticsSeed; const total = state.posts.length;
     let html = pageShell('Thống kê & Báo cáo', 'Theo dõi sức khỏe và hiệu suất hiển thị nội dung trên đa nền tảng.', `<div class="actions"><button class="tab active">30 ngày qua</button><button class="tab">90 ngày qua</button><button class="btn" id="refreshAnalytics"><i data-lucide="refresh-cw"></i>Cập nhật số liệu</button></div>`);
-    
-    html += `<div class="metric-grid">
-      ${[['Bài đã tạo',total],['Bài lên sóng',state.posts.filter(x=>x.status==='Published').length],['Đăng lỗi',state.posts.filter(x=>x.status==='Failed').length],['Lượt Tương Tác',a.engagement.toLocaleString('vi-VN')],['Lượt Xem (Views)',a.views.toLocaleString('vi-VN')],['Lượt Thích',a.likes.toLocaleString('vi-VN')],['Bình luận',a.comments.toLocaleString('vi-VN')],['Chia sẻ',a.shares.toLocaleString('vi-VN')]].map(([k,v])=>`<div class="card metric"><span>${k}</span><b>${v}</b></div>`).join('')}
-      </div>`;
-      
-    html += `<div class="two-col"><div class="card card-pad"><div class="section-title">Biểu đồ Tương tác theo ngày</div><div class="bar-chart">${[42,65,52,78,62,92,72,82,58,89,96,74].map(v=>`<div class="bar" style="height:${v}%"></div>`).join('')}</div><div class="bar-labels">${['01','03','05','07','09','11','13','15','17','19','21','23'].map(x=>`<span>${x}</span>`).join('')}</div></div>
-      <div class="card card-pad"><div class="section-title">Tỷ trọng Nền tảng</div><div style="display:flex;align-items:center;gap:18px;margin-top:12px"><div class="donut"><div class="donut-center">100%</div></div><div class="timeline" style="flex:1">${platforms.map((p,i)=>`<div class="timeline-item"><div class="timeline-dot" style="background:${['#2563eb','#111827','#ef4444','#c026d3','#64748b'][i]}"></div><div><b>${p}</b><span>${[36,26,16,12,10][i]}% hiệu suất</span></div></div>`).join('')}</div></div></div></div>`;
-      
-    html += `<div class="card card-pad" style="margin-top:14px"><div class="section-title">Báo cáo chi tiết từng Kênh</div><div class="table-wrap" style="margin-top:9px"><table class="table"><thead><tr><th>Kênh (Platform)</th><th>Bài đã viết</th><th>Đã lên sóng</th><th>Lượt xem (Views)</th><th>Lượt thích</th><th>Tổng Tương tác</th></tr></thead>
-      <tbody>${platforms.map((p,i)=>`<tr><td>${platformBadge(p)}</td><td>${state.posts.filter(x=>Object.keys(x.platforms||{}).includes(p)).length}</td><td>${state.posts.filter(x=>x.status==='Published'&&Object.keys(x.platforms||{}).includes(p)).length}</td><td>${[4280,3180,1980,1720,1520][i].toLocaleString('vi-VN')}</td><td>${[630,420,310,260,220][i]}</td><td>${[980,620,410,260,180][i]}</td></tr>`).join('')}</tbody></table></div></div>`;
+    html += `<div class="metric-grid">${[['Bài đã tạo',total],['Bài lên sóng',state.posts.filter(x=>x.status==='Published').length],['Đăng lỗi',state.posts.filter(x=>x.status==='Failed').length],['Lượt Tương Tác',a.engagement.toLocaleString('vi-VN')],['Lượt Xem (Views)',a.views.toLocaleString('vi-VN')],['Lượt Thích',a.likes.toLocaleString('vi-VN')],['Bình luận',a.comments.toLocaleString('vi-VN')],['Chia sẻ',a.shares.toLocaleString('vi-VN')]].map(([k,v])=>`<div class="card metric"><span>${k}</span><b>${v}</b></div>`).join('')}</div>`;
+    html += `<div class="two-col"><div class="card card-pad"><div class="section-title">Biểu đồ Tương tác theo ngày</div><div class="bar-chart">${[42,65,52,78,62,92,72,82,58,89,96,74].map(v=>`<div class="bar" style="height:${v}%"></div>`).join('')}</div><div class="bar-labels">${['01','03','05','07','09','11','13','15','17','19','21','23'].map(x=>`<span>${x}</span>`).join('')}</div></div><div class="card card-pad"><div class="section-title">Tỷ trọng Nền tảng</div><div style="display:flex;align-items:center;gap:18px;margin-top:12px"><div class="donut"><div class="donut-center">100%</div></div><div class="timeline" style="flex:1">${platforms.map((p,i)=>`<div class="timeline-item"><div class="timeline-dot" style="background:${['#2563eb','#111827','#ef4444','#c026d3','#64748b'][i]}"></div><div><b>${p}</b><span>${[36,26,16,12,10][i]}% hiệu suất</span></div></div>`).join('')}</div></div></div></div>`;
+    html += `<div class="card card-pad" style="margin-top:14px"><div class="section-title">Báo cáo chi tiết từng Kênh</div><div class="table-wrap" style="margin-top:9px"><table class="table"><thead><tr><th>Kênh (Platform)</th><th>Bài đã viết</th><th>Đã lên sóng</th><th>Lượt xem (Views)</th><th>Lượt thích</th><th>Tổng Tương tác</th></tr></thead><tbody>${platforms.map((p,i)=>`<tr><td>${platformBadge(p)}</td><td>${state.posts.filter(x=>Object.keys(x.platforms||{}).includes(p)).length}</td><td>${state.posts.filter(x=>x.status==='Published'&&Object.keys(x.platforms||{}).includes(p)).length}</td><td>${[4280,3180,1980,1720,1520][i].toLocaleString('vi-VN')}</td><td>${[630,420,310,260,220][i]}</td><td>${[980,620,410,260,180][i]}</td></tr>`).join('')}</tbody></table></div></div>`;
     return html;
   }
 
@@ -1495,7 +1119,7 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
     if(t==='Workspace') return `<div class="section-title">Cấu hình Workspace</div><div class="form-grid" style="margin-top:12px"><label class="field"><span class="label">Tên Workspace</span><input class="input" id="workspaceName" value="${escape(state.profile.workspace)}"></label><label class="field"><span class="label">Gói phần mềm</span><input class="input" disabled value="Bản Agency / Demo Mode"></label></div><div class="notice info" style="margin-top:12px">Kiến trúc dữ liệu hiện tại: Workspace → Khách hàng → Tài khoản Social → Chiến dịch → Bài viết.</div><div class="actions" style="margin-top:12px"><button class="btn primary" id="saveWorkspace">Lưu Workspace</button></div>`;
     if(t==='Timezone') return `<div class="section-title">Cài đặt Múi giờ đăng bài</div><div class="form-grid" style="margin-top:12px"><label class="field"><span class="label">Múi giờ mặc định</span><select class="select" id="workspaceTimezone"><option ${state.profile.timezone==='Asia/Ho_Chi_Minh'?'selected':''}>Asia/Ho_Chi_Minh (Việt Nam)</option><option ${state.profile.timezone==='UTC'?'selected':''}>UTC (Quốc tế)</option><option>Asia/Bangkok</option></select></label></div><div class="actions" style="margin-top:12px"><button class="btn primary" id="saveTimezone">Cập nhật Múi giờ</button></div>`;
     if(t==='Notifications') return `<div class="section-title">Điều hướng Thông báo</div><div class="timeline" style="margin-top:10px">${['Báo động Bài đăng lỗi','Cảnh báo Đẩy thử lại thất bại','Thông báo Token hết hạn / Cần kết nối lại','Ngắt kết nối Account','Lỗi Upload hàng loạt (Bulk)','Cảnh báo Queue Worker ngưng hoạt động','Lỗi API hệ thống'].map(x=>`<div class="approval-step"><i data-lucide="bell"></i><div style="flex:1"><b style="font-size:11px">${x}</b><div class="help">Gửi về chuông thông báo trình duyệt web.</div></div><span class="switch"><input type="checkbox" checked><span class="slider"></span></span></div>`).join('')}</div>`;
-    if(t==='Telegram') return `<div class="section-title">Hệ thống Cảnh báo tự động về Telegram</div><div class="notice warn" style="margin-top:10px"><b>Lưu ý Bản Production:</b> Chìa khóa Bot Token sẽ được ẩn ở Backend (Node.js) qua file <code>.env</code> để đảm bảo bảo mật.</div><div class="form-grid" style="margin-top:12px"><label class="field"><span class="label">Bật cảnh báo?</span><label class="inline"><span class="switch"><input type="checkbox" id="tgEnabled" ${state.telegram.enabled?'checked':''}><span class="slider"></span></span>${state.telegram.enabled?'Đang bật':'Đang tắt'}</label></label><label class="field"><span class="label">Telegram Bot Token</span><input class="input" id="tgToken" type="password" value="${escape(state.telegram.botToken)}" placeholder="Nhập Token lấy từ BotFather"></label><label class="field"><span class="label">Telegram Chat ID (ID nhóm chat)</span><input class="input" id="tgChat" value="${escape(state.telegram.chatId)}" placeholder="Ví dụ: -100xxxxxxxx"></label></div><div class="actions" style="margin-top:12px"><button class="btn" id="testTelegram">Gửi tin thử nghiệm (Test)</button><button class="btn primary" id="saveTelegram">Lưu Cấu hình Telegram</button></div>`;
+    if(t==='Telegram') return `<div class="section-title">Hệ thống Cảnh báo tự động về Telegram</div><div class="notice warn" style="margin-top:10px"><b>Lưu ý Bản Production:</b> Chìa khóa Bot Token sẽ được ẩn ở Backend (Node.js) qua file <code>.env</code> để đảm bảo bảo mật.</div><div class="form-grid" style="margin-top:12px"><label class="field"><span class="label">Bật cảnh báo?</span><label class="inline"><span class="switch"><input type="checkbox" id="tgEnabled" ${state.telegram.enabled?'checked':''}><span class="slider"></span></span>${state.telegram.enabled?'Đang bật':'Đang tắt'}</label></label><label class="field"><span class="label">Telegram Bot Token</span><input class="input" id="tgToken" type="password" value="${escape(state.telegram.botToken)}" placeholder="Nhập Token lấy từ BotFather"></label><label class="field"><span class="label">Chat ID (ID nhóm chat)</span><input class="input" id="tgChat" value="${escape(state.telegram.chatId)}" placeholder="Ví dụ: -100xxxxxxxx"></label></div><div class="actions" style="margin-top:12px"><button class="btn" id="testTelegram">Gửi tin thử nghiệm (Test)</button><button class="btn primary" id="saveTelegram">Lưu Cấu hình Telegram</button></div>`;
     if(t==='AI') return `<div class="section-title">Lõi Sinh Content (AI Provider)</div><div class="form-grid" style="margin-top:12px"><label class="field"><span class="label">Đối tác AI</span><select class="select" id="aiProvider"><option>Giả lập nội bộ (Demo Mock)</option><option>OpenAI (Sắp ra mắt)</option><option>Gemini (Sắp ra mắt)</option><option>Claude (Sắp ra mắt)</option></select></label><label class="field"><span class="label">Mã Model</span><input class="input" id="aiModel" value="${escape(state.ai.model)}"></label><label class="field"><span class="label">API Key</span><input class="input" id="aiKey" type="password" value="${escape(state.ai.apiKey)}" placeholder="sk-xxxxxxxxxx"></label><label class="field"><span class="label">Sáng tạo (Temperature: 0.1 - 2.0)</span><input class="input" id="aiTemp" type="number" step="0.1" min="0" max="2" value="${state.ai.temperature}"></label></div><div class="notice info" style="margin-top:12px">Bản Demo đang tích hợp sẵn một bộ phận sinh Content Logic ảo: Gọi <code>aiService.generateCaption()</code> sẽ trả về nội dung bám sát cấu trúc của 5 mạng xã hội.</div><div class="actions" style="margin-top:12px"><button class="btn primary" id="saveAI">Lưu cài đặt AI</button><button class="btn" id="openAIGenerator">Mở công cụ Viết bài AI</button></div>`;
     if(t==='Social API') return `<div class="section-title">Chìa khóa Kết nối API Mạng Xã Hội</div><div class="notice warn" style="margin-top:10px">Các App ID / Client ID phải được nạp thông qua Backend ENV khi chạy thật (Production) để tránh bị lộ.</div><div class="form-grid" style="margin-top:12px">${['Facebook App ID','TikTok Client ID','YouTube Client ID','Instagram App ID','X Client ID'].map(k=>`<label class="field"><span class="label">${k}</span><input class="input" placeholder="Bảo mật tại Backend"></label>`).join('')}</div><div class="actions" style="margin-top:12px"><button class="btn" id="oauthArchitecture">Xem thiết kế luồng xác thực (OAuth)</button></div>`;
     if(t==='Security') return `<div class="section-title">Tiêu chuẩn Bảo mật Ứng dụng</div><div class="metric-grid" style="margin-top:12px">${[['Phiên JWT','Xử lý tại Backend'],['Refresh Token','Bọc trong HttpOnly cookie'],['Kiểm soát Quyền (RBAC)','Đang bật'],['Chống tấn công (Helmet)','Xử lý tại Backend'],['Chống SPAM API','Xử lý tại Backend'],['Quét virus/MIME','Upload layer'],['Chặn tên miền lạ (CORS)','Xử lý tại Backend'],['Lọc mã độc Input','Xử lý tại Backend']].map(([a,b])=>`<div class="card metric"><span>${a}</span><b style="font-size:12px">${b}</b></div>`).join('')}</div><div class="notice info" style="margin-top:12px">Bản vẽ kiến trúc khi Code chạy thật: Next.js (Giao diện) → REST API Node.js (Trung tâm) → PostgreSQL (Dữ liệu cứng) → Redis/BullMQ (Dàn hàng đợi) → S3 (Kho chứa file).</div>`;
@@ -1618,7 +1242,7 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
     // Basic navigation
     document.querySelectorAll('[data-page]').forEach(el => el.onclick = () => navigate(el.dataset.page));
     document.querySelectorAll('[data-page-go]').forEach(el => el.onclick = () => navigate(el.dataset.pageGo));
-    
+
     // Posts Actions
     document.querySelectorAll('[data-view-post]').forEach(el => el.onclick = () => viewPost(el.dataset.viewPost));
     document.querySelectorAll('[data-edit-post]').forEach(el => el.onclick = () => editPost(el.dataset.editPost));
@@ -1650,6 +1274,12 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
     document.querySelectorAll('[data-platform-tab]').forEach(el => el.onclick = () => { readDraftFromUI(); state.draft.activeTab = el.dataset.platformTab; save(); render(); });
     document.querySelectorAll('[data-remove-draft-media]').forEach(el => el.onclick = () => { state.draft.mediaIds = state.draft.mediaIds.filter(x => x !== el.dataset.removeDraftMedia); save(); render(); });
     
+    // Lắng nghe sự kiện Checkbox cho Việc Chọn Account (Khắc phục lỗi chưa save UI ngay lập tức)
+    document.querySelectorAll('[data-draft-account]').forEach(el => el.onchange = () => {
+      readDraftFromUI();
+      render();
+    });
+
     // Media Library Actions
     document.querySelectorAll('[data-preview-media]').forEach(el => el.onclick = () => previewMedia(el.dataset.previewMedia));
     document.querySelectorAll('[data-download-media]').forEach(el => el.onclick = () => downloadMedia(el.dataset.downloadMedia));
@@ -1944,13 +1574,30 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
   function queueForPost(p, platformOverride) {
     const ps = platformOverride === 'Demo' ? Object.keys(p.platforms) : Object.keys(p.platforms || {});
     ps.forEach(platform => {
-      const acc = state.accounts.find(a => a.platform === platform);
-      state.queue.unshift({
-        id: uid('j'), postId: p.id, platform, accountId: acc?.id || '',
-        status: acc?.status === 'Connected' ? 'Waiting' : 'Authentication Required',
-        attempts: 0, created: nowISO(), nextRetry: '—',
-        error: acc?.status === 'Connected' ? '' : 'Kênh chưa có quyền Auth'
-      });
+      // Lấy danh sách accountIds đã chọn cho nền tảng này
+      const selectedAccountIds = p.platforms[platform].accountIds || [];
+
+      // Nếu người dùng có chọn account, tạo queue cho từng account
+      if (selectedAccountIds.length > 0) {
+        selectedAccountIds.forEach(accId => {
+          const acc = state.accounts.find(a => a.id === accId);
+          state.queue.unshift({
+            id: uid('j'), postId: p.id, platform, accountId: accId,
+            status: acc?.status === 'Connected' ? 'Waiting' : 'Authentication Required',
+            attempts: 0, created: nowISO(), nextRetry: '—',
+            error: acc?.status === 'Connected' ? '' : 'Kênh chưa có quyền Auth'
+          });
+        });
+      } else {
+         // Fallback nếu quên chọn account (Demo flow)
+         const acc = state.accounts.find(a => a.platform === platform);
+         state.queue.unshift({
+            id: uid('j'), postId: p.id, platform, accountId: acc?.id || '',
+            status: acc?.status === 'Connected' ? 'Waiting' : 'Authentication Required',
+            attempts: 0, created: nowISO(), nextRetry: '—',
+            error: acc?.status === 'Connected' ? '' : 'Chưa chọn Tài khoản đích'
+         });
+      }
     });
   }
 
@@ -2081,8 +1728,13 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
       }, 90);
     } else {
       state.media.unshift(rec);
+      // NẾU ĐANG TẠO BÀI (target === 'create'), TỰ ĐỘNG GẮN VÀO DRAFT
+      if (target === 'create' && state.draft) {
+        if(!state.draft.mediaIds) state.draft.mediaIds = [];
+        state.draft.mediaIds.push(rec.id);
+      }
       save(); audit('Uploaded Media', rec.name);
-      toast(`Cất kho thành công File ${rec.name}`, 'success'); render();
+      toast(`Đã tải lên & đính kèm File ${rec.name}`, 'success'); render();
     }
   }
 
@@ -2276,22 +1928,43 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
     `);
   }
 
-  // FIXED FOR ALL MODAL CLICKS AND GLOBAL EVENT DELEGATION
+  // FIXED: KHAI BÁO HÀM XUẤT NHẬP DỮ LIỆU ĐỂ TRÁNH UNDEFINED ERROR TRONG SETTINGS
+  function exportWorkspace() {
+    const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url;
+    a.download = `dino_social_hub_workspace_${new Date().toISOString().slice(0,10)}.json`;
+    a.click(); URL.revokeObjectURL(url); toast('Đã export workspace JSON', 'success');
+  }
+
+  function importWorkspace(file) {
+    const r = new FileReader();
+    r.onload = () => {
+      try {
+        const incoming = JSON.parse(r.result);
+        if(!incoming.version || !Array.isArray(incoming.posts) || !Array.isArray(incoming.accounts)) { throw new Error('JSON không đúng format DINO Social Hub'); }
+        state = {...deepClone(seedState), ...incoming}; save(); toast('Import workspace thành công', 'success'); checkAuth();
+      } catch(e) { toast(e.message, 'error'); }
+    };
+    r.readAsText(file);
+  }
+
+  // GLOBAL EVENT DELEGATION
   document.addEventListener('click', e => {
-    // 1. Modal Close Handling (Bắt sự kiện đóng modal toàn cục - SỬA LỖI ĐÓNG BẢNG ADD MEMBER)
+    // 1. Modal Close Handling
     if (e.target.closest('[data-close-modal]')) {
       closeModal();
       return; 
     }
 
-    // 2. Toggle Sidebar khi bấm vào khu vực Brand (Logo)
+    // 2. Toggle Sidebar
     if (e.target.closest('#logoToggleSidebar')) {
       state.sidebarCollapsed = !state.sidebarCollapsed;
       save(); render();
       return;
     }
 
-    // 3. Standard Action Handling
+    // 3. Action Handling
     const el = e.target.closest('[data-action]');
     if(el) {
       const a = el.dataset.action;
@@ -2343,7 +2016,7 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
     input.onchange = () => input.files[0] && importWorkspace(input.files[0]); input.click();
   };
 
-  // Áp dụng Theme Dark/Light ngay khi load trang
+  // Áp dụng Theme Dark/Light
   document.documentElement.setAttribute('data-theme', (state.settings?.theme || 'Light').toLowerCase());
 
   // Initialize
