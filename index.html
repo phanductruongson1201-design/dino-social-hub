@@ -4,93 +4,25 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DINO SOCIAL HUB 4.0 - Hệ thống Quản trị</title>
-<meta name="description" content="DINO SOCIAL HUB 4.0 — Một Nội Dung. Mọi Nền Tảng." />
-
 <script>
-window.lucide = window.lucide || {};
-window.lucide.createIcons = function(){
-  const icons = {
-    'layers-3':'<path d="M12 2 2.5 7 12 12l9.5-5L12 2Z"/><path d="m2.5 12 9.5 5 9.5-5"/><path d="m2.5 17 9.5 5 9.5-5"/>',
-    'layout-dashboard':'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
-    'square-pen':'<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/>',
-    'files':'<path d="M15 2H6a2 2 0 0 0-2 2v14"/><path d="M8 6h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/>',
-    'calendar-days':'<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>',
-    'link-2':'<path d="M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1"/>',
-    'images':'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>',
-    'upload-cloud':'<path d="M16 16l-4-4-4 4"/><path d="M12 12v9"/><path d="M20.4 16.4A5 5 0 0 0 18 7h-1.3A7 7 0 0 0 3 10.5 4.5 4.5 0 0 0 7.5 15H8"/>',
-    'list-checks':'<path d="M9 6h12M9 12h12M9 18h12"/><path d="m3 6 1 1 2-2M3 12l1 1 2-2M3 18l1 1 2-2"/>',
-    'users':'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
-    'chart-no-axes-combined':'<path d="M3 3v18h18"/><path d="m7 16 4-5 3 3 5-7"/>',
-    'bell':'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/>',
-    'settings-2':'<path d="M3 6h7M14 6h7M3 12h2M9 12h12M3 18h7M14 18h7"/><circle cx="12" cy="6" r="2"/><circle cx="7" cy="12" r="2"/><circle cx="12" cy="18" r="2"/>',
-    'panel-left-close':'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M14 9l-3 3 3 3"/>',
-    'search':'<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
-    'circle-help':'<circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 4.4 1.3c-.8.9-2.2 1.2-2.2 2.7"/><path d="M12 17h.01"/>',
-    'chevron-right':'<path d="m9 18 6-6-6-6"/>',
-    'chevron-left':'<path d="m15 18-6-6 6-6"/>',
-    'chevron-down':'<path d="m6 9 6 6 6-6"/>',
-    'plus':'<path d="M12 5v14M5 12h14"/>',
-    'minus':'<path d="M5 12h14"/>',
-    'x':'<path d="m6 6 12 12M18 6 6 18"/>',
-    'check-check':'<path d="m3 12 3 3 6-6"/><path d="m9 12 3 3 9-9"/>',
-    'check-circle-2':'<circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/>',
-    'circle':'<circle cx="12" cy="12" r="9"/>',
-    'eye':'<path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/>',
-    'file':'<path d="M6 2h8l4 4v16H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M14 2v5h5"/>',
-    'file-text':'<path d="M6 2h8l4 4v16H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M14 2v5h5M8 11h8M8 15h8M8 19h5"/>',
-    'home':'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/><path d="M9 21v-6h6v6"/>',
-    'download':'<path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>',
-    'upload':'<path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M5 20h14"/>',
-    'cloud-upload':'<path d="M16 16l-4-4-4 4"/><path d="M12 12v9"/><path d="M20 16a4 4 0 0 0-3.6-4A6 6 0 0 0 5 9a4 4 0 0 0 0 8h2"/>',
-    'save':'<path d="M5 3h12l3 3v15H4V3Z"/><path d="M8 3v6h8V3M8 21v-7h8v7"/>',
-    'send':'<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>',
-    'sparkles':'<path d="m12 3 1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5Z"/><path d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8Z"/>',
-    'calendar-clock':'<path d="M3 4h14a2 2 0 0 1 2 2v7"/><path d="M3 10h16M7 2v4M13 2v4"/><path d="M3 17a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"/><path d="M7 15v2l1.5 1"/>',
-    'refresh-cw':'<path d="M20 11a8 8 0 0 0-14.9-3"/><path d="M4 4v5h5"/><path d="M4 13a8 8 0 0 0 14.9 3"/><path d="M20 20v-5h-5"/>',
-    'plug-zap':'<path d="m13 2-2 7h4l-2 7"/><path d="M7 7H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2M17 7h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/>',
-    'shield':'<path d="M12 3 20 6v6c0 5-3.4 8-8 10-4.6-2-8-5-8-10V6Z"/>',
-    'shield-check':'<path d="M12 3 20 6v6c0 5-3.4 8-8 10-4.6-2-8-5-8-10V6Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/>',
-    'user-plus':'<circle cx="9" cy="8" r="4"/><path d="M3 21v-1a6 6 0 0 1 12 0v1M19 8v6M16 11h6"/>',
-    'inbox':'<path d="M4 5h16l1 10-3 4H6l-3-4Z"/><path d="M3 14h5l1 2h6l1-2h5"/>',
-    'list':'<path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/>',
-    'play':'<path d="m8 5 11 7-11 7Z"/>',
-    'image':'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>',
-    'video':'<rect x="3" y="5" width="15" height="14" rx="2"/><path d="m18 10 4-3v10l-4-3"/>',
-    'broom':'<path d="m3 16 8-8 4 4-8 8H3Z"/><path d="m13 6 3-3 5 5-3 3M5 20h10"/>',
-    'badge-x':'<circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/>',
-    'arrow-right':'<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
-    'log-out':'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>',
-    'message-square':'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
-    'heart':'<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
-    'bookmark':'<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>',
-    'more-horizontal':'<circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>',
-    'smartphone':'<rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/>',
-    'monitor':'<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>'
-  };
+window.lucide=window.lucide||{};window.lucide.createIcons=function(){
+const icons={'layers-3':'<path d="M12 2 2.5 7 12 12l9.5-5L12 2Z"/><path d="m2.5 12 9.5 5 9.5-5"/><path d="m2.5 17 9.5 5 9.5-5"/>','layout-dashboard':'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>','square-pen':'<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/>','files':'<path d="M15 2H6a2 2 0 0 0-2 2v14"/><path d="M8 6h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/>','calendar-days':'<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>','link-2':'<path d="M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1"/>','images':'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>','upload-cloud':'<path d="M16 16l-4-4-4 4"/><path d="M12 12v9"/><path d="M20.4 16.4A5 5 0 0 0 18 7h-1.3A7 7 0 0 0 3 10.5 4.5 4.5 0 0 0 7.5 15H8"/>','list-checks':'<path d="M9 6h12M9 12h12M9 18h12"/><path d="m3 6 1 1 2-2M3 12l1 1 2-2M3 18l1 1 2-2"/>','users':'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>','chart-no-axes-combined':'<path d="M3 3v18h18"/><path d="m7 16 4-5 3 3 5-7"/>','bell':'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/>','settings-2':'<path d="M3 6h7M14 6h7M3 12h2M9 12h12M3 18h7M14 18h7"/><circle cx="12" cy="6" r="2"/><circle cx="7" cy="12" r="2"/><circle cx="12" cy="18" r="2"/>','panel-left-close':'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M14 9l-3 3 3 3"/>','search':'<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>','circle-help':'<circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 4.4 1.3c-.8.9-2.2 1.2-2.2 2.7"/><path d="M12 17h.01"/>','chevron-right':'<path d="m9 18 6-6-6-6"/>','chevron-left':'<path d="m15 18-6-6 6-6"/>','chevron-down':'<path d="m6 9 6 6 6-6"/>','plus':'<path d="M12 5v14M5 12h14"/>','minus':'<path d="M5 12h14"/>','x':'<path d="m6 6 12 12M18 6 6 18"/>','check-check':'<path d="m3 12 3 3 6-6"/><path d="m9 12 3 3 9-9"/>','check-circle-2':'<circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/>','circle':'<circle cx="12" cy="12" r="9"/>','eye':'<path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/>','file':'<path d="M6 2h8l4 4v16H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M14 2v5h5"/>','file-text':'<path d="M6 2h8l4 4v16H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M14 2v5h5M8 11h8M8 15h8M8 19h5"/>','home':'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/><path d="M9 21v-6h6v6"/>','download':'<path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>','upload':'<path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M5 20h14"/>','cloud-upload':'<path d="M16 16l-4-4-4 4"/><path d="M12 12v9"/><path d="M20 16a4 4 0 0 0-3.6-4A6 6 0 0 0 5 9a4 4 0 0 0 0 8h2"/>','save':'<path d="M5 3h12l3 3v15H4V3Z"/><path d="M8 3v6h8V3M8 21v-7h8v7"/>','send':'<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>','sparkles':'<path d="m12 3 1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5Z"/><path d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8Z"/>','calendar-clock':'<path d="M3 4h14a2 2 0 0 1 2 2v7"/><path d="M3 10h16M7 2v4M13 2v4"/><path d="M3 17a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"/><path d="M7 15v2l1.5 1"/>','refresh-cw':'<path d="M20 11a8 8 0 0 0-14.9-3"/><path d="M4 4v5h5"/><path d="M4 13a8 8 0 0 0 14.9 3"/><path d="M20 20v-5h-5"/>','plug-zap':'<path d="m13 2-2 7h4l-2 7"/><path d="M7 7H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2M17 7h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/>','shield':'<path d="M12 3 20 6v6c0 5-3.4 8-8 10-4.6-2-8-5-8-10V6Z"/>','shield-check':'<path d="M12 3 20 6v6c0 5-3.4 8-8 10-4.6-2-8-5-8-10V6Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/>','user-plus':'<circle cx="9" cy="8" r="4"/><path d="M3 21v-1a6 6 0 0 1 12 0v1M19 8v6M16 11h6"/>','inbox':'<path d="M4 5h16l1 10-3 4H6l-3-4Z"/><path d="M3 14h5l1 2h6l1-2h5"/>','list':'<path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/>','play':'<path d="m8 5 11 7-11 7Z"/>','image':'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>','video':'<rect x="3" y="5" width="15" height="14" rx="2"/><path d="m18 10 4-3v10l-4-3"/>','broom':'<path d="m3 16 8-8 4 4-8 8H3Z"/><path d="m13 6 3-3 5 5-3 3M5 20h10"/>','badge-x':'<circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/>','arrow-right':'<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>','log-out':'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>','message-square':'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>','heart':'<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>','bookmark':'<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>','more-horizontal':'<circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>','smartphone':'<rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/>','monitor':'<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>'};
   document.querySelectorAll('i[data-lucide]').forEach(function(i){
     if(i.dataset.iconReady) return;
     const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
     const name=i.getAttribute('data-lucide');
-    svg.setAttribute('viewBox','0 0 24 24');
-    svg.setAttribute('fill','none');
-    svg.setAttribute('stroke','currentColor');
-    svg.setAttribute('stroke-width','1.8');
-    svg.setAttribute('stroke-linecap','round');
-    svg.setAttribute('stroke-linejoin','round');
-    svg.setAttribute('width','24');
-    svg.setAttribute('height','24');
+    svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('fill','none');svg.setAttribute('stroke','currentColor');svg.setAttribute('stroke-width','1.8');svg.setAttribute('stroke-linecap','round');svg.setAttribute('stroke-linejoin','round');
+    svg.setAttribute('width','24');svg.setAttribute('height','24');
     const existingClass = i.getAttribute('class') || '';
     svg.setAttribute('class', `lucide lucide-${name} ${existingClass}`.trim());
     if(i.getAttribute('style')) svg.setAttribute('style',i.getAttribute('style'));
     svg.setAttribute('aria-hidden','true');
     svg.innerHTML=icons[name] || icons['circle'];
-    i.dataset.iconReady='1';
-    i.replaceWith(svg);
+    i.dataset.iconReady='1'; i.replaceWith(svg);
   });
 };
 </script>
 <style>
-/* CSS Variables & Reset */
 :root {
   --bg:#f6f8fb; --surface:#fff; --surface-2:#f9fafb; --line:#e5e7eb; --line-2:#eef0f3;
   --text:#172033; --muted:#667085; --primary:#2563eb; --primary-2:#1d4ed8; --primary-soft:#eff6ff;
@@ -98,28 +30,22 @@ window.lucide.createIcons = function(){
   --danger:#dc2626; --danger-soft:#fef2f2; --info:#0f766e; --info-soft:#ecfeff;
   --shadow:0 4px 18px rgba(15,23,42,.045); --sidebar:220px; --radius:8px;
 }
-
 html[data-theme="dark"] {
   --bg: #0f172a; --surface: #1e293b; --surface-2: #334155; --line: #334155; --line-2: #475569;      
   --text: #f1f5f9; --muted: #94a3b8; --shadow: 0 4px 18px rgba(0,0,0,.3); --primary-soft: rgba(37, 99, 235, 0.2);
 }
-
 * { box-sizing:border-box }
 html { font-size:13px; overflow-x:hidden; transition: background-color 0.3s ease; }
 body { margin:0; padding:0; font-family:Inter,ui-sans-serif,system-ui,sans-serif; color:var(--text); background:var(--bg); font-size:12px; line-height:1.4; overflow-x:hidden; min-height:100vh; transition: background-color 0.3s ease, color 0.3s ease; }
 button, input, select, textarea { font:inherit }
 .hidden { display: none !important; }
-
-/* Sizing cố định cho toàn bộ SVG */
 svg.lucide { width: 1.2em; height: 1.2em; vertical-align: middle; flex-shrink: 0; }
 .nav-item svg { width: 16px; height: 16px; flex: 0 0 auto; }
 .search svg { position: absolute; left: 10px; top: 8px; width: 15px; height: 15px; color: #98a2b3; }
 .quick svg { width: 14px; height: 14px; color: var(--primary); }
 .empty svg { width: 30px; height: 30px; margin-bottom: 8px; color:#98a2b3; }
-.collapse-btn svg { width: 14px; height: 14px; }
-.icon-btn svg { width: 16px; height: 16px; }
-.btn svg { width: 14px; height: 14px; }
-.stat-icon svg { width: 16px; height: 16px; }
+.collapse-btn svg, .btn svg { width: 14px; height: 14px; }
+.icon-btn svg, .stat-icon svg { width: 16px; height: 16px; }
 .logo svg { width: 18px; height: 18px; }
 
 html[data-theme="dark"] .sidebar, html[data-theme="dark"] .topbar, html[data-theme="dark"] .card, html[data-theme="dark"] .modal, html[data-theme="dark"] .dropdown, html[data-theme="dark"] .mobile-bottom, html[data-theme="dark"] .account-card { background: var(--surface); border-color: var(--line); color: var(--text); }
@@ -146,7 +72,6 @@ html[data-theme="dark"] .login-card { background: var(--surface); border-color: 
 html[data-theme="dark"] .login-wrap { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
 html[data-theme="dark"] .demo-acc-btn { background: var(--surface-2); border-color: var(--line); color: var(--text); }
 html[data-theme="dark"] .demo-acc-btn:hover { background: var(--primary-soft); border-color: var(--primary); }
-html[data-theme="dark"] .demo-acc-btn b { color: #93c5fd; }
 html[data-theme="dark"] .search input { background: var(--surface-2); color: var(--text); }
 html[data-theme="dark"] .icon-btn, html[data-theme="dark"] .user-btn { background: var(--surface); border-color: var(--line); color: var(--text); }
 html[data-theme="dark"] .icon-btn:hover, html[data-theme="dark"] .user-btn:hover { background: var(--surface-2); }
@@ -159,7 +84,6 @@ html[data-theme="dark"] .account-avatar { background: var(--surface-2); }
 html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #93c5fd; border-color: #1d4ed8; }
 html[data-theme="dark"] .label { color: var(--muted); }
 
-/* THIẾT KẾ MÀN HÌNH ĐĂNG NHẬP */
 .login-wrap { position:fixed; inset:0; background:linear-gradient(135deg, #f5f7fa 0%, #e0e7ff 100%); display:flex; align-items:center; justify-content:center; z-index:9999; }
 .login-card { background:var(--surface); width:380px; padding:32px 28px; border-radius:14px; box-shadow:0 15px 35px rgba(37,99,235,0.1); border:1px solid var(--line); text-align:center; }
 .login-card .logo { margin: 0 auto 16px; width:48px; height:48px; border-radius:12px; background:linear-gradient(145deg,#2563eb,#3b82f6); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 18px rgba(37,99,235,.2); color: white; }
@@ -171,18 +95,14 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .demo-acc-btn:hover { border-color:var(--primary); background:var(--primary-soft); transform:translateY(-1px); }
 .demo-acc-btn b { color:var(--primary); font-size:12px; }
 
-/* Layout App */
 .app { display:flex; min-height:100vh }
 .sidebar { width:var(--sidebar); background:var(--surface); border-right:1px solid var(--line); position:fixed; inset:0 auto 0 0; z-index:30; display:flex; flex-direction:column; transition:.2s }
 .sidebar.collapsed { width:64px }
 .sidebar.collapsed .brand-name, .sidebar.collapsed .brand-version, .sidebar.collapsed .section-label, .sidebar.collapsed .nav-label, .sidebar.collapsed .user-meta, .sidebar.collapsed .collapse-text, .sidebar.collapsed .demo-badge { display:none }
 .sidebar.collapsed .brand { justify-content:center; padding:0 8px }
 .sidebar.collapsed .nav-item { justify-content:center; padding-left:8px; padding-right:8px }
-
 .main { margin-left:var(--sidebar); width:calc(100% - var(--sidebar)); transition:.2s }
 .sidebar.collapsed ~ .main { margin-left:64px; width:calc(100% - 64px) }
-
-/* Topbar & Sidebar details */
 .brand { height:56px; padding:0 14px; gap:10px; display:flex; align-items:center; border-bottom:1px solid var(--line-2); cursor:pointer; user-select:none; transition: opacity 0.2s; }
 .brand:hover { opacity: 0.8; }
 .logo { width:32px; height:32px; border-radius:8px; background:linear-gradient(145deg,#2563eb,#3b82f6); color:#fff; display:grid; place-items:center; box-shadow:0 8px 18px rgba(37,99,235,.2) }
@@ -197,7 +117,6 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .demo-badge { background:var(--warning-soft); border:1px solid var(--warning); color:var(--warning); padding:8px 10px; border-radius:8px; font-size:10px; line-height:1.4; opacity:0.9; }
 .collapse-btn { margin-top:10px; width:100%; border:1px solid var(--line); background:var(--surface); color:var(--text); opacity:0.8; padding:8px; border-radius:8px; display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer; font-size:10px; font-weight:600 }
 .collapse-btn:hover { background: var(--surface-2); opacity: 1; }
-
 .topbar { height:56px; background:rgba(255,255,255,.94); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); display:flex; align-items:center; padding:0 16px; gap:10px; position:sticky; top:0; z-index:20 }
 html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .breadcrumbs { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:6px; white-space:nowrap }
@@ -212,8 +131,6 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .user-btn { border:1px solid var(--line); background:var(--surface); padding:2px 8px 2px 2px; border-radius:10px; display:flex; align-items:center; gap:8px; cursor:pointer; color:var(--text); opacity:0.9; }
 .user-btn:hover { background: var(--surface-2); opacity:1; }
 .user-btn span { font-size:11px; font-weight:700 }
-
-/* Content structure */
 .content { padding:16px 20px; max-width:1360px; margin:auto }
 .page-header { display:flex; justify-content:space-between; gap:10px; align-items:flex-start; margin-bottom:12px }
 .page-title { margin:0; font-size:18px; letter-spacing:-.03em }
@@ -231,8 +148,6 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .card-pad { padding:14px }
 .grid { display:grid; gap:10px }
 .grid-8 { grid-template-columns:repeat(8,minmax(0,1fr)); gap:10px }
-
-/* Data Visualization */
 .stat-card { padding:12px; min-height:86px }
 .stat-top { display:flex; justify-content:space-between; align-items:center }
 .stat-icon { width:28px; height:28px; border-radius:8px; display:grid; place-items:center; background:var(--primary-soft); color:var(--primary) }
@@ -258,20 +173,16 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .legend .swatch { width:8px; height:8px; border-radius:2px; background:var(--primary) }
 .donut { width:130px; height:130px; border-radius:50%; background:conic-gradient(#2563eb 0 36%,#14b8a6 36% 62%,#f59e0b 62% 78%,#a855f7 78% 90%,#64748b 90% 100%); position:relative; margin:auto }
 .donut-center { position:absolute; inset:0; display:grid; place-items:center; font-size:14px; font-weight:800; z-index:2; color:var(--text) }
-
 .timeline { display:flex; flex-direction:column; gap:10px }
 .timeline-item { display:flex; gap:10px }
 .timeline-dot { width:9px; height:9px; border-radius:50%; background:var(--primary); margin-top:5px; flex:none }
 .timeline-item b { font-size:11px }
 .timeline-item span { font-size:10px; color:var(--muted); display:block; margin-top:3px }
 
-/* Tables */
 .table-wrap { overflow:auto }
 .table { width:100%; border-collapse:collapse; min-width:720px }
 .table th { text-align:left; font-size:9px; letter-spacing:.05em; color:var(--muted); text-transform:uppercase; padding:10px 12px; border-bottom:1px solid var(--line); background:var(--surface-2) }
 .table td { padding:10px 12px; border-bottom:1px solid var(--line-2); font-size:11px; line-height:1.3; vertical-align:middle; color:var(--text) }
-
-/* Media & Form Elements */
 .thumb { width:40px; height:32px; border-radius:6px; border:1px solid var(--line); background:var(--surface-2); display:grid; place-items:center; overflow:hidden }
 .thumb img, .thumb video { width:100%; height:100%; object-fit:cover }
 .media-cell { display:flex; align-items:center; gap:10px; min-width:200px }
@@ -552,35 +463,25 @@ html[data-theme="dark"] .grid-cell { background: #334155; }
 </head>
 <body>
 
-<!-- MÀN HÌNH ĐĂNG NHẬP -->
 <div id="loginView" class="login-wrap hidden">
   <div class="login-card">
     <div class="logo"><i data-lucide="layers-3" style="width:24px;height:24px;color:white;"></i></div>
     <h2>DINO SOCIAL HUB 4.0</h2>
     <p>Đăng nhập vào Workspace của bạn</p>
-    
     <div class="form-grid" style="text-align:left; grid-template-columns:1fr; gap:10px;">
       <label class="field"><span class="label">Email</span><input class="input" id="loginEmail" placeholder="Nhập email..."></label>
       <label class="field"><span class="label">Mật khẩu</span><input class="input" type="password" value="123456" placeholder="Nhập mật khẩu..."></label>
       <button class="btn primary" style="width:100%; height:34px; margin-top:8px; font-size:12px;" onclick="doLogin()">Đăng nhập</button>
     </div>
-    
     <div class="demo-accounts">
       <p>Hoặc đăng nhập nhanh (Demo RBAC):</p>
-      <button class="demo-acc-btn" onclick="doLogin('son@dinohub.local')">
-        <span><b>Sơn Dino</b> (Quyền ADMIN)</span><i data-lucide="arrow-right"></i>
-      </button>
-      <button class="demo-acc-btn" onclick="doLogin('quynh@dinohub.local')">
-        <span><b>Ngọc Quỳnh</b> (Quyền MANAGER)</span><i data-lucide="arrow-right"></i>
-      </button>
-      <button class="demo-acc-btn" onclick="doLogin('an@dinohub.local')">
-        <span><b>Minh An</b> (Quyền EDITOR)</span><i data-lucide="arrow-right"></i>
-      </button>
+      <button class="demo-acc-btn" onclick="doLogin('son@dinohub.local')"><span><b>Sơn Dino</b> (Quyền ADMIN)</span><i data-lucide="arrow-right"></i></button>
+      <button class="demo-acc-btn" onclick="doLogin('quynh@dinohub.local')"><span><b>Ngọc Quỳnh</b> (Quyền MANAGER)</span><i data-lucide="arrow-right"></i></button>
+      <button class="demo-acc-btn" onclick="doLogin('an@dinohub.local')"><span><b>Minh An</b> (Quyền EDITOR)</span><i data-lucide="arrow-right"></i></button>
     </div>
   </div>
 </div>
 
-<!-- KHUNG APP CHÍNH -->
 <div class="app hidden" id="appView">
   <aside class="sidebar" id="sidebar">
     <div class="brand" id="logoToggleSidebar" title="Thu gọn / Mở rộng Menu">
@@ -659,6 +560,8 @@ html[data-theme="dark"] .grid-cell { background: #334155; }
 (() => {
   'use strict';
 
+  window.app = window.app || {};
+
   const STORAGE = 'dino_social_hub_v4_state';
   const platforms = ['Facebook','TikTok','YouTube','Instagram','X'];
   const platformMeta = {
@@ -686,9 +589,7 @@ html[data-theme="dark"] .grid-cell { background: #334155; }
     activePlatformTab: 'Facebook', settingsTab: 'General', postFilter: 'All', postSearch: '', 
     mediaFilter: 'All', mediaView: 'grid', calendarDate: '2026-08-30', calendarMode: 'Month',
     
-    settings: {
-      theme: 'Light'
-    },
+    settings: { theme: 'Light' },
 
     users: [
       {id:'u1', name:'Sơn Dino', email:'son@dinohub.local', role:'ADMIN', status:'Active', lastActive:'2026-08-30T10:32:00+07:00'},
@@ -702,44 +603,11 @@ html[data-theme="dark"] .grid-cell { background: #334155; }
       {id:'a4', platform:'Instagram', name:'Dino Academy', username:'@dinoacademy.vn', status:'Connected', token:'Healthy', lastSync:'2026-08-30T09:22:00+07:00'},
       {id:'a5', platform:'X', name:'Dino Hub', username:'@dinohub', status:'Disconnected', token:'Unavailable', lastSync:'2026-08-27T13:10:00+07:00'}
     ],
-    posts: [
-      {id:'p1029', title:'Back to School — Kỹ năng nói cho trẻ', createdBy:'Sơn Dino', createdAt:'2026-08-29T16:20:00+07:00', status:'Published', schedule:'2026-08-30T09:00:00+07:00', platforms:{Facebook:{caption:'5 lợi ích của kỹ năng nói cho trẻ em và cách rèn luyện tự tin mỗi ngày.', hashtag:'#kynangnoi #treem'}, TikTok:{caption:'3 giây đầu quyết định người xem có ở lại! Cùng luyện kỹ năng nói nhé.', hashtag:'#kynangnoi #kids'}, Instagram:{caption:'Tự tin cất lời là một kỹ năng có thể luyện tập.', hashtag:'#kidskills'}, YouTube:{title:'5 lợi ích kỹ năng nói cho trẻ em', description:'Hướng dẫn ngắn về kỹ năng nói.', tags:'kỹ năng nói, trẻ em'}, X:{text:'Tự tin cất lời là kỹ năng có thể luyện tập.'}}, mediaIds:[]},
-      {id:'p1028', title:'Workshop Thuyết trình cho người đi làm', createdBy:'Ngọc Quỳnh', createdAt:'2026-08-29T13:12:00+07:00', status:'Scheduled', schedule:'2026-09-02T18:30:00+07:00', platforms:{Facebook:{caption:'Thuyết trình tốt không chỉ là nói hay — mà là làm chủ thông điệp.', hashtag:'#thuyettrinh'}, TikTok:{caption:'Bạn đang mất điểm ở đâu khi thuyết trình?', hashtag:'#presentation'}, Instagram:{caption:'Nói rõ. Nói đúng. Nói có sức ảnh hưởng.', hashtag:'#presentation'}, YouTube:{title:'Kỹ năng thuyết trình cho người đi làm', description:'Workshop thực hành.', tags:'thuyết trình, kỹ năng'}, X:{text:'Nói rõ. Nói đúng. Nói có sức ảnh hưởng.'}}, mediaIds:[]},
-      {id:'p1027', title:'Video giới thiệu khóa MC Chuyên nghiệp', createdBy:'Sơn Dino', createdAt:'2026-08-28T10:02:00+07:00', status:'Queued', schedule:'2026-08-30T14:30:00+07:00', platforms:{Facebook:{caption:'Tự tin trước ống kính là một kỹ năng.', hashtag:'#MC'}, TikTok:{caption:'Bạn có dám đứng trước ống kính?', hashtag:'#MC'}, Instagram:{caption:'Một giọng nói tốt bắt đầu từ sự tự tin.', hashtag:'#MC'}, YouTube:{title:'MC Chuyên nghiệp — Làm chủ sự tự tin', description:'Video khóa học.', tags:'MC, nói trước công chúng'}, X:{text:'Một giọng nói tốt bắt đầu từ sự tự tin.'}}, mediaIds:[]},
-      {id:'p1026', title:'TikTok sample — lỗi token', createdBy:'Minh An', createdAt:'2026-08-27T15:33:00+07:00', status:'Failed', schedule:'2026-08-30T10:30:00+07:00', platforms:{TikTok:{caption:'Demo lỗi token để kiểm tra retry queue.', hashtag:'#demo'}}, mediaIds:[], error:'Access Token Expired', retryAttempts:3},
-      {id:'p1025', title:'Draft — Ý tưởng chiến dịch tháng 9', createdBy:'Sơn Dino', createdAt:'2026-08-26T09:10:00+07:00', status:'Draft', schedule:'', platforms:{Facebook:{caption:'', hashtag:''}}, mediaIds:[]}
-    ],
-    inbox: [
-      {id:'msg1', name:'Nguyễn Văn A', platform:'Facebook', type:'Bình luận', text:'Khóa học này bao nhiêu tiền vậy page?', time:'10:30 30/08', avatar:'NA', read:false},
-      {id:'msg2', name:'Trần Thị B', platform:'Instagram', type:'Tin nhắn', text:'Mình muốn đăng ký cho bé 5 tuổi', time:'09:15 30/08', avatar:'TB', read:true},
-      {id:'msg3', name:'@thanhphong99', platform:'TikTok', type:'Bình luận', text:'Video hay quá anh ơi, ra thêm phần 2 nhé', time:'Hôm qua', avatar:'TP', read:true},
-      {id:'msg4', name:'Lê Hoàng', platform:'Facebook', type:'Tin nhắn', text:'Mình đã ck học phí, check giùm mình', time:'28/08', avatar:'LH', read:true}
-    ],
-    queue: [
-      {id:'j901', postId:'p1027', platform:'TikTok', accountId:'a2', status:'Waiting', attempts:0, created:'2026-08-30T10:00:00+07:00', nextRetry:'—'},
-      {id:'j900', postId:'p1026', platform:'TikTok', accountId:'a2', status:'Authentication Required', attempts:3, created:'2026-08-30T09:30:00+07:00', nextRetry:'—', error:'Access Token Expired'},
-      {id:'j899', postId:'p1028', platform:'Facebook', accountId:'a1', status:'Success', attempts:1, created:'2026-08-29T18:30:00+07:00', nextRetry:'—'}
-    ],
-    retryLogs: [
-      {id:'r1', jobId:'j900', attempt:1, time:'2026-08-30T09:30:00+07:00', status:'Failed', error:'Access Token Expired'},
-      {id:'r2', jobId:'j900', attempt:2, time:'2026-08-30T09:35:00+07:00', status:'Failed', error:'Access Token Expired'},
-      {id:'r3', jobId:'j900', attempt:3, time:'2026-08-30T09:50:00+07:00', status:'Authentication Required', error:'Access Token Expired'}
-    ],
-    media: [], bulk: [], notifications: [
-      {id:'n1', type:'Error', title:'Facebook post failed', message:'Demo job #j900 cần xác thực lại token.', time:'2026-08-30T09:50:00+07:00', read:false},
-      {id:'n2', type:'Warning', title:'Token expires soon', message:'TikTok @dinoacademy cần Reconnect.', time:'2026-08-30T08:10:00+07:00', read:false},
-      {id:'n3', type:'Success', title:'TikTok post published', message:'Demo state cập nhật thành Published.', time:'2026-08-29T20:12:00+07:00', read:true},
-      {id:'n4', type:'Info', title:'Retry scheduled', message:'Queue j899 đã hoàn tất.', time:'2026-08-29T18:31:00+07:00', read:true}
-    ],
+    posts: [], inbox: [], queue: [], retryLogs: [], media: [], bulk: [], notifications: [],
     ai: {provider:'Demo Mock', model:'mock-social-v1', temperature:0.7, apiKey:''},
     telegram: {enabled:false, botToken:'', chatId:''},
     profile: {name:'Sơn Dino', workspace:'Tây Nguyên Phim', timezone:'Asia/Ho_Chi_Minh'},
-    audit: [
-      {id:'l1', user:'Sơn Dino', action:'Created Post', resource:'Post #1029', ip:'127.0.0.1', time:'2026-08-30T10:32:00+07:00'},
-      {id:'l2', user:'Ngọc Quỳnh', action:'Scheduled Post', resource:'Post #1028', ip:'127.0.0.1', time:'2026-08-29T16:20:00+07:00'}
-    ],
-    draft: null,
-    analyticsSeed: {views:12680, likes:1840, comments:326, shares:214, engagement:2380}
+    audit: [], draft: null, analyticsSeed: {views:12680, likes:1840, comments:326, shares:214, engagement:2380}
   };
 
   let state = loadState();
@@ -765,14 +633,38 @@ html[data-theme="dark"] .grid-cell { background: #334155; }
     if(!v) return '—'; 
     const d = new Date(v); 
     if(Number.isNaN(d.getTime())) return v; 
-    return new Intl.DateTimeFormat('vi-VN', {
-      day:'2-digit', month:'2-digit', year:'numeric', 
-      hour:withTime?'2-digit':undefined, minute:withTime?'2-digit':undefined
-    }).format(d)
+    return new Intl.DateTimeFormat('vi-VN', { day:'2-digit', month:'2-digit', year:'numeric', hour:withTime?'2-digit':undefined, minute:withTime?'2-digit':undefined }).format(d)
   }
-  function escape(s='') { 
-    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])) 
+  function escape(s='') { return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])) }
+  
+  function toast(message, type='success', title=null) {
+    const wrap = document.getElementById('toastWrap');
+    const el = document.createElement('div');
+    el.className = `toast ${type}`;
+    const icons = { success:'check-circle-2', error:'x-circle', warning:'triangle-alert', info:'info' };
+    el.innerHTML = `<i data-lucide="${icons[type]||'info'}" style="width:16px;color:${type==='error'?'#dc2626':type==='warning'?'#d97706':type==='success'?'#16a34a':'#2563eb'}"></i><div><b>${escape(title || ({success:'Thành công', error:'Có lỗi', warning:'Cảnh báo', info:'Thông tin'}[type]||'Thông báo'))}</b><div>${escape(message)}</div></div>`;
+    wrap.appendChild(el);
+    lucide.createIcons();
+    setTimeout(() => el.remove(), 3800);
   }
+  
+  window.app.ui = { showToast: toast };
+  
+  function confirmModal(title, text, onConfirm) {
+    openModal(`<div class="modal-header"><div class="modal-title">${escape(title)}</div><button class="close" data-close-modal><i data-lucide="x"></i></button></div><div class="modal-body"><div class="notice danger">${escape(text)}</div></div><div class="modal-footer"><button class="btn" data-close-modal>Hủy</button><button class="btn danger" id="confirmAction">Xác nhận</button></div>`);
+    document.getElementById('confirmAction').onclick = () => { closeModal(); onConfirm(); };
+  }
+  function openModal(html, wide=false) {
+    const b = document.getElementById('modalBackdrop'), m = document.getElementById('modal');
+    m.className = wide ? 'modal wide' : 'modal';
+    m.innerHTML = html;
+    b.classList.add('show');
+    lucide.createIcons();
+  }
+  function closeModal() { document.getElementById('modalBackdrop').classList.remove('show'); }
+  function showLoading() { document.getElementById('loading').classList.add('show'); }
+  function hideLoading() { document.getElementById('loading').classList.remove('show'); }
+  
   function statusPill(status) {
     const map = { Published:'success', Scheduled:'info', Queued:'warning', Publishing:'info', Failed:'danger', Cancelled:'neutral', Draft:'neutral', Waiting:'warning', Processing:'info', Success:'success', Retrying:'warning', 'Authentication Required':'danger', Uploading:'warning', Uploaded:'info', Ready:'success' }; 
     const dict = { Published:'Đã đăng', Scheduled:'Đã lên lịch', Queued:'Chờ đăng', Publishing:'Đang đăng', Failed:'Lỗi', Cancelled:'Đã hủy', Draft:'Bản nháp', Waiting:'Đang đợi', Processing:'Đang xử lý', Success:'Thành công', Retrying:'Đang thử lại', 'Authentication Required':'Lỗi Token', Uploading:'Đang tải', Uploaded:'Đã tải', Ready:'Sẵn sàng' };
@@ -789,31 +681,6 @@ html[data-theme="dark"] .grid-cell { background: #334155; }
     formatted = formatted.replace(/(#[a-zA-Z0-9_]+)/g, '<span class="hashtag">$1</span>');
     return formatted;
   }
-  function toast(message, type='success', title=null) {
-    const wrap = document.getElementById('toastWrap');
-    const el = document.createElement('div');
-    el.className = `toast ${type}`;
-    const icons = { success:'check-circle-2', error:'x-circle', warning:'triangle-alert', info:'info' };
-    el.innerHTML = `<i data-lucide="${icons[type]||'info'}" style="width:16px;color:${type==='error'?'#dc2626':type==='warning'?'#d97706':type==='success'?'#16a34a':'#2563eb'}"></i><div><b>${escape(title || ({success:'Thành công', error:'Có lỗi', warning:'Cảnh báo', info:'Thông tin'}[type]||'Thông báo'))}</b><div>${escape(message)}</div></div>`;
-    wrap.appendChild(el);
-    lucide.createIcons();
-    setTimeout(() => el.remove(), 3800);
-  }
-  function confirmModal(title, text, onConfirm) {
-    openModal(`<div class="modal-header"><div class="modal-title">${escape(title)}</div><button class="close" data-close-modal><i data-lucide="x"></i></button></div><div class="modal-body"><div class="notice danger">${escape(text)}</div></div><div class="modal-footer"><button class="btn" data-close-modal>Hủy</button><button class="btn danger" id="confirmAction">Xác nhận</button></div>`);
-    document.getElementById('confirmAction').onclick = () => { closeModal(); onConfirm(); };
-    lucide.createIcons();
-  }
-  function openModal(html, wide=false) {
-    const b = document.getElementById('modalBackdrop'), m = document.getElementById('modal');
-    m.className = wide ? 'modal wide' : 'modal';
-    m.innerHTML = html;
-    b.classList.add('show');
-    lucide.createIcons();
-  }
-  function closeModal() { document.getElementById('modalBackdrop').classList.remove('show'); }
-  function showLoading() { document.getElementById('loading').classList.add('show'); }
-  function hideLoading() { document.getElementById('loading').classList.remove('show'); }
   function audit(action, resource) {
     state.audit.unshift({id:uid('l'), user:state.profile.name, action, resource, ip:'127.0.0.1', time:nowISO()});
     state.audit = state.audit.slice(0, 200);
@@ -928,10 +795,18 @@ html[data-theme="dark"] .grid-cell { background: #334155; }
     return html;
   }
 
-  window.app.setPreviewMode = function(mode) {
-    if(state.draft) state.draft.previewMode = mode;
-    render();
+  function renderInbox() {
+    let html = pageShell('Hộp thư hợp nhất', 'Quản lý Tin nhắn và Bình luận từ Facebook, TikTok, Instagram tại một nơi duy nhất.');
+    const messages = state.inbox || [];
+    const activeMsg = messages.find(m => m.id === activeInboxId) || messages[0];
+    
+    html += `<div class="inbox-layout"><div class="inbox-sidebar"><div class="inbox-head"><div class="search" style="max-width:100%"><i data-lucide="search"></i><input placeholder="Tìm người gửi, nội dung..." style="height:32px; background:var(--surface-2)"/></div><div class="inbox-filters"><button class="inbox-filter-btn active">Tất cả</button><button class="inbox-filter-btn">Chưa đọc</button><button class="inbox-filter-btn">Tin nhắn</button></div></div><div class="inbox-list">${messages.map(m => {const mMeta = platformMeta[m.platform];return `<div class="inbox-item ${m.id === activeInboxId ? 'active' : ''}" onclick="app.selectInbox('${m.id}')"><div class="inbox-avatar"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px">${m.avatar}</div><div class="inbox-plat-icon" style="background:#fff; color:${mMeta.cls==='fb'?'#1877f2':mMeta.cls==='ig'?'#c026d3':mMeta.cls==='yt'?'#ef4444':'#111'}"><i data-lucide="${mMeta.icon}" style="width:8px;height:8px"></i></div></div><div class="inbox-info"><div class="inbox-name-row"><span class="inbox-name" style="${!m.read?'font-weight:800;color:var(--primary)':''}">${escape(m.name)}</span><span class="inbox-time">${m.time}</span></div><div class="inbox-preview" style="${!m.read?'font-weight:600;color:var(--text)':''}">${escape(m.type)}: ${escape(m.text)}</div></div></div>`}).join('')}</div></div><div class="inbox-chat">${activeMsg ? `<div class="chat-head"><div class="chat-user-info"><div class="inbox-avatar" style="width:42px;height:42px"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px">${activeMsg.avatar}</div></div><div class="chat-meta"><b style="font-size:14px">${escape(activeMsg.name)}</b><span>Qua ${activeMsg.type} ${activeMsg.platform}</span></div></div><div class="actions"><button class="btn small"><i data-lucide="check-check"></i> Đánh dấu xong</button><button class="btn small"><i data-lucide="more-horizontal"></i></button></div></div><div class="chat-body"><div class="chat-bubble-row them"><div class="inbox-avatar" style="width:28px;height:28px"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:10px">${activeMsg.avatar}</div></div><div><div class="chat-bubble">${escape(activeMsg.text)}</div><div class="chat-time">${activeMsg.time}</div></div></div>${activeMsg.replied ? `<div class="chat-bubble-row me"><div><div class="chat-bubble">${escape(activeMsg.replyText)}</div><div class="chat-time">Vừa xong</div></div></div>` : ''}</div><div class="chat-foot"><div class="chat-input-wrap"><button class="icon-btn" style="border:none;background:transparent;color:var(--muted)"><i data-lucide="image"></i></button><button class="icon-btn" style="border:none;background:transparent;color:var(--muted);margin-right:8px" onclick="app.ui.showToast('Gợi ý câu trả lời AI','Tính năng đang phát triển','info')"><i data-lucide="sparkles"></i></button><textarea id="inboxReply" class="chat-textarea" placeholder="Nhập câu trả lời... (Enter để gửi)"></textarea><button class="chat-send-btn" onclick="app.sendInboxReply()"><i data-lucide="send"></i></button></div></div>` : `<div class="empty" style="margin:auto"><i data-lucide="message-square"></i><b>Chọn một cuộc hội thoại để bắt đầu</b></div>`}</div></div>`;
+    return html;
   }
+  
+  window.app.selectInbox = function(id) { activeInboxId = id; const msg = state.inbox.find(m => m.id === id); if(msg && !msg.read) { msg.read = true; save(); } render(); }
+  window.app.sendInboxReply = function() { const text = document.getElementById('inboxReply').value.trim(); if(!text) return; const msg = state.inbox.find(m => m.id === activeInboxId); if(msg) { msg.replied = true; msg.replyText = text; save(); render(); toast('Đã gửi phản hồi', 'success'); } }
+  window.app.setPreviewMode = function(mode) { if(state.draft) state.draft.previewMode = mode; render(); }
 
   function defaultDraft() {
     return {
@@ -1081,12 +956,18 @@ html[data-theme="dark"] .grid-cell { background: #334155; }
     if(!state.draft) return;
     const tab = state.draft.activeTab;
     state.draft.platforms[tab][fieldType] = val; 
+    
     const el = document.getElementById(fieldType === 'title' ? 'preview-yt-title' : 'preview-text');
     if(el) {
-      if(tab === 'YouTube' && fieldType === 'title') { el.innerHTML = escape(val) || 'Tiêu đề Video YouTube của bạn'; } 
-      else {
+      if(tab === 'YouTube' && fieldType === 'title') {
+        el.innerHTML = escape(val) || 'Tiêu đề Video YouTube của bạn';
+      } else {
         let fullText = val;
-        if(tab === 'Facebook' || tab === 'TikTok' || tab === 'Instagram') { const caption = fieldType === 'caption' ? val : state.draft.platforms[tab].caption || ''; const hash = fieldType === 'hashtag' ? val : state.draft.platforms[tab].hashtag || ''; fullText = `${caption} ${hash}`; }
+        if(tab === 'Facebook' || tab === 'TikTok' || tab === 'Instagram') {
+          const caption = fieldType === 'caption' ? val : state.draft.platforms[tab].caption || '';
+          const hash = fieldType === 'hashtag' ? val : state.draft.platforms[tab].hashtag || '';
+          fullText = `${caption} ${hash}`;
+        }
         el.innerHTML = formatPreviewText(fullText) || 'Văn bản của bạn sẽ hiển thị ở đây...';
       }
     }
@@ -1099,13 +980,14 @@ html[data-theme="dark"] .grid-cell { background: #334155; }
     const platformContent = d.platforms[tab] || {};
     
     let html = pageShell(editingPostId ? 'Chỉnh sửa bài viết' : 'Tạo bài viết', 'Soạn một nội dung và phân phối theo từng nền tảng.', `<button class="btn" id="resetDraft">Làm mới</button><button class="btn primary" id="saveDraft"><i data-lucide="save"></i>Lưu nháp</button>`);
-    html += `<div class="notice info" style="margin-bottom:12px"><b>Chế độ Demo.</b> Bấm Đăng bài sẽ mô phỏng đẩy vào Queue và đổi trạng thái ảo. Tên bài viết sẽ được tự động tạo dựa trên nội dung bạn nhập.</div>`;
+    html += `<div class="notice info" style="margin-bottom:12px"><b>Chế độ Demo.</b> Bấm Đăng bài sẽ mô phỏng đẩy vào Queue và đổi trạng thái ảo. Tên chiến dịch sẽ tự động trích xuất từ 40 ký tự đầu tiên của Nội dung.</div>`;
     
     const rightColWidth = d.previewMode === 'desktop' ? '460px' : '320px';
 
     html += `<div style="display:flex; gap:16px; align-items:flex-start;">`;
-    html += `<div style="flex:1; min-width:0;">`;
     
+    // CỘT TRÁI
+    html += `<div style="flex:1; min-width:0;">`;
     html += `<div class="card card-pad">
       <div class="split"><div><div class="label">1. Chọn Nền Tảng Đăng</div><div class="help">Bật/tắt các nền tảng bạn muốn bài viết xuất hiện.</div></div></div>
       <div class="platform-selector" style="margin-top:9px">
@@ -1285,8 +1167,6 @@ html[data-theme="dark"] .grid-cell { background: #334155; }
     }
     html += `</div>`; return html;
   }
-  
-  function formatSize(bytes) { if(!bytes) return '0 B'; const units = ['B','KB','MB','GB']; const i = Math.floor(Math.log(bytes) / Math.log(1024)); return `${(bytes / Math.pow(1024, i)).toFixed(i ? 1 : 0)} ${units[i]}`; }
 
   function renderBulk() {
     let ready = state.bulk.filter(x => x.status === 'Ready').length;
@@ -1350,7 +1230,6 @@ html[data-theme="dark"] .grid-cell { background: #334155; }
     return '';
   }
 
-  // --- Core Logistics & Actions ---
   async function aiGenerate(input) {
     showLoading(); await new Promise(r => setTimeout(r, 650)); hideLoading();
     const topic = input.topic || state.draft?.title || 'nội dung social';
@@ -1391,20 +1270,13 @@ html[data-theme="dark"] .grid-cell { background: #334155; }
   }
   
   async function generateAIResults() {
-    const out = await aiGenerate({
-      topic: document.getElementById('aiTopic').value, 
-      tone: document.getElementById('aiTone').value, 
-      audience: document.getElementById('aiAudience').value, 
-      goal: document.getElementById('aiGoal').value
-    });
-    
+    const out = await aiGenerate({ topic: document.getElementById('aiTopic').value, tone: document.getElementById('aiTone').value, audience: document.getElementById('aiAudience').value, goal: document.getElementById('aiGoal').value });
     const wrap = document.getElementById('aiResults');
     wrap.innerHTML = `<div class="timeline">${platforms.map(p => `
       <div class="card card-pad">
         <div class="split"><div style="display:flex;align-items:center;gap:6px">${platformBadge(p)}</div><div class="actions"><button class="btn small" data-copy-ai="${p}">📋 Copy Văn Bản</button><button class="btn small" data-edit-ai="${p}">✏️ Sửa Lỗi</button><button class="btn small primary" data-apply-ai="${p}">✓ Áp dụng vào Draft</button></div></div>
         <div class="notice info" style="margin-top:8px;white-space:pre-wrap" id="ai_${p}">${p==='YouTube'?`Tiêu đề: ${escape(out[p].title)}\n\n${escape(out[p].description)}\n\nThẻ Tag: ${escape(out[p].tags)}`:escape(out[p])}</div>
       </div>`).join('')}</div>`;
-      
     window.__aiResults = out;
     lucide.createIcons();
   }
@@ -1446,7 +1318,6 @@ html[data-theme="dark"] .grid-cell { background: #334155; }
       document.getElementById('content').innerHTML = html;
       updateNotifCount();
       lucide.createIcons();
-      bindPage();
 
       if (activeInputId) {
         const el = document.getElementById(activeInputId);
@@ -1461,29 +1332,168 @@ html[data-theme="dark"] .grid-cell { background: #334155; }
 
   function navigate(page) { state.page = page; save(); render(); window.scrollTo({top:0, behavior:'smooth'}); }
   
-  function bindPage() {
-    // Basic navigation
-    document.querySelectorAll('[data-page]').forEach(el => el.onclick = () => navigate(el.dataset.page));
-    document.querySelectorAll('[data-page-go]').forEach(el => el.onclick = () => navigate(el.dataset.pageGo));
+  // EVENT LISTENERS GẮN CHUNG QUA DELEGATION LÀ CHÍNH ĐỂ TRÁNH LỖI OVERWRITE
+  document.addEventListener('click', e => {
+    // 1. Navigation
+    if (e.target.closest('[data-page]')) { navigate(e.target.closest('[data-page]').dataset.page); return; }
+    if (e.target.closest('[data-page-go]')) { navigate(e.target.closest('[data-page-go]').dataset.pageGo); return; }
+    
+    // 2. Modals
+    if (e.target.closest('[data-close-modal]')) { closeModal(); return; }
+    
+    // 3. Toggle Sidebar
+    if (e.target.closest('#logoToggleSidebar') || e.target.closest('#collapseBtn')) {
+      state.sidebarCollapsed = !state.sidebarCollapsed;
+      save(); render(); return;
+    }
+    
+    // 4. Actions
+    const actionEl = e.target.closest('[data-action]');
+    if(actionEl) {
+      const a = actionEl.dataset.action;
+      if(a === 'export') {
+        const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
+        const url = URL.createObjectURL(blob);
+        const aLink = document.createElement('a'); aLink.href = url;
+        aLink.download = `dino_social_hub_workspace_${new Date().toISOString().slice(0,10)}.json`;
+        aLink.click(); URL.revokeObjectURL(url); toast('Đã export workspace JSON', 'success');
+      }
+      if(a === 'profile') { state.settingsTab = 'Profile'; navigate('settings'); }
+      if(a === 'settings') navigate('settings');
+      if(a === 'import') {
+        const input = document.createElement('input'); input.type = 'file'; input.accept = 'application/json';
+        input.onchange = () => {
+           const file = input.files[0]; if(!file) return;
+           const r = new FileReader();
+           r.onload = () => {
+             try {
+               const incoming = JSON.parse(r.result);
+               if(!incoming.version || !Array.isArray(incoming.posts) || !Array.isArray(incoming.accounts)) { throw new Error('JSON không đúng format DINO Social Hub'); }
+               state = {...deepClone(seedState), ...incoming}; save(); toast('Import workspace thành công', 'success'); checkAuth();
+             } catch(err) { toast(err.message, 'error'); }
+           };
+           r.readAsText(file);
+        };
+        input.click();
+      }
+      if(a === 'logout') window.doLogout();
+      return;
+    }
 
-    // Posts Actions
-    document.querySelectorAll('[data-view-post]').forEach(el => el.onclick = () => viewPost(el.dataset.viewPost));
-    document.querySelectorAll('[data-edit-post]').forEach(el => el.onclick = () => editPost(el.dataset.editPost));
-    document.querySelectorAll('[data-delete-post]').forEach(el => el.onclick = () => deletePost(el.dataset.deletePost));
-    document.querySelectorAll('[data-duplicate-post]').forEach(el => el.onclick = () => duplicatePost(el.dataset.duplicatePost));
-    document.querySelectorAll('[data-cancel-post]').forEach(el => el.onclick = () => cancelPost(el.dataset.cancelPost));
-    document.querySelectorAll('[data-retry-post]').forEach(el => el.onclick = () => retryPost(el.dataset.retryPost));
+    // 5. Post Actions
+    if(e.target.closest('[data-view-post]')) { viewPost(e.target.closest('[data-view-post]').dataset.viewPost); return; }
+    if(e.target.closest('[data-edit-post]')) { editPost(e.target.closest('[data-edit-post]').dataset.editPost); return; }
+    if(e.target.closest('[data-delete-post]')) { deletePost(e.target.closest('[data-delete-post]').dataset.deletePost); return; }
+    if(e.target.closest('[data-duplicate-post]')) { duplicatePost(e.target.closest('[data-duplicate-post]').dataset.duplicatePost); return; }
+    if(e.target.closest('[data-cancel-post]')) { cancelPost(e.target.closest('[data-cancel-post]').dataset.cancelPost); return; }
+    if(e.target.closest('[data-retry-post]')) { retryPost(e.target.closest('[data-retry-post]').dataset.retryPost); return; }
     
-    // Filters & Tabs
-    document.querySelectorAll('[data-post-filter]').forEach(el => el.onclick = () => { state.postFilter = el.dataset.postFilter; save(); render(); });
-    document.querySelectorAll('[data-media-filter]').forEach(el => el.onclick = () => { state.mediaFilter = el.dataset.mediaFilter; save(); render(); });
-    document.querySelectorAll('[data-settings-tab]').forEach(el => el.onclick = () => { state.settingsTab = el.dataset.settingsTab; save(); render(); });
-    document.querySelectorAll('[data-cal-mode]').forEach(el => el.onclick = () => { state.calendarMode = el.dataset.calMode; save(); render(); });
+    // 6. Media Actions
+    if(e.target.closest('[data-preview-media]')) { previewMedia(e.target.closest('[data-preview-media]').dataset.previewMedia); return; }
+    if(e.target.closest('[data-download-media]')) { downloadMedia(e.target.closest('[data-download-media]').dataset.downloadMedia); return; }
+    if(e.target.closest('[data-copy-media-url]')) { copyMediaUrl(e.target.closest('[data-copy-media-url]').dataset.copyMediaUrl); return; }
+    if(e.target.closest('[data-rename-media]')) { renameMedia(e.target.closest('[data-rename-media]').dataset.renameMedia); return; }
+    if(e.target.closest('[data-delete-media]')) { deleteMedia(e.target.closest('[data-delete-media]').dataset.deleteMedia); return; }
+    if(e.target.closest('[data-remove-draft-media]')) { state.draft.mediaIds = state.draft.mediaIds.filter(x => x !== e.target.closest('[data-remove-draft-media]').dataset.removeDraftMedia); save(); render(); return; }
+
+    // 7. Bulk Actions
+    if(e.target.closest('[data-bulk-remove]')) { state.bulk = state.bulk.filter(x => x.id !== e.target.closest('[data-bulk-remove]').dataset.bulkRemove); save(); render(); return; }
+    if(e.target.closest('[data-bulk-retry]')) { bulkRetry(e.target.closest('[data-bulk-retry]').dataset.bulkRetry); return; }
+    if(e.target.closest('[data-bulk-preview]')) { previewBulk(e.target.closest('[data-bulk-preview]').dataset.bulkPreview); return; }
+
+    // 8. Queue & Accounts
+    if(e.target.closest('[data-retry-job]')) { retryJob(e.target.closest('[data-retry-job]').dataset.retryJob); return; }
+    if(e.target.closest('[data-reconnect-account]')) { reconnectAccount(e.target.closest('[data-reconnect-account]').dataset.reconnectAccount); return; }
+    if(e.target.closest('[data-refresh-account]')) { refreshAccount(e.target.closest('[data-refresh-account]').dataset.refreshAccount); return; }
+    if(e.target.closest('[data-disconnect-account]')) { disconnectAccount(e.target.closest('[data-disconnect-account]').dataset.disconnectAccount); return; }
+    if(e.target.closest('[data-delete-account]')) { deleteAccount(e.target.closest('[data-delete-account]').dataset.deleteAccount); return; }
+
+    // 9. Team
+    if(e.target.closest('[data-edit-user]')) { editUser(e.target.closest('[data-edit-user]').dataset.editUser); return; }
+    if(e.target.closest('[data-disable-user]')) { toggleUser(e.target.closest('[data-disable-user]').dataset.disableUser); return; }
+    if(e.target.closest('[data-reset-user]')) { resetUser(e.target.closest('[data-reset-user]').dataset.resetUser); return; }
+    if(e.target.closest('[data-delete-user]')) { deleteUser(e.target.closest('[data-delete-user]').dataset.deleteUser); return; }
+
+    // 10. Notifications
+    if(e.target.closest('[data-toggle-notif]')) { toggleNotif(e.target.closest('[data-toggle-notif]').dataset.toggleNotif); return; }
+    if(e.target.closest('[data-delete-notif]')) { deleteNotif(e.target.closest('[data-delete-notif]').dataset.deleteNotif); return; }
+
+    // 11. Create Post UI elements
+    if(e.target.closest('[data-platform-tab]')) { readDraftFromUI(); state.draft.activeTab = e.target.closest('[data-platform-tab]').dataset.platformTab; save(); render(); return; }
     
-    // Create Post Logic
-    document.querySelectorAll('[data-platform-check]').forEach(el => el.onchange = () => {
-      const p = el.dataset.platformCheck;
-      if(el.checked) {
+    // 12. AI Handling
+    if(e.target.closest('[data-copy-ai]')) {
+      const p = e.target.closest('[data-copy-ai]').dataset.copyAi;
+      const txt = p === 'YouTube' ? `Tiêu đề: ${window.__aiResults[p].title}\n${window.__aiResults[p].description}\nTags: ${window.__aiResults[p].tags}` : window.__aiResults[p];
+      navigator.clipboard?.writeText(txt); toast('Đã copy caption'); return;
+    }
+    if(e.target.closest('[data-apply-ai]')) { applyAI(e.target.closest('[data-apply-ai]').dataset.applyAi); return; }
+    if(e.target.closest('[data-edit-ai]')) { editAIBox(e.target.closest('[data-edit-ai]').dataset.editAi); return; }
+
+    // Explicit Buttons
+    if(e.target.closest('#openAI') || e.target.closest('#aiLibrary') || e.target.closest('#generateAIInline')) { openAIGenerator(); return; }
+    if(e.target.closest('#helpBtn')) { openHelp(); return; }
+    if(e.target.closest('#resetDraft')) { confirmModal('Xóa trắng bài viết', 'Tất cả nội dung bạn vừa soạn sẽ biến mất. Bạn chắc chứ?', () => { state.draft = defaultDraft(); editingPostId = null; save(); render(); }); return; }
+    if(e.target.closest('#saveDraft')) { saveDraft(); return; }
+    if(e.target.closest('#publishOrSchedule')) { savePostFromDraft(); return; }
+    if(e.target.closest('#browseMedia') || e.target.closest('#uploadMediaBtn') || e.target.closest('#bulkFiles')) { document.getElementById('hiddenFile').click(); return; }
+    if(e.target.closest('#addThread')) { readDraftFromUI(); state.draft.platforms.X.thread.push(''); save(); render(); return; }
+    if(e.target.closest('[data-remove-thread]')) { readDraftFromUI(); state.draft.platforms.X.thread.splice(Number(e.target.closest('[data-remove-thread]').dataset.removeThread), 1); save(); render(); return; }
+    if(e.target.closest('#mediaListToggle')) { state.mediaView = state.mediaView === 'grid' ? 'list' : 'grid'; save(); render(); return; }
+    if(e.target.closest('#bulkReset')) { state.bulk = []; save(); render(); return; }
+    if(e.target.closest('#generateBulkCaptions')) { generateBulkCaptions(); return; }
+    if(e.target.closest('#createBulkPosts')) { createBulkPosts(); return; }
+    if(e.target.closest('#applyBulkAll')) { applyBulkAll(); return; }
+    if(e.target.closest('#processQueue')) { processQueue(); return; }
+    if(e.target.closest('#clearSuccess')) { state.queue = state.queue.filter(j => j.status !== 'Success'); save(); audit('Cleared Success Jobs','Queue'); toast('Đã dọn dẹp các Queue đẩy thành công', 'success'); render(); return; }
+    if(e.target.closest('#addTeam')) { openUserModal(); return; }
+    if(e.target.closest('#rbacInfo')) { openRBAC(); return; }
+    if(e.target.closest('#connectAccount')) { openConnectModal(); return; }
+    if(e.target.closest('#refreshAllAccounts')) { state.accounts.forEach(a => a.lastSync = nowISO()); save(); audit('Refreshed Accounts','Social Accounts'); toast('Đã yêu cầu đồng bộ lại tất cả kênh','success'); render(); return; }
+    if(e.target.closest('#refreshAnalytics')) { state.analyticsSeed.engagement += Math.floor(Math.random() * 120); state.analyticsSeed.views += Math.floor(Math.random() * 800); save(); toast('Hệ thống Thống kê vừa được làm mới','success'); render(); return; }
+    if(e.target.closest('#markAllRead')) { state.notifications.forEach(n => n.read = true); save(); toast('Tất cả thông báo đã chuyển sang đã đọc'); render(); return; }
+    if(e.target.closest('#deleteRead')) { state.notifications = state.notifications.filter(n => !n.read); save(); toast('Đã dọn sạch thông báo cũ'); render(); return; }
+    
+    // Settings Tabs & Save
+    if(e.target.closest('[data-settings-tab]')) { state.settingsTab = e.target.closest('[data-settings-tab]').dataset.settingsTab; save(); render(); return; }
+    if(e.target.closest('#saveProfile')) { state.profile.name = document.getElementById('profileName').value.trim() || 'Sơn Dino'; save(); audit('Updated Profile', 'Profile'); toast('Đã cập nhật Hồ sơ'); render(); return; }
+    if(e.target.closest('#saveWorkspace')) { state.profile.workspace = document.getElementById('workspaceName').value.trim() || state.profile.workspace; save(); audit('Updated Workspace', 'Workspace'); toast('Đã cập nhật tên Workspace'); render(); return; }
+    if(e.target.closest('#saveTimezone')) { state.profile.timezone = document.getElementById('workspaceTimezone').value; save(); toast('Cập nhật Múi giờ thành công'); render(); return; }
+    if(e.target.closest('#saveAI')) { state.ai.provider = document.getElementById('aiProvider').value; state.ai.model = document.getElementById('aiModel').value; state.ai.apiKey = document.getElementById('aiKey').value; state.ai.temperature = Number(document.getElementById('aiTemp').value); save(); audit('Updated AI Settings','AI'); toast('Tham số Cấu hình AI đã được lưu'); render(); return; }
+    if(e.target.closest('#testTelegram')) { toast('Một kịch bản test Telegram đã được giả lập.', 'info'); addNotification('Info', 'Cảnh báo Telegram', 'Lệnh gửi tin đã thực hiện ở Local.'); return; }
+    if(e.target.closest('#saveTelegram')) { state.telegram.enabled = document.getElementById('tgEnabled').checked; state.telegram.botToken = document.getElementById('tgToken').value; state.telegram.chatId = document.getElementById('tgChat').value; save(); audit('Updated Telegram Settings','Telegram'); toast('Tham số Telegram đã được lưu'); render(); return; }
+    if(e.target.closest('#oauthArchitecture')) { openOAuthModal(); return; }
+    if(e.target.closest('#saveSettings')) {
+      state.settings = state.settings || {};
+      const selectVal = document.getElementById('themeSetting').value;
+      state.settings.theme = selectVal.includes('Dark') ? 'Dark' : 'Light';
+      document.documentElement.setAttribute('data-theme', state.settings.theme.toLowerCase());
+      save(); toast('Cấu hình Giao diện đã áp dụng thành công', 'success'); return;
+    }
+    
+    // Calendar Actions
+    if(e.target.closest('#prevMonth')) { shiftCal(-1); return; }
+    if(e.target.closest('#nextMonth')) { shiftCal(1); return; }
+    if(e.target.closest('#todayCal')) { calendarSelectedDate = new Date().toISOString().slice(0,10); state.calendarDate = calendarSelectedDate; save(); render(); return; }
+    if(e.target.closest('[data-cal-mode]')) { state.calendarMode = e.target.closest('[data-cal-mode]').dataset.calMode; save(); render(); return; }
+    if(e.target.closest('[data-cal-post]')) { viewPost(e.target.closest('[data-cal-post]').dataset.calPost); return; }
+    
+    // Filter click
+    if(e.target.closest('[data-post-filter]')) { state.postFilter = e.target.closest('[data-post-filter]').dataset.postFilter; save(); render(); return; }
+    if(e.target.closest('[data-media-filter]')) { state.mediaFilter = e.target.closest('[data-media-filter]').dataset.mediaFilter; save(); render(); return; }
+  });
+
+  // User menu outside click
+  document.getElementById('userMenuBtn').onclick = (e) => { e.stopPropagation(); document.getElementById('userMenu').classList.toggle('show'); };
+  document.addEventListener('click', e => { if(!e.target.closest('#userMenuBtn') && !e.target.closest('#userMenu')) document.getElementById('userMenu').classList.remove('show'); });
+  document.getElementById('modalBackdrop').addEventListener('click', e => { if(e.target.id === 'modalBackdrop') closeModal(); });
+  
+  // Non-click event listeners
+  document.addEventListener('change', e => {
+    // Platform Checkbox
+    if(e.target.matches('[data-platform-check]')) {
+      const p = e.target.dataset.platformCheck;
+      if(e.target.checked) {
         if(!state.draft.selectedPlatforms.includes(p)) state.draft.selectedPlatforms.push(p);
         state.draft.platforms[p] = state.draft.platforms[p] || defaultDraft().platforms[p];
         state.draft.activeTab = p;
@@ -1492,775 +1502,91 @@ html[data-theme="dark"] .grid-cell { background: #334155; }
         if(state.draft.activeTab === p) state.draft.activeTab = state.draft.selectedPlatforms[0] || 'Facebook';
       }
       save(); render();
-    });
-    
-    document.querySelectorAll('[data-platform-tab]').forEach(el => el.onclick = () => { readDraftFromUI(); state.draft.activeTab = el.dataset.platformTab; save(); render(); });
-    document.querySelectorAll('[data-remove-draft-media]').forEach(el => el.onclick = () => { state.draft.mediaIds = state.draft.mediaIds.filter(x => x !== el.dataset.removeDraftMedia); save(); render(); });
-    
-    // Lắng nghe sự kiện Checkbox cho Việc Chọn Account
-    document.querySelectorAll('[data-draft-account]').forEach(el => el.onchange = () => {
-      readDraftFromUI();
-      render();
-    });
-
-    // Media Library Actions
-    document.querySelectorAll('[data-preview-media]').forEach(el => el.onclick = () => previewMedia(el.dataset.previewMedia));
-    document.querySelectorAll('[data-download-media]').forEach(el => el.onclick = () => downloadMedia(el.dataset.downloadMedia));
-    document.querySelectorAll('[data-copy-media-url]').forEach(el => el.onclick = () => copyMediaUrl(el.dataset.copyMediaUrl));
-    document.querySelectorAll('[data-rename-media]').forEach(el => el.onclick = () => renameMedia(el.dataset.renameMedia));
-    document.querySelectorAll('[data-delete-media]').forEach(el => el.onclick = () => deleteMedia(el.dataset.deleteMedia));
-    
-    // Bulk Actions
-    document.querySelectorAll('[data-bulk-remove]').forEach(el => el.onclick = () => { state.bulk = state.bulk.filter(x => x.id !== el.dataset.bulkRemove); save(); render(); });
-    document.querySelectorAll('[data-bulk-retry]').forEach(el => el.onclick = () => bulkRetry(el.dataset.bulkRetry));
-    document.querySelectorAll('[data-bulk-preview]').forEach(el => el.onclick = () => previewBulk(el.dataset.bulkPreview));
-    
-    // Queue / Accounts / Team
-    document.querySelectorAll('[data-retry-job]').forEach(el => el.onclick = () => retryJob(el.dataset.retryJob));
-    document.querySelectorAll('[data-reconnect-account]').forEach(el => el.onclick = () => reconnectAccount(el.dataset.reconnectAccount));
-    document.querySelectorAll('[data-refresh-account]').forEach(el => el.onclick = () => refreshAccount(el.dataset.refreshAccount));
-    document.querySelectorAll('[data-disconnect-account]').forEach(el => el.onclick = () => disconnectAccount(el.dataset.disconnectAccount));
-    document.querySelectorAll('[data-delete-account]').forEach(el => el.onclick = () => deleteAccount(el.dataset.deleteAccount));
-    document.querySelectorAll('[data-edit-user]').forEach(el => el.onclick = () => editUser(el.dataset.editUser));
-    document.querySelectorAll('[data-disable-user]').forEach(el => el.onclick = () => toggleUser(el.dataset.disableUser));
-    document.querySelectorAll('[data-reset-user]').forEach(el => el.onclick = () => resetUser(el.dataset.resetUser));
-    document.querySelectorAll('[data-delete-user]').forEach(el => el.onclick = () => deleteUser(el.dataset.deleteUser));
-    document.querySelectorAll('[data-toggle-notif]').forEach(el => el.onclick = () => toggleNotif(el.dataset.toggleNotif));
-    document.querySelectorAll('[data-delete-notif]').forEach(el => el.onclick = () => deleteNotif(el.dataset.deleteNotif));
-    
-    // Calendar Drag and Drop
-    document.querySelectorAll('[data-cal-post]').forEach(el => el.onclick = () => viewPost(el.dataset.calPost));
-    document.querySelectorAll('[data-cal-post]').forEach(el => {
-      el.ondragstart = ev => ev.dataTransfer.setData('text/plain', el.dataset.calPost);
-    });
-    document.querySelectorAll('[data-cal-cell]').forEach(cell => {
-      cell.ondragover = ev => ev.preventDefault();
-      cell.ondrop = ev => {
-        ev.preventDefault();
-        const id = ev.dataTransfer.getData('text/plain');
-        const p = state.posts.find(x => x.id === id);
-        if(!p) return;
-        const time = p.schedule ? p.schedule.slice(11,16) : '18:30';
-        p.schedule = `${cell.dataset.calCell}T${time}:00+07:00`;
-        p.status = 'Scheduled';
-        audit('Rescheduled Post', `Post #${p.id}`);
-        save(); toast('Đã đổi lịch bằng kéo & thả', 'success'); render();
-      };
-    });
-
-    // Media Draft Drag and Drop Reordering
-    let draggedMediaId = null;
-    document.querySelectorAll('[data-draft-media]').forEach(el => {
-      el.ondragstart = (e) => { draggedMediaId = el.dataset.draftMedia; e.dataTransfer.effectAllowed = 'move'; };
-      el.ondragover = (e) => { e.preventDefault(); el.classList.add('drag-over'); e.dataTransfer.dropEffect = 'move'; };
-      el.ondragleave = (e) => { el.classList.remove('drag-over'); };
-      el.ondrop = (e) => {
-        e.preventDefault();
-        el.classList.remove('drag-over');
-        const targetId = el.dataset.draftMedia;
-        if(draggedMediaId && draggedMediaId !== targetId) {
-          const arr = state.draft.mediaIds;
-          const fromIdx = arr.indexOf(draggedMediaId);
-          const toIdx = arr.indexOf(targetId);
-          arr.splice(fromIdx, 1);
-          arr.splice(toIdx, 0, draggedMediaId);
-          save(); render();
-        }
-      };
-    });
-    
-    // Explicit Button Bindings
-    ['openAI', 'aiLibrary', 'helpBtn'].forEach(id => {
-      const el = document.getElementById(id);
-      if(el) el.onclick = () => id === 'helpBtn' ? openHelp() : openAIGenerator();
-    });
-    
-    const resetDraftEl = document.getElementById('resetDraft');
-    if(resetDraftEl) resetDraftEl.onclick = () => { confirmModal('Xóa trắng bài viết', 'Tất cả nội dung bạn vừa soạn sẽ biến mất. Bạn chắc chứ?', () => { state.draft = defaultDraft(); editingPostId = null; save(); render(); }); };
-    
-    const saveDraftEl = document.getElementById('saveDraft');
-    if(saveDraftEl) saveDraftEl.onclick = saveDraft;
-    
-    const publishEl = document.getElementById('publishOrSchedule');
-    if(publishEl) publishEl.onclick = savePostFromDraft;
-    
-    const browseMediaEl = document.getElementById('browseMedia');
-    if(browseMediaEl) browseMediaEl.onclick = () => document.getElementById('hiddenFile').click();
-    
-    const createDropEl = document.getElementById('createDrop');
-    if(createDropEl) {
-      createDropEl.ondragover = e => { e.preventDefault(); createDropEl.style.background = 'var(--surface-2)'; };
-      createDropEl.ondragleave = e => { createDropEl.style.background = 'var(--surface)'; };
-      createDropEl.ondrop = e => { e.preventDefault(); handleFiles(e.dataTransfer.files, 'create'); };
     }
-    
-    document.querySelectorAll('[name=scheduleMode]').forEach(r => r.onchange = () => { readDraftFromUI(); render(); });
-    
-    const addThreadEl = document.getElementById('addThread');
-    if(addThreadEl) addThreadEl.onclick = () => { readDraftFromUI(); state.draft.platforms.X.thread.push(''); save(); render(); };
-    
-    document.querySelectorAll('[data-remove-thread]').forEach(el => el.onclick = () => { readDraftFromUI(); state.draft.platforms.X.thread.splice(Number(el.dataset.removeThread), 1); save(); render(); });
-    
-    const xText = document.querySelector('[data-draft-field="X.text"]');
-    if(xText) xText.oninput = e => { document.getElementById('xCount').textContent = `${e.target.value.length}/280 ký tự`; };
-    
-    const postSearch = document.getElementById('postSearch');
-    if(postSearch) postSearch.oninput = e => { state.postSearch = e.target.value; save(); clearTimeout(window.__searchTimer); window.__searchTimer = setTimeout(render, 180); };
-    
-    const mediaSearch = document.getElementById('mediaSearch');
-    if(mediaSearch) mediaSearch.oninput = e => { state.postSearch = e.target.value; save(); clearTimeout(window.__searchTimer); window.__searchTimer = setTimeout(render, 180); };
-    
-    const sortPosts = document.getElementById('sortPosts');
-    if(sortPosts) sortPosts.onchange = () => render();
-    
-    const mediaListToggle = document.getElementById('mediaListToggle');
-    if(mediaListToggle) mediaListToggle.onclick = () => { state.mediaView = state.mediaView === 'grid' ? 'list' : 'grid'; save(); render(); };
-    
-    const uploadMediaBtn = document.getElementById('uploadMediaBtn');
-    if(uploadMediaBtn) uploadMediaBtn.onclick = () => document.getElementById('hiddenFile').click();
-    
-    const bulkFiles = document.getElementById('bulkFiles');
-    if(bulkFiles) bulkFiles.onclick = () => document.getElementById('hiddenFile').click();
-    
-    const bulkDrop = document.getElementById('bulkDrop');
-    if(bulkDrop) {
-      bulkDrop.ondragover = e => e.preventDefault(); 
-      bulkDrop.ondrop = e => { e.preventDefault(); handleFiles(e.dataTransfer.files, 'bulk'); };
+    // Draft Account Checkbox
+    if(e.target.matches('[data-draft-account]')) {
+      readDraftFromUI(); render();
     }
-    
-    const bulkReset = document.getElementById('bulkReset');
-    if(bulkReset) bulkReset.onclick = () => { state.bulk = []; save(); render(); };
-    
-    const genBulkCaptions = document.getElementById('generateBulkCaptions');
-    if(genBulkCaptions) genBulkCaptions.onclick = generateBulkCaptions;
-    
-    const createBulkPostsBtn = document.getElementById('createBulkPosts');
-    if(createBulkPostsBtn) createBulkPostsBtn.onclick = createBulkPosts;
-    
-    const applyBulkAllBtn = document.getElementById('applyBulkAll');
-    if(applyBulkAllBtn) applyBulkAllBtn.onclick = applyBulkAll;
-    
-    const processQueueBtn = document.getElementById('processQueue');
-    if(processQueueBtn) processQueueBtn.onclick = processQueue;
-    
-    const clearSuccessBtn = document.getElementById('clearSuccess');
-    if(clearSuccessBtn) clearSuccessBtn.onclick = () => { state.queue = state.queue.filter(j => j.status !== 'Success'); save(); audit('Cleared Success Jobs','Queue'); toast('Đã dọn dẹp các Queue đẩy thành công', 'success'); render(); };
-    
-    const addTeamBtn = document.getElementById('addTeam');
-    if(addTeamBtn) addTeamBtn.onclick = () => openUserModal();
-    
-    const rbacInfoBtn = document.getElementById('rbacInfo');
-    if(rbacInfoBtn) rbacInfoBtn.onclick = () => openRBAC();
-    
-    const connectAccountBtn = document.getElementById('connectAccount');
-    if(connectAccountBtn) connectAccountBtn.onclick = () => openConnectModal();
-    
-    const refreshAllAccounts = document.getElementById('refreshAllAccounts');
-    if(refreshAllAccounts) refreshAllAccounts.onclick = () => { state.accounts.forEach(a => a.lastSync = nowISO()); save(); audit('Refreshed Accounts','Social Accounts'); toast('Đã yêu cầu đồng bộ lại tất cả kênh','success'); render(); };
-    
-    const refreshAnalytics = document.getElementById('refreshAnalytics');
-    if(refreshAnalytics) refreshAnalytics.onclick = () => { state.analyticsSeed.engagement += Math.floor(Math.random() * 120); state.analyticsSeed.views += Math.floor(Math.random() * 800); save(); toast('Hệ thống Thống kê vừa được làm mới','success'); render(); };
-    
-    const markAllRead = document.getElementById('markAllRead');
-    if(markAllRead) markAllRead.onclick = () => { state.notifications.forEach(n => n.read = true); save(); toast('Tất cả thông báo đã chuyển sang đã đọc'); render(); };
-    
-    const deleteRead = document.getElementById('deleteRead');
-    if(deleteRead) deleteRead.onclick = () => { state.notifications = state.notifications.filter(n => !n.read); save(); toast('Đã dọn sạch thông báo cũ'); render(); };
-    
-    const saveProfile = document.getElementById('saveProfile');
-    if(saveProfile) saveProfile.onclick = () => { state.profile.name = document.getElementById('profileName').value.trim() || 'Sơn Dino'; save(); audit('Updated Profile', 'Profile'); toast('Đã cập nhật Hồ sơ'); render(); };
-    
-    const saveWorkspaceBtn = document.getElementById('saveWorkspace');
-    if(saveWorkspaceBtn) saveWorkspaceBtn.onclick = () => { state.profile.workspace = document.getElementById('workspaceName').value.trim() || state.profile.workspace; save(); audit('Updated Workspace', 'Workspace'); toast('Đã cập nhật tên Workspace'); render(); };
-    
-    const saveTimezone = document.getElementById('saveTimezone');
-    if(saveTimezone) saveTimezone.onclick = () => { state.profile.timezone = document.getElementById('workspaceTimezone').value; save(); toast('Cập nhật Múi giờ thành công'); render(); };
-    
-    const saveAI = document.getElementById('saveAI');
-    if(saveAI) saveAI.onclick = () => { state.ai.provider = document.getElementById('aiProvider').value; state.ai.model = document.getElementById('aiModel').value; state.ai.apiKey = document.getElementById('aiKey').value; state.ai.temperature = Number(document.getElementById('aiTemp').value); save(); audit('Updated AI Settings','AI'); toast('Tham số Cấu hình AI đã được lưu'); render(); };
-    
-    const openAIGeneratorBtn = document.getElementById('openAIGenerator');
-    if(openAIGeneratorBtn) openAIGeneratorBtn.onclick = openAIGenerator;
-    
-    const testTelegram = document.getElementById('testTelegram');
-    if(testTelegram) testTelegram.onclick = () => { toast('Một kịch bản test Telegram đã được giả lập.', 'info'); addNotification('Info', 'Cảnh báo Telegram', 'Lệnh gửi tin đã thực hiện ở Local.'); };
-    
-    const saveTelegram = document.getElementById('saveTelegram');
-    if(saveTelegram) saveTelegram.onclick = () => { state.telegram.enabled = document.getElementById('tgEnabled').checked; state.telegram.botToken = document.getElementById('tgToken').value; state.telegram.chatId = document.getElementById('tgChat').value; save(); audit('Updated Telegram Settings','Telegram'); toast('Tham số Telegram đã được lưu'); render(); };
-    
-    const oauthArchitecture = document.getElementById('oauthArchitecture');
-    if(oauthArchitecture) oauthArchitecture.onclick = openOAuthModal;
-    
-    const saveSettings = document.getElementById('saveSettings');
-    if(saveSettings) saveSettings.onclick = () => {
-      state.settings = state.settings || {};
-      const selectVal = document.getElementById('themeSetting').value;
-      state.settings.theme = selectVal.includes('Dark') ? 'Dark' : 'Light';
-      document.documentElement.setAttribute('data-theme', state.settings.theme.toLowerCase());
-      save();
-      toast('Cấu hình Giao diện đã áp dụng thành công', 'success');
-    };
-    
-    const importWorkspaceBtn = document.getElementById('importWorkspaceBtn');
-    if(importWorkspaceBtn) importWorkspaceBtn.onclick = () => window.importWorkspace();
-    
-    const exportWorkspaceBtn = document.getElementById('exportWorkspaceBtn');
-    if(exportWorkspaceBtn) exportWorkspaceBtn.onclick = exportWorkspace;
-    
-    const prevMonth = document.getElementById('prevMonth');
-    if(prevMonth) prevMonth.onclick = () => shiftCal(-1);
-    
-    const nextMonth = document.getElementById('nextMonth');
-    if(nextMonth) nextMonth.onclick = () => shiftCal(1);
-    
-    const todayCal = document.getElementById('todayCal');
-    if(todayCal) todayCal.onclick = () => { calendarSelectedDate = new Date().toISOString().slice(0,10); state.calendarDate = calendarSelectedDate; save(); render(); };
-  }
-
-  function openHelp() {
-    openModal(`
-      <div class="modal-header"><div class="modal-title">Trợ giúp sử dụng Dino Social Hub</div><button class="close" data-close-modal><i data-lucide="x"></i></button></div>
-      <div class="modal-body">
-        <div class="notice info"><b>Bạn đang dùng phiên bản Local Demo.</b><br>Mọi dữ liệu bạn tạo (Media, Bài viết, Lịch đăng) đều lưu trực tiếp vào ổ cứng trình duyệt (không upload lên mạng). Hãy thử trải nghiệm luồng: Tạo bài → Dùng AI Sinh Caption → Xem Lịch Đăng → Quản lý Queue.</div>
-        <div style="margin-top:12px" class="timeline">
-          <div class="timeline-item"><div class="timeline-dot"></div><div><b>Tính năng Chuyển đổi dữ liệu</b><span>Bạn có thể kết xuất (Export) dữ liệu đang tạo ở máy này sang file JSON, gửi cho máy khác và bấm Import để làm việc tiếp.</span></div></div>
-          <div class="timeline-item"><div class="timeline-dot"></div><div><b>Lộ trình Phát triển Cấp Doanh nghiệp</b><span>Khi ráp nối với Server thực tế, tính năng Queue sẽ dùng BullMQ để đẩy bài, đảm bảo không sập ngay cả khi hẹn lịch 1.000 bài cùng một lúc.</span></div></div>
-        </div>
-      </div>
-      <div class="modal-footer"><button class="btn primary" data-close-modal>Đã nắm rõ</button></div>
-    `);
-  }
-
-  function saveDraft() {
-    readDraftFromUI();
-    const existing = editingPostId ? state.posts.find(p => p.id === editingPostId) : null;
-    
-    let autoTitle = '';
-    for(const p of state.draft.selectedPlatforms) {
-       const content = state.draft.platforms[p];
-       if(content.caption) { autoTitle = content.caption; break; }
-       if(content.text) { autoTitle = content.text; break; }
-       if(content.title) { autoTitle = content.title; break; }
+    // Schedule Mode
+    if(e.target.matches('[name=scheduleMode]')) {
+      readDraftFromUI(); render();
     }
-    if(autoTitle) {
-       autoTitle = autoTitle.replace(/\n/g, ' ').trim();
-       if(autoTitle.length > 40) autoTitle = autoTitle.substring(0, 40) + '...';
-    }
-    const finalTitle = autoTitle || `Bài viết nháp - ${fmtDate(nowISO(), true)}`;
-
-    if(existing) {
-      existing.title = finalTitle;
-      existing.platforms = deepClone(Object.fromEntries(state.draft.selectedPlatforms.map(p => [p, state.draft.platforms[p]])));
-      existing.mediaIds = [...state.draft.mediaIds];
-      existing.status = 'Draft';
-      audit('Updated Post', `Post #${existing.id}`);
-      toast('Bản nháp đã được ghi đè', 'success');
-    } else {
-      const p = createPostFromDraft('Draft');
-      p.title = finalTitle;
-      state.posts.unshift(p);
-      audit('Created Draft', `Post #${p.id}`);
-      toast('Đã lưu nháp an toàn', 'success');
-    }
-    save(); render();
-  }
-
-  function createPostFromDraft(status) {
-    const d = deepClone(state.draft);
-    let schedule = '';
-    if(d.scheduleMode === 'schedule') schedule = `${d.scheduleDate}T${d.scheduleTime}:00+07:00`;
-    
-    let autoTitle = '';
-    for(const p of d.selectedPlatforms) {
-       const content = d.platforms[p];
-       if(content.caption) { autoTitle = content.caption; break; }
-       if(content.text) { autoTitle = content.text; break; }
-       if(content.title) { autoTitle = content.title; break; }
-    }
-    if(autoTitle) {
-       autoTitle = autoTitle.replace(/\n/g, ' ').trim();
-       if(autoTitle.length > 40) autoTitle = autoTitle.substring(0, 40) + '...';
-    }
-    const finalTitle = autoTitle || `Bài viết - ${fmtDate(nowISO(), true)}`;
-
-    return {
-      id: uid('p'), title: finalTitle, createdBy: state.profile.name,
-      createdAt: nowISO(), status, schedule,
-      platforms: Object.fromEntries(d.selectedPlatforms.map(p => [p, d.platforms[p]])),
-      mediaIds: [...d.mediaIds]
-    };
-  }
-
-  function savePostFromDraft() {
-    readDraftFromUI();
-    if(!state.draft.selectedPlatforms.length) { toast('Cần kích chọn ít nhất một mạng xã hội đích', 'error'); return; }
-    
-    const status = state.draft.scheduleMode === 'schedule' ? 'Scheduled' : 'Published';
-    if(state.draft.scheduleMode === 'schedule' && !state.draft.scheduleDate) { toast('Lỗi: Bạn quên chưa chọn lịch hệ thống.', 'error'); return; }
-    
-    let p = editingPostId ? state.posts.find(x => x.id === editingPostId) : null;
-    
-    let autoTitle = '';
-    for(const plat of state.draft.selectedPlatforms) {
-       const content = state.draft.platforms[plat];
-       if(content.caption) { autoTitle = content.caption; break; }
-       if(content.text) { autoTitle = content.text; break; }
-       if(content.title) { autoTitle = content.title; break; }
-    }
-    if(autoTitle) {
-       autoTitle = autoTitle.replace(/\n/g, ' ').trim();
-       if(autoTitle.length > 40) autoTitle = autoTitle.substring(0, 40) + '...';
-    }
-    const finalTitle = autoTitle || `Bài viết - ${fmtDate(nowISO(), true)}`;
-
-    if(p) {
-      p.title = finalTitle;
-      p.platforms = Object.fromEntries(state.draft.selectedPlatforms.map(x => [x, state.draft.platforms[x]]));
-      p.mediaIds = [...state.draft.mediaIds];
-      p.status = status;
-      p.schedule = state.draft.scheduleMode === 'schedule' ? `${state.draft.scheduleDate}T${state.draft.scheduleTime}:00+07:00` : nowISO();
-    } else {
-      p = createPostFromDraft(status);
-      state.posts.unshift(p);
-    }
-    
-    if(status === 'Published') { addNotification('Success', 'Push hoàn tất', `Chiến dịch đã đẩy thẳng lên MXH ảo.`); } 
-    else { addNotification('Info', 'Vào Lịch đăng', `Chiến dịch đã ghi nhận lịch phát sóng.`); }
-    
-    audit(status === 'Published' ? 'Published Demo Post' : 'Scheduled Post', `Post #${p.id}`);
-    if(status === 'Published') queueForPost(p, 'Demo');
-    
-    save();
-    toast(status === 'Published' ? 'Post thành công (Giả lập)' : 'Đã ấn định Lịch Hệ thống', 'success');
-    state.draft = defaultDraft();
-    editingPostId = null;
-    navigate('posts');
-  }
-
-  function queueForPost(p, platformOverride) {
-    const ps = platformOverride === 'Demo' ? Object.keys(p.platforms) : Object.keys(p.platforms || {});
-    ps.forEach(platform => {
-      const selectedAccountIds = p.platforms[platform].accountIds || [];
-      if (selectedAccountIds.length > 0) {
-        selectedAccountIds.forEach(accId => {
-          const acc = state.accounts.find(a => a.id === accId);
-          state.queue.unshift({
-            id: uid('j'), postId: p.id, platform, accountId: accId,
-            status: acc?.status === 'Connected' ? 'Waiting' : 'Authentication Required',
-            attempts: 0, created: nowISO(), nextRetry: '—',
-            error: acc?.status === 'Connected' ? '' : 'Kênh chưa có quyền Auth'
-          });
-        });
-      } else {
-         const acc = state.accounts.find(a => a.platform === platform);
-         state.queue.unshift({
-            id: uid('j'), postId: p.id, platform, accountId: acc?.id || '',
-            status: acc?.status === 'Connected' ? 'Waiting' : 'Authentication Required',
-            attempts: 0, created: nowISO(), nextRetry: '—',
-            error: acc?.status === 'Connected' ? '' : 'Chưa chọn Tài khoản đích'
-         });
-      }
-    });
-  }
-
-  function editPost(id) {
-    const p = state.posts.find(x => x.id === id);
-    if(!p) return;
-    editingPostId = id;
-    state.draft = draftFromPost(p);
-    navigate('create');
-  }
-
-  function duplicatePost(id) {
-    const p = state.posts.find(x => x.id === id);
-    if(!p) return;
-    const n = deepClone(p);
-    n.id = uid('p');
-    n.title = `${p.title} (Nhân bản)`;
-    n.status = 'Draft';
-    n.createdAt = nowISO();
-    n.createdBy = state.profile.name;
-    n.schedule = '';
-    state.posts.unshift(n);
-    audit('Duplicated Post', `Post #${n.id}`);
-    save(); toast('Nhân bản Post thành công'); render();
-  }
-
-  function deletePost(id) {
-    const p = state.posts.find(x => x.id === id);
-    if(!p) return;
-    confirmModal('Cảnh báo Xóa bài', `Bạn có chắc chắn muốn HỦY và XÓA HOÀN TOÀN chiến dịch không?`, () => {
-      state.posts = state.posts.filter(x => x.id !== id);
-      state.queue = state.queue.filter(x => x.postId !== id);
-      audit('Deleted Post', `Post #${id}`);
-      save(); toast('Dọn dẹp Post thành công', 'success'); render();
-    });
-  }
-
-  function cancelPost(id) {
-    const p = state.posts.find(x => x.id === id);
-    if(!p) return;
-    p.status = 'Cancelled';
-    state.queue.filter(j => j.postId === id).forEach(j => j.status = 'Failed');
-    audit('Cancelled Post', `Post #${id}`);
-    save(); addNotification('Info', 'Post cancelled', p.title);
-    toast('Đã gỡ bỏ kế hoạch phát sóng', 'success'); render();
-  }
-
-  function retryPost(id) {
-    const p = state.posts.find(x => x.id === id);
-    if(!p) return;
-    p.status = 'Retrying';
-    queueForPost(p, Object.keys(p.platforms || {})[0]);
-    audit('Retried Post', `Post #${id}`);
-    save(); toast('Tái nạp vào hàng đợi (Queue) thành công', 'info'); render();
-  }
-
-  function viewPost(id) {
-    const p = state.posts.find(x => x.id === id);
-    if(!p) return;
-    openModal(`
-      <div class="modal-header">
-        <div><div class="modal-title">${escape(p.title)}</div><div class="help">Mã Post: #${escape(p.id)} · Khởi tạo lúc: ${fmtDate(p.createdAt)}</div></div>
-        <button class="close" data-close-modal><i data-lucide="x"></i></button>
-      </div>
-      <div class="modal-body">
-        <div class="split">${statusPill(p.status)}<div class="platforms">${platformListForPost(p)}</div></div>
-        <div class="form-grid" style="margin-top:14px">
-          <div class="field"><span class="label">Khung giờ Lên sóng</span><div class="notice info">${fmtDate(p.schedule)}</div></div>
-          <div class="field"><span class="label">Người thực thi</span><div class="notice info">${escape(p.createdBy)}</div></div>
-        </div>
-        <div style="margin-top:14px"><div class="label">Nội dung chi tiết trên MXH</div>
-          ${Object.entries(p.platforms||{}).map(([pl,c])=>`<div class="card card-pad" style="margin-top:8px"><div class="split"><b style="font-size:11px">${pl}</b>${platformBadge(pl)}</div><div class="help" style="white-space:pre-wrap;margin-top:7px">${escape(c.caption||c.text||c.description||c.title||'')}</div></div>`).join('')}
-        </div>
-        ${p.error ? `<div class="notice danger" style="margin-top:12px"><b>Logs Lỗi:</b> ${escape(p.error)}<br>Số lần Server cố thử lại: ${p.retryAttempts||0}/5</div>` : ''}
-      </div>
-      <div class="modal-footer"><button class="btn" data-close-modal>Tắt cửa sổ</button><button class="btn primary" id="modalEditPost">Mở Editor Chỉnh sửa</button></div>
-    `);
-    document.getElementById('modalEditPost').onclick = () => { closeModal(); editPost(id); };
-    lucide.createIcons();
-  }
-
-  function handleFiles(fileList, target) {
-    const files = [...fileList];
-    if(!files.length) return;
-    const existingCount = target === 'bulk' ? state.bulk.length : state.media.length;
-    if(target === 'bulk' && existingCount + files.length > 100) { toast(`Dung lượng hệ thống xử lý Bulk chỉ nhận 100 Files/Lần. Bạn đã nạp ${existingCount}.`, 'error'); return; }
-    
-    const allowed = ['image/jpeg', 'image/png', 'image/webp', 'video/mp4', 'video/quicktime'];
-    const valid = files.filter(f => allowed.includes(f.type));
-    if(valid.length < files.length) toast('Trình duyệt phát hiện một số File định dạng rác / nguy hiểm nên đã tự loại bỏ', 'warning');
-    valid.forEach(f => processFile(f, target));
-  }
-
-  function processFile(file, target) {
-    if(file.size > 25*1024*1024) { toast(`Server Demo từ chối file quá nặng (${file.name})`, 'error'); return; }
-    const type = file.type.startsWith('video/') ? 'video' : 'image';
-    const id = uid(target === 'bulk' ? 'b' : 'm');
-    const rec = { id, name: file.name, size: file.size, type, duration: type === 'video' ? 'Demo / Chưa phân tích được Frame' : '—', status: target === 'bulk' ? 'Uploading' : 'Ready', progress: 0, createdAt: nowISO(), usedCount: 0, preview: '' };
-    
-    if(type === 'image') {
-      const reader = new FileReader();
-      reader.onload = () => { rec.preview = reader.result; finishFile(rec, target); };
-      reader.readAsDataURL(file);
-    } else {
-      const url = URL.createObjectURL(file);
-      rec.preview = url;
-      finishFile(rec, target);
-    }
-  }
-
-  function finishFile(rec, target) {
-    if(target === 'bulk') {
-      state.bulk.push(rec); save(); render();
-      let p = 0;
-      const timer = setInterval(() => {
-        p += 20;
-        const x = state.bulk.find(b => b.id === rec.id);
-        if(!x) { clearInterval(timer); return; }
-        x.progress = p;
-        x.status = p < 40 ? 'Uploading' : p < 80 ? 'Processing' : 'Ready';
-        save();
-        if(p >= 100) {
-          clearInterval(timer);
-          x.status = 'Ready'; x.progress = 100;
-          addNotification('Success', 'File Bulk đã vào ổ lưu', x.name);
-        }
-        render();
-      }, 90);
-    } else {
-      state.media.unshift(rec);
-      if (target === 'create' && state.draft) {
-        if(!state.draft.mediaIds) state.draft.mediaIds = [];
-        state.draft.mediaIds.push(rec.id);
-      }
-      save(); audit('Uploaded Media', rec.name);
-      toast(`Đã tải lên & đính kèm File ${rec.name}`, 'success'); render();
-    }
-  }
-
-  function previewMedia(id) { const m = state.media.find(x => x.id === id); if(!m) return; openPreview(m); }
-  function previewBulk(id) { const m = state.bulk.find(x => x.id === id); if(!m) return; openPreview(m); }
-  
-  function openPreview(m) {
-    openModal(`
-      <div class="modal-header"><div class="modal-title">Xem File Nhanh: ${escape(m.name)}</div><button class="close" data-close-modal><i data-lucide="x"></i></button></div>
-      <div class="modal-body"><div style="background:var(--bg);border:1px solid var(--line-2);border-radius:10px;min-height:320px;display:grid;place-items:center;overflow:hidden">${m.preview ? (m.type === 'video' ? `<video controls src="${m.preview}" style="max-width:100%;max-height:500px"></video>` : `<img src="${m.preview}" style="max-width:100%;max-height:500px;object-fit:contain">`) : `<i data-lucide="file" style="width:50px;color:#94a3b8"></i>`}</div><div class="help" style="margin-top:10px">${m.type.toUpperCase()} · Dung lượng: ${formatSize(m.size)}</div></div>
-      <div class="modal-footer"><button class="btn" data-close-modal>Đóng Trình xem</button></div>
-    `);
-  }
-
-  function downloadMedia(id) {
-    const m = state.media.find(x => x.id === id); if(!m) return;
-    if(!m.preview) { toast('Hệ thống LocalStorage không móc nối được File thô của thiết bị', 'warning'); return; }
-    const a = document.createElement('a'); a.href = m.preview; a.download = m.name; a.click(); toast('Đang bắt đầu Tải xuống Browser');
-  }
-
-  function copyMediaUrl(id) {
-    const m = state.media.find(x => x.id === id); if(!m) return;
-    const value = m.preview || `demo://media/${m.id}`;
-    navigator.clipboard?.writeText(value); toast('Mã URL CDN Ảo đã nạp vào Clipboard', 'success');
-  }
-
-  function renameMedia(id) {
-    const m = state.media.find(x => x.id === id); if(!m) return;
-    openModal(`
-      <div class="modal-header"><div class="modal-title">Cấu trúc Tên Media</div><button class="close" data-close-modal><i data-lucide="x"></i></button></div>
-      <div class="modal-body"><label class="field"><span class="label">Tên File hiển thị trong Kho</span><input class="input" id="renameInput" value="${escape(m.name)}"></label></div>
-      <div class="modal-footer"><button class="btn" data-close-modal>Từ chối</button><button class="btn primary" id="renameSave">Lưu tên mới</button></div>
-    `);
-    document.getElementById('renameSave').onclick = () => { m.name = document.getElementById('renameInput').value.trim() || m.name; audit('Renamed Media', m.name); save(); closeModal(); toast('File System đã map lại tên'); render(); };
-  }
-
-  function deleteMedia(id) {
-    const m = state.media.find(x => x.id === id); if(!m) return;
-    confirmModal('Quét sạch File', `Phần Media "${m.name}" sẽ bị gỡ triệt để khỏi các Bài viết Bản Nháp đang liên kết. Cho phép?`, () => {
-      state.media = state.media.filter(x => x.id !== id);
-      state.posts.forEach(p => p.mediaIds = (p.mediaIds || []).filter(x => x !== id));
-      audit('Deleted Media', m.name); save(); toast('Dọn Rác thành công'); render();
-    });
-  }
-
-  function bulkRetry(id) {
-    const b = state.bulk.find(x => x.id === id); if(!b) return;
-    b.status = 'Uploading'; b.progress = 0; save(); render();
-    setTimeout(() => { b.status = 'Ready'; b.progress = 100; save(); toast(`Fix Sync Error cho Bulk File: ${b.name}`); render(); }, 500);
-  }
-
-  function generateBulkCaptions() {
-    const ready = state.bulk.filter(x => x.status === 'Ready');
-    const lines = ready.slice(0,100).map((b,i) => ({name: b.name, caption: `${b.name.replace(/\.[^.]+$/,'')}: Mẫu Hook thử nghiệm ${i+1} — Chạy Bulk Engine tự động sinh text khớp Video. #AutoPost #Dino`}));
-    document.getElementById('bulkCaptionPreview').innerHTML = `<div class="notice info"><b>Hệ thống AI đã phác thảo nhanh ${lines.length} Captions.</b> Review qua trước khi Click Bơm Hàng Loạt.</div><div class="table-wrap" style="margin-top:8px"><table class="table"><thead><tr><th>Video Tương Ứng</th><th>Caption Mới</th></tr></thead><tbody>${lines.slice(0,10).map(x=>`<tr><td>${escape(x.name)}</td><td>${escape(x.caption)}</td></tr>`).join('')}</tbody></table>${lines.length>10?`<div class="help" style="padding:8px">+ ${lines.length-10} kịch bản khác đã Render...</div>`:''}</div>`;
-    state.bulk.forEach(b => { const matched = lines.find(x => x.name === b.name); if(matched) b.caption = matched.caption; });
-    save(); toast(`Khớp Data AI Content vào ${lines.length} File Data Tĩnh.`);
-  }
-
-  function applyBulkAll() {
-    const platform = document.getElementById('bulkPlatform').value;
-    const account = document.getElementById('bulkAccount').value;
-    const schedule = document.getElementById('bulkSchedule').value;
-    state.bulk.filter(x => x.status === 'Ready').forEach(b => { b.platform = platform; b.accountId = account; b.schedule = schedule; });
-    save(); toast('Thực thi Settings cho Batch File OK', 'success'); render();
-  }
-
-  function createBulkPosts() {
-    const list = state.bulk.filter(x => x.status === 'Ready');
-    if(!list.length) { toast('Lọc rỗng: Các file chưa đạt trạng thái Ready', 'error'); return; }
-    const platform = document.getElementById('bulkPlatform').value;
-    
-    list.forEach(b => {
-      const p = {
-        id: uid('p'), title: b.name.replace(/\.[^.]+$/,''), createdBy: state.profile.name,
-        createdAt: nowISO(), status: 'Scheduled', schedule: b.schedule || '',
-        platforms: { [platform]: platform==='YouTube'?{title:b.name.replace(/\.[^.]+$/,''),description:b.caption||'Tạo Content bằng máy Automation',tags:'mmo,social_media,content'}:platform==='X'?{text:b.caption||b.name}:{caption:b.caption||`Văn bản gắn kèm cho ${b.name}`,hashtag:'#DinoAuto'} },
-        mediaIds: [b.id]
-      };
-      state.posts.unshift(p);
-      b.status = 'Uploaded';
-      audit('Created Bulk Post', `Post #${p.id}`);
-    });
-    save(); addNotification('Success', 'Khớp chuỗi Batch Processing', `Dây chuyền Bulk đã nhả ra ${list.length} Lịch đăng gốc.`); toast(`Xử lý nạp ${list.length} Lịch`); render();
-  }
-
-  function processQueue() {
-    showLoading();
-    setTimeout(() => {
-      state.queue.forEach(j => {
-        if(j.status !== 'Waiting') return;
-        j.status = 'Processing'; j.attempts++;
-        setTimeout(() => {
-          const acc = state.accounts.find(a => a.id === j.accountId);
-          if(acc?.status === 'Connected') {
-            j.status = 'Success'; j.nextRetry = '—';
-            const p = state.posts.find(x => x.id === j.postId); if(p) p.status = 'Published';
-            addNotification('Success', 'Worker Push qua API', `ID Hàng Đợi ${j.id} qua vòng.`);
-          } else {
-            j.status = 'Authentication Required'; j.error = 'Lỗi Cookie/Token API'; j.nextRetry = '—';
-            addNotification('Error', 'Ngắt Auth Đột Ngột', `${j.platform} trả mã 401 Unauthorized.`);
-          }
-          save(); render();
-        }, 600);
-      });
-      save(); hideLoading(); toast('Queue Worker Local Đang Kích Thích Dữ Liệu', 'info'); render();
-    }, 450);
-  }
-
-  function retryJob(id) {
-    const j = state.queue.find(x => x.id === id); if(!j) return;
-    if(j.attempts >= 5) { j.status = 'Failed'; toast('Hệ thống ngừng Retry vì chặn Spambot Policy', 'error'); return; }
-    
-    j.status = 'Retrying'; j.attempts++;
-    j.nextRetry = ['1 phút','5 phút','15 phút','1 giờ','6 giờ'][j.attempts-1] || '—';
-    state.retryLogs.unshift({id:uid('r'), jobId:id, attempt:j.attempts, time:nowISO(), status:'Retrying', error:j.error||'Người dùng Kích lại'});
-    save(); toast(`Móc Job ${id} trả về PENDING`, 'info');
-    
-    setTimeout(() => {
-      const acc = state.accounts.find(a => a.id === j.accountId);
-      if(acc?.status === 'Connected') {
-        j.status = 'Success'; j.nextRetry = '—';
-        const p = state.posts.find(x => x.id === j.postId); if(p) p.status = 'Published';
-        addNotification('Success', 'Khớp Token Mới', `Job ${j.id} đã qua.`);
-      } else {
-        j.status = 'Authentication Required'; j.error = 'Access Token Expired';
-        addNotification('Error', 'Lọc Spam Failed', `Vui lòng Link App OAuth cho Job ${j.id}.`);
-      }
-      save(); render();
-    }, 700);
-    render();
-  }
-
-  function reconnectAccount(id) {
-    const a = state.accounts.find(x => x.id === id); if(!a) return;
-    a.status = 'Connected'; a.token = 'Healthy'; a.lastSync = nowISO();
-    state.queue.filter(j => j.accountId === id && j.status === 'Authentication Required').forEach(j => { j.status = 'Retrying'; j.nextRetry = 'Now'; });
-    audit('Reconnected Account', `${a.platform} ${a.username}`); save();
-    addNotification('Success', 'Vá Token Auth Thành Công', `${a.platform} của ${a.username} Xanh Lá.`);
-    toast('API Móc Khớp Trở Lại'); render();
-  }
-
-  function refreshAccount(id) {
-    const a = state.accounts.find(x => x.id === id); if(!a) return;
-    a.lastSync = nowISO(); if(a.status === 'Connected') a.token = 'Healthy';
-    save(); toast(`Khởi tạo Sync Cache ${a.username}`); render();
-  }
-
-  function disconnectAccount(id) {
-    const a = state.accounts.find(x => x.id === id); if(!a) return;
-    confirmModal('Thu hồi App Authorization', `Bạn có muốn Server ném bỏ Private Cookie của ${a.username} không?`, () => {
-      a.status = 'Disconnected'; a.token = 'Unavailable';
-      audit('Disconnected Account', `${a.platform} ${a.username}`); save();
-      addNotification('Warning', 'Chặt đứt Token', a.username);
-      toast('Tạm ngưng luồng API'); render();
-    });
-  }
-
-  function deleteAccount(id) {
-    const a = state.accounts.find(x => x.id === id); if(!a) return;
-    confirmModal('Đóng Form Liên kết Nền tảng', `Nếu bạn xóa ${a.platform} của User ${a.username}, Lịch Đăng (Queue) trỏ về đây sẽ Báo Lỗi hàng loạt.`, () => {
-      state.accounts = state.accounts.filter(x => x.id !== id);
-      state.queue = state.queue.filter(j => j.accountId !== id);
-      audit('Deleted Account', `${a.platform} ${a.username}`); save();
-      toast('Rút Kênh ra khỏi Workspace!'); render();
-    });
-  }
-
-  function openConnectModal() {
-    openModal(`
-      <div class="modal-header"><div class="modal-title">Cơ chế Cấp quyền App OAuth2.0</div><button class="close" data-close-modal><i data-lucide="x"></i></button></div>
-      <div class="modal-body"><div class="notice info">Tại UI Mô Phỏng: Click sẽ tự đẻ ra Session "Connected". Ở Bản Gắn Lõi Chạy Server: Routing sẽ Request JWT của Node.js, Forward về <code>POST /api/accounts/connect</code> để Facebook Graph bắt Callback Authorization.</div>
-      <div class="platform-selector" style="margin-top:12px">${platforms.map(p=>`<button class="platform-card" data-connect-platform="${p}"><div class="p-head">${platformBadge(p)}<i data-lucide="plug-zap"></i></div><small>Luồng Móc Nối Kênh</small></button>`).join('')}</div></div>
-      <div class="modal-footer"><button class="btn" data-close-modal>Để Sau</button></div>
-    `);
-    document.querySelectorAll('[data-connect-platform]').forEach(el => el.onclick = () => {
-      const p = el.dataset.connectPlatform;
-      const a = {id:uid('a'), platform:p, name:`Fanpage/Profile ${p}`, username:`@tk_demo_${p.toLowerCase()}`, status:'Connected', token:'Healthy', lastSync:nowISO()};
-      state.accounts.unshift(a);
-      audit('Connected Account', `${p} ${a.username}`); save(); closeModal();
-      addNotification('Success', 'Khớp Mạch Mạng Xã Hội', `${p} báo Online Status OK.`);
-      toast('Đã cài đặt Fanpage vào Bảng Điều Khiển', 'success'); render();
-    });
-  }
-
-  function openOAuthModal() {
-    openModal(`
-      <div class="modal-header"><div class="modal-title">Bản Vẽ Vi Kiến Trúc OAuth Graph</div><button class="close" data-close-modal><i data-lucide="x"></i></button></div>
-      <div class="modal-body"><div class="timeline">${['facebookService','tiktokService','youtubeService','instagramService','xService'].map(s=>`<div class="timeline-item"><div class="timeline-dot"></div><div><b>${s}</b><span>connect() · callback() · refreshToken() · disconnect() · publishPost() · getAccount() · getStatus()</span></div></div>`).join('')}</div><div class="notice warn" style="margin-top:13px"><b>Frontend routes:</b> POST /api/accounts/connect · GET /api/accounts/callback · POST /api/posts/publish. Các Endpoint này cần triển khai ở Backend Express/NestJS.</div></div>
-      <div class="modal-footer"><button class="btn primary" data-close-modal>Đã hiểu</button></div>
-    `);
-  }
-
-  function exportWorkspace() {
-    const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a'); a.href = url;
-    a.download = `dino_social_hub_workspace_${new Date().toISOString().slice(0,10)}.json`;
-    a.click(); URL.revokeObjectURL(url); toast('Đã export workspace JSON', 'success');
-  }
-
-  function importWorkspace(file) {
-    const r = new FileReader();
-    r.onload = () => {
-      try {
-        const incoming = JSON.parse(r.result);
-        if(!incoming.version || !Array.isArray(incoming.posts) || !Array.isArray(incoming.accounts)) { throw new Error('JSON không đúng format DINO Social Hub'); }
-        state = {...deepClone(seedState), ...incoming}; save(); toast('Import workspace thành công', 'success'); checkAuth();
-      } catch(e) { toast(e.message, 'error'); }
-    };
-    r.readAsText(file);
-  }
-
-  document.addEventListener('click', e => {
-    if (e.target.closest('[data-close-modal]')) { closeModal(); return; }
-    if (e.target.closest('#logoToggleSidebar')) { state.sidebarCollapsed = !state.sidebarCollapsed; save(); render(); return; }
-
-    const el = e.target.closest('[data-action]');
-    if(el) {
-      const a = el.dataset.action;
-      if(a === 'export') exportWorkspace();
-      if(a === 'profile') { state.settingsTab = 'Profile'; navigate('settings'); }
-      if(a === 'settings') navigate('settings');
-      if(a === 'import') window.importWorkspace();
-      if(a === 'logout') window.doLogout();
-    }
-    
-    const copy = e.target.closest('[data-copy-ai]');
-    if(copy) {
-      const p = copy.dataset.copyAi;
-      const txt = p === 'YouTube' ? `Tiêu đề: ${window.__aiResults[p].title}\n${window.__aiResults[p].description}\nTags: ${window.__aiResults[p].tags}` : window.__aiResults[p];
-      navigator.clipboard?.writeText(txt); toast('Đã copy caption');
-    }
-    
-    const applyAiBtn = e.target.closest('[data-apply-ai]');
-    if(applyAiBtn) applyAI(applyAiBtn.dataset.applyAi);
-    
-    const editAiBtn = e.target.closest('[data-edit-ai]');
-    if(editAiBtn) editAIBox(editAiBtn.dataset.editAi);
+    // Sort Posts
+    if(e.target.matches('#sortPosts')) { render(); }
   });
 
-  document.getElementById('collapseBtn').onclick = () => { state.sidebarCollapsed = !state.sidebarCollapsed; save(); render(); };
-  document.getElementById('userMenuBtn').onclick = () => document.getElementById('userMenu').classList.toggle('show');
-  
-  document.addEventListener('click', e => {
-    if(!e.target.closest('#userMenuBtn') && !e.target.closest('#userMenu')) document.getElementById('userMenu').classList.remove('show');
+  document.addEventListener('input', e => {
+    if(e.target.matches('#postSearch')) { state.postSearch = e.target.value; save(); clearTimeout(window.__searchTimer); window.__searchTimer = setTimeout(render, 180); }
+    if(e.target.matches('#mediaSearch')) { state.postSearch = e.target.value; save(); clearTimeout(window.__searchTimer); window.__searchTimer = setTimeout(render, 180); }
   });
-  
+
   window.addEventListener('keydown', e => {
     if(e.key === 'Escape') closeModal();
     if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); document.getElementById('globalSearch').focus(); }
   });
-  
   window.addEventListener('beforeunload', save);
   
-  document.getElementById('hiddenFile').onchange = e => {
-    handleFiles(e.target.files, state.page === 'bulk' ? 'bulk' : 'create');
-    e.target.value = '';
-  };
+  // File Upload Handling
+  document.getElementById('hiddenFile').onchange = e => { handleFiles(e.target.files, state.page === 'bulk' ? 'bulk' : 'create'); e.target.value = ''; };
 
-  window.importWorkspace = () => {
-    const input = document.createElement('input'); input.type = 'file'; input.accept = 'application/json';
-    input.onchange = () => input.files[0] && importWorkspace(input.files[0]); input.click();
-  };
+  // Drag and Drop (Delegate to document)
+  document.addEventListener('dragover', e => {
+    if(e.target.closest('#createDrop')) { e.preventDefault(); e.target.closest('#createDrop').style.background = 'var(--surface-2)'; }
+    if(e.target.closest('#bulkDrop')) { e.preventDefault(); }
+    if(e.target.closest('[data-cal-cell]')) { e.preventDefault(); }
+    if(e.target.closest('.media-item')) { e.preventDefault(); e.target.closest('.media-item').classList.add('drag-over'); e.dataTransfer.dropEffect = 'move'; }
+  });
+  document.addEventListener('dragleave', e => {
+    if(e.target.closest('#createDrop')) { e.target.closest('#createDrop').style.background = 'var(--surface)'; }
+    if(e.target.closest('.media-item')) { e.target.closest('.media-item').classList.remove('drag-over'); }
+  });
+  document.addEventListener('drop', e => {
+    if(e.target.closest('#createDrop')) { e.preventDefault(); e.target.closest('#createDrop').style.background = 'var(--surface)'; handleFiles(e.dataTransfer.files, 'create'); }
+    if(e.target.closest('#bulkDrop')) { e.preventDefault(); handleFiles(e.dataTransfer.files, 'bulk'); }
+    
+    // Calendar Drop
+    const calCell = e.target.closest('[data-cal-cell]');
+    if(calCell) {
+      e.preventDefault();
+      const id = e.dataTransfer.getData('text/plain');
+      const p = state.posts.find(x => x.id === id);
+      if(!p) return;
+      const time = p.schedule ? p.schedule.slice(11,16) : '18:30';
+      p.schedule = `${calCell.dataset.calCell}T${time}:00+07:00`;
+      p.status = 'Scheduled';
+      audit('Rescheduled Post', `Post #${p.id}`);
+      save(); toast('Đã đổi lịch bằng kéo & thả', 'success'); render();
+    }
+    
+    // Media Reorder Drop
+    const mediaItem = e.target.closest('.media-item');
+    if(mediaItem) {
+      e.preventDefault();
+      mediaItem.classList.remove('drag-over');
+      const targetId = mediaItem.dataset.draftMedia;
+      const draggedMediaId = e.dataTransfer.getData('mediaId');
+      if(draggedMediaId && draggedMediaId !== targetId && state.draft) {
+        const arr = state.draft.mediaIds;
+        const fromIdx = arr.indexOf(draggedMediaId);
+        const toIdx = arr.indexOf(targetId);
+        if(fromIdx > -1 && toIdx > -1) {
+          arr.splice(fromIdx, 1);
+          arr.splice(toIdx, 0, draggedMediaId);
+          save(); render();
+        }
+      }
+    }
+  });
 
+  document.addEventListener('dragstart', e => {
+    if(e.target.closest('[data-cal-post]')) { e.dataTransfer.setData('text/plain', e.target.closest('[data-cal-post]').dataset.calPost); }
+    if(e.target.closest('[data-draft-media]')) { 
+      e.dataTransfer.effectAllowed = 'move'; 
+      e.dataTransfer.setData('mediaId', e.target.closest('[data-draft-media]').dataset.draftMedia); 
+    }
+  });
+
+  // Apply Theme
   document.documentElement.setAttribute('data-theme', (state.settings?.theme || 'Light').toLowerCase());
 
   state.page = state.page || 'dashboard'; 
