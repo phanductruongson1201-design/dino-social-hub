@@ -35,7 +35,7 @@
 
     <!-- TOAST NOTIFICATION -->
     <div id="toast" class="fixed top-5 right-5 bg-white border border-slate-200 shadow-lg rounded-xl p-4 flex items-center gap-3 transition-all duration-300 transform translate-x-[150%] z-50">
-        <i data-lucide="check-circle-2" class="text-green-500 w-6 h-6"></i>
+        <i data-lucide="check-circle-2" class="text-green-500 w-6 h-6" id="toast-icon"></i>
         <div>
             <h4 class="font-bold text-sm" id="toast-title">Thành công</h4>
             <p class="text-xs text-slate-500" id="toast-desc">Hành động đã được thực hiện.</p>
@@ -49,45 +49,30 @@
             <span class="font-bold text-xl text-slate-800 tracking-tight">DINO HUB</span>
         </div>
         
-        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto" id="main-nav">
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
             <a href="#" onclick="switchView('dashboard')" class="nav-item flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 bg-blue-50 text-blue-600 font-medium" data-target="dashboard">
-                <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3"></i> Dashboard
+                <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3 text-blue-600"></i> Dashboard
             </a>
             <a href="#" onclick="switchView('create')" class="nav-item flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-target="create">
-                <i data-lucide="pen-square" class="w-5 h-5 mr-3"></i> Tạo bài viết
+                <i data-lucide="pen-square" class="w-5 h-5 mr-3 text-slate-400"></i> Tạo bài viết
             </a>
             <a href="#" onclick="switchView('posts')" class="nav-item flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-target="posts">
-                <i data-lucide="file-text" class="w-5 h-5 mr-3"></i> Bài viết
+                <i data-lucide="file-text" class="w-5 h-5 mr-3 text-slate-400"></i> Bài viết
             </a>
             <a href="#" onclick="switchView('calendar')" class="nav-item flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-target="calendar">
-                <i data-lucide="calendar" class="w-5 h-5 mr-3"></i> Lịch đăng
+                <i data-lucide="calendar" class="w-5 h-5 mr-3 text-slate-400"></i> Lịch đăng
             </a>
             <a href="#" onclick="switchView('accounts')" class="nav-item flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-target="accounts">
-                <i data-lucide="share-2" class="w-5 h-5 mr-3"></i> Tài khoản Social
+                <i data-lucide="share-2" class="w-5 h-5 mr-3 text-slate-400"></i> Tài khoản Social
             </a>
             <a href="#" onclick="switchView('analytics')" class="nav-item flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-target="analytics">
-                <i data-lucide="bar-chart-3" class="w-5 h-5 mr-3"></i> Thống kê
+                <i data-lucide="bar-chart-3" class="w-5 h-5 mr-3 text-slate-400"></i> Thống kê
             </a>
-            
             <div class="my-4 border-t border-slate-100"></div>
-            
-            <!-- NEW MENU ITEM: CÀI ĐẶT -->
             <a href="#" onclick="switchView('settings')" class="nav-item flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900" data-target="settings">
-                <i data-lucide="settings" class="w-5 h-5 mr-3"></i> Cài đặt
+                <i data-lucide="settings" class="w-5 h-5 mr-3 text-slate-400"></i> Cài đặt
             </a>
         </nav>
-
-        <div class="p-4 border-t border-slate-100">
-            <div class="flex items-center p-3 rounded-xl hover:bg-slate-50 cursor-pointer transition-colors border border-transparent">
-                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 text-white flex items-center justify-center font-bold">
-                    S
-                </div>
-                <div class="ml-3 overflow-hidden">
-                    <p class="text-sm font-semibold text-slate-800">Sơn Trần</p>
-                    <p class="text-xs text-slate-500 truncate">son@dinohub.com</p>
-                </div>
-            </div>
-        </div>
     </aside>
 
     <!-- MAIN CONTENT -->
@@ -96,52 +81,98 @@
         <!-- 1. DASHBOARD VIEW -->
         <div id="dashboard" class="view-section active w-full h-full overflow-y-auto p-8 bg-bglight">
             <div class="max-w-7xl mx-auto">
-                <h1 class="text-2xl font-bold text-slate-900 mb-8">Xin chào, Sơn 👋</h1>
-                <!-- Giao diện Dashboard (Rút gọn để tiết kiệm không gian) -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <h3 class="text-slate-500 text-sm mt-2">Tổng bài viết</h3>
-                        <p class="text-2xl font-bold text-slate-900 mt-1">1,248</p>
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h1 class="text-2xl font-bold text-slate-900">Xin chào, Sơn 👋</h1>
+                        <p class="text-slate-500 mt-1">Quản lý toàn bộ nội dung Social Media của bạn từ một nơi.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <h3 class="text-slate-500 text-sm mt-2">Đã đăng</h3>
-                        <p class="text-2xl font-bold text-slate-900 mt-1">982</p>
-                    </div>
+                    <button onclick="switchView('create')" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-medium flex items-center shadow-sm">
+                        <i data-lucide="plus" class="w-5 h-5 mr-2"></i> Tạo bài viết
+                    </button>
                 </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8" id="dashboard-stats">
+                    <!-- JS Injected Stats -->
+                </div>
+
                 <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
-                    <h2 class="text-lg font-bold mb-4">Hoạt động gần đây</h2>
-                    <p class="text-slate-500 text-sm">Bạn vừa đăng 2 bài viết vào sáng nay.</p>
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-lg font-bold">Bài viết gần đây</h2>
+                        <button onclick="switchView('posts')" class="text-blue-600 text-sm font-medium hover:underline">Xem tất cả</button>
+                    </div>
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="text-slate-400 text-sm border-b border-slate-100">
+                                <th class="pb-3 font-medium">Nội dung</th>
+                                <th class="pb-3 font-medium">Nền tảng</th>
+                                <th class="pb-3 font-medium">Thời gian</th>
+                                <th class="pb-3 font-medium">Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm" id="dashboard-recent-posts">
+                            <!-- JS Injected Rows -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
         <!-- 2. CREATE POST VIEW -->
         <div id="create" class="view-section h-full flex flex-col bg-bglight">
-            <div class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 shrink-0 shadow-sm z-10">
+            <div class="h-16 bg-white border-b border-slate-200 flex items-center px-8 shrink-0 shadow-sm z-10">
                 <h1 class="font-bold text-lg">Tạo bài viết mới</h1>
             </div>
             <div class="flex flex-1 overflow-hidden">
                 <div class="w-[70%] p-8 overflow-y-auto">
+                    <!-- Nền tảng -->
                     <div class="mb-8">
-                        <h2 class="text-sm font-bold text-slate-700 mb-3">1. Chọn nền tảng (Bấm để chọn)</h2>
+                        <h2 class="text-sm font-bold text-slate-700 mb-3">1. Chọn nền tảng</h2>
                         <div class="flex gap-4" id="platform-selector"></div>
-                        <p class="text-xs text-slate-400 mt-2 italic">* Các nền tảng bị mờ là do chưa được kết nối. Hãy vào mục "Cài đặt" để kết nối.</p>
                     </div>
+                    <!-- Media Upload -->
+                    <div class="mb-8">
+                        <h2 class="text-sm font-bold text-slate-700 mb-3">2. Media</h2>
+                        <div onclick="document.getElementById('hidden-file-input').click()" class="border-2 border-dashed border-slate-300 rounded-2xl h-32 flex flex-col items-center justify-center bg-slate-50 hover:bg-slate-100 transition cursor-pointer text-slate-500">
+                            <i data-lucide="upload-cloud" class="w-8 h-8 mb-2 text-blue-500"></i>
+                            <p class="text-sm font-medium">Click để chọn hình ảnh / video</p>
+                            <input type="file" id="hidden-file-input" class="hidden" multiple onchange="handleMediaUpload(this)">
+                        </div>
+                    </div>
+                    <!-- Content -->
                     <div>
-                        <h2 class="text-sm font-bold text-slate-700 mb-3">2. Tùy chỉnh nội dung</h2>
+                        <h2 class="text-sm font-bold text-slate-700 mb-3">3. Tùy chỉnh nội dung</h2>
                         <div class="flex gap-1 border-b border-slate-200 mb-4" id="content-tabs"></div>
-                        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden focus-within:border-blue-500 transition-all shadow-sm">
-                            <textarea id="post-content" class="w-full h-40 p-5 outline-none resize-none text-slate-700 placeholder:text-slate-400" placeholder="Viết nội dung của bạn..."></textarea>
+                        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                            <textarea id="post-content" class="w-full h-40 p-5 outline-none resize-none text-slate-700" placeholder="Viết nội dung của bạn..."></textarea>
                         </div>
                     </div>
                 </div>
+                <!-- Cột Lịch đăng -->
                 <div class="w-[30%] bg-white border-l border-slate-200 p-6 flex flex-col z-0">
                     <div class="bg-white border border-slate-200 rounded-2xl p-5 mb-6 shadow-sm">
-                        <h3 class="font-bold text-slate-800 mb-4">Nền tảng chuẩn bị đăng</h3>
+                        <h3 class="font-bold text-slate-800 mb-4 flex items-center"><i data-lucide="calendar" class="w-5 h-5 mr-2 text-blue-600"></i> Lịch đăng</h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center p-3 rounded-xl border border-blue-600 bg-blue-50 cursor-pointer transition" id="radio-now-label">
+                                <input type="radio" name="schedule_type" value="now" checked onchange="toggleSchedule(false)" class="w-4 h-4 text-blue-600">
+                                <span class="ml-3 font-medium text-sm">Đăng ngay</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-xl border border-slate-200 bg-white cursor-pointer transition" id="radio-schedule-label">
+                                <input type="radio" name="schedule_type" value="schedule" onchange="toggleSchedule(true)" class="w-4 h-4 text-blue-600">
+                                <span class="ml-3 font-medium text-sm">Đặt lịch</span>
+                            </label>
+                        </div>
+                        <div id="datetime-picker" class="hidden mt-4 pt-4 border-t border-slate-100 space-y-3">
+                            <input type="date" id="schedule-date" class="w-full p-2.5 text-sm border border-slate-200 rounded-lg outline-none focus:border-blue-500">
+                            <input type="time" id="schedule-time" class="w-full p-2.5 text-sm border border-slate-200 rounded-lg outline-none focus:border-blue-500">
+                        </div>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 mb-auto shadow-sm">
+                        <h3 class="font-bold text-slate-800 mb-4">Chuẩn bị đăng lên:</h3>
                         <div class="space-y-3" id="status-preview"></div>
                     </div>
-                    <button id="btn-submit" class="w-full mt-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-blue-600/20 transition-all">
-                        🚀 Đăng ngay
+                    <button id="btn-submit" onclick="submitPost()" class="w-full mt-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all flex justify-center">
+                        <i data-lucide="send" class="w-5 h-5 mr-2" id="submit-icon"></i>
+                        <span id="submit-text">Đăng ngay</span>
                     </button>
                 </div>
             </div>
@@ -150,17 +181,38 @@
         <!-- 3. POSTS VIEW (BÀI VIẾT) -->
         <div id="posts" class="view-section w-full h-full overflow-y-auto p-8 bg-bglight">
             <div class="max-w-7xl mx-auto">
-                <h1 class="text-2xl font-bold text-slate-900 mb-8">Danh sách bài viết</h1>
-                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
-                    <p class="text-slate-500">Đây là trang quản lý các bài viết đã đăng, bản nháp và bài lên lịch.</p>
+                <div class="flex justify-between items-center mb-8">
+                    <h1 class="text-2xl font-bold text-slate-900">Danh sách bài viết</h1>
+                    <button onclick="switchView('create')" class="bg-blue-600 text-white px-5 py-2.5 rounded-lg font-medium flex items-center shadow-sm">
+                        <i data-lucide="plus" class="w-5 h-5 mr-2"></i> Bài viết mới
+                    </button>
+                </div>
+                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+                    <div class="px-6 py-4 border-b border-slate-100 bg-slate-50 flex gap-4" id="post-filters">
+                        <!-- Filters Rendered Here -->
+                    </div>
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="text-slate-400 text-sm border-b border-slate-100">
+                                <th class="px-6 py-4 font-medium">Nội dung</th>
+                                <th class="px-6 py-4 font-medium">Nền tảng</th>
+                                <th class="px-6 py-4 font-medium">Lịch trình</th>
+                                <th class="px-6 py-4 font-medium">Trạng thái</th>
+                                <th class="px-6 py-4 font-medium text-right">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm" id="posts-table-body">
+                            <!-- JS Injected Rows -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
-        <!-- 4. CALENDAR VIEW (LỊCH ĐĂNG) -->
+        <!-- 4. CALENDAR VIEW -->
         <div id="calendar" class="view-section w-full h-full overflow-y-auto p-8 bg-bglight">
             <div class="max-w-7xl mx-auto h-full flex flex-col">
-                <h1 class="text-2xl font-bold text-slate-900 mb-8">Lịch đăng bài</h1>
+                <h1 class="text-2xl font-bold text-slate-900 mb-6">Lịch đăng bài (Tháng này)</h1>
                 <div class="flex-1 bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col">
                     <div class="grid grid-cols-7 border-b border-slate-200 bg-slate-50">
                         <div class="py-3 text-center text-sm font-semibold text-slate-500">T2</div>
@@ -171,9 +223,7 @@
                         <div class="py-3 text-center text-sm font-semibold text-slate-500">T7</div>
                         <div class="py-3 text-center text-sm font-semibold text-slate-500">CN</div>
                     </div>
-                    <div class="grid grid-cols-7 flex-1" id="calendar-grid">
-                        <!-- JS injected here -->
-                    </div>
+                    <div class="grid grid-cols-7 flex-1" id="calendar-grid"></div>
                 </div>
             </div>
         </div>
@@ -181,15 +231,8 @@
         <!-- 5. SOCIAL ACCOUNTS VIEW -->
         <div id="accounts" class="view-section w-full h-full overflow-y-auto p-8 bg-bglight">
             <div class="max-w-7xl mx-auto">
-                <div class="flex justify-between items-center mb-8">
-                    <div>
-                        <h1 class="text-2xl font-bold text-slate-900">Tài khoản Social của bạn</h1>
-                        <p class="text-slate-500 mt-1">Các tài khoản đang hoạt động. Để thêm mới, vui lòng vào phần Cài đặt.</p>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="accounts-grid">
-                    <!-- JS Injected here based on connection state -->
-                </div>
+                <h1 class="text-2xl font-bold text-slate-900 mb-8">Tài khoản Social của bạn</h1>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="accounts-grid"></div>
             </div>
         </div>
 
@@ -197,34 +240,33 @@
         <div id="analytics" class="view-section w-full h-full overflow-y-auto p-8 bg-bglight">
             <div class="max-w-7xl mx-auto">
                 <h1 class="text-2xl font-bold text-slate-900 mb-8">Thống kê hiệu suất</h1>
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-                    <p class="text-slate-500">Giao diện biểu đồ sẽ hiển thị ở đây.</p>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm mb-8">
+                    <h2 class="text-lg font-bold mb-6">Biểu đồ lượt xem</h2>
+                    <div class="h-64 flex items-end justify-between gap-2 px-2 pb-6 border-b border-slate-100 relative" id="chart-area">
+                        <!-- Chart generated via JS -->
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 7. SETTINGS VIEW (CÀI ĐẶT MỚI THÊM) -->
+        <!-- 7. SETTINGS VIEW -->
         <div id="settings" class="view-section w-full h-full overflow-y-auto p-8 bg-bglight">
             <div class="max-w-3xl mx-auto">
-                <h1 class="text-2xl font-bold text-slate-900 mb-2">Cài đặt hệ thống</h1>
-                <p class="text-slate-500 mb-8">Quản lý kết nối các nền tảng mạng xã hội để có thể đăng bài.</p>
-                
+                <h1 class="text-2xl font-bold text-slate-900 mb-8">Cài đặt hệ thống</h1>
                 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                     <div class="px-6 py-4 border-b border-slate-100 bg-slate-50">
-                        <h2 class="font-bold text-slate-800">Kết nối nền tảng</h2>
+                        <h2 class="font-bold text-slate-800">Quản lý kết nối nền tảng</h2>
                     </div>
-                    <div class="p-0" id="settings-platforms">
-                        <!-- JS injected here -->
-                    </div>
+                    <div class="p-0" id="settings-platforms"></div>
                 </div>
             </div>
         </div>
 
     </main>
 
-    <!-- SYSTEM LOGIC SCRIPT -->
+    <!-- SYSTEM LOGIC SCRIPT (HỆ QUẢN TRỊ TRẠNG THÁI LOCAL) -->
     <script>
-        // TRÁNH LỖI DOM: Sử dụng mảng để lưu trữ trạng thái tài khoản
+        // MẢNG DỮ LIỆU NỀN TẢNG
         const platformsData = [
             { id: "facebook", name: "Facebook", connected: true, colorClass: "text-blue-600", icon: "facebook" },
             { id: "tiktok", name: "TikTok", connected: true, colorClass: "text-black", icon: "music" },
@@ -233,22 +275,28 @@
             { id: "x", name: "X (Twitter)", connected: false, colorClass: "text-slate-800", icon: "twitter" },
         ];
         
-        let state = { selectedPlatforms: ['facebook'], activeTab: 'facebook' };
+        // MẢNG DỮ LIỆU BÀI VIẾT (MOCK DATABASE)
+        let postsData = [
+            { id: 1, content: "Bí quyết xây dựng thương hiệu cá nhân 2026...", platforms: ["facebook", "tiktok"], scheduleText: "Hôm nay, 10:30", dateNum: new Date().getDate(), status: "published" },
+            { id: 2, content: "Quy trình tự động hóa Social Media bằng AI...", platforms: ["youtube"], scheduleText: "Ngày mai, 19:00", dateNum: new Date().getDate() + 1, status: "scheduled" }
+        ];
 
-        // DOM Elements
-        const platformSelectorEl = document.getElementById('platform-selector');
-        const contentTabsEl = document.getElementById('content-tabs');
-        const statusPreviewEl = document.getElementById('status-preview');
-        const settingsPlatformsEl = document.getElementById('settings-platforms');
-        const accountsGridEl = document.getElementById('accounts-grid');
-        const calendarGridEl = document.getElementById('calendar-grid');
+        // STATE ỨNG DỤNG
+        let state = {
+            selectedPlatforms: ['facebook'],
+            activeTab: 'facebook',
+            isScheduling: false,
+            postFilter: 'all' // all, published, scheduled, draft
+        };
 
-        // CHUYỂN TRANG
+        // DOM Elements Global
+        const postContentEl = document.getElementById('post-content');
+
+        // --- 1. CHUYỂN TRANG ---
         function switchView(viewId) {
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
             document.getElementById(viewId).classList.add('active');
 
-            // Cập nhật menu sidebar
             document.querySelectorAll('.nav-item').forEach(el => {
                 if(el.dataset.target === viewId) {
                     el.className = "nav-item flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 bg-blue-50 text-blue-600 font-medium";
@@ -260,97 +308,113 @@
                     el.querySelector('i').classList.add('text-slate-400');
                 }
             });
+            // Update view data
+            if(viewId === 'dashboard') renderDashboard();
+            if(viewId === 'posts') renderPostsTable();
+            if(viewId === 'calendar') renderCalendar();
+            if(viewId === 'analytics') renderAnalytics();
             lucide.createIcons();
         }
 
-        // TÍNH NĂNG MỚI: RENDER TRANG CÀI ĐẶT
-        function renderSettings() {
-            settingsPlatformsEl.innerHTML = platformsData.map(p => {
-                const btnClass = p.connected 
-                    ? "bg-slate-100 text-slate-700 hover:bg-red-50 hover:text-red-600" 
-                    : "bg-blue-600 text-white hover:bg-blue-700 shadow-sm";
-                const btnText = p.connected ? "Hủy kết nối" : "Kết nối";
-                const statusBadge = p.connected 
-                    ? '<span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">Đã kết nối</span>'
-                    : '<span class="px-2 py-1 bg-slate-100 text-slate-500 text-xs font-bold rounded-full">Chưa kết nối</span>';
-
-                return `
-                    <div class="flex items-center justify-between p-6 border-b border-slate-100 last:border-0 hover:bg-slate-50 transition">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center ${p.colorClass}">
-                                <i data-lucide="${p.icon}" class="w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-slate-800">${p.name}</h3>
-                                <div class="mt-1">${statusBadge}</div>
-                            </div>
-                        </div>
-                        <button onclick="toggleConnection('${p.id}')" class="px-5 py-2 font-medium text-sm rounded-lg transition-colors ${btnClass}">
-                            ${btnText}
-                        </button>
-                    </div>
-                `;
-            }).join('');
-            lucide.createIcons();
-        }
-
-        // TÍNH NĂNG MỚI: XỬ LÝ KHI BẤM KẾT NỐI / HỦY KẾT NỐI
-        function toggleConnection(id) {
-            const platform = platformsData.find(p => p.id === id);
-            platform.connected = !platform.connected; // Đảo ngược trạng thái
-
-            // Nếu hủy kết nối, xóa khỏi danh sách đang chọn ở Create Post
-            if (!platform.connected) {
-                state.selectedPlatforms = state.selectedPlatforms.filter(pId => pId !== id);
-                if (state.activeTab === id) {
-                    state.activeTab = state.selectedPlatforms.length > 0 ? state.selectedPlatforms[0] : null;
-                }
-            }
-
-            // Hiển thị thông báo
+        // --- 2. HIỂN THỊ TOAST ---
+        function showToast(title, desc, isError = false) {
             const toast = document.getElementById('toast');
-            document.getElementById('toast-title').innerText = platform.connected ? "Đã kết nối!" : "Đã hủy kết nối!";
-            document.getElementById('toast-desc').innerText = `Tài khoản ${platform.name} đã được cập nhật.`;
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-desc').innerText = desc;
+            
+            const icon = document.getElementById('toast-icon');
+            if(isError) {
+                icon.setAttribute('data-lucide', 'alert-circle');
+                icon.className = "text-red-500 w-6 h-6";
+            } else {
+                icon.setAttribute('data-lucide', 'check-circle-2');
+                icon.className = "text-green-500 w-6 h-6";
+            }
+            lucide.createIcons();
+
             toast.classList.remove('translate-x-[150%]');
             setTimeout(() => { toast.classList.add('translate-x-[150%]'); }, 3000);
+        }
 
-            // Cập nhật lại toàn bộ UI bị ảnh hưởng
-            renderSettings();
-            renderAccountsGrid();
+        // --- 3. LOGIC TẠO BÀI VIẾT MỚI ---
+        function toggleSchedule(isSched) {
+            state.isScheduling = isSched;
+            document.getElementById('radio-now-label').className = `flex items-center p-3 rounded-xl border cursor-pointer transition ${!isSched ? 'border-blue-600 bg-blue-50' : 'border-slate-200 bg-white'}`;
+            document.getElementById('radio-schedule-label').className = `flex items-center p-3 rounded-xl border cursor-pointer transition ${isSched ? 'border-blue-600 bg-blue-50' : 'border-slate-200 bg-white'}`;
+            document.getElementById('datetime-picker').style.display = isSched ? 'block' : 'none';
+            
+            document.getElementById('submit-text').innerText = isSched ? "Đặt lịch" : "Đăng ngay";
+            document.getElementById('submit-icon').setAttribute('data-lucide', isSched ? 'calendar' : 'send');
+            lucide.createIcons();
             renderCreatePostUI();
         }
 
-        // RENDER TÀI KHOẢN SOCIAL ĐÃ KẾT NỐI
-        function renderAccountsGrid() {
-            const connectedPlatforms = platformsData.filter(p => p.connected);
-            if (connectedPlatforms.length === 0) {
-                accountsGridEl.innerHTML = `<p class="col-span-3 text-slate-500 italic">Bạn chưa kết nối tài khoản nào.</p>`;
-                return;
+        function submitPost() {
+            const content = postContentEl.value.trim();
+            if(!content) return showToast("Lỗi!", "Vui lòng nhập nội dung bài viết.", true);
+            if(state.selectedPlatforms.length === 0) return showToast("Lỗi!", "Vui lòng chọn ít nhất 1 nền tảng.", true);
+            
+            let schedText = "Vừa xong";
+            let dNum = new Date().getDate();
+
+            if(state.isScheduling) {
+                const d = document.getElementById('schedule-date').value;
+                const t = document.getElementById('schedule-time').value;
+                if(!d || !t) return showToast("Lỗi!", "Vui lòng chọn ngày và giờ đặt lịch.", true);
+                schedText = `${d.split('-').reverse().join('/')}, ${t}`;
+                dNum = parseInt(d.split('-')[2]); // Lấy ngày để nhét vào lịch
             }
-            accountsGridEl.innerHTML = connectedPlatforms.map(p => `
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-12 h-12 bg-slate-50 ${p.colorClass} rounded-xl flex items-center justify-center font-bold border border-slate-100">
-                            <i data-lucide="${p.icon}"></i>
-                        </div>
-                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Hoạt động</span>
-                    </div>
-                    <h3 class="font-bold text-slate-900 text-lg">${p.name} Profile</h3>
-                </div>
-            `).join('');
+
+            // ADD TO LOCAL MOCK DB
+            postsData.unshift({
+                id: Date.now(),
+                content: content,
+                platforms: [...state.selectedPlatforms],
+                scheduleText: schedText,
+                dateNum: dNum,
+                status: state.isScheduling ? 'scheduled' : 'published'
+            });
+
+            // Giao diện Button Loading
+            const btn = document.getElementById('btn-submit');
+            const ogHTML = btn.innerHTML;
+            btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 mr-2 animate-spin"></i> Xử lý...`;
             lucide.createIcons();
+
+            setTimeout(() => {
+                btn.innerHTML = ogHTML;
+                lucide.createIcons();
+                showToast("Thành công!", `Bài viết đã được ${state.isScheduling ? 'lên lịch' : 'đăng'} lên ${state.selectedPlatforms.length} nền tảng.`);
+                
+                // Clear Form
+                postContentEl.value = "";
+                // Chuyển sang trang Posts để xem kết quả
+                switchView('posts');
+            }, 1000);
         }
 
-        // RENDER GIAO DIỆN CREATE POST
+        function togglePlatformSelect(id, connected) {
+            if(!connected) {
+                alert("Nền tảng này chưa kết nối! Chuyển tới Cài đặt.");
+                return switchView('settings');
+            }
+            if(state.selectedPlatforms.includes(id)) {
+                state.selectedPlatforms = state.selectedPlatforms.filter(p => p !== id);
+            } else { state.selectedPlatforms.push(id); }
+            
+            if(state.selectedPlatforms.length > 0 && !state.selectedPlatforms.includes(state.activeTab)) {
+                state.activeTab = state.selectedPlatforms[0];
+            }
+            renderCreatePostUI();
+        }
+
         function renderCreatePostUI() {
-            // Render thẻ chọn Platform
-            platformSelectorEl.innerHTML = platformsData.map(p => {
+            // Render Nền tảng
+            document.getElementById('platform-selector').innerHTML = platformsData.map(p => {
                 const isSelected = state.selectedPlatforms.includes(p.id);
-                const borderClass = isSelected ? "border-blue-600 bg-blue-50/50" : "border-slate-200 hover:border-slate-300 bg-white";
-                const checkIcon = isSelected ? `<i data-lucide="check-circle-2" class="absolute top-2 right-2 w-4 h-4 text-blue-600"></i>` : '';
                 return `
-                    <div onclick="togglePlatformSelect('${p.id}', ${p.connected})" class="relative w-28 h-24 rounded-xl border-2 flex flex-col items-center justify-center cursor-pointer transition-all ${borderClass} ${!p.connected ? 'opacity-40 grayscale' : ''}">
-                        ${checkIcon}
+                    <div onclick="togglePlatformSelect('${p.id}', ${p.connected})" class="relative w-28 h-24 rounded-xl border-2 flex flex-col items-center justify-center cursor-pointer transition-all ${isSelected ? 'border-blue-600 bg-blue-50/50' : 'border-slate-200 bg-white hover:border-slate-300'} ${!p.connected ? 'opacity-40 grayscale' : ''}">
+                        ${isSelected ? '<i data-lucide="check-circle-2" class="absolute top-2 right-2 w-4 h-4 text-blue-600"></i>' : ''}
                         <div class="font-bold text-sm mt-1 ${p.colorClass}">${p.name}</div>
                     </div>
                 `;
@@ -358,69 +422,197 @@
 
             // Render Tabs
             if(state.selectedPlatforms.length === 0) {
-                contentTabsEl.innerHTML = `<span class="text-sm text-slate-400 py-2">Vui lòng chọn nền tảng ở trên.</span>`;
+                document.getElementById('content-tabs').innerHTML = `<span class="text-sm text-slate-400 py-2">Chọn nền tảng...</span>`;
             } else {
-                contentTabsEl.innerHTML = state.selectedPlatforms.map(id => {
+                document.getElementById('content-tabs').innerHTML = state.selectedPlatforms.map(id => {
                     const p = platformsData.find(x => x.id === id);
                     return `<button onclick="state.activeTab='${id}'; renderCreatePostUI();" class="px-5 py-2.5 text-sm font-medium border-b-2 transition-all ${state.activeTab === id ? 'border-blue-600 text-blue-600 font-bold' : 'border-transparent text-slate-500'}">${p.name}</button>`;
                 }).join('');
             }
 
-            // Render Preview Status
+            // Render Status Preview
             if(state.selectedPlatforms.length === 0) {
-                statusPreviewEl.innerHTML = `<p class="text-xs text-slate-400 italic">Chưa chọn nền tảng.</p>`;
-                document.getElementById('btn-submit').disabled = true;
+                document.getElementById('status-preview').innerHTML = `<p class="text-xs text-slate-400">Trống</p>`;
             } else {
-                document.getElementById('btn-submit').disabled = false;
-                statusPreviewEl.innerHTML = state.selectedPlatforms.map(id => {
+                document.getElementById('status-preview').innerHTML = state.selectedPlatforms.map(id => {
                     const p = platformsData.find(x => x.id === id);
-                    return `<div class="flex justify-between items-center text-sm border-b border-slate-50 pb-2"><span class="text-slate-700 font-medium">${p.name}</span><span class="text-xs bg-slate-100 text-slate-500 px-2 py-1 rounded">Sẵn sàng</span></div>`;
+                    return `<div class="flex justify-between text-sm border-b border-slate-50 pb-2"><span class="font-medium">${p.name}</span><span class="text-xs bg-slate-100 px-2 py-1 rounded">${state.isScheduling ? 'Chờ lên lịch' : 'Sẵn sàng'}</span></div>`;
                 }).join('');
             }
             lucide.createIcons();
         }
 
-        // CHỌN NỀN TẢNG KHI TẠO BÀI VIẾT
-        function togglePlatformSelect(id, connected) {
-            if(!connected) {
-                alert("Nền tảng này chưa được kết nối! Hệ thống sẽ chuyển bạn sang trang Cài đặt.");
-                switchView('settings');
-                return;
+        // UPLOAD FILE GIẢ LẬP
+        function handleMediaUpload(input) {
+            if(input.files && input.files.length > 0) {
+                showToast("Đã tải lên!", `Đã thêm ${input.files.length} file đính kèm.`);
             }
-            if(state.selectedPlatforms.includes(id)) {
-                state.selectedPlatforms = state.selectedPlatforms.filter(p => p !== id);
-            } else {
-                state.selectedPlatforms.push(id);
-            }
-            if(state.selectedPlatforms.length > 0 && !state.selectedPlatforms.includes(state.activeTab)) {
-                state.activeTab = state.selectedPlatforms[0];
-            }
-            renderCreatePostUI();
         }
 
-        // RENDER LỊCH ĐĂNG (Thay thế document.write bằng innerHTML để sửa lỗi kẹt DOM)
+        // --- 4. LOGIC TRANG DANH SÁCH BÀI VIẾT (POSTS) ---
+        function setPostFilter(f) {
+            state.postFilter = f;
+            renderPostsTable();
+        }
+        
+        function renderPostsTable() {
+            // Render Tabs lọc
+            const filters = [
+                {id: 'all', name: 'Tất cả'}, {id: 'published', name: 'Đã đăng'}, 
+                {id: 'scheduled', name: 'Đã lên lịch'}, {id: 'draft', name: 'Bản nháp'}
+            ];
+            document.getElementById('post-filters').innerHTML = filters.map(f => 
+                `<button onclick="setPostFilter('${f.id}')" class="text-sm font-semibold pb-1 border-b-2 ${state.postFilter === f.id ? 'text-blue-600 border-blue-600' : 'text-slate-500 border-transparent'}">${f.name}</button>`
+            ).join('');
+
+            // Render Dữ liệu
+            let filtered = postsData.filter(p => state.postFilter === 'all' ? true : p.status === state.postFilter);
+            if(filtered.length === 0) {
+                document.getElementById('posts-table-body').innerHTML = `<tr><td colspan="5" class="text-center py-8 text-slate-500">Không có dữ liệu.</td></tr>`;
+                return;
+            }
+
+            document.getElementById('posts-table-body').innerHTML = filtered.map(p => {
+                const statusBadge = p.status === 'published' ? '<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Đã đăng</span>' : '<span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">Đã lên lịch</span>';
+                const plats = p.platforms.map(id => platformsData.find(x=>x.id===id)?.name).join(', ');
+                return `
+                    <tr class="border-b border-slate-50 hover:bg-slate-50">
+                        <td class="px-6 py-4 font-medium text-slate-800 max-w-[300px] truncate">${p.content}</td>
+                        <td class="px-6 py-4 text-slate-600">${plats}</td>
+                        <td class="px-6 py-4 text-slate-500">${p.scheduleText}</td>
+                        <td class="px-6 py-4">${statusBadge}</td>
+                        <td class="px-6 py-4 text-right">
+                            <button class="text-slate-400 hover:text-red-600 mx-1" onclick="deletePost(${p.id})"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        function deletePost(id) {
+            postsData = postsData.filter(p => p.id !== id);
+            showToast("Đã xóa", "Bài viết đã bị xóa khỏi hệ thống.");
+            renderPostsTable();
+            renderDashboard(); // Update counts
+        }
+
+        // --- 5. LOGIC DASHBOARD ---
+        function renderDashboard() {
+            const total = postsData.length;
+            const published = postsData.filter(p=>p.status==='published').length;
+            const scheduled = postsData.filter(p=>p.status==='scheduled').length;
+
+            document.getElementById('dashboard-stats').innerHTML = `
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm"><h3 class="text-slate-500 text-sm">Tổng bài viết</h3><p class="text-2xl font-bold text-slate-900 mt-1">${total}</p></div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm"><h3 class="text-slate-500 text-sm">Đã đăng</h3><p class="text-2xl font-bold text-slate-900 mt-1">${published}</p></div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm"><h3 class="text-slate-500 text-sm">Đã lên lịch</h3><p class="text-2xl font-bold text-slate-900 mt-1">${scheduled}</p></div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm"><h3 class="text-slate-500 text-sm">Lỗi / Thất bại</h3><p class="text-2xl font-bold text-red-600 mt-1">0</p></div>
+            `;
+
+            // Render Recent 3 posts
+            const recent = postsData.slice(0, 3);
+            document.getElementById('dashboard-recent-posts').innerHTML = recent.map(p => {
+                const statusBadge = p.status === 'published' ? '<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-[10px] font-bold">Đã đăng</span>' : '<span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-[10px] font-bold">Đã lên lịch</span>';
+                const plats = p.platforms.map(id => platformsData.find(x=>x.id===id)?.name).join(', ');
+                return `
+                    <tr class="border-b border-slate-50">
+                        <td class="py-4 font-medium text-slate-800 max-w-[200px] truncate">${p.content}</td>
+                        <td class="py-4 text-slate-600 text-xs">${plats}</td>
+                        <td class="py-4 text-slate-500 text-xs">${p.scheduleText}</td>
+                        <td class="py-4">${statusBadge}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // --- 6. LOGIC LỊCH ĐĂNG BÀI ---
         function renderCalendar() {
             let calHTML = '';
             for(let i=0; i<35; i++) {
-                let date = i - 2; 
+                let date = i - 1; // Giả lập bắt đầu thứ 3 là mùng 1
                 let isCurrentMonth = date > 0 && date <= 31;
-                let dateText = isCurrentMonth ? date : '';
-                let todayClass = date === 30 ? "bg-blue-600 text-white w-7 h-7 rounded-full flex items-center justify-center mx-auto" : "text-slate-700 w-7 h-7 flex items-center justify-center mx-auto";
+                let isToday = date === new Date().getDate();
                 
+                // Tìm bài viết có trong ngày này
+                let postsInDay = postsData.filter(p => p.dateNum === date);
+                let eventsHTML = postsInDay.map(p => {
+                    let color = p.status === 'published' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700';
+                    return `<div class="mt-1 mx-1 p-1 ${color} text-[10px] font-bold rounded truncate" title="${p.content}">${p.content}</div>`;
+                }).join('');
+
                 calHTML += `
-                    <div class="border-b border-r border-slate-100 min-h-[100px] p-2 ${!isCurrentMonth ? 'bg-slate-50' : ''}">
-                        <div class="${todayClass} text-sm font-medium">${dateText}</div>
+                    <div class="border-b border-r border-slate-100 min-h-[100px] p-1 ${!isCurrentMonth ? 'bg-slate-50' : ''}">
+                        ${isCurrentMonth ? `<div class="${isToday ? 'bg-blue-600 text-white' : 'text-slate-700'} w-6 h-6 rounded-full flex items-center justify-center mx-auto text-xs font-medium">${date}</div>` : ''}
+                        ${eventsHTML}
                     </div>
                 `;
             }
-            calendarGridEl.innerHTML = calHTML;
+            document.getElementById('calendar-grid').innerHTML = calHTML;
         }
 
-        // KHỞI TẠO TẤT CẢ UI KHI LOAD TRANG
+        // --- 7. LOGIC CÀI ĐẶT & TÀI KHOẢN ---
+        function toggleConnection(id) {
+            const platform = platformsData.find(p => p.id === id);
+            platform.connected = !platform.connected; 
+            if (!platform.connected) {
+                state.selectedPlatforms = state.selectedPlatforms.filter(pId => pId !== id);
+                if (state.activeTab === id) state.activeTab = state.selectedPlatforms.length > 0 ? state.selectedPlatforms[0] : null;
+            }
+            showToast(platform.connected ? "Đã kết nối!" : "Đã ngắt kết nối!", `Tài khoản ${platform.name} cập nhật thành công.`);
+            renderSettings();
+            renderAccountsGrid();
+            renderCreatePostUI();
+        }
+
+        function renderSettings() {
+            document.getElementById('settings-platforms').innerHTML = platformsData.map(p => {
+                return `
+                    <div class="flex items-center justify-between p-6 border-b border-slate-100 hover:bg-slate-50 transition">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center ${p.colorClass}"><i data-lucide="${p.icon}"></i></div>
+                            <div>
+                                <h3 class="font-bold text-slate-800">${p.name}</h3>
+                                <div class="mt-1">${p.connected ? '<span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">Đã kết nối</span>' : '<span class="px-2 py-1 bg-slate-100 text-slate-500 text-xs font-bold rounded-full">Chưa kết nối</span>'}</div>
+                            </div>
+                        </div>
+                        <button onclick="toggleConnection('${p.id}')" class="px-4 py-2 font-medium text-sm rounded-lg ${p.connected ? 'bg-slate-100 text-slate-700 hover:bg-red-50 hover:text-red-600' : 'bg-blue-600 text-white hover:bg-blue-700'}">${p.connected ? "Hủy kết nối" : "Kết nối"}</button>
+                    </div>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        function renderAccountsGrid() {
+            const conn = platformsData.filter(p => p.connected);
+            if(conn.length === 0) return document.getElementById('accounts-grid').innerHTML = `<p class="col-span-3 text-slate-500">Chưa có tài khoản. Vui lòng vào Cài đặt.</p>`;
+            document.getElementById('accounts-grid').innerHTML = conn.map(p => `
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                    <div class="flex justify-between mb-4">
+                        <div class="w-12 h-12 bg-slate-50 ${p.colorClass} rounded-xl flex items-center justify-center border border-slate-100"><i data-lucide="${p.icon}"></i></div>
+                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-[10px] font-bold h-6">Hoạt động</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900">${p.name} Profile</h3>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function renderAnalytics() {
+            let chartHTML = '';
+            for(let i=1; i<=30; i++) {
+                let height = Math.floor(Math.random() * 80) + 20;
+                chartHTML += `<div class="w-full bg-blue-100 hover:bg-blue-400 rounded-t-sm transition-colors cursor-pointer" style="height: ${height}%" title="Ngày ${i}: ${height * 100} views"></div>`;
+            }
+            document.getElementById('chart-area').innerHTML = chartHTML;
+        }
+
+        // KHỞI TẠO HỆ THỐNG
         renderSettings();
         renderAccountsGrid();
         renderCreatePostUI();
-        renderCalendar();
+        renderDashboard();
+        renderAnalytics();
         lucide.createIcons();
         
     </script>
