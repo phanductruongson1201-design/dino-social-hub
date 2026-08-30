@@ -100,13 +100,13 @@ window.lucide.createIcons = function(){
 
 /* 🌙 DARK MODE VARIABLES OVERRIDE */
 html[data-theme="dark"] {
-  --bg: #0f172a;          /* Slate 900 */
-  --surface: #1e293b;     /* Slate 800 */
-  --surface-2: #334155;   /* Slate 700 */
-  --line: #334155;        /* Slate 700 */
-  --line-2: #475569;      /* Slate 600 */
-  --text: #f1f5f9;        /* Slate 100 */
-  --muted: #94a3b8;       /* Slate 400 */
+  --bg: #0f172a;          
+  --surface: #1e293b;     
+  --surface-2: #334155;   
+  --line: #334155;        
+  --line-2: #475569;      
+  --text: #f1f5f9;        
+  --muted: #94a3b8;       
   --shadow: 0 4px 18px rgba(0,0,0,.3);
   --primary-soft: rgba(37, 99, 235, 0.2);
 }
@@ -129,7 +129,7 @@ svg.lucide { width: 1.2em; height: 1.2em; vertical-align: middle; flex-shrink: 0
 .stat-icon svg { width: 16px; height: 16px; }
 .logo svg { width: 18px; height: 18px; }
 
-/* 🌙 DARK MODE CƠ BẢN */
+/* 🌙 DARK MODE ELEMENTS */
 html[data-theme="dark"] .sidebar, html[data-theme="dark"] .topbar, html[data-theme="dark"] .card, html[data-theme="dark"] .modal, html[data-theme="dark"] .dropdown, html[data-theme="dark"] .mobile-bottom, html[data-theme="dark"] .account-card { background: var(--surface); border-color: var(--line); color: var(--text); }
 html[data-theme="dark"] .nav-item:hover, html[data-theme="dark"] .quick:hover, html[data-theme="dark"] .table tr:hover td, html[data-theme="dark"] .dropdown button:hover { background: var(--surface-2); }
 html[data-theme="dark"] .input, html[data-theme="dark"] .textarea, html[data-theme="dark"] .select { background: var(--surface-2); border-color: var(--line); color: var(--text); }
@@ -155,7 +155,7 @@ html[data-theme="dark"] .login-wrap { background: linear-gradient(135deg, #0f172
 html[data-theme="dark"] .demo-acc-btn { background: var(--surface-2); border-color: var(--line); color: var(--text); }
 html[data-theme="dark"] .demo-acc-btn:hover { background: var(--primary-soft); border-color: var(--primary); }
 html[data-theme="dark"] .demo-acc-btn b { color: #93c5fd; }
-html[data-theme="dark"] .search input { background: var(--surface-2); }
+html[data-theme="dark"] .search input { background: var(--surface-2); color: var(--text); }
 html[data-theme="dark"] .icon-btn, html[data-theme="dark"] .user-btn { background: var(--surface); border-color: var(--line); color: var(--text); }
 html[data-theme="dark"] .icon-btn:hover, html[data-theme="dark"] .user-btn:hover { background: var(--surface-2); }
 html[data-theme="dark"] .sidebar-footer { border-color: var(--line-2); }
@@ -207,7 +207,6 @@ html[data-theme="dark"] .label { color: var(--muted); }
 .collapse-btn:hover { background: var(--surface-2); opacity: 1; }
 
 .topbar { height:56px; background:rgba(255,255,255,.94); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); display:flex; align-items:center; padding:0 16px; gap:10px; position:sticky; top:0; z-index:20 }
-html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .breadcrumbs { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:6px; white-space:nowrap }
 .breadcrumbs b { color:var(--text) }
 .search { position:relative; max-width:380px; flex:1; margin-left:auto }
@@ -249,11 +248,6 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .stat-foot { font-size:9px; color:var(--muted); margin-top:4px }
 .pill { display:inline-flex; align-items:center; gap:5px; padding:4px 8px; border-radius:999px; font-size:9.5px; font-weight:700; border:1px solid transparent; white-space:nowrap }
 .dot { width:6px; height:6px; border-radius:50%; background:currentColor }
-.pill.success { background:var(--success-soft); color:var(--success); border-color:#bbf7d0 }
-.pill.warning { background:var(--warning-soft); color:var(--warning); border-color:#fde68a }
-.pill.danger { background:var(--danger-soft); color:var(--danger); border-color:#fecaca }
-.pill.info { background:var(--info-soft); color:var(--info); border-color:#a5f3fc }
-.pill.neutral { background:var(--surface-2); color:var(--muted); border-color:var(--line) }
 
 .section-title { font-size:13px; font-weight:700 }
 .muted { color:var(--muted) }
@@ -270,7 +264,6 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .legend { display:flex; align-items:center; gap:6px; font-size:10px; color:var(--muted) }
 .legend .swatch { width:8px; height:8px; border-radius:2px; background:var(--primary) }
 .donut { width:130px; height:130px; border-radius:50%; background:conic-gradient(#2563eb 0 36%,#14b8a6 36% 62%,#f59e0b 62% 78%,#a855f7 78% 90%,#64748b 90% 100%); position:relative; margin:auto }
-.donut:after { content:""; position:absolute; inset:30px; border-radius:50%; background:var(--surface); border:1px solid var(--line) }
 .donut-center { position:absolute; inset:0; display:grid; place-items:center; font-size:14px; font-weight:800; z-index:2; color:var(--text) }
 
 .timeline { display:flex; flex-direction:column; gap:10px }
@@ -284,7 +277,6 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .table { width:100%; border-collapse:collapse; min-width:720px }
 .table th { text-align:left; font-size:9px; letter-spacing:.05em; color:var(--muted); text-transform:uppercase; padding:10px 12px; border-bottom:1px solid var(--line); background:var(--surface-2) }
 .table td { padding:10px 12px; border-bottom:1px solid var(--line-2); font-size:11px; line-height:1.3; vertical-align:middle; color:var(--text) }
-.table tr:hover td { background:var(--surface-2) }
 
 /* Media & Form Elements */
 .thumb { width:40px; height:32px; border-radius:6px; border:1px solid var(--line); background:var(--surface-2); display:grid; place-items:center; overflow:hidden }
@@ -300,10 +292,6 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .field { display:flex; flex-direction:column; gap:5px }
 .field.full { grid-column:1/-1 }
 .label { font-size:10.5px; font-weight:600; color:var(--muted) }
-.input, .select, .textarea { width:100%; border:1px solid var(--line); border-radius:6px; background:var(--surface); padding:8px 10px; font:inherit; font-size:11.5px; outline:none; color:var(--text) }
-.textarea { min-height:86px; resize:vertical }
-.editor { min-height:120px }
-.help { font-size:9.5px; color:var(--muted) }
 
 /* Custom Drag Drop */
 .dropzone { border:1.5px dashed var(--line-2); border-radius:8px; background:var(--surface-2); padding:16px; text-align:center; cursor:pointer }
@@ -431,10 +419,7 @@ html[data-theme="dark"] .topbar { background: rgba(30,41,59,.94); }
 .dropdown button.danger-text:hover { background:var(--danger-soft); color:var(--danger); }
 .mobile-bottom { display:none; height:56px }
 
-
-/* =========================================================
-   📱 REAL DEVICE PREVIEW STYLES (Mockup iPhone)
-   ========================================================= */
+/* Real Device Preview Styles */
 .device-wrapper { display: flex; justify-content: center; padding: 20px 0; background: var(--bg); border-radius: 8px; border: 1px solid var(--line); }
 .device-frame { width: 280px; height: 560px; border: 12px solid #1e293b; border-radius: 36px; position: relative; background: #fff; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin: 0 auto; color: #000; }
 html[data-theme="dark"] .device-frame { border-color: #0f172a; background: #111; color: #fff; }
@@ -443,80 +428,7 @@ html[data-theme="dark"] .device-notch { background: #0f172a; }
 .preview-content { padding-top: 36px; height: 100%; overflow-y: auto; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; scrollbar-width: none; }
 .preview-content::-webkit-scrollbar { display: none; }
 
-/* Facebook Mockup */
-.prev-fb-head { display:flex; gap:8px; padding:12px; align-items:center; }
-.prev-fb-avatar { width:36px; height:36px; border-radius:50%; background:#cbd5e1; }
-.prev-fb-name { font-weight:700; font-size:13px; margin-bottom:2px; }
-.prev-fb-time { font-size:11px; color:#64748b; }
-.prev-fb-text { padding:0 12px 12px; font-size:13px; line-height:1.4; word-wrap: break-word; white-space: pre-wrap; }
-.prev-fb-text .hashtag { color: #1877f2; }
-.prev-fb-img { width:100%; height:260px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-.prev-fb-img img, .prev-fb-img video { width:100%; height:100%; object-fit:cover; }
-.prev-fb-actions { display:flex; padding:10px 12px; border-top:1px solid #e2e8f0; border-bottom:8px solid #e2e8f0; color:#64748b; justify-content:space-between; }
-html[data-theme="dark"] .prev-fb-actions { border-color: #334155; }
-.prev-fb-action { display:flex; gap:6px; align-items:center; font-size:12px; font-weight:600; }
-
-/* TikTok Mockup */
-.prev-tt-wrap { background: #000; height:100%; color:#fff; position:relative; }
-.prev-tt-img { width:100%; height:100%; background:#1f2937; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-.prev-tt-img img, .prev-tt-img video { width:100%; height:100%; object-fit:cover; }
-.prev-tt-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%); pointer-events:none; }
-.prev-tt-right { position:absolute; right:12px; bottom:20px; display:flex; flex-direction:column; gap:16px; align-items:center; }
-.prev-tt-icon { display:flex; flex-direction:column; align-items:center; gap:4px; font-size:10px; font-weight:600; }
-.prev-tt-icon svg { width:28px; height:28px; }
-.prev-tt-bottom { position:absolute; left:12px; bottom:20px; right:60px; }
-.prev-tt-name { font-weight:700; font-size:14px; margin-bottom:6px; display:block; }
-.prev-tt-text { font-size:13px; line-height:1.4; word-wrap: break-word; white-space: pre-wrap; }
-.prev-tt-text .hashtag { font-weight: 700; }
-
-/* Instagram Mockup */
-.prev-ig-head { display:flex; justify-content:space-between; padding:10px 12px; align-items:center; }
-.prev-ig-user { display:flex; gap:8px; align-items:center; }
-.prev-ig-avatar { width:30px; height:30px; border-radius:50%; background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); padding:2px; }
-.prev-ig-avatar-inner { width:100%; height:100%; border-radius:50%; background:#fff; border:1px solid #fff; }
-.prev-ig-name { font-weight:600; font-size:12.5px; }
-.prev-ig-img { width:100%; aspect-ratio:1/1; background:#e2e8f0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-.prev-ig-img img, .prev-ig-img video { width:100%; height:100%; object-fit:cover; }
-.prev-ig-actions { display:flex; justify-content:space-between; padding:10px 12px 6px; }
-.prev-ig-action-left { display:flex; gap:12px; }
-.prev-ig-likes { padding:0 12px; font-weight:600; font-size:12.5px; margin-bottom:4px; }
-.prev-ig-text { padding:0 12px 12px; font-size:13px; line-height:1.4; word-wrap: break-word; white-space: pre-wrap; }
-.prev-ig-text .hashtag { color: #00376b; }
-html[data-theme="dark"] .prev-ig-text .hashtag { color: #e0f2fe; }
-
-/* YouTube Mockup */
-.prev-yt-img { width:100%; aspect-ratio:16/9; background:#e2e8f0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-.prev-yt-img img, .prev-yt-img video { width:100%; height:100%; object-fit:cover; }
-.prev-yt-info { padding:12px; }
-.prev-yt-title { font-size:16px; font-weight:700; line-height:1.3; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-.prev-yt-meta { font-size:11.5px; color:#64748b; margin-bottom:12px; }
-.prev-yt-user { display:flex; gap:10px; align-items:center; margin-bottom:12px; }
-.prev-yt-avatar { width:32px; height:32px; border-radius:50%; background:#cbd5e1; }
-.prev-yt-name { font-weight:600; font-size:13.5px; }
-.prev-yt-desc { background:#f1f5f9; padding:10px; border-radius:8px; font-size:12.5px; line-height:1.4; white-space:pre-wrap; }
-html[data-theme="dark"] .prev-yt-desc { background:#1e293b; color:#cbd5e1; }
-.prev-yt-desc .hashtag { color: #2563eb; }
-
-/* X (Twitter) Mockup */
-.prev-x-wrap { padding:12px; display:flex; gap:10px; border-bottom:1px solid #e2e8f0; }
-html[data-theme="dark"] .prev-x-wrap { border-color:#334155; }
-.prev-x-avatar { width:40px; height:40px; border-radius:50%; background:#cbd5e1; flex-shrink:0; }
-.prev-x-content { flex:1; min-width:0; }
-.prev-x-head { display:flex; align-items:center; gap:4px; margin-bottom:2px; }
-.prev-x-name { font-weight:700; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.prev-x-user { color:#64748b; font-size:13px; }
-.prev-x-text { font-size:14px; line-height:1.4; word-wrap: break-word; white-space: pre-wrap; margin-bottom:10px; }
-.prev-x-text .hashtag { color: #1da1f2; }
-.prev-x-img { width:100%; border-radius:12px; overflow:hidden; border:1px solid #e2e8f0; margin-bottom:10px; }
-html[data-theme="dark"] .prev-x-img { border-color:#334155; }
-.prev-x-img img, .prev-x-img video { width:100%; max-height:280px; object-fit:cover; display:block; }
-.prev-x-actions { display:flex; justify-content:space-between; color:#64748b; padding-right:20px; }
-.prev-x-action { display:flex; gap:6px; align-items:center; font-size:12px; }
-
-
-/* =========================================================
-   ✉️ SOCIAL INBOX STYLES (Hộp thư hợp nhất)
-   ========================================================= */
+/* Inbox Styles */
 .inbox-layout { display: grid; grid-template-columns: 300px 1fr; height: calc(100vh - 150px); border: 1px solid var(--line); border-radius: 8px; background: var(--surface); overflow: hidden; }
 .inbox-sidebar { border-right: 1px solid var(--line); display: flex; flex-direction: column; background: var(--bg); }
 .inbox-head { padding: 14px; border-bottom: 1px solid var(--line); background: var(--surface); }
@@ -650,7 +562,6 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
 <!-- KHUNG APP CHÍNH -->
 <div class="app hidden" id="appView">
   <aside class="sidebar" id="sidebar">
-    <!-- NÚT ĐÓNG/MỞ SIDEBAR -->
     <div class="brand" id="logoToggleSidebar" title="Thu gọn / Mở rộng Menu">
       <div class="logo"><i data-lucide="layers-3"></i></div>
       <div class="brand-text">
@@ -679,7 +590,7 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
       <button class="nav-item" data-page="settings"><i data-lucide="settings-2"></i><span class="nav-label">Cài đặt hệ thống</span></button>
     </nav>
     <div class="sidebar-footer">
-      <div class="demo-badge"><b>Chế độ Demo</b><br>Dữ liệu chỉ lưu tạm trên trình duyệt (LocalStorage).</div>
+      <div class="demo-badge"><b>Chế độ Demo</b><br>Dữ liệu lưu tạm (LocalStorage).</div>
       <button class="collapse-btn" id="collapseBtn"><i data-lucide="panel-left-close"></i><span class="collapse-text">Thu gọn menu</span></button>
     </div>
   </aside>
@@ -815,7 +726,6 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
   let calendarSelectedDate = '2026-08-30';
   let activeInboxId = 'msg1';
 
-  // Utils
   function deepClone(o) { return JSON.parse(JSON.stringify(o)) }
   function loadState() {
     try {
@@ -843,18 +753,8 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])) 
   }
   function statusPill(status) {
-    const map = {
-      Published:'success', Scheduled:'info', Queued:'warning', Publishing:'info', 
-      Failed:'danger', Cancelled:'neutral', Draft:'neutral', Waiting:'warning', 
-      Processing:'info', Success:'success', Retrying:'warning', 'Authentication Required':'danger', 
-      Uploading:'warning', Uploaded:'info', Ready:'success'
-    }; 
-    const dict = {
-      Published:'Đã đăng', Scheduled:'Đã lên lịch', Queued:'Chờ đăng', Publishing:'Đang đăng', 
-      Failed:'Lỗi', Cancelled:'Đã hủy', Draft:'Bản nháp', Waiting:'Đang đợi', 
-      Processing:'Đang xử lý', Success:'Thành công', Retrying:'Đang thử lại', 'Authentication Required':'Lỗi Token', 
-      Uploading:'Đang tải', Uploaded:'Đã tải', Ready:'Sẵn sàng'
-    };
+    const map = { Published:'success', Scheduled:'info', Queued:'warning', Publishing:'info', Failed:'danger', Cancelled:'neutral', Draft:'neutral', Waiting:'warning', Processing:'info', Success:'success', Retrying:'warning', 'Authentication Required':'danger', Uploading:'warning', Uploaded:'info', Ready:'success' }; 
+    const dict = { Published:'Đã đăng', Scheduled:'Đã lên lịch', Queued:'Chờ đăng', Publishing:'Đang đăng', Failed:'Lỗi', Cancelled:'Đã hủy', Draft:'Bản nháp', Waiting:'Đang đợi', Processing:'Đang xử lý', Success:'Thành công', Retrying:'Đang thử lại', 'Authentication Required':'Lỗi Token', Uploading:'Đang tải', Uploaded:'Đã tải', Ready:'Sẵn sàng' };
     const c = map[status] || 'neutral'; 
     return `<span class="pill ${c}"><span class="dot"></span>${escape(dict[status] || status)}</span>`;
   }
@@ -873,20 +773,13 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     const el = document.createElement('div');
     el.className = `toast ${type}`;
     const icons = { success:'check-circle-2', error:'x-circle', warning:'triangle-alert', info:'info' };
-    el.innerHTML = `
-      <i data-lucide="${icons[type]||'info'}" style="width:16px;color:${type==='error'?'#dc2626':type==='warning'?'#d97706':type==='success'?'#16a34a':'#2563eb'}"></i>
-      <div><b>${escape(title || ({success:'Thành công', error:'Có lỗi', warning:'Cảnh báo', info:'Thông tin'}[type]||'Thông báo'))}</b>
-      <div>${escape(message)}</div></div>`;
+    el.innerHTML = `<i data-lucide="${icons[type]||'info'}" style="width:16px;color:${type==='error'?'#dc2626':type==='warning'?'#d97706':type==='success'?'#16a34a':'#2563eb'}"></i><div><b>${escape(title || ({success:'Thành công', error:'Có lỗi', warning:'Cảnh báo', info:'Thông tin'}[type]||'Thông báo'))}</b><div>${escape(message)}</div></div>`;
     wrap.appendChild(el);
     lucide.createIcons();
     setTimeout(() => el.remove(), 3800);
   }
   function confirmModal(title, text, onConfirm) {
-    openModal(`
-      <div class="modal-header"><div class="modal-title">${escape(title)}</div><button class="close" data-close-modal><i data-lucide="x"></i></button></div>
-      <div class="modal-body"><div class="notice danger">${escape(text)}</div></div>
-      <div class="modal-footer"><button class="btn" data-close-modal>Hủy</button><button class="btn danger" id="confirmAction">Xác nhận</button></div>
-    `);
+    openModal(`<div class="modal-header"><div class="modal-title">${escape(title)}</div><button class="close" data-close-modal><i data-lucide="x"></i></button></div><div class="modal-body"><div class="notice danger">${escape(text)}</div></div><div class="modal-footer"><button class="btn" data-close-modal>Hủy</button><button class="btn danger" id="confirmAction">Xác nhận</button></div>`);
     document.getElementById('confirmAction').onclick = () => { closeModal(); onConfirm(); };
     lucide.createIcons();
   }
@@ -1108,15 +1001,12 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     return html;
   }
 
-  // --- MỚI: HỘP THƯ HỢP NHẤT (INBOX) ---
   function renderInbox() {
     let html = pageShell('Hộp thư hợp nhất', 'Quản lý Tin nhắn và Bình luận từ Facebook, TikTok, Instagram tại một nơi duy nhất.');
-    
     const messages = state.inbox || [];
     const activeMsg = messages.find(m => m.id === activeInboxId) || messages[0];
     
     html += `<div class="inbox-layout">
-      <!-- Cột trái: Danh sách -->
       <div class="inbox-sidebar">
         <div class="inbox-head">
           <div class="search" style="max-width:100%"><i data-lucide="search"></i><input placeholder="Tìm người gửi, nội dung..." style="height:32px; background:var(--surface-2)"/></div>
@@ -1142,8 +1032,6 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
           }).join('')}
         </div>
       </div>
-      
-      <!-- Cột phải: Chat box -->
       <div class="inbox-chat">
         ${activeMsg ? `
         <div class="chat-head">
@@ -1186,113 +1074,42 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
         ` : `<div class="empty" style="margin:auto"><i data-lucide="message-square"></i><b>Chọn một cuộc hội thoại để bắt đầu</b></div>`}
       </div>
     </div>`;
-    
     return html;
   }
   
   window.app = window.app || {};
-  window.app.selectInbox = function(id) {
-    activeInboxId = id;
-    const msg = state.inbox.find(m => m.id === id);
-    if(msg && !msg.read) { msg.read = true; save(); }
-    render();
-  }
-  window.app.sendInboxReply = function() {
-    const text = document.getElementById('inboxReply').value.trim();
-    if(!text) return;
-    const msg = state.inbox.find(m => m.id === activeInboxId);
-    if(msg) {
-      msg.replied = true;
-      msg.replyText = text;
-      save();
-      render();
-      toast('Đã gửi phản hồi', 'success');
-    }
-  }
+  window.app.selectInbox = function(id) { activeInboxId = id; const msg = state.inbox.find(m => m.id === id); if(msg && !msg.read) { msg.read = true; save(); } render(); }
+  window.app.sendInboxReply = function() { const text = document.getElementById('inboxReply').value.trim(); if(!text) return; const msg = state.inbox.find(m => m.id === activeInboxId); if(msg) { msg.replied = true; msg.replyText = text; save(); render(); toast('Đã gửi phản hồi', 'success'); } }
+  window.app.ui = { showToast: toast };
 
-
-  // --- SỬA ĐỔI: REAL DEVICE PREVIEW BÊN CỘT PHẢI ---
-  function defaultDraft() {
-    return {
-      title:'', globalCaption:'', selectedPlatforms:['Facebook','TikTok','Instagram'], activeTab:'Facebook', 
-      scheduleMode:'now', scheduleDate:new Date().toISOString().slice(0,10), scheduleTime:'18:30', 
-      timezone:state.profile.timezone, mediaIds:[], 
-      platforms: {
-        Facebook:{caption:'', hashtag:'', link:''}, TikTok:{caption:'', hashtag:'', privacy:'Public', comments:true, duet:true, stitch:true}, 
-        YouTube:{title:'', description:'', tags:'', category:'Education', privacy:'Public', thumbnailId:''}, 
-        Instagram:{caption:'', hashtag:'', location:''}, X:{text:'', thread:['']}
-      }
-    };
-  }
-  function draftFromPost(post) {
-    const d = defaultDraft();
-    d.title = post.title;
-    d.selectedPlatforms = Object.keys(post.platforms || {});
-    d.activeTab = d.selectedPlatforms[0] || 'Facebook';
-    d.mediaIds = post.mediaIds || [];
-    for(const p of d.selectedPlatforms) d.platforms[p] = { ...d.platforms[p], ...(post.platforms[p] || {}) };
-    d.scheduleMode = post.status === 'Scheduled' || post.status === 'Queued' ? 'schedule' : 'now'; 
-    if(post.schedule) {
-      const x = new Date(post.schedule);
-      d.scheduleDate = x.toISOString().slice(0,10);
-      d.scheduleTime = x.toISOString().slice(11,16);
-    } 
-    return d;
-  }
-  
   function renderDevicePreview(tab, content, mediaIds) {
     const hasMedia = mediaIds && mediaIds.length > 0;
     const mediaObj = hasMedia ? (state.media.find(x => x.id === mediaIds[0]) || state.bulk.find(x => x.id === mediaIds[0])) : null;
     const mediaHTML = mediaObj && mediaObj.preview ? (mediaObj.type === 'video' ? `<video src="${mediaObj.preview}" muted loop autoplay></video>` : `<img src="${mediaObj.preview}">`) : `<div style="text-align:center;color:#94a3b8"><i data-lucide="image" style="width:40px;height:40px;margin-bottom:8px"></i><br>Khu vực Ảnh/Video</div>`;
-
     let html = `<div class="device-wrapper"><div class="device-frame"><div class="device-notch"></div><div class="preview-content">`;
-    
     if (tab === 'Facebook') {
       const combinedText = formatPreviewText(`${content.caption||''} ${content.hashtag||''}`);
       html += `
-        <div class="prev-fb-head">
-          <div class="prev-fb-avatar"></div>
-          <div><div class="prev-fb-name">Tây Nguyên Phim</div><div class="prev-fb-time">Vừa xong · 🌎</div></div>
-        </div>
+        <div class="prev-fb-head"><div class="prev-fb-avatar"></div><div><div class="prev-fb-name">Tây Nguyên Phim</div><div class="prev-fb-time">Vừa xong · 🌎</div></div></div>
         <div class="prev-fb-text" id="preview-text">${combinedText || 'Văn bản của bạn sẽ hiển thị ở đây...'}</div>
         <div class="prev-fb-img">${mediaHTML}</div>
-        <div class="prev-fb-actions">
-          <div class="prev-fb-action"><i data-lucide="heart" style="width:16px"></i> Thích</div>
-          <div class="prev-fb-action"><i data-lucide="message-square" style="width:16px"></i> Bình luận</div>
-          <div class="prev-fb-action"><i data-lucide="share-2" style="width:16px"></i> Chia sẻ</div>
-        </div>
+        <div class="prev-fb-actions"><div class="prev-fb-action"><i data-lucide="heart" style="width:16px"></i> Thích</div><div class="prev-fb-action"><i data-lucide="message-square" style="width:16px"></i> Bình luận</div><div class="prev-fb-action"><i data-lucide="share-2" style="width:16px"></i> Chia sẻ</div></div>
       `;
     } else if (tab === 'TikTok') {
       const combinedText = formatPreviewText(`${content.caption||''} ${content.hashtag||''}`);
       html += `
         <div class="prev-tt-wrap">
-          <div class="prev-tt-img">${mediaHTML}</div>
-          <div class="prev-tt-overlay"></div>
-          <div class="prev-tt-right">
-            <div class="prev-fb-avatar" style="border:1px solid #fff"></div>
-            <div class="prev-tt-icon"><i data-lucide="heart"></i> 1.2M</div>
-            <div class="prev-tt-icon"><i data-lucide="message-square"></i> 45K</div>
-            <div class="prev-tt-icon"><i data-lucide="bookmark"></i> 8K</div>
-            <div class="prev-tt-icon"><i data-lucide="share-2"></i> 12K</div>
-          </div>
-          <div class="prev-tt-bottom">
-            <span class="prev-tt-name">@taynguyenphim</span>
-            <div class="prev-tt-text" id="preview-text">${combinedText || 'Caption của bạn...'}</div>
-          </div>
+          <div class="prev-tt-img">${mediaHTML}</div><div class="prev-tt-overlay"></div>
+          <div class="prev-tt-right"><div class="prev-fb-avatar" style="border:1px solid #fff"></div><div class="prev-tt-icon"><i data-lucide="heart"></i> 1.2M</div><div class="prev-tt-icon"><i data-lucide="message-square"></i> 45K</div><div class="prev-tt-icon"><i data-lucide="bookmark"></i> 8K</div><div class="prev-tt-icon"><i data-lucide="share-2"></i> 12K</div></div>
+          <div class="prev-tt-bottom"><span class="prev-tt-name">@taynguyenphim</span><div class="prev-tt-text" id="preview-text">${combinedText || 'Caption của bạn...'}</div></div>
         </div>
       `;
     } else if (tab === 'Instagram') {
       const combinedText = formatPreviewText(`${content.caption||''} ${content.hashtag||''}`);
       html += `
-        <div class="prev-ig-head">
-          <div class="prev-ig-user"><div class="prev-ig-avatar"><div class="prev-ig-avatar-inner"></div></div><div class="prev-ig-name">taynguyenphim.vn</div></div>
-          <i data-lucide="more-horizontal"></i>
-        </div>
+        <div class="prev-ig-head"><div class="prev-ig-user"><div class="prev-ig-avatar"><div class="prev-ig-avatar-inner"></div></div><div class="prev-ig-name">taynguyenphim.vn</div></div><i data-lucide="more-horizontal"></i></div>
         <div class="prev-ig-img" style="aspect-ratio:1/1;">${mediaHTML}</div>
-        <div class="prev-ig-actions">
-          <div class="prev-ig-action-left"><i data-lucide="heart"></i><i data-lucide="message-square"></i><i data-lucide="send"></i></div>
-          <i data-lucide="bookmark"></i>
-        </div>
+        <div class="prev-ig-actions"><div class="prev-ig-action-left"><i data-lucide="heart"></i><i data-lucide="message-square"></i><i data-lucide="send"></i></div><i data-lucide="bookmark"></i></div>
         <div class="prev-ig-likes">8,932 lượt thích</div>
         <div class="prev-ig-text"><b style="font-weight:600">taynguyenphim.vn</b> <span id="preview-text">${combinedText || 'Văn bản của bạn...'}</span></div>
       `;
@@ -1314,17 +1131,11 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
             <div class="prev-x-head"><span class="prev-x-name">Dino Hub</span><span class="prev-x-user">@dinohub · 1m</span></div>
             <div class="prev-x-text" id="preview-text">${formatPreviewText(content.text) || "What's happening?"}</div>
             ${hasMedia ? `<div class="prev-x-img">${mediaHTML}</div>` : ''}
-            <div class="prev-x-actions">
-              <div class="prev-x-action"><i data-lucide="message-square" style="width:14px"></i> 12</div>
-              <div class="prev-x-action"><i data-lucide="refresh-cw" style="width:14px"></i> 4</div>
-              <div class="prev-x-action"><i data-lucide="heart" style="width:14px"></i> 89</div>
-              <div class="prev-x-action"><i data-lucide="chart-no-axes-combined" style="width:14px"></i> 1.2K</div>
-            </div>
+            <div class="prev-x-actions"><div class="prev-x-action"><i data-lucide="message-square" style="width:14px"></i> 12</div><div class="prev-x-action"><i data-lucide="refresh-cw" style="width:14px"></i> 4</div><div class="prev-x-action"><i data-lucide="heart" style="width:14px"></i> 89</div><div class="prev-x-action"><i data-lucide="chart-no-axes-combined" style="width:14px"></i> 1.2K</div></div>
           </div>
         </div>
       `;
     }
-    
     html += `</div></div></div>`;
     return html;
   }
@@ -1332,15 +1143,12 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
   window.app.updatePreviewText = function(val, fieldType) {
     if(!state.draft) return;
     const tab = state.draft.activeTab;
-    state.draft.platforms[tab][fieldType] = val; // save locally without full re-render
-    
-    // Live update the DOM
+    state.draft.platforms[tab][fieldType] = val; 
     const el = document.getElementById(fieldType === 'title' ? 'preview-yt-title' : 'preview-text');
     if(el) {
       if(tab === 'YouTube' && fieldType === 'title') {
         el.innerHTML = escape(val) || 'Tiêu đề Video YouTube của bạn';
       } else {
-        // combine if needed
         let fullText = val;
         if(tab === 'Facebook' || tab === 'TikTok' || tab === 'Instagram') {
           const caption = fieldType === 'caption' ? val : state.draft.platforms[tab].caption || '';
@@ -1361,12 +1169,8 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     let html = pageShell(editingPostId ? 'Chỉnh sửa bài viết' : 'Tạo bài viết', 'Soạn một nội dung và phân phối theo từng nền tảng.', `<button class="btn" id="resetDraft">Làm mới</button><button class="btn primary" id="saveDraft"><i data-lucide="save"></i>Lưu nháp</button>`);
     html += `<div class="notice info" style="margin-bottom:12px"><b>Chế độ Demo.</b> Bấm Đăng bài sẽ mô phỏng đẩy vào Queue và đổi trạng thái ảo.</div>`;
     
-    // Layout 2 cột cho Create View
     html += `<div style="display:flex; gap:16px; align-items:flex-start;">`;
-    
-    // CỘT TRÁI: Soạn thảo (Flex 1)
     html += `<div style="flex:1; min-width:0;">`;
-    
     html += `<div class="card card-pad">
       <div class="form-grid">
         <label class="field full"><span class="label">Tên chiến dịch / Tiêu đề nội bộ</span><input class="input" id="draftTitle" value="${escape(d.title)}" placeholder="VD: Khai giảng khóa học tháng 9"></label>
@@ -1390,13 +1194,9 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     html += `<div style="margin-top:18px"><div class="split"><div><div class="label">3. Tải Lên Ảnh / Video</div><div class="help">Kéo thả để đổi thứ tự ưu tiên hiển thị.</div></div><button class="btn small" id="browseMedia"><i data-lucide="upload"></i>Chọn file</button></div>
       <div class="dropzone" id="createDrop" style="margin-top:9px"><i data-lucide="cloud-upload" style="width:23px;color:#2563eb"></i><div style="font-size:12px;font-weight:800;margin-top:6px">Kéo & thả media vào đây</div><div class="help">JPG, PNG, WEBP, MP4, MOV. (Tối đa 25MB Demo)</div></div>
       <div class="media-preview" id="createMediaPreview">${renderDraftMedia(d.mediaIds)}</div></div>`;
-      
-    html += `</div></div>`; // End Cột trái
+    html += `</div></div>`; 
 
-    // CỘT PHẢI: Thiết bị xem trước & Lên lịch (Width cố định)
     html += `<div style="width:320px; flex-shrink:0; display:flex; flex-direction:column; gap:16px;">`;
-    
-    // Card Lên lịch
     html += `<div class="card card-pad">
       <div class="label" style="margin-bottom:8px">Lịch Đăng Bài</div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
@@ -1407,7 +1207,6 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
       <button class="btn primary" id="publishOrSchedule" style="width:100%; margin-top:14px; height:36px;"><i data-lucide="send"></i>${d.scheduleMode==='schedule'?'Xác nhận Lên Lịch':'Đẩy vào Hàng Đợi (Đăng)'}</button>
     </div>`;
 
-    // Card Xem trước thiết bị
     if(d.selectedPlatforms.length) {
       html += `<div class="card card-pad" style="background:var(--surface-2)">
         <div class="split" style="margin-bottom:12px"><div class="label">Xem Trước (${tab})</div></div>
@@ -1415,9 +1214,7 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
       </div>`;
     }
 
-    html += `</div>`; // End Cột phải
-    html += `</div>`; // End Flex Layout
-    
+    html += `</div></div>`; 
     return html;
   }
   
@@ -1429,7 +1226,6 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
     if(tab==='Instagram') html = `<div class="form-grid"><label class="field full"><span class="label">Caption Instagram</span><textarea class="textarea editor" data-draft-field="Instagram.caption" oninput="app.updatePreviewText(this.value, 'caption')"></textarea></label><label class="field"><span class="label">Hashtags</span><input class="input" data-draft-field="Instagram.hashtag" oninput="app.updatePreviewText(this.value, 'hashtag')" placeholder="#aesthetic #lifestyle"></label><label class="field"><span class="label">Vị trí (Check-in)</span><input class="input" data-draft-field="Instagram.location" placeholder="TP. Hồ Chí Minh"></label></div>`;
     if(tab==='X') html = `<div class="form-grid"><label class="field full"><span class="label">Nội dung Tweet</span><textarea class="textarea editor" data-draft-field="X.text" oninput="app.updatePreviewText(this.value, 'text')" maxlength="280"></textarea><div class="help" id="xCount"></div></label><label class="field full"><span class="label">Tạo chuỗi (Thread)</span>${(c.thread||['']).map((t,i)=>`<div style="display:flex;gap:7px;margin-bottom:6px"><input class="input" data-thread-index="${i}" value="${escape(t)}" placeholder="Tweet thứ ${i+1}">${i>0?`<button class="btn small" data-remove-thread="${i}"><i data-lucide="minus"></i></button>`:''}</div>`).join('')}<button class="btn small" id="addThread"><i data-lucide="plus"></i>Thêm Tweet mới</button></label></div>`;
     
-    // Inject values dynamically
     setTimeout(() => {
       document.querySelectorAll('[data-draft-field]').forEach(el => {
         const [p,k] = el.dataset.draftField.split('.');
@@ -1741,7 +1537,7 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
         <div id="aiResults" style="margin-top:14px"><div class="empty"><i data-lucide="sparkles"></i><b>Chưa có văn bản nào</b><span>Hãy nhập chủ đề và bấm Generate để AI tự động biến tấu nội dung phù hợp cho từng MXH.</span></div></div>
       </div>
       <div class="modal-footer"><button class="btn" data-close-modal>Đóng</button></div>
-    `, true); // Thêm true để làm cái form này to hơn một chút
+    `, true);
     document.getElementById('aiGenerate').onclick = generateAIResults; 
     document.getElementById('aiRegenerate').onclick = generateAIResults;
     lucide.createIcons();
@@ -1789,7 +1585,7 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
         case'create': html=renderCreate(); break;
         case'posts': html=renderPosts(); break;
         case'schedule': html=renderSchedule(); break;
-        case'inbox': html=renderInbox(); break; // THÊM RENDER INBOX
+        case'inbox': html=renderInbox(); break;
         case'accounts': html=renderAccounts(); break;
         case'media': html=renderMedia(); break;
         case'bulk': html=renderBulk(); break;
@@ -1920,7 +1716,7 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
       };
     });
     
-    // Explicit Button Bindings
+    // Explicit Button Bindings (using .onclick to prevent multiple attachments)
     ['openAI', 'aiLibrary', 'helpBtn'].forEach(id => {
       const el = document.getElementById(id);
       if(el) el.onclick = () => id === 'helpBtn' ? openHelp() : openAIGenerator();
@@ -2474,4 +2270,87 @@ html[data-theme="dark"] .prev-x-img { border-color:#334155; }
 
   function openOAuthModal() {
     openModal(`
-      <div class="modal-header"><div class="modal-title">Bản Vẽ Vi Kiến Trúc OAuth Graph</div>Tôi không thể giúp bạn việc đó, vì tôi chỉ là một mô hình ngôn ngữ nên không có khả năng hiểu cũng như trả lời yêu cầu đó.
+      <div class="modal-header"><div class="modal-title">Bản Vẽ Vi Kiến Trúc OAuth Graph</div><button class="close" data-close-modal><i data-lucide="x"></i></button></div>
+      <div class="modal-body"><div class="timeline">${['facebookService','tiktokService','youtubeService','instagramService','xService'].map(s=>`<div class="timeline-item"><div class="timeline-dot"></div><div><b>${s}</b><span>connect() · callback() · refreshToken() · disconnect() · publishPost() · getAccount() · getStatus()</span></div></div>`).join('')}</div><div class="notice warn" style="margin-top:13px"><b>Frontend routes:</b> POST /api/accounts/connect · GET /api/accounts/callback · POST /api/posts/publish. Các Endpoint này cần triển khai ở Backend Express/NestJS.</div></div>
+      <div class="modal-footer"><button class="btn primary" data-close-modal>Đã hiểu</button></div>
+    `);
+  }
+
+  // FIXED FOR ALL MODAL CLICKS AND GLOBAL EVENT DELEGATION
+  document.addEventListener('click', e => {
+    // 1. Modal Close Handling (Bắt sự kiện đóng modal toàn cục - SỬA LỖI ĐÓNG BẢNG ADD MEMBER)
+    if (e.target.closest('[data-close-modal]')) {
+      closeModal();
+      return; 
+    }
+
+    // 2. Toggle Sidebar khi bấm vào khu vực Brand (Logo)
+    if (e.target.closest('#logoToggleSidebar')) {
+      state.sidebarCollapsed = !state.sidebarCollapsed;
+      save(); render();
+      return;
+    }
+
+    // 3. Standard Action Handling
+    const el = e.target.closest('[data-action]');
+    if(el) {
+      const a = el.dataset.action;
+      if(a === 'export') exportWorkspace();
+      if(a === 'profile') { state.settingsTab = 'Profile'; navigate('settings'); }
+      if(a === 'settings') navigate('settings');
+      if(a === 'import') window.importWorkspace();
+      if(a === 'logout') window.doLogout();
+    }
+    
+    // 4. AI Module Handling
+    const copy = e.target.closest('[data-copy-ai]');
+    if(copy) {
+      const p = copy.dataset.copyAi;
+      const txt = p === 'YouTube' ? `Tiêu đề: ${window.__aiResults[p].title}\n${window.__aiResults[p].description}\nTags: ${window.__aiResults[p].tags}` : window.__aiResults[p];
+      navigator.clipboard?.writeText(txt); toast('Đã copy caption');
+    }
+    
+    const applyAiBtn = e.target.closest('[data-apply-ai]');
+    if(applyAiBtn) applyAI(applyAiBtn.dataset.applyAi);
+    
+    const editAiBtn = e.target.closest('[data-edit-ai]');
+    if(editAiBtn) editAIBox(editAiBtn.dataset.editAi);
+  });
+
+  document.getElementById('collapseBtn').onclick = () => { state.sidebarCollapsed = !state.sidebarCollapsed; save(); render(); };
+  document.getElementById('userMenuBtn').onclick = () => document.getElementById('userMenu').classList.toggle('show');
+  
+  document.addEventListener('click', e => {
+    if(!e.target.closest('#userMenuBtn') && !e.target.closest('#userMenu')) document.getElementById('userMenu').classList.remove('show');
+  });
+  
+  document.getElementById('modalBackdrop').addEventListener('click', e => { if(e.target.id === 'modalBackdrop') closeModal(); });
+  
+  window.addEventListener('keydown', e => {
+    if(e.key === 'Escape') closeModal();
+    if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); document.getElementById('globalSearch').focus(); }
+  });
+  
+  window.addEventListener('beforeunload', save);
+  
+  document.getElementById('hiddenFile').onchange = e => {
+    handleFiles(e.target.files, state.page === 'bulk' ? 'bulk' : 'create');
+    e.target.value = '';
+  };
+
+  window.importWorkspace = () => {
+    const input = document.createElement('input'); input.type = 'file'; input.accept = 'application/json';
+    input.onchange = () => input.files[0] && importWorkspace(input.files[0]); input.click();
+  };
+
+  // Áp dụng Theme Dark/Light ngay khi load trang
+  document.documentElement.setAttribute('data-theme', (state.settings?.theme || 'Light').toLowerCase());
+
+  // Initialize
+  state.page = state.page || 'dashboard'; 
+  save(); 
+  checkAuth();
+})();
+</script>
+</body>
+</html>
