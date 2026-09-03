@@ -4,156 +4,32 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DINO SOCIAL HUB 4.0 - Enterprise</title>
-<meta name="description" content="DINO SOCIAL HUB 4.0 — Một Nội Dung. Mọi Nền Tảng." />
-
 <script>
-// Khởi tạo thư viện Icon
-window.lucide = window.lucide || {};
-window.lucide.createIcons = function() {
-  const icons = {
-    'layers-3': '<path d="M12 2 2.5 7 12 12l9.5-5L12 2Z"/><path d="m2.5 12 9.5 5 9.5-5"/><path d="m2.5 17 9.5 5 9.5-5"/>',
-    'layout-dashboard': '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
-    'square-pen': '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/>',
-    'files': '<path d="M15 2H6a2 2 0 0 0-2 2v14"/><path d="M8 6h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/>',
-    'calendar-days': '<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>',
-    'link-2': '<path d="M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1"/>',
-    'images': '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>',
-    'upload-cloud': '<path d="M16 16l-4-4-4 4"/><path d="M12 12v9"/><path d="M20.4 16.4A5 5 0 0 0 18 7h-1.3A7 7 0 0 0 3 10.5 4.5 4.5 0 0 0 7.5 15H8"/>',
-    'list-checks': '<path d="M9 6h12M9 12h12M9 18h12"/><path d="m3 6 1 1 2-2M3 12l1 1 2-2M3 18l1 1 2-2"/>',
-    'users': '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
-    'chart-no-axes-combined': '<path d="M3 3v18h18"/><path d="m7 16 4-5 3 3 5-7"/>',
-    'bell': '<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/>',
-    'settings-2': '<path d="M3 6h7M14 6h7M3 12h2M9 12h12M3 18h7M14 18h7"/><circle cx="12" cy="6" r="2"/><circle cx="7" cy="12" r="2"/><circle cx="12" cy="18" r="2"/>',
-    'panel-left-close': '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M14 9l-3 3 3 3"/>',
-    'search': '<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
-    'circle-help': '<circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 4.4 1.3c-.8.9-2.2 1.2-2.2 2.7"/><path d="M12 17h.01"/>',
-    'chevron-right': '<path d="m9 18 6-6-6-6"/>',
-    'chevron-left': '<path d="m15 18-6-6 6-6"/>',
-    'chevron-down': '<path d="m6 9 6 6 6-6"/>',
-    'plus': '<path d="M12 5v14M5 12h14"/>',
-    'minus': '<path d="M5 12h14"/>',
-    'x': '<path d="m6 6 12 12M18 6 6 18"/>',
-    'check-check': '<path d="m3 12 3 3 6-6"/><path d="m9 12 3 3 9-9"/>',
-    'check-circle-2': '<circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/>',
-    'circle': '<circle cx="12" cy="12" r="9"/>',
-    'eye': '<path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/>',
-    'file': '<path d="M6 2h8l4 4v16H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M14 2v5h5"/>',
-    'file-text': '<path d="M6 2h8l4 4v16H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M14 2v5h5M8 11h8M8 15h8M8 19h5"/>',
-    'home': '<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/><path d="M9 21v-6h6v6"/>',
-    'download': '<path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>',
-    'upload': '<path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M5 20h14"/>',
-    'cloud-upload': '<path d="M16 16l-4-4-4 4"/><path d="M12 12v9"/><path d="M20 16a4 4 0 0 0-3.6-4A6 6 0 0 0 5 9a4 4 0 0 0 0 8h2"/>',
-    'save': '<path d="M5 3h12l3 3v15H4V3Z"/><path d="M8 3v6h8V3M8 21v-7h8v7"/>',
-    'send': '<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>',
-    'sparkles': '<path d="m12 3 1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5Z"/><path d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8Z"/>',
-    'calendar-clock': '<path d="M3 4h14a2 2 0 0 1 2 2v7"/><path d="M3 10h16M7 2v4M13 2v4"/><path d="M3 17a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"/><path d="M7 15v2l1.5 1"/>',
-    'refresh-cw': '<path d="M20 11a8 8 0 0 0-14.9-3"/><path d="M4 4v5h5"/><path d="M4 13a8 8 0 0 0 14.9 3"/><path d="M20 20v-5h-5"/>',
-    'plug-zap': '<path d="m13 2-2 7h4l-2 7"/><path d="M7 7H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2M17 7h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/>',
-    'shield': '<path d="M12 3 20 6v6c0 5-3.4 8-8 10-4.6-2-8-5-8-10V6Z"/>',
-    'shield-check': '<path d="M12 3 20 6v6c0 5-3.4 8-8 10-4.6-2-8-5-8-10V6Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/>',
-    'user-plus': '<circle cx="9" cy="8" r="4"/><path d="M3 21v-1a6 6 0 0 1 12 0v1M19 8v6M16 11h6"/>',
-    'inbox': '<path d="M4 5h16l1 10-3 4H6l-3-4Z"/><path d="M3 14h5l1 2h6l1-2h5"/>',
-    'list': '<path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/>',
-    'play': '<path d="m8 5 11 7-11 7Z"/>',
-    'image': '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>',
-    'video': '<rect x="3" y="5" width="15" height="14" rx="2"/><path d="m18 10 4-3v10l-4-3"/>',
-    'broom': '<path d="m3 16 8-8 4 4-8 8H3Z"/><path d="m13 6 3-3 5 5-3 3M5 20h10"/>',
-    'badge-x': '<circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/>',
-    'arrow-right': '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
-    'log-out': '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>',
-    'message-square': '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
-    'heart': '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
-    'bookmark': '<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>',
-    'more-horizontal': '<circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>',
-    'smartphone': '<rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/>',
-    'monitor': '<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>',
-    'layout-template': '<rect width="18" height="7" x="3" y="3" rx="1"/><rect width="9" height="7" x="3" y="14" rx="1"/><rect width="5" height="7" x="16" y="14" rx="1"/>',
-    'terminal': '<polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/>',
-    'power': '<path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" x2="12" y1="2" y2="12"/>',
-    'trash-2': '<polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/>',
-    'thumbs-up': '<path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"/>'
-  };
-  
-  document.querySelectorAll('i[data-lucide]').forEach(function(i) {
-    if (i.dataset.iconReady) return;
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    const name = i.getAttribute('data-lucide');
-    svg.setAttribute('viewBox', '0 0 24 24');
-    svg.setAttribute('fill', 'none');
-    svg.setAttribute('stroke', 'currentColor');
-    svg.setAttribute('stroke-width', '1.8');
-    svg.setAttribute('stroke-linecap', 'round');
-    svg.setAttribute('stroke-linejoin', 'round');
-    svg.setAttribute('width', '24');
-    svg.setAttribute('height', '24');
-    
-    const existingClass = i.getAttribute('class') || '';
-    svg.setAttribute('class', `lucide lucide-${name} ${existingClass}`.trim());
-    
-    if (i.getAttribute('style')) {
-      svg.setAttribute('style', i.getAttribute('style'));
-    }
-    
-    svg.innerHTML = icons[name] || icons['circle'];
-    i.dataset.iconReady = '1';
-    i.replaceWith(svg);
-  });
-};
+window.lucide=window.lucide||{};window.lucide.createIcons=function(){const icons={'layers-3':'<path d="M12 2 2.5 7 12 12l9.5-5L12 2Z"/><path d="m2.5 12 9.5 5 9.5-5"/><path d="m2.5 17 9.5 5 9.5-5"/>','layout-dashboard':'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>','square-pen':'<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/>','files':'<path d="M15 2H6a2 2 0 0 0-2 2v14"/><path d="M8 6h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/>','calendar-days':'<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>','link-2':'<path d="M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1"/>','images':'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>','upload-cloud':'<path d="M16 16l-4-4-4 4"/><path d="M12 12v9"/><path d="M20.4 16.4A5 5 0 0 0 18 7h-1.3A7 7 0 0 0 3 10.5 4.5 4.5 0 0 0 7.5 15H8"/>','list-checks':'<path d="M9 6h12M9 12h12M9 18h12"/><path d="m3 6 1 1 2-2M3 12l1 1 2-2M3 18l1 1 2-2"/>','users':'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>','chart-no-axes-combined':'<path d="M3 3v18h18"/><path d="m7 16 4-5 3 3 5-7"/>','bell':'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/>','settings-2':'<path d="M3 6h7M14 6h7M3 12h2M9 12h12M3 18h7M14 18h7"/><circle cx="12" cy="6" r="2"/><circle cx="7" cy="12" r="2"/><circle cx="12" cy="18" r="2"/>','panel-left-close':'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M14 9l-3 3 3 3"/>','search':'<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>','circle-help':'<circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 4.4 1.3c-.8.9-2.2 1.2-2.2 2.7"/><path d="M12 17h.01"/>','chevron-right':'<path d="m9 18 6-6-6-6"/>','chevron-left':'<path d="m15 18-6-6 6-6"/>','chevron-down':'<path d="m6 9 6 6 6-6"/>','plus':'<path d="M12 5v14M5 12h14"/>','minus':'<path d="M5 12h14"/>','x':'<path d="m6 6 12 12M18 6 6 18"/>','check-check':'<path d="m3 12 3 3 6-6"/><path d="m9 12 3 3 9-9"/>','circle':'<circle cx="12" cy="12" r="9"/>','eye':'<path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/>','file':'<path d="M6 2h8l4 4v16H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M14 2v5h5"/>','file-text':'<path d="M6 2h8l4 4v16H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M14 2v5h5M8 11h8M8 15h8M8 19h5"/>','home':'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/><path d="M9 21v-6h6v6"/>','download':'<path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>','upload':'<path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M5 20h14"/>','cloud-upload':'<path d="M16 16l-4-4-4 4"/><path d="M12 12v9"/><path d="M20 16a4 4 0 0 0-3.6-4A6 6 0 0 0 5 9a4 4 0 0 0 0 8h2"/>','save':'<path d="M5 3h12l3 3v15H4V3Z"/><path d="M8 3v6h8V3M8 21v-7h8v7"/>','send':'<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>','sparkles':'<path d="m12 3 1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5Z"/><path d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8Z"/>','calendar-clock':'<path d="M3 4h14a2 2 0 0 1 2 2v7"/><path d="M3 10h16M7 2v4M13 2v4"/><path d="M3 17a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"/><path d="M7 15v2l1.5 1"/>','refresh-cw':'<path d="M20 11a8 8 0 0 0-14.9-3"/><path d="M4 4v5h5"/><path d="M4 13a8 8 0 0 0 14.9 3"/><path d="M20 20v-5h-5"/>','plug-zap':'<path d="m13 2-2 7h4l-2 7"/><path d="M7 7H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2M17 7h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/>','shield':'<path d="M12 3 20 6v6c0 5-3.4 8-8 10-4.6-2-8-5-8-10V6Z"/>','shield-check':'<path d="M12 3 20 6v6c0 5-3.4 8-8 10-4.6-2-8-5-8-10V6Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/>','user-plus':'<circle cx="9" cy="8" r="4"/><path d="M3 21v-1a6 6 0 0 1 12 0v1M19 8v6M16 11h6"/>','inbox':'<path d="M4 5h16l1 10-3 4H6l-3-4Z"/><path d="M3 14h5l1 2h6l1-2h5"/>','list':'<path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/>','play':'<path d="m8 5 11 7-11 7Z"/>','image':'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>','video':'<rect x="3" y="5" width="15" height="14" rx="2"/><path d="m18 10 4-3v10l-4-3"/>','broom':'<path d="m3 16 8-8 4 4-8 8H3Z"/><path d="m13 6 3-3 5 5-3 3M5 20h10"/>','badge-x':'<circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/>','arrow-right':'<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>','log-out':'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>','message-square':'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>','message-circle':'<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>','heart':'<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>','thumbs-up':'<path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"/>','bookmark':'<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>','more-horizontal':'<circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>','smartphone':'<rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/>','monitor':'<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>','layout-template':'<rect width="18" height="7" x="3" y="3" rx="1"/><rect width="9" height="7" x="3" y="14" rx="1"/><rect width="5" height="7" x="16" y="14" rx="1"/>','terminal':'<polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/>','power':'<path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" x2="12" y1="2" y2="12"/>','trash-2':'<polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/>'};
+document.querySelectorAll('i[data-lucide]').forEach(i=>{
+  if(i.dataset.iconReady)return; const s=document.createElementNS('http://www.w3.org/2000/svg','svg');const n=i.getAttribute('data-lucide');
+  s.setAttribute('viewBox','0 0 24 24');s.setAttribute('fill','none');s.setAttribute('stroke','currentColor');s.setAttribute('stroke-width','1.8');s.setAttribute('stroke-linecap','round');s.setAttribute('stroke-linejoin','round');s.setAttribute('width','24');s.setAttribute('height','24');
+  s.setAttribute('class',`lucide lucide-${n} ${i.getAttribute('class')||''}`.trim());
+  if(i.getAttribute('style'))s.setAttribute('style',i.getAttribute('style'));
+  s.innerHTML=icons[n]||icons['circle'];i.dataset.iconReady='1';i.replaceWith(s);
+});};
 </script>
-
 <style>
 /* CSS Variables & Reset */
 :root {
-  --bg: #f6f8fb;
-  --surface: #fff;
-  --surface-2: #f9fafb;
-  --line: #e5e7eb;
-  --line-2: #eef0f3;
-  --text: #172033;
-  --muted: #667085;
-  --primary: #2563eb;
-  --primary-2: #1d4ed8;
-  --primary-soft: #eff6ff;
-  --success: #16a34a;
-  --success-soft: #ecfdf3;
-  --warning: #d97706;
-  --warning-soft: #fffbeb;
-  --danger: #dc2626;
-  --danger-soft: #fef2f2;
-  --info: #0f766e;
-  --info-soft: #ecfeff;
-  --shadow: 0 4px 18px rgba(15,23,42,.045);
-  --sidebar: 240px;
-  --radius: 8px;
+  --bg: #f6f8fb; --surface: #fff; --surface-2: #f9fafb; --line: #e5e7eb; --line-2: #eef0f3;
+  --text: #172033; --muted: #667085; --primary: #2563eb; --primary-2: #1d4ed8; --primary-soft: #eff6ff;
+  --success: #16a34a; --success-soft: #ecfdf3; --warning: #d97706; --warning-soft: #fffbeb;
+  --danger: #dc2626; --danger-soft: #fef2f2; --info: #0f766e; --info-soft: #ecfeff;
+  --shadow: 0 4px 18px rgba(15,23,42,.045); --sidebar: 240px; --radius: 8px;
 }
-
 html[data-theme="dark"] {
-  --bg: #0f172a;
-  --surface: #1e293b;
-  --surface-2: #334155;
-  --line: #334155;
-  --line-2: #475569;
-  --text: #f8fafc;
-  --muted: #cbd5e1;
-  --shadow: 0 4px 18px rgba(0,0,0,.3);
-  --primary-soft: rgba(37, 99, 235, 0.2);
+  --bg: #0f172a; --surface: #1e293b; --surface-2: #334155; --line: #334155; --line-2: #475569;      
+  --text: #f8fafc; --muted: #cbd5e1; --shadow: 0 4px 18px rgba(0,0,0,.3); --primary-soft: rgba(37, 99, 235, 0.2);
 }
-
 * { box-sizing: border-box; }
-
 html { font-size: 14px; overflow-x: hidden; transition: background-color 0.3s ease; }
-body { 
-  margin: 0; 
-  padding: 0; 
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif; 
-  color: var(--text); 
-  background: var(--bg); 
-  font-size: 13px; 
-  line-height: 1.4; 
-  min-height: 100vh; 
-  transition: 0.3s ease; 
-}
-
+body { margin: 0; padding: 0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; color: var(--text); background: var(--bg); font-size: 13px; line-height: 1.4; min-height: 100vh; transition: 0.3s ease; }
 button, input, select, textarea { font: inherit; }
 .hidden { display: none !important; }
 
@@ -164,12 +40,7 @@ button, input, select, textarea { font: inherit; }
 @keyframes pulse { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
 .fade-in { animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-.sk-anim { 
-  animation: pulse 1.5s infinite; 
-  background: linear-gradient(90deg, var(--surface-2) 25%, var(--line) 50%, var(--surface-2) 75%); 
-  background-size: 200% 100%; 
-  border-radius: 6px; 
-}
+.sk-anim { animation: pulse 1.5s infinite; background: linear-gradient(90deg, var(--surface-2) 25%, var(--line) 50%, var(--surface-2) 75%); background-size: 200% 100%; border-radius: 6px; }
 
 /* Icons Size Defaults */
 svg.lucide { width: 1.2em; height: 1.2em; vertical-align: middle; flex-shrink: 0; }
@@ -187,10 +58,8 @@ svg.lucide { width: 1.2em; height: 1.2em; vertical-align: middle; flex-shrink: 0
 html[data-theme="dark"] .sidebar, html[data-theme="dark"] .topbar, html[data-theme="dark"] .card, 
 html[data-theme="dark"] .modal, html[data-theme="dark"] .dropdown, html[data-theme="dark"] .mobile-bottom, 
 html[data-theme="dark"] .account-card { background: var(--surface); border-color: var(--line); color: var(--text); }
-
 html[data-theme="dark"] .nav-item:hover, html[data-theme="dark"] .quick:hover, 
 html[data-theme="dark"] .table tr:hover td, html[data-theme="dark"] .dropdown button:hover { background: var(--surface-2); }
-
 html[data-theme="dark"] .input, html[data-theme="dark"] .textarea, html[data-theme="dark"] .select { background: var(--surface-2); border-color: var(--line); color: var(--text); }
 html[data-theme="dark"] .table th { background: var(--surface-2); border-color: var(--line); color: var(--muted); }
 html[data-theme="dark"] .table td { border-color: var(--line-2); }
@@ -264,7 +133,6 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
 .collapse-btn { margin-top: 12px; width: 100%; border: 1px solid var(--line); background: var(--surface); color: var(--text); opacity: .8; padding: 8px; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; font-size: 11px; font-weight: 600; transition: .2s; }
 .collapse-btn:hover { background: var(--surface-2); opacity: 1; }
 
-/* Topbar */
 .topbar { height: 60px; background: rgba(255,255,255,.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); display: flex; align-items: center; padding: 0 24px; gap: 16px; position: sticky; top: 0; z-index: 20; }
 .breadcrumbs { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; white-space: nowrap; cursor: pointer; }
 .breadcrumbs:hover b { color: var(--primary); }
@@ -308,6 +176,7 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
 
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
 .card-pad { padding: 16px; }
+.grid { display: grid; gap: 12px; }
 .grid-8 { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 12px; }
 .two-col { display: grid; grid-template-columns: 1.7fr 1fr; gap: 16px; margin-top: 16px; }
 .three-col { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
@@ -351,13 +220,12 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
 .timeline-item b { font-size: 13px; }
 .timeline-item span { font-size: 11px; color: var(--muted); display: block; margin-top: 4px; }
 
-/* Table to Card Responsive */
+/* Table */
 .table-wrap { overflow: auto; }
 .table { width: 100%; border-collapse: collapse; min-width: 720px; }
 .table th { text-align: left; font-size: 11px; letter-spacing: .05em; color: var(--muted); text-transform: uppercase; padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--surface-2); }
 .table td { padding: 12px 16px; border-bottom: 1px solid var(--line-2); font-size: 13px; line-height: 1.4; vertical-align: middle; color: var(--text); }
 .table tr:hover td { background: var(--surface-2); }
-
 @media(max-width: 700px) {
   .table-wrap table, .table-wrap tbody, .table-wrap tr, .table-wrap td { display: block; width: 100%; }
   .table-wrap thead { display: none; }
@@ -390,12 +258,10 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
 .media-footer { padding: 10px 12px; }
 .drag-hint { font-size: 10px; color: var(--muted); }
 .remove-media { position: absolute; right: 6px; top: 6px; }
-
-/* Multi-select Checkbox */
 .media-select-cb { position: absolute; top: 8px; left: 8px; width: 18px; height: 18px; cursor: pointer; z-index: 5; accent-color: var(--primary); }
 .bulk-action-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--surface); border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(0,0,0,.15); border-radius: 99px; padding: 8px 24px; display: flex; align-items: center; gap: 16px; z-index: 100; animation: fadeIn .3s ease; }
 
-/* Settings / Platform Cards */
+/* Tabs & Toggles */
 .platform-selector { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px; }
 .platform-card { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 12px; cursor: pointer; transition: .2s; }
 .platform-card:hover { border-color: #93c5fd; }
@@ -418,12 +284,12 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
 .switch input:checked + .slider:before { transform: translateX(18px); }
 .inline { display: flex; align-items: center; gap: 12px; }
 
+/* Notice & Empty States */
 .notice { padding: 12px 16px; border-radius: 8px; font-size: 13px; border: 1px solid; background: var(--surface-2); border-color: var(--line); color: var(--text); }
 .notice.info { background: var(--primary-soft); border-color: var(--primary); color: var(--primary-2); }
 .notice.warn { background: var(--warning-soft); border-color: var(--warning); color: var(--warning); }
 .notice.danger { background: var(--danger-soft); border-color: var(--danger); color: var(--danger); }
 
-/* Empty State Actionable */
 .empty { text-align: center; padding: 40px 20px; color: var(--muted); border: 1px dashed var(--line); border-radius: 12px; background: var(--surface-2); }
 .empty b { display: block; color: var(--text); font-size: 16px; margin-bottom: 8px; }
 .empty span { display: block; margin-bottom: 16px; font-size: 13px; }
@@ -453,6 +319,7 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
 .spinner { width: 32px; height: 32px; border: 3px solid var(--line); border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; }
 
 /* Calendar */
+.calendar-toolbar { display: flex; align-items: center; gap: 10px; }
 .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border: 1px solid var(--line); border-bottom: none; border-right: none; border-radius: 12px; overflow: hidden; }
 .cal-head, .cal-cell { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
 .cal-head { padding: 12px; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; text-align: center; }
@@ -465,7 +332,7 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
 .event.published { background: var(--success-soft); color: var(--success); border-color: var(--success-soft); }
 .event b { display: block; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-/* KANBAN QUEUE D&D */
+/* Kanban Queue */
 .kanban { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
 .kanban-col { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 12px; min-height: 300px; transition: 0.2s; }
 .kanban-col.drag-over { background: var(--surface-2); border-color: var(--primary); }
@@ -508,8 +375,9 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
 .file-input { display: none; }
 .footer-note { font-size: 11px; color: var(--muted); text-align: center; padding: 24px 0; }
 .badge-count { min-width: 22px; height: 22px; border-radius: 99px; background: var(--primary-soft); color: var(--primary); font-size: 11px; font-weight: 800; display: inline-grid; place-items: center; }
+.mobile-bottom { display: none; height: 60px; }
 
-/* Real Device Preview */
+/* Device Preview Sticky & Grid */
 .device-wrapper { display: flex; justify-content: center; padding: 24px 0; background: var(--bg); border-radius: 12px; border: 1px solid var(--line); }
 .device-frame { width: 320px; height: 640px; border: 14px solid #1e293b; border-radius: 40px; position: relative; background: #fff; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,.1); margin: 0 auto; color: #000; }
 html[data-theme="dark"] .device-frame { border-color: #0f172a; background: #111; color: #fff; }
@@ -645,7 +513,6 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
 .quick-reply-pill { display: inline-block; padding: 6px 10px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; font-size: 11px; margin: 0 6px 6px 0; cursor: pointer; color: var(--text); transition: .2s; }
 .quick-reply-pill:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-soft); }
 
-/* Terminal */
 .terminal { background: #0f172a; color: #34d399; font-family: 'Courier New', Courier, monospace; padding: 16px; height: 200px; overflow-y: auto; border-radius: 10px; font-size: 13px; line-height: 1.6; border: 1px solid #334155; }
 .terminal-head { display: flex; justify-content: space-between; margin-bottom: 12px; border-bottom: 1px solid #334155; padding-bottom: 12px; font-weight: 700; color: #f8fafc; align-items: center; }
 
@@ -656,12 +523,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
 .tour-box p { margin: 0 0 20px; font-size: 13px; color: var(--text); }
 .tour-btn { display: flex; justify-content: space-between; }
 
-/* Responsive Adjustments */
-@media(max-width: 1300px) { 
-  .grid-8 { grid-template-columns: repeat(4, minmax(0, 1fr)); } 
-  .account-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } 
-  .quick-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } 
-}
+@media(max-width: 1300px) { .grid-8 { grid-template-columns: repeat(4, minmax(0, 1fr)); } .account-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .quick-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media(max-width: 980px) {
   .sidebar { width: 72px; }
   .sidebar .brand-name, .sidebar .brand-version, .sidebar .section-label, .sidebar .nav-label, .sidebar .user-meta, .sidebar .collapse-text, .sidebar .demo-badge { display: none; }
@@ -756,6 +618,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       <button class="nav-item" data-page="create"><i data-lucide="square-pen"></i><span class="nav-label">Tạo bài viết</span></button>
       <button class="nav-item" data-page="posts"><i data-lucide="files"></i><span class="nav-label">Danh sách bài</span></button>
       <button class="nav-item" data-page="schedule"><i data-lucide="calendar-days"></i><span class="nav-label">Lịch đăng</span></button>
+      
       <div class="section-label" id="label-quanly">QUẢN LÝ</div>
       <button class="nav-item" data-page="inbox"><i data-lucide="inbox"></i><span class="nav-label">Hộp thư (Inbox)</span></button>
       <button class="nav-item" data-page="accounts"><i data-lucide="link-2"></i><span class="nav-label">Tài khoản kết nối</span></button>
@@ -765,6 +628,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       <button class="nav-item" data-page="team"><i data-lucide="users"></i><span class="nav-label">Nhân sự & Phân quyền</span></button>
       <button class="nav-item" data-page="analytics"><i data-lucide="chart-no-axes-combined"></i><span class="nav-label">Thống kê hiệu suất</span></button>
       <button class="nav-item" data-page="notifications"><i data-lucide="bell"></i><span class="nav-label">Thông báo</span><span class="badge-count" id="navNotifCount">0</span></button>
+      
       <div class="section-label" id="label-hethong">HỆ THỐNG</div>
       <button class="nav-item" data-page="settings"><i data-lucide="settings-2"></i><span class="nav-label">Cài đặt hệ thống</span></button>
     </nav>
@@ -1172,6 +1036,11 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     return html;
   }
 
+  window.app.setPreviewMode = function(mode) {
+    if(state.draft) state.draft.previewMode = mode;
+    render();
+  }
+
   function renderCreate() {
     if(!state.draft) state.draft = defaultDraft(); 
     const d = state.draft; 
@@ -1232,126 +1101,25 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     html += `</div></div>`; 
     return html;
   }
-
-  function renderInbox() {
-    let html = pageShell('Hộp thư hợp nhất', 'Quản lý Tin nhắn và Bình luận từ Facebook, TikTok, Instagram tại một nơi duy nhất.');
-    const messages = state.inbox || []; 
-    const activeMsg = messages.find(m => m.id === activeInboxId) || messages[0];
+  
+  function renderPlatformEditor(tab, c, d) {
+    let html=''; 
+    const platAccounts = state.accounts.filter(a => a.platform === tab && a.status === 'Connected');
     
-    html += `<div class="inbox-layout">
-      <div class="inbox-sidebar">
-        <div class="inbox-head"><div class="search" style="max-width:100%"><i data-lucide="search"></i><input placeholder="Tìm người gửi, nội dung..." style="height:36px; background:var(--surface-2)"/></div><div class="inbox-filters"><button class="inbox-filter-btn active">Tất cả</button><button class="inbox-filter-btn">Chưa đọc</button><button class="inbox-filter-btn">Tin nhắn</button></div></div>
-        <div class="inbox-list">${messages.map(m => {const mMeta = platformMeta[m.platform];return `<div class="inbox-item ${m.id === activeInboxId ? 'active' : ''}" onclick="app.selectInbox('${m.id}')"><div class="inbox-avatar"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px">${m.avatar}</div><div class="inbox-plat-icon" style="background:#fff; color:${mMeta.cls==='fb'?'#1877f2':mMeta.cls==='ig'?'#c026d3':mMeta.cls==='yt'?'#ef4444':'#111'}"><i data-lucide="${mMeta.icon}" style="width:8px;height:8px"></i></div></div><div class="inbox-info"><div class="inbox-name-row"><span class="inbox-name" style="${!m.read?'font-weight:800;color:var(--primary)':''}">${escape(m.name)}</span><span class="inbox-time">${m.time}</span></div><div class="inbox-preview" style="${!m.read?'font-weight:600;color:var(--text)':''}">${escape(m.type)}: ${escape(m.text)}</div></div></div>`}).join('')}</div>
-      </div>
-      <div class="inbox-chat">
-        ${activeMsg ? `<div class="chat-head"><div class="chat-user-info"><div class="inbox-avatar" style="width:46px;height:46px"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:16px">${activeMsg.avatar}</div></div><div class="chat-meta"><b style="font-size:16px">${escape(activeMsg.name)}</b><span>Qua ${activeMsg.type} ${activeMsg.platform}</span></div></div><div class="actions"><button class="btn small"><i data-lucide="check-check"></i> Đánh dấu xong</button><button class="btn small"><i data-lucide="more-horizontal"></i></button></div></div>
-        <div class="chat-body"><div class="chat-bubble-row them"><div class="inbox-avatar" style="width:32px;height:32px"><div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px">${activeMsg.avatar}</div></div><div><div class="chat-bubble">${escape(activeMsg.text)}</div>
-        ${activeMsg.type === 'Bình luận' ? `<div class="chat-actions"><span>Thích</span> · <span style="color:var(--danger)">Ẩn bình luận</span></div>` : ''}
-        <div class="chat-time">${activeMsg.time}</div></div></div>${activeMsg.replied ? `<div class="chat-bubble-row me"><div><div class="chat-bubble">${escape(activeMsg.replyText)}</div><div class="chat-time">Vừa xong</div></div></div>` : ''}</div>
-        <div class="chat-foot"><div class="chat-input-wrap"><button class="icon-btn" style="border:none;background:transparent;color:var(--muted)"><i data-lucide="image"></i></button><button class="icon-btn" style="border:none;background:transparent;color:var(--muted);margin-right:10px" onclick="app.ui.showToast('Gợi ý câu trả lời AI','Tính năng đang phát triển','info')"><i data-lucide="sparkles"></i></button><textarea id="inboxReply" class="chat-textarea" placeholder="Nhập câu trả lời... (Enter để gửi)"></textarea><button class="chat-send-btn" onclick="app.sendInboxReply()"><i data-lucide="send"></i></button></div></div>` : `<div class="empty" style="margin:auto"><i data-lucide="message-square"></i><b>Chọn một cuộc hội thoại để bắt đầu</b></div>`}
-      </div>
-      <div class="inbox-crm">
-        ${activeMsg ? `<div class="crm-item"><div class="crm-label">Tên khách hàng</div><div class="crm-val">${escape(activeMsg.name)}</div></div><div class="crm-item"><div class="crm-label">Số điện thoại</div><div class="crm-val">${activeMsg.phone || '<i style="color:var(--muted);font-weight:normal">Chưa có</i>'}</div></div><div class="crm-item"><div class="crm-label">Phân loại (Tags)</div><div>${(activeMsg.tags||[]).map(t=>`<span class="pill neutral" style="margin:0 6px 6px 0">${t}</span>`).join('')||'<span class="muted">Chưa gắn tag</span>'}</div></div><div style="border-top:1px solid var(--line); margin:20px 0;"></div><div class="crm-item"><div class="crm-label">CÂU TRẢ LỜI NHANH</div><div style="display:flex; flex-direction:column; gap:8px;">${state.quickReplies.map(qr => `<span class="quick-reply-pill" onclick="document.getElementById('inboxReply').value += '${escape(qr)} '">${escape(qr)}</span>`).join('')}</div></div>` : ''}
-      </div>
-    </div>`;
-    return html;
-  }
+    let accountSelectorHtml = `<div class="field full" style="margin-bottom:16px; background:var(--surface-2); padding:14px; border-radius:10px; border:1px solid var(--line);"><span class="label" style="margin-bottom:10px; display:block; font-size:12px">Chọn tài khoản đăng lên (${tab})</span>${platAccounts.length > 0 ? `<div style="display:flex; gap:12px; flex-wrap:wrap; flex-direction:column;">${platAccounts.map(acc => {const isChecked = (d.platforms[tab].accountIds || []).includes(acc.id);return `<label class="inline" style="background:var(--surface); padding:10px; border-radius:8px; border:1px solid var(--line); cursor:pointer; transition:0.2s"><input type="checkbox" data-draft-account="${tab}:${acc.id}" ${isChecked ? 'checked' : ''} style="accent-color:var(--primary); width:16px; height:16px;"> <div style="display:flex; align-items:center; gap:8px;"><div style="width:24px;height:24px;border-radius:6px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;font-weight:800;font-size:10px;">${acc.name.split(' ').map(x=>x[0]).join('').slice(-2)}</div><b style="font-size:13px">${escape(acc.name)}</b> <span style="color:var(--muted); font-size:12px;">(${escape(acc.username)})</span></div></label>`;}).join('')}</div>` : `<div class="help" style="color:var(--danger)">⚠️ Chưa có tài khoản ${tab} nào được kết nối vào hệ thống. Hãy vào phần "Quản lý > Tài khoản" để kết nối.</div>`}</div>`;
 
-  function renderPosts() {
-    let q = state.postSearch.toLowerCase();
-    let list = state.posts.filter(p => state.postFilter === 'All' || p.status === state.postFilter).filter(p => !q || p.title.toLowerCase().includes(q) || p.createdBy.toLowerCase().includes(q) || Object.keys(p.platforms||{}).some(x=>x.toLowerCase().includes(q)));
-    let sortVal = document.getElementById('sortPosts')?.value || 'createdDesc';
-    list.sort((a,b) => sortVal==='title' ? a.title.localeCompare(b.title) : sortVal==='schedule' ? new Date(a.schedule||'2999')-new Date(b.schedule||'2999') : new Date(b.createdAt)-new Date(a.createdAt));
+    if(tab==='Facebook') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Nội dung (Caption Facebook)</span><textarea class="textarea editor" data-draft-field="Facebook.caption" oninput="app.updatePreviewText(this.value, 'caption')" placeholder="Viết nội dung sẽ hiển thị trên Fanpage..."></textarea></label><label class="field"><span class="label">Hashtags</span><input class="input" data-draft-field="Facebook.hashtag" oninput="app.updatePreviewText(this.value, 'hashtag')" placeholder="#education #skills"></label><label class="field"><span class="label">Link đính kèm</span><input class="input" data-draft-field="Facebook.link" placeholder="https://..."></label></div>`;
+    if(tab==='TikTok') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Nội dung (Caption TikTok)</span><textarea class="textarea editor" data-draft-field="TikTok.caption" oninput="app.updatePreviewText(this.value, 'caption')" placeholder="Hook giật gân + Kêu gọi hành động (CTA)..."></textarea></label><label class="field"><span class="label">Hashtags</span><input class="input" data-draft-field="TikTok.hashtag" oninput="app.updatePreviewText(this.value, 'hashtag')" placeholder="#xuhuong #trending"></label><label class="field"><span class="label">Quyền riêng tư</span><select class="select" data-draft-field="TikTok.privacy"><option>Mọi người (Public)</option><option>Bạn bè</option><option>Chỉ mình tôi</option></select></label><div class="field"><span class="label">Bình luận</span><label class="inline" style="margin-top:8px"><span class="switch"><input type="checkbox" data-draft-bool="TikTok.comments"><span class="slider"></span></span> Cho phép</label></div><div class="field"><span class="label">Duet</span><label class="inline" style="margin-top:8px"><span class="switch"><input type="checkbox" data-draft-bool="TikTok.duet"><span class="slider"></span></span> Cho phép</label></div><div class="field"><span class="label">Stitch</span><label class="inline" style="margin-top:8px"><span class="switch"><input type="checkbox" data-draft-bool="TikTok.stitch"><span class="slider"></span></span> Cho phép</label></div></div>`;
+    if(tab==='YouTube') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Tiêu đề Video (Chuẩn SEO)</span><input class="input" data-draft-field="YouTube.title" oninput="app.updatePreviewText(this.value, 'title')" placeholder="Nhập tiêu đề video..."></label><label class="field full"><span class="label">Mô tả chi tiết</span><textarea class="textarea editor" data-draft-field="YouTube.description" oninput="app.updatePreviewText(this.value, 'description')" placeholder="Nhập mô tả video..."></textarea></label><label class="field"><span class="label">Thẻ (Tags)</span><input class="input" data-draft-field="YouTube.tags" placeholder="kỹ năng, giao tiếp, youtube"></label><label class="field"><span class="label">Danh mục</span><select class="select" data-draft-field="YouTube.category"><option>Giáo dục</option><option>Giải trí</option><option>Vlog</option></select></label><label class="field"><span class="label">Chế độ hiển thị</span><select class="select" data-draft-field="YouTube.privacy"><option>Công khai</option><option>Không công khai</option><option>Riêng tư</option></select></label><label class="field"><span class="label">Ảnh bìa (Thumbnail)</span><select class="select" data-draft-field="YouTube.thumbnailId"><option value="">Lấy từ Video</option>${state.media.filter(m=>m.type==='image').map(m=>`<option value="${m.id}">${escape(m.name)}</option>`).join('')}</select></label></div>`;
+    if(tab==='Instagram') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Nội dung (Caption Instagram)</span><textarea class="textarea editor" data-draft-field="Instagram.caption" oninput="app.updatePreviewText(this.value, 'caption')" placeholder="Viết nội dung Instagram..."></textarea></label><label class="field"><span class="label">Hashtags</span><input class="input" data-draft-field="Instagram.hashtag" oninput="app.updatePreviewText(this.value, 'hashtag')" placeholder="#aesthetic #lifestyle"></label><label class="field"><span class="label">Vị trí (Check-in)</span><input class="input" data-draft-field="Instagram.location" placeholder="TP. Hồ Chí Minh"></label></div>`;
+    if(tab==='X') html = accountSelectorHtml + `<div class="form-grid"><label class="field full"><span class="label">Nội dung Tweet</span><textarea class="textarea editor" data-draft-field="X.text" oninput="app.updatePreviewText(this.value, 'text')" maxlength="280" placeholder="Chuyện gì đang xảy ra?"></textarea><div class="help" id="xCount"></div></label><label class="field full"><span class="label">Tạo chuỗi (Thread)</span>${(c.thread||['']).map((t,i)=>`<div style="display:flex;gap:8px;margin-bottom:8px"><input class="input" data-thread-index="${i}" value="${escape(t)}" placeholder="Tweet thứ ${i+1}">${i>0?`<button class="btn small" data-remove-thread="${i}"><i data-lucide="minus"></i></button>`:''}</div>`).join('')}<button class="btn small" id="addThread"><i data-lucide="plus"></i>Thêm Tweet mới</button></label></div>`;
     
-    let html = pageShell('Danh sách bài viết', 'Quản lý vòng đời nội dung từ bản nháp đến lúc đăng thành công.', `<button class="btn primary" data-page="create"><i data-lucide="plus"></i>Tạo bài viết</button>`);
-    html += `<div class="card card-pad"><div class="split"><div class="actions" style="gap:5px">${['All','Draft','Scheduled','Queued','Publishing','Published','Failed','Cancelled'].map(f=>{const dict = {All:'Tất cả', Draft:'Bản nháp', Scheduled:'Đã lên lịch', Queued:'Chờ đăng', Publishing:'Đang đăng', Published:'Thành công', Failed:'Lỗi', Cancelled:'Đã hủy'}; return `<button class="tab ${state.postFilter===f?'active':''}" data-post-filter="${f}">${dict[f]||f}</button>`}).join('')}</div><div class="actions"><input class="input" id="postSearch" style="width:240px" placeholder="Tìm tên bài, người tạo..." value="${escape(state.postSearch)}"><select class="select" id="sortPosts" style="width:160px"><option value="createdDesc" ${sortVal==='createdDesc'?'selected':''}>Mới tạo nhất</option><option value="title" ${sortVal==='title'?'selected':''}>Tên bài A-Z</option><option value="schedule" ${sortVal==='schedule'?'selected':''}>Theo lịch đăng</option></select></div></div>
-      <div class="table-wrap" style="margin-top:16px"><table class="table"><thead><tr><th>Thumbnail</th><th>Tiêu đề tự động</th><th>Nền tảng</th><th>Lịch đăng</th><th>Trạng thái</th><th>Người tạo</th><th>Ngày tạo</th><th>Thao tác</th></tr></thead><tbody>
-      ${list.length ? list.map(p=>`<tr><td data-label="Thumbnail"><div class="thumb"><i data-lucide="file-text" style="width:18px;color:#98a2b3"></i></div></td><td data-label="Tiêu đề"><b style="max-width:280px;display:inline-block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escape(p.title)}</b>${p.error?`<div class="subline" style="color:#dc2626">${escape(p.error)}</div>`:''}</td><td data-label="Nền tảng"><div class="platforms">${platformListForPost(p)}</div></td><td data-label="Lịch đăng">${fmtDate(p.schedule)}</td><td data-label="Trạng thái">${statusPill(p.status)}</td><td data-label="Người tạo">${escape(p.createdBy)}</td><td data-label="Ngày tạo">${fmtDate(p.createdAt,false)}</td><td data-label="Thao tác"><div class="actions" style="gap:6px">${['View','Edit'].map(x=>`<button class="btn small" data-${x.toLowerCase()}-post="${p.id}">${x==='View'?'Xem':'Sửa'}</button>`).join('')}<button class="btn small" data-duplicate-post="${p.id}" title="Nhân bản">⌘</button>${p.status==='Failed'?`<button class="btn small" data-retry-post="${p.id}">Thử lại</button>`:''}${['Scheduled','Queued','Draft'].includes(p.status)?`<button class="btn small" data-cancel-post="${p.id}">Hủy</button>`:''}<button class="btn small danger" data-delete-post="${p.id}">Xóa</button></div></td></tr>`).join('') : `<tr><td colspan="8"><div class="empty"><i data-lucide="inbox"></i><b>Không tìm thấy bài viết</b><span style="display:block;margin-bottom:12px">Hãy thử đổi bộ lọc hoặc tạo mới.</span><button class="btn primary" data-page="create">Tạo bài viết đầu tiên</button></div></td></tr>`}
-      </tbody></table></div><div class="pagination"><span class="help">Tổng ${list.length} bài</span><div class="actions"><button class="btn small" disabled>Trang 1</button></div></div></div>`;
-    return html;
-  }
-
-  function renderSchedule() {
-    const d = new Date(calendarSelectedDate+'T12:00:00'); const y = d.getFullYear(), m = d.getMonth(); let start = new Date(y, m, 1); let end = new Date(y, m+1, 0); let cells = [];
-    for(let i=0; i<start.getDay(); i++) cells.push({date: new Date(y, m, -i), muted: true});
-    cells = cells.reverse(); let total = Math.ceil((cells.length + end.getDate()) / 7) * 7;
-    for(let day=1; day<=end.getDate(); day++) cells.push({date: new Date(y, m, day), muted: false});
-    while(cells.length < total) { cells.push({date: new Date(y, m+1, cells.length - end.getDate() + 1), muted: true}); }
-    
-    const byDay = {}; state.posts.filter(p => p.schedule).forEach(p => { const key = p.schedule.slice(0,10); (byDay[key] || (byDay[key]=[])).push(p); });
-    
-    let html = pageShell('Lịch đăng bài', 'Kiểm soát nội dung theo Tháng, Tuần hoặc Ngày.', `<button class="btn" id="todayCal">Về Hôm nay</button><button class="btn primary" data-page="create"><i data-lucide="plus"></i>Đặt lịch mới</button>`);
-    html += `<div class="card card-pad"><div class="split"><div class="calendar-toolbar"><button class="btn small" id="prevMonth"><i data-lucide="chevron-left"></i></button><b style="font-size:14px">${d.toLocaleDateString('vi-VN',{month:'long',year:'numeric'})}</b><button class="btn small" id="nextMonth"><i data-lucide="chevron-right"></i></button></div><div class="actions"><button class="tab ${state.calendarMode==='Month'?'active':''}" data-cal-mode="Month">Tháng</button><button class="tab ${state.calendarMode==='Week'?'active':''}" data-cal-mode="Week">Tuần</button><button class="tab ${state.calendarMode==='Day'?'active':''}" data-cal-mode="Day">Ngày</button></div></div>`;
-    if(state.calendarMode === 'Month') {
-      html += `<div class="cal-grid" style="margin-top:16px"><div class="cal-head">CN</div><div class="cal-head">T2</div><div class="cal-head">T3</div><div class="cal-head">T4</div><div class="cal-head">T5</div><div class="cal-head">T6</div><div class="cal-head">T7</div>${cells.map(c => { const key = c.date.toISOString().slice(0,10); const events = (byDay[key] || []); return `<div class="cal-cell ${c.muted?'muted-day':''}" data-cal-cell="${key}"><div class="day-num">${c.date.getDate()}</div>${events.slice(0,4).map(p => `<div class="event ${p.status==='Failed'?'failed':p.status==='Published'?'published':''}" draggable="true" data-cal-post="${p.id}" title="Kéo sang ngày khác để đổi lịch"><b>${fmtDate(p.schedule).split(',')[1]?.trim()||p.schedule.slice(11,16)} · ${escape(p.title)}</b><span>${Object.keys(p.platforms||{})[0]||'—'} · ${accountFor((p.platforms[Object.keys(p.platforms)[0]]?.accountIds||[])[0]||'').split(' · ')[0]}</span></div>`).join('')}${events.length > 4 ? `<div class="help">+${events.length-4} bài nữa</div>` : ''}</div>`}).join('')}</div>`;
-    } else { 
-      const base = new Date(d); let days = [];
-      if(state.calendarMode === 'Day') days = [base];
-      else { const sunday = new Date(base); sunday.setDate(base.getDate() - base.getDay()); for(let i=0; i<7; i++) { const x = new Date(sunday); x.setDate(sunday.getDate() + i); days.push(x); } }
-      html += `<div style="margin-top:16px" class="table-wrap"><table class="table"><thead><tr>${days.map(x=>`<th>${x.toLocaleDateString('vi-VN',{weekday:'short',day:'2-digit',month:'2-digit'})}</th>`).join('')}</tr></thead><tbody><tr>${days.map(x=>{const key=x.toISOString().slice(0,10);return `<td style="vertical-align:top;height:320px">${(byDay[key]||[]).sort((a,b)=>new Date(a.schedule)-new Date(b.schedule)).map(p=>`<div class="event ${p.status==='Failed'?'failed':p.status==='Published'?'published':''}" data-cal-post="${p.id}" draggable="true"><b>${p.schedule.slice(11,16)} · ${escape(p.title)}</b><span>${Object.keys(p.platforms||{})[0]}</span></div>`).join('')||'<div class="help">Không có lịch</div>'}</td>`}).join('')}</tr></tbody></table></div>`;
-    }
-    html += `</div>`; return html;
-  }
-
-  function renderQueue() {
-    const groups = ['Waiting','Processing','Retrying','Success','Failed','Authentication Required'];
-    const names = { Waiting:'Đang chờ', Processing:'Đang xử lý đẩy', Retrying:'Đang thử lại', Success:'Thành công', Failed:'Thất bại', 'Authentication Required': 'Mất kết nối API' };
-    let html = pageShell('Hàng đợi Hệ thống (Queue Worker)', 'Theo dõi tiến trình đẩy bài thật sự qua API. Kéo thả thẻ từ cột Lỗi sang Đang chờ để nạp lại.', `<button class="btn primary" id="clearSuccess"><i data-lucide="broom"></i>Dọn dẹp log Thành công</button>`);
-    
-    html += `
-    <div class="card card-pad" style="margin-bottom:16px; background:#0f172a; color:#34d399; font-family:monospace; border:1px solid #1e293b;">
-       <div class="terminal-head"><span style="display:flex;align-items:center;gap:10px;"><i data-lucide="terminal" style="width:18px;height:18px;"></i> DINO QUEUE ENGINE <span id="engineStatus" style="color:#fbbf24; font-size:10px; border:1px solid currentColor; padding:2px 6px; border-radius:4px; margin-left:10px;">IDLE</span></span><button class="btn small primary" id="processQueue" style="background:#2563eb; color:#fff; border:none; height:28px; font-size:11px; font-family:Inter,sans-serif"><i data-lucide="power"></i> Khởi Động Động Cơ</button></div>
-       <div id="engineTerminal" class="terminal">> [SYSTEM] Hệ thống đang sẵn sàng. Nhấn Khởi động để xử lý hàng đợi...<br></div>
-    </div>`;
-
-    html += `<div class="kanban">${groups.map(g => { const jobs = state.queue.filter(j => j.status === g); return `<div class="kanban-col" data-queue-col="${g}"><div class="kanban-head"><span>${names[g]}</span><span class="badge-count">${jobs.length}</span></div>${jobs.map(j => { const p = state.posts.find(x => x.id === j.postId); return `<div class="job" draggable="true" data-job-id="${j.id}"><div class="split"><b>${escape(j.id)}</b>${statusPill(j.status)}</div><div class="job-meta">Bài viết: <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;max-width:140px;vertical-align:bottom;">${escape(p?.title||j.postId)}</span><br>Gửi đến: ${escape(j.platform)} · ${escape(accountFor(j.accountId))}<br>Lần thử: ${j.attempts}/5<br>Tạo lúc: ${fmtDate(j.created)}<br>Lần thử tiếp: ${escape(j.nextRetry||'—')}${j.error?`<br><span style="color:#dc2626">${escape(j.error)}</span>`:''}</div><div class="actions" style="margin-top:10px">${j.status==='Failed'||j.status==='Authentication Required'?`<button class="btn small" data-retry-job="${j.id}">Thử lại ngay</button>`:''}${j.status==='Authentication Required'?`<button class="btn small" data-reconnect-account="${j.accountId}">Mở kết nối</button>`:''}${j.status!=='Success'?`<button class="btn small" data-view-job="${j.id}">Chi tiết</button>`:''}</div></div>` }).join('') || `<div class="help" style="padding:16px 4px; text-align:center;">Trống</div>`}</div>` }).join('')}</div>`;
-    html += `<div class="two-col" style="margin-top:16px"><div class="card card-pad"><div class="section-title">Quy tắc Thử lại (Exponential Backoff)</div><div class="muted" style="font-size:12px;margin:6px 0 14px">Hệ thống không chạy vòng lặp vô hạn để tránh bị Facebook cấm IP. Lỗi token sẽ phải nối lại tay.</div><div class="timeline">${['1 phút','5 phút','15 phút','1 giờ','6 giờ'].map((x,i)=>`<div class="timeline-item"><div class="timeline-dot"></div><div><b>Lần ${i+1}</b><span>Sau ${x}</span></div></div>`).join('')}</div></div><div class="card card-pad"><div class="section-title">Nhật ký lỗi (Error Logs)</div><div class="timeline" style="margin-top:14px">${state.retryLogs.slice(0,6).map(r=>`<div class="timeline-item"><div class="timeline-dot" style="background:#dc2626"></div><div><b>Thử nghiệm lần ${r.attempt} · ${escape(r.status)}</b><span>${fmtDate(r.time)} · ${escape(r.error)}</span></div></div>`).join('')||'<div class="empty">Chưa có log lỗi</div>'}</div></div></div>`;
-    return html;
-  }
-
-  function renderMedia() {
-    let q = state.postSearch.toLowerCase();
-    let list = state.media.filter(m => state.mediaFilter === 'All' || m.type === state.mediaFilter).filter(m => !q || m.name.toLowerCase().includes(q));
-    let html = pageShell('Kho lưu trữ (Media Library)', 'Nơi tập trung tải lên hình ảnh và video của workspace.', `<button class="btn" id="mediaListToggle"><i data-lucide="list"></i>Danh sách / Lưới</button><button class="btn primary" id="uploadMediaBtn"><i data-lucide="upload"></i>Tải Media lên</button>`);
-    
-    if(state.selectedMedia && state.selectedMedia.length > 0) {
-      html += `<div class="bulk-action-bar"><b>Đã chọn ${state.selectedMedia.length} file</b> <button class="btn small danger" id="deleteSelectedMedia"><i data-lucide="trash-2"></i> Xóa tất cả</button> <button class="btn small" onclick="app.clearMediaSelection()">Bỏ chọn</button></div>`;
-    }
-
-    html += `<div class="card card-pad"><div class="split"><div class="actions"><button class="tab ${state.mediaFilter==='All'?'active':''}" data-media-filter="All">Tất cả</button><button class="tab ${state.mediaFilter==='image'?'active':''}" data-media-filter="image">Ảnh</button><button class="tab ${state.mediaFilter==='video'?'active':''}" data-media-filter="video">Video</button></div><input class="input" id="mediaSearch" style="width:260px" placeholder="Tìm tên file..." value="${escape(state.postSearch)}"></div>`;
-    
-    if(state.mediaView === 'grid') {
-      html += `<div class="media-preview" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:16px">${list.length ? list.map(m=>{
-        const isSelected = (state.selectedMedia || []).includes(m.id);
-        return `<div class="media-item" style="${isSelected?'border-color:var(--primary);box-shadow:0 0 0 2px var(--primary-soft)':''}"><div class="media-preview-box"><input type="checkbox" class="media-select-cb" data-select-media="${m.id}" ${isSelected?'checked':''}>${m.preview?(m.type==='video'?`<video src="${m.preview}"></video>`:`<img src="${m.preview}">`):m.type==='video'?'<i data-lucide="video" style="width:44px;color:#64748b"></i>':'<i data-lucide="image" style="width:44px;color:#64748b"></i>'}</div><div class="media-footer"><b style="font-size:12px">${escape(m.name)}</b><div class="subline">${m.type.toUpperCase()} · ${formatSize(m.size)}</div><div class="actions" style="margin-top:10px"><button class="btn small" data-preview-media="${m.id}">Xem</button><button class="btn small" data-download-media="${m.id}">Tải</button><button class="btn small danger" data-delete-media="${m.id}">Xóa</button></div></div></div>`
-      }).join('') : `<div class="empty"><i data-lucide="images"></i><b>Kho Media đang trống</b><span style="display:block;margin-bottom:12px;">Tải ảnh hoặc video lên để bắt đầu.</span><button class="btn primary" onclick="document.getElementById('hiddenFile').click()"><i data-lucide="upload"></i>Tải File Lên Ngay</button></div>`}</div>`;
-    } else {
-      html += `<div class="table-wrap" style="margin-top:16px"><table class="table"><thead><tr><th>Chọn</th><th>Tên File</th><th>Loại</th><th>Dung lượng</th><th>Thời lượng</th><th>Ngày tạo</th><th>Thao tác</th></tr></thead><tbody>${list.length ? list.map(m=>{
-        const isSelected = (state.selectedMedia || []).includes(m.id);
-        return `<tr><td><input type="checkbox" data-select-media="${m.id}" ${isSelected?'checked':''}></td><td data-label="Tên File"><div class="media-cell"><div class="thumb">${m.preview?(m.type==='video'?`<video src="${m.preview}"></video>`:`<img src="${m.preview}">`):'<i data-lucide="file"></i>'}</div><div><b>${escape(m.name)}</b></div></div></td><td data-label="Loại">${escape(m.type==='image'?'Ảnh':'Video')}</td><td data-label="Dung lượng">${formatSize(m.size)}</td><td data-label="Thời lượng">${escape(m.duration||'—')}</td><td data-label="Ngày tạo">${fmtDate(m.createdAt,false)}</td><td data-label="Thao tác"><div class="actions"><button class="btn small" data-preview-media="${m.id}">Xem</button><button class="btn small danger" data-delete-media="${m.id}">Xóa</button></div></td></tr>`
-      }).join('') : `<tr><td colspan="7"><div class="empty"><b>Kho Media đang trống</b></div></td></tr>`}</tbody></table></div>`;
-    }
-    html += `</div>`; return html;
-  }
-
-  // Bổ sung các render rỗng để khỏi lỗi (Accounts, Bulk, Team, Analytics, Settings, Notifications)
-  // Thực tế cần thiết thì thay thế toàn bộ như trên, nhưng vì giới hạn tôi sẽ tái cấu trúc nhỏ
-  function renderAccounts() {
-    let html = pageShell('Tài khoản mạng xã hội', 'Kết nối và làm mới Access Token của các Fanpage/Kênh.', `<button class="btn" id="refreshAllAccounts"><i data-lucide="refresh-cw"></i>Làm mới tất cả</button><button class="btn primary" id="connectAccount"><i data-lucide="plus"></i>Kết nối kênh mới</button>`);
-    html += `<div class="account-grid">${state.accounts.map(a=>`<div class="card account-card"><div class="account-top"><div class="account-avatar ${platformMeta[a.platform]?.cls||''}">${a.platform.slice(0,1)}</div><div style="flex:1"><h4>${escape(a.name)}</h4><p>${escape(a.username)} · ${escape(a.platform)}</p></div>${statusPill(a.status)}</div><div class="account-meta"><div class="meta-box"><span>Token</span><b>${escape(a.token==='Healthy'?'Đang hoạt động':'Hết hạn / Lỗi')}</b></div><div class="meta-box"><span>Đồng bộ lần cuối</span><b>${fmtDate(a.lastSync)}</b></div></div><div class="actions"><button class="btn small" data-refresh-account="${a.id}">Làm mới</button>${a.status!=='Connected'?`<button class="btn small primary" data-reconnect-account="${a.id}">Kết nối lại</button>`:`<button class="btn small" data-disconnect-account="${a.id}">Gỡ kết nối</button>`}<button class="btn small danger" data-delete-account="${a.id}">Xóa</button></div></div>`).join('')}</div>`;
-    return html;
-  }
-
-  function renderTeam() {
-    let html = pageShell('Nhân sự & Phân quyền', 'Quản lý tài khoản đăng nhập của nhân viên dựa trên hệ thống RBAC.', `<button class="btn" id="rbacInfo"><i data-lucide="shield-check"></i>Chi tiết Phân quyền</button><button class="btn primary" id="addTeam"><i data-lucide="user-plus"></i>Tạo tài khoản</button>`);
-    html += `<div class="card card-pad"><div class="table-wrap"><table class="table"><thead><tr><th>Avatar</th><th>Họ Tên</th><th>Email đăng nhập</th><th>Chức vụ</th><th>Trạng thái</th><th>Hoạt động cuối</th><th>Thao tác</th></tr></thead><tbody>${state.users.map(u=>`<tr><td data-label="Avatar"><div class="avatar">${u.name.split(' ').map(x=>x[0]).join('').slice(-2)}</div></td><td data-label="Họ Tên"><b>${escape(u.name)}</b></td><td data-label="Email">${escape(u.email)}</td><td data-label="Chức vụ"><span class="pill neutral">${u.role}</span></td><td data-label="Trạng thái">${statusPill(u.status)}</td><td data-label="Hoạt động cuối">${fmtDate(u.lastActive)}</td><td data-label="Thao tác"><div class="actions"><button class="btn small" data-edit-user="${u.id}">Sửa</button><button class="btn small" data-disable-user="${u.id}">${u.status==='Active'?'Khóa':'Mở khóa'}</button><button class="btn small" data-reset-user="${u.id}">Đổi Pass</button>${u.role!=='ADMIN'?`<button class="btn small danger" data-delete-user="${u.id}">Xóa</button>`:''}</div></td></tr>`).join('')}</tbody></table></div></div>`;
-    return html;
-  }
-
-  function renderAnalytics() {
-    const a = state.analyticsSeed; const total = state.posts.length;
-    let html = pageShell('Thống kê & Báo cáo', 'Theo dõi sức khỏe và hiệu suất hiển thị nội dung trên đa nền tảng.', `<button class="btn" id="refreshAnalytics"><i data-lucide="refresh-cw"></i>Cập nhật số liệu</button>`);
-    html += `<div class="metric-grid">${[['Bài đã tạo',total],['Bài lên sóng',state.posts.filter(x=>x.status==='Published').length],['Đăng lỗi',state.posts.filter(x=>x.status==='Failed').length],['Lượt Tương Tác',a.engagement.toLocaleString('vi-VN')],['Lượt Xem',a.views.toLocaleString('vi-VN')],['Lượt Thích',a.likes.toLocaleString('vi-VN')]].map(([k,v])=>`<div class="card metric"><span>${k}</span><b>${v}</b></div>`).join('')}</div>`;
+    setTimeout(() => {
+      document.querySelectorAll('[data-draft-field]').forEach(el => { const [p,k] = el.dataset.draftField.split('.'); el.value = (d.platforms[p] || {})[k] ?? ''; });
+      document.querySelectorAll('[data-draft-bool]').forEach(el => { const [p,k] = el.dataset.draftBool.split('.'); el.checked = Boolean((d.platforms[p] || {})[k]); });
+      const x = document.querySelector('[data-draft-field="X.text"]');
+      if(x) document.getElementById('xCount').textContent = `${x.value.length}/280 ký tự`;
+    }, 0);
     return html;
   }
 
@@ -1372,196 +1140,55 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     return html;
   }
 
-  function renderNotifications() { return `<div class="card card-pad"><div class="empty"><b>Tính năng thông báo đang phát triển</b></div></div>`; }
-  function renderBulk() { return `<div class="card card-pad"><div class="empty"><b>Tính năng Tải lên hàng loạt đang phát triển</b></div></div>`; }
-
-  // Action Functions
-  function saveDraft() {
-    readDraftFromUI();
-    const existing = editingPostId ? state.posts.find(p => p.id === editingPostId) : null;
-    let autoTitle = '';
-    for(const p of state.draft.selectedPlatforms) {
-       const content = state.draft.platforms[p];
-       if(content.caption) { autoTitle = content.caption; break; }
-       if(content.text) { autoTitle = content.text; break; }
-       if(content.title) { autoTitle = content.title; break; }
-    }
-    if(autoTitle) {
-       autoTitle = autoTitle.replace(/\n/g, ' ').trim();
-       if(autoTitle.length > 40) autoTitle = autoTitle.substring(0, 40) + '...';
-    }
-    const finalTitle = autoTitle || `Bài viết nháp - ${fmtDate(nowISO(), true)}`;
-
-    if(existing) {
-      existing.title = finalTitle;
-      existing.platforms = deepClone(Object.fromEntries(state.draft.selectedPlatforms.map(p => [p, state.draft.platforms[p]])));
-      existing.mediaIds = [...state.draft.mediaIds];
-      existing.status = 'Draft';
-      toast('Bản nháp đã được ghi đè', 'success');
-    } else {
-      const d = deepClone(state.draft); let schedule = '';
-      if(d.scheduleMode === 'schedule') schedule = `${d.scheduleDate}T${d.scheduleTime}:00+07:00`;
-      const p = { id: uid('p'), title: finalTitle, createdBy: state.profile.name, createdAt: nowISO(), status: 'Draft', schedule, platforms: Object.fromEntries(d.selectedPlatforms.map(plat => [plat, d.platforms[plat]])), mediaIds: [...d.mediaIds] };
-      state.posts.unshift(p);
-      toast('Đã lưu nháp an toàn', 'success');
-    }
-    save(); render();
-  }
-
-  function savePostFromDraft() {
-    readDraftFromUI();
-    if(!state.draft.selectedPlatforms.length) { toast('Cần kích chọn ít nhất một mạng xã hội đích', 'error'); return; }
-    const status = state.draft.scheduleMode === 'schedule' ? 'Scheduled' : 'Published';
-    if(state.draft.scheduleMode === 'schedule' && !state.draft.scheduleDate) { toast('Lỗi: Bạn quên chưa chọn lịch hệ thống.', 'error'); return; }
-    
-    let p = editingPostId ? state.posts.find(x => x.id === editingPostId) : null;
-    let autoTitle = '';
-    for(const plat of state.draft.selectedPlatforms) { const content = state.draft.platforms[plat]; if(content.caption) { autoTitle = content.caption; break; } if(content.text) { autoTitle = content.text; break; } if(content.title) { autoTitle = content.title; break; } }
-    if(autoTitle) { autoTitle = autoTitle.replace(/\n/g, ' ').trim(); if(autoTitle.length > 40) autoTitle = autoTitle.substring(0, 40) + '...'; }
-    const finalTitle = autoTitle || `Bài viết - ${fmtDate(nowISO(), true)}`;
-
-    if(p) { p.title = finalTitle; p.platforms = Object.fromEntries(state.draft.selectedPlatforms.map(x => [x, state.draft.platforms[x]])); p.mediaIds = [...state.draft.mediaIds]; p.status = status; p.schedule = state.draft.scheduleMode === 'schedule' ? `${state.draft.scheduleDate}T${state.draft.scheduleTime}:00+07:00` : nowISO(); } 
-    else { 
-      const d = deepClone(state.draft); let schedule = '';
-      if(d.scheduleMode === 'schedule') schedule = `${d.scheduleDate}T${d.scheduleTime}:00+07:00`;
-      p = { id: uid('p'), title: finalTitle, createdBy: state.profile.name, createdAt: nowISO(), status, schedule, platforms: Object.fromEntries(d.selectedPlatforms.map(plat => [plat, d.platforms[plat]])), mediaIds: [...d.mediaIds] }; 
-      state.posts.unshift(p); 
-    }
-    
-    if(status === 'Published') { 
-      const ps = Object.keys(p.platforms);
-      ps.forEach(platform => {
-        const selectedAccountIds = p.platforms[platform].accountIds || [];
-        if (selectedAccountIds.length > 0) {
-          selectedAccountIds.forEach(accId => { const acc = state.accounts.find(a => a.id === accId); state.queue.unshift({ id: uid('j'), postId: p.id, platform, accountId: accId, status: acc?.status === 'Connected' ? 'Waiting' : 'Authentication Required', attempts: 0, created: nowISO(), nextRetry: '—', error: acc?.status === 'Connected' ? '' : 'Kênh chưa có quyền Auth' }); });
-        } else {
-           const acc = state.accounts.find(a => a.platform === platform); state.queue.unshift({ id: uid('j'), postId: p.id, platform, accountId: acc?.id || '', status: acc?.status === 'Connected' ? 'Waiting' : 'Authentication Required', attempts: 0, created: nowISO(), nextRetry: '—', error: acc?.status === 'Connected' ? '' : 'Chưa chọn Tài khoản đích' });
-        }
-      });
-    }
-    
-    save(); toast(status === 'Published' ? 'Post thành công (Giả lập)' : 'Đã ấn định Lịch Hệ thống', 'success');
-    state.draft = defaultDraft(); editingPostId = null; navigate('posts');
-  }
-
-  function editPost(id) { const p = state.posts.find(x => x.id === id); if(!p) return; editingPostId = id; state.draft = draftFromPost(p); navigate('create'); }
-  function duplicatePost(id) { const p = state.posts.find(x => x.id === id); if(!p) return; const n = deepClone(p); n.id = uid('p'); n.title = `${p.title} (Nhân bản)`; n.status = 'Draft'; n.createdAt = nowISO(); n.createdBy = state.profile.name; n.schedule = ''; state.posts.unshift(n); save(); toast('Nhân bản Post thành công'); render(); }
-  function deletePost(id) { confirmModal('Cảnh báo Xóa bài', `Bạn có chắc chắn muốn HỦY và XÓA HOÀN TOÀN chiến dịch không?`, () => { state.posts = state.posts.filter(x => x.id !== id); state.queue = state.queue.filter(x => x.postId !== id); save(); toast('Dọn dẹp Post thành công', 'success'); render(); }); }
-  function cancelPost(id) { const p = state.posts.find(x => x.id === id); if(!p) return; p.status = 'Cancelled'; state.queue.filter(j => j.postId === id).forEach(j => j.status = 'Failed'); save(); toast('Đã gỡ bỏ kế hoạch phát sóng', 'success'); render(); }
-  function retryPost(id) { const p = state.posts.find(x => x.id === id); if(!p) return; p.status = 'Retrying'; save(); toast('Tái nạp vào hàng đợi (Queue) thành công', 'info'); render(); }
-  function viewPost(id) { const p = state.posts.find(x => x.id === id); if(!p) return; openModal(`<div class="modal-header"><div><div class="modal-title">${escape(p.title)}</div></div><button class="close" data-close-modal><i data-lucide="x"></i></button></div><div class="modal-body"><div class="split">${statusPill(p.status)}<div class="platforms">${platformListForPost(p)}</div></div></div><div class="modal-footer"><button class="btn" data-close-modal>Tắt cửa sổ</button></div>`); }
-
-  function handleFiles(fileList, target) {
-    const files = [...fileList]; if(!files.length) return;
-    const allowed = ['image/jpeg', 'image/png', 'image/webp', 'video/mp4', 'video/quicktime'];
-    const valid = files.filter(f => allowed.includes(f.type));
-    valid.forEach(file => {
-      const type = file.type.startsWith('video/') ? 'video' : 'image'; const id = uid('m');
-      const rec = { id, name: file.name, size: file.size, type, duration: '—', status: 'Ready', progress: 0, createdAt: nowISO(), usedCount: 0, preview: '' };
-      if(type === 'image' && file.size < 500 * 1024) {
-        const reader = new FileReader(); reader.onload = () => { rec.preview = reader.result; state.media.unshift(rec); if (target === 'create' && state.draft) { if(!state.draft.mediaIds) state.draft.mediaIds = []; state.draft.mediaIds.push(rec.id); } save(); render(); }; reader.readAsDataURL(file);
-      } else {
-        const url = URL.createObjectURL(file); rec.preview = url; state.media.unshift(rec);
-        if (target === 'create' && state.draft) { if(!state.draft.mediaIds) state.draft.mediaIds = []; state.draft.mediaIds.push(rec.id); }
-        save(); toast(`File ${file.name} dùng Blob URL ảo để chống tràn RAM.`, 'info'); render();
-      }
-    });
-  }
-
-  function deleteMedia(id) { confirmModal('Quét sạch File', `Phần Media sẽ bị gỡ triệt để khỏi các Bài viết. Cho phép?`, () => { state.media = state.media.filter(x => x.id !== id); state.posts.forEach(p => p.mediaIds = (p.mediaIds || []).filter(x => x !== id)); save(); toast('Dọn Rác thành công'); render(); }); }
-  function previewMedia(id) { const m = state.media.find(x => x.id === id); if(!m) return; openModal(`<div class="modal-header"><div class="modal-title">${escape(m.name)}</div><button class="close" data-close-modal><i data-lucide="x"></i></button></div><div class="modal-body"><div style="background:var(--bg);text-align:center;">${m.preview ? (m.type === 'video' ? `<video controls src="${m.preview}" style="max-width:100%;max-height:400px"></video>` : `<img src="${m.preview}" style="max-width:100%;max-height:400px;">`) : 'No Preview'}</div></div><div class="modal-footer"><button class="btn" data-close-modal>Đóng</button></div>`); }
-  function downloadMedia(id) { const m = state.media.find(x => x.id === id); if(!m || !m.preview) return; const a = document.createElement('a'); a.href = m.preview; a.download = m.name; a.click(); toast('Đang tải'); }
-
-  // API Call
-  async function processQueue() {
-    const term = document.getElementById('engineTerminal');
-    if(term) { document.getElementById('engineStatus').textContent = '[RUNNING]'; document.getElementById('engineStatus').style.color = '#34d399'; }
-    let processedAny = false;
-    for (let i = 0; i < state.queue.length; i++) {
-      let j = state.queue[i]; if(j.status !== 'Waiting') continue; processedAny = true;
-      terminalLog(`> [WORKER] Bốc Job [${j.id}] - Đẩy qua nền tảng ${j.platform}...`, '#93c5fd');
-      j.status = 'Processing'; j.attempts++; save(); render();
-      await new Promise(r => setTimeout(r, 800));
-      const acc = state.accounts.find(a => a.id === j.accountId);
-      terminalLog(`> [WORKER] Chờ API từ ${j.platform} xác thực Token...`, '#fbbf24');
-      await new Promise(r => setTimeout(r, 1000));
-      if(acc?.status === 'Connected') {
-        terminalLog(`> [WORKER] Xác thực Thành công. Đang tải Upload Payload lên...`, '#cbd5e1');
-        await new Promise(r => setTimeout(r, 1200));
-        j.status = 'Success'; j.nextRetry = '—';
-        const p = state.posts.find(x => x.id === j.postId); if(p) p.status = 'Published';
-        terminalLog(`> [WORKER] Push Thành công. Job [${j.id}] trả mã 200 OK.`, '#34d399');
-      } else {
-        j.status = 'Authentication Required'; j.error = 'Lỗi Cookie/Token API'; j.nextRetry = '—';
-        terminalLog(`> [WORKER] LỖI FATAL: ${j.platform} trả mã 401 Unauthorized. Ngắt kết nối.`, '#f87171');
-        sendTelegramAlert(`Phát hiện lỗi đăng bài!\n- Mã Job: <b>${j.id}</b>\n- Nền tảng: <b>${j.platform}</b>\n- Tình trạng: <b>${j.error}</b>\n\n<i>Vui lòng vào Dino Hub để kiểm tra lại Access Token!</i>`);
-      }
-      save(); render(); await new Promise(r => setTimeout(r, 500));
-    }
-    if(!processedAny) { terminalLog(`> [SYSTEM] Không có Job nào ở trạng thái Chờ.`, '#64748b'); toast('Queue Worker không tìm thấy tiến trình đang chờ.', 'info'); } 
-    else { toast('Tất cả Job trong hàng đợi đã xử lý xong', 'success'); }
-    if(document.getElementById('engineStatus')) { document.getElementById('engineStatus').textContent = 'IDLE'; document.getElementById('engineStatus').style.color = '#fbbf24'; }
-  }
-
-  // Render & Listeners
-  function render() {
-    try {
-      const p = state.page || 'dashboard';
-      document.querySelectorAll('.nav-item').forEach(b => b.classList.toggle('active', b.dataset.page === p));
-      document.getElementById('breadcrumbCurrent').textContent = pageNames[p] || p;
-      document.getElementById('sidebar').classList.toggle('collapsed', !!state.sidebarCollapsed);
-      
-      const contentEl = document.getElementById('content');
-      contentEl.classList.remove('page-enter'); void contentEl.offsetWidth; contentEl.classList.add('page-enter');
-
-      let html = '';
-      switch(p) {
-        case'dashboard': html=renderDashboard(); break;
-        case'create': html=renderCreate(); break;
-        case'posts': html=renderPosts(); break;
-        case'schedule': html=renderSchedule(); break;
-        case'inbox': html=renderInbox(); break;
-        case'accounts': html=renderAccounts(); break;
-        case'media': html=renderMedia(); break;
-        case'queue': html=renderQueue(); break;
-        case'team': html=renderTeam(); break;
-        case'analytics': html=renderAnalytics(); break;
-        case'settings': html=renderSettings(); break;
-        default: html=renderDashboard();
-      }
-      contentEl.innerHTML = html;
-      lucide.createIcons();
-    } catch(e) { console.error(e); document.getElementById('content').innerHTML = `<div class="card card-pad"><div class="notice danger"><b>Hệ thống gặp sự cố khi hiển thị UI.</b><br>${escape(e.message)}</div><button class="btn primary" onclick="location.reload()">Tải lại Trang</button></div>`; }
-  }
-
-  function navigate(page) { state.page = page; save(); render(); window.scrollTo({top:0, behavior:'smooth'}); }
-  
-  window.app.clearMediaSelection = function() { state.selectedMedia = []; render(); };
-  
-  window.app.tour = {
-    step: 0, steps: [ { sel: '[data-page="accounts"]', title: '1. Kết nối kênh', text: 'Bắt đầu bằng việc liên kết Fanpage/TikTok của bạn.' }, { sel: '[data-page="create"]', title: '2. Lên nội dung', text: 'Dùng AI hoặc tự soạn bài đăng đa kênh tại đây.' }, { sel: '[data-page="queue"]', title: '3. Theo dõi hàng đợi', text: 'Xem tiến độ hệ thống tự động đăng bài.' } ],
-    start: function() { this.step = 0; document.getElementById('tourOverlay').style.display = 'block'; document.getElementById('tourBox').style.display = 'block'; this.show(); },
-    show: function() {
-      if(this.step >= this.steps.length) { this.skip(); return; }
-      const s = this.steps[this.step];
-      document.getElementById('tourTitle').textContent = s.title; document.getElementById('tourText').textContent = s.text;
-      document.getElementById('tourNextBtn').textContent = this.step === this.steps.length - 1 ? 'Hoàn tất' : 'Tiếp tục';
-      document.querySelectorAll('.nav-item').forEach(el => el.style.zIndex = 'auto');
-      const el = document.querySelector(s.sel);
-      if(el) { el.style.position = 'relative'; el.style.zIndex = '9999'; el.style.backgroundColor = 'var(--surface)'; }
-      const box = document.getElementById('tourBox');
-      if(window.innerWidth > 980) { box.style.left = '260px'; box.style.top = (150 + this.step * 40) + 'px'; } else { box.style.left = '50%'; box.style.top = '50%'; box.style.transform = 'translate(-50%, -50%)'; }
-    },
-    next: function() { const s = this.steps[this.step]; const el = document.querySelector(s.sel); if(el) { el.style.zIndex = 'auto'; el.style.backgroundColor = 'transparent'; } this.step++; this.show(); },
-    skip: function() { document.getElementById('tourOverlay').style.display = 'none'; document.getElementById('tourBox').style.display = 'none'; document.querySelectorAll('.nav-item').forEach(el => { el.style.zIndex = 'auto'; el.style.backgroundColor = 'transparent'; }); state.onboardingDone = true; save(); }
-  };
-
+  // --- SỬA THÀNH LỆNH GỌI API TELEGRAM THẬT ---
   document.addEventListener('click', e => {
+    if(e.target.closest('#testTelegram')) { 
+      const token = document.getElementById('tgToken').value.trim(); const chatId = document.getElementById('tgChat').value.trim();
+      if(!token || !chatId) { toast('Vui lòng nhập đủ Token và Chat ID trước khi Test', 'warning'); return; }
+      toast('Đang bắn API sang Telegram...', 'info');
+      fetch(`https://api.telegram.org/bot${token}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: chatId, text: '🚀 <b>[DINO HUB] Báo cáo Hệ thống</b>\n\nTin nhắn thử nghiệm API thành công!', parse_mode: 'HTML' }) })
+      .then(r => r.json()).then(d => { if(d.ok) { toast('Ting ting! K.tra điện thoại của bạn nhé.', 'success'); addNotification('Success', 'Telegram Connected', 'Gửi tin qua Bot thành công.'); } else { toast('Lỗi từ Telegram: ' + d.description, 'error'); } })
+      .catch(err => toast('Không thể kết nối Telegram', 'error'));
+      return; 
+    }
+    
     if (e.target.closest('[data-close-modal]')) { closeModal(); return; }
     if (e.target.closest('.breadcrumbs[data-page]')) { navigate('dashboard'); return; }
     if (e.target.closest('#logoToggleSidebar') || e.target.closest('#collapseBtn')) { state.sidebarCollapsed = !state.sidebarCollapsed; save(); render(); return; }
     if (e.target.closest('[data-page]')) { navigate(e.target.closest('[data-page]').dataset.page); return; }
+    if (e.target.closest('[data-page-go]')) { navigate(e.target.closest('[data-page-go]').dataset.pageGo); return; }
     
+    const actionEl = e.target.closest('[data-action]');
+    if(actionEl) {
+      const a = actionEl.dataset.action;
+      if(a === 'export') {
+        const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
+        const url = URL.createObjectURL(blob); const aLink = document.createElement('a'); aLink.href = url;
+        aLink.download = `dino_social_hub_workspace_${new Date().toISOString().slice(0,10)}.json`;
+        aLink.click(); URL.revokeObjectURL(url); toast('Đã xuất toàn bộ dữ liệu ra File JSON', 'success');
+      }
+      if(a === 'profile') { state.settingsTab = 'Profile'; navigate('settings'); }
+      if(a === 'settings') navigate('settings');
+      if(a === 'import') {
+        const input = document.createElement('input'); input.type = 'file'; input.accept = 'application/json';
+        input.onchange = () => {
+           const file = input.files[0]; if(!file) return;
+           const r = new FileReader();
+           r.onload = () => {
+             try {
+               const incoming = JSON.parse(r.result);
+               if(!incoming.version || !Array.isArray(incoming.posts) || !Array.isArray(incoming.accounts)) { throw new Error('JSON không đúng format DINO Social Hub'); }
+               state = {...deepClone(seedState), ...incoming}; save(); toast('Phục hồi dữ liệu từ JSON thành công', 'success'); checkAuth();
+             } catch(err) { toast(err.message, 'error'); }
+           };
+           r.readAsText(file);
+        };
+        input.click();
+      }
+      if(a === 'logout') window.doLogout();
+      return;
+    }
+
     if(e.target.closest('#deleteSelectedMedia')) {
       confirmModal('Xóa nhiều file', `Bạn muốn xóa vĩnh viễn ${state.selectedMedia.length} file này?`, () => {
          state.media = state.media.filter(m => !state.selectedMedia.includes(m.id));
@@ -1572,73 +1199,164 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     if(e.target.closest('[data-view-post]')) { viewPost(e.target.closest('[data-view-post]').dataset.viewPost); return; }
     if(e.target.closest('[data-edit-post]')) { editPost(e.target.closest('[data-edit-post]').dataset.editPost); return; }
     if(e.target.closest('[data-delete-post]')) { deletePost(e.target.closest('[data-delete-post]').dataset.deletePost); return; }
+    if(e.target.closest('[data-duplicate-post]')) { duplicatePost(e.target.closest('[data-duplicate-post]').dataset.duplicatePost); return; }
+    if(e.target.closest('[data-cancel-post]')) { cancelPost(e.target.closest('[data-cancel-post]').dataset.cancelPost); return; }
+    if(e.target.closest('[data-retry-post]')) { retryPost(e.target.closest('[data-retry-post]').dataset.retryPost); return; }
+    
     if(e.target.closest('[data-preview-media]')) { previewMedia(e.target.closest('[data-preview-media]').dataset.previewMedia); return; }
     if(e.target.closest('[data-download-media]')) { downloadMedia(e.target.closest('[data-download-media]').dataset.downloadMedia); return; }
+    if(e.target.closest('[data-copy-media-url]')) { copyMediaUrl(e.target.closest('[data-copy-media-url]').dataset.copyMediaUrl); return; }
+    if(e.target.closest('[data-rename-media]')) { renameMedia(e.target.closest('[data-rename-media]').dataset.renameMedia); return; }
     if(e.target.closest('[data-delete-media]')) { deleteMedia(e.target.closest('[data-delete-media]').dataset.deleteMedia); return; }
     if(e.target.closest('[data-remove-draft-media]')) { state.draft.mediaIds = state.draft.mediaIds.filter(x => x !== e.target.closest('[data-remove-draft-media]').dataset.removeDraftMedia); save(); render(); return; }
-    
-    if(e.target.closest('[data-retry-job]')) { 
-      const id = e.target.closest('[data-retry-job]').dataset.retryJob; 
-      const j = state.queue.find(x => x.id === id); if(!j) return;
-      j.status = 'Waiting'; j.attempts = 0; save(); toast(`Đã chuyển Job ${id} về trạng thái Chờ`); render(); return; 
-    }
-    
+
+    if(e.target.closest('[data-bulk-remove]')) { state.bulk = state.bulk.filter(x => x.id !== e.target.closest('[data-bulk-remove]').dataset.bulkRemove); save(); render(); return; }
+    if(e.target.closest('[data-bulk-retry]')) { bulkRetry(e.target.closest('[data-bulk-retry]').dataset.bulkRetry); return; }
+    if(e.target.closest('[data-bulk-preview]')) { previewBulk(e.target.closest('[data-bulk-preview]').dataset.bulkPreview); return; }
+
+    if(e.target.closest('[data-retry-job]')) { retryJob(e.target.closest('[data-retry-job]').dataset.retryJob); return; }
+    if(e.target.closest('[data-reconnect-account]')) { reconnectAccount(e.target.closest('[data-reconnect-account]').dataset.reconnectAccount); return; }
+    if(e.target.closest('[data-refresh-account]')) { refreshAccount(e.target.closest('[data-refresh-account]').dataset.refreshAccount); return; }
+    if(e.target.closest('[data-disconnect-account]')) { disconnectAccount(e.target.closest('[data-disconnect-account]').dataset.disconnectAccount); return; }
+    if(e.target.closest('[data-delete-account]')) { deleteAccount(e.target.closest('[data-delete-account]').dataset.deleteAccount); return; }
+
+    if(e.target.closest('[data-edit-user]')) { editUser(e.target.closest('[data-edit-user]').dataset.editUser); return; }
+    if(e.target.closest('[data-disable-user]')) { toggleUser(e.target.closest('[data-disable-user]').dataset.disableUser); return; }
+    if(e.target.closest('[data-reset-user]')) { resetUser(e.target.closest('[data-reset-user]').dataset.resetUser); return; }
+    if(e.target.closest('[data-delete-user]')) { deleteUser(e.target.closest('[data-delete-user]').dataset.deleteUser); return; }
+
+    if(e.target.closest('[data-toggle-notif]')) { toggleNotif(e.target.closest('[data-toggle-notif]').dataset.toggleNotif); return; }
+    if(e.target.closest('[data-delete-notif]')) { deleteNotif(e.target.closest('[data-delete-notif]').dataset.deleteNotif); return; }
+
     if(e.target.closest('[data-platform-tab]')) { readDraftFromUI(); state.draft.activeTab = e.target.closest('[data-platform-tab]').dataset.platformTab; save(); render(); return; }
+    
+    if(e.target.closest('[data-copy-ai]')) {
+      const p = e.target.closest('[data-copy-ai]').dataset.copyAi;
+      const txt = p === 'YouTube' ? `Tiêu đề: ${window.__aiResults[p].title}\n${window.__aiResults[p].description}\nTags: ${window.__aiResults[p].tags}` : window.__aiResults[p];
+      navigator.clipboard?.writeText(txt); toast('Đã copy nội dung'); return;
+    }
+    if(e.target.closest('[data-apply-ai]')) { window.app.applyAI(e.target.closest('[data-apply-ai]').dataset.applyAi); return; }
+    
+    // NÚT KHO MẪU
     if(e.target.closest('#openTemplates')) { openTemplatesModal(); return; }
-    if(e.target.closest('#openAI') || e.target.closest('#generateAIInline')) { openAIGenerator(); return; }
-    if(e.target.closest('#resetDraft')) { confirmModal('Xóa trắng bài viết', 'Tất cả nội dung sẽ biến mất. Chắc chứ?', () => { state.draft = defaultDraft(); editingPostId = null; save(); render(); }); return; }
+
+    if(e.target.closest('#openAI') || e.target.closest('#aiLibrary') || e.target.closest('#generateAIInline')) { openAIGenerator(); return; }
+    if(e.target.closest('#helpBtn')) { openHelp(); return; }
+    if(e.target.closest('#resetDraft')) { confirmModal('Xóa trắng bài viết', 'Tất cả nội dung, ảnh và cài đặt sẽ biến mất. Bạn chắc chứ?', () => { state.draft = defaultDraft(); editingPostId = null; save(); render(); }); return; }
     if(e.target.closest('#saveDraft')) { saveDraft(); return; }
     if(e.target.closest('#publishOrSchedule')) { savePostFromDraft(); return; }
-    if(e.target.closest('#browseMedia') || e.target.closest('#uploadMediaBtn')) { document.getElementById('hiddenFile').click(); return; }
+    if(e.target.closest('#browseMedia') || e.target.closest('#uploadMediaBtn') || e.target.closest('#bulkFiles')) { document.getElementById('hiddenFile').click(); return; }
+    if(e.target.closest('#addThread')) { readDraftFromUI(); state.draft.platforms.X.thread.push(''); save(); render(); return; }
+    if(e.target.closest('[data-remove-thread]')) { readDraftFromUI(); state.draft.platforms.X.thread.splice(Number(e.target.closest('[data-remove-thread]').dataset.removeThread), 1); save(); render(); return; }
     if(e.target.closest('#mediaListToggle')) { state.mediaView = state.mediaView === 'grid' ? 'list' : 'grid'; save(); render(); return; }
+    if(e.target.closest('#bulkReset')) { state.bulk = []; save(); render(); return; }
+    if(e.target.closest('#generateBulkCaptions')) { generateBulkCaptions(); return; }
+    if(e.target.closest('#createBulkPosts')) { createBulkPosts(); return; }
+    if(e.target.closest('#applyBulkAll')) { applyBulkAll(); return; }
     if(e.target.closest('#processQueue')) { processQueue(); return; }
-    if(e.target.closest('#clearSuccess')) { state.queue = state.queue.filter(j => j.status !== 'Success'); save(); toast('Đã dọn dẹp các Queue đẩy thành công', 'success'); render(); return; }
+    if(e.target.closest('#clearSuccess')) { state.queue = state.queue.filter(j => j.status !== 'Success'); save(); audit('Cleared Success Jobs','Queue'); toast('Đã dọn dẹp các Queue đẩy thành công', 'success'); render(); return; }
+    if(e.target.closest('#addTeam')) { openUserModal(); return; }
+    if(e.target.closest('#rbacInfo')) { openRBAC(); return; }
+    if(e.target.closest('#connectAccount')) { openConnectModal(); return; }
+    if(e.target.closest('#refreshAllAccounts')) { state.accounts.forEach(a => a.lastSync = nowISO()); save(); audit('Refreshed Accounts','Social Accounts'); toast('Đã yêu cầu đồng bộ lại tất cả kênh','success'); render(); return; }
+    if(e.target.closest('#refreshAnalytics')) { state.analyticsSeed.engagement += Math.floor(Math.random() * 120); state.analyticsSeed.views += Math.floor(Math.random() * 800); save(); toast('Hệ thống Thống kê vừa được làm mới','success'); render(); return; }
+    if(e.target.closest('#markAllRead')) { state.notifications.forEach(n => n.read = true); save(); toast('Tất cả thông báo đã chuyển sang đã đọc'); render(); return; }
+    if(e.target.closest('#deleteRead')) { state.notifications = state.notifications.filter(n => !n.read); save(); toast('Đã dọn sạch thông báo cũ'); render(); return; }
     
-    // Test Telegram Action
-    if(e.target.closest('#testTelegram')) { 
-      const token = document.getElementById('tgToken').value.trim(); const chatId = document.getElementById('tgChat').value.trim();
-      if(!token || !chatId) { toast('Vui lòng nhập đủ Token và Chat ID trước khi Test', 'warning'); return; }
-      toast('Đang bắn API sang Telegram...', 'info');
-      fetch(`https://api.telegram.org/bot${token}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: chatId, text: '🚀 <b>[DINO HUB] Báo cáo Hệ thống</b>\n\nTin nhắn thử nghiệm API thành công!', parse_mode: 'HTML' }) })
-      .then(r => r.json()).then(d => { if(d.ok) { toast('Ting ting! K.tra điện thoại của bạn nhé.', 'success'); } else { toast('Lỗi từ Telegram: ' + d.description, 'error'); } }).catch(err => toast('Không thể kết nối Telegram', 'error')); return; 
-    }
-
+    // Settings Tabs & Save
+    if(e.target.closest('[data-settings-tab]')) { state.settingsTab = e.target.closest('[data-settings-tab]').dataset.settingsTab; save(); render(); return; }
+    if(e.target.closest('#saveProfile')) { state.profile.name = document.getElementById('profileName').value.trim() || 'Sơn Dino'; save(); audit('Updated Profile', 'Profile'); toast('Đã cập nhật Hồ sơ'); render(); return; }
+    if(e.target.closest('#saveWorkspace')) { state.profile.workspace = document.getElementById('workspaceName').value.trim() || state.profile.workspace; save(); audit('Updated Workspace', 'Workspace'); toast('Đã cập nhật tên Workspace'); render(); return; }
+    if(e.target.closest('#saveTimezone')) { state.profile.timezone = document.getElementById('workspaceTimezone').value; save(); toast('Cập nhật Múi giờ thành công'); render(); return; }
+    if(e.target.closest('#saveAI')) { state.ai.provider = document.getElementById('aiProvider').value; state.ai.model = document.getElementById('aiModel').value; state.ai.apiKey = document.getElementById('aiKey').value; state.ai.temperature = Number(document.getElementById('aiTemp').value); save(); audit('Updated AI Settings','AI'); toast('Tham số Cấu hình AI đã được lưu'); render(); return; }
+    if(e.target.closest('#saveTelegram')) { state.telegram.enabled = document.getElementById('tgEnabled').checked; state.telegram.botToken = document.getElementById('tgToken').value; state.telegram.chatId = document.getElementById('tgChat').value; save(); audit('Updated Telegram Settings','Telegram'); toast('Tham số Telegram đã được lưu'); render(); return; }
+    if(e.target.closest('#oauthArchitecture')) { openOAuthModal(); return; }
     if(e.target.closest('#saveSettings')) {
-      state.settings = state.settings || {}; const selectVal = document.getElementById('themeSetting').value; state.settings.theme = selectVal.includes('Dark') ? 'Dark' : 'Light';
-      document.documentElement.setAttribute('data-theme', state.settings.theme.toLowerCase()); save(); toast('Cấu hình Giao diện đã áp dụng thành công', 'success'); return;
+      state.settings = state.settings || {};
+      const selectVal = document.getElementById('themeSetting').value;
+      state.settings.theme = selectVal.includes('Dark') ? 'Dark' : 'Light';
+      document.documentElement.setAttribute('data-theme', state.settings.theme.toLowerCase());
+      save();
+      toast('Cấu hình Giao diện đã áp dụng thành công', 'success');
+      return;
     }
-    if(e.target.closest('#saveTelegram')) { state.telegram.enabled = document.getElementById('tgEnabled').checked; state.telegram.botToken = document.getElementById('tgToken').value; state.telegram.chatId = document.getElementById('tgChat').value; save(); toast('Cấu hình Telegram đã được lưu', 'success'); render(); return; }
-    if(e.target.closest('#saveAI')) { state.ai.provider = document.getElementById('aiProvider').value; state.ai.model = document.getElementById('aiModel').value; state.ai.apiKey = document.getElementById('aiKey').value; state.ai.temperature = Number(document.getElementById('aiTemp').value); save(); toast('Cấu hình AI đã được lưu', 'success'); render(); return; }
     
+    // Calendar Actions
     if(e.target.closest('#prevMonth')) { shiftCal(-1); return; }
     if(e.target.closest('#nextMonth')) { shiftCal(1); return; }
     if(e.target.closest('#todayCal')) { calendarSelectedDate = new Date().toISOString().slice(0,10); state.calendarDate = calendarSelectedDate; save(); render(); return; }
     if(e.target.closest('[data-cal-mode]')) { state.calendarMode = e.target.closest('[data-cal-mode]').dataset.calMode; save(); render(); return; }
+    if(e.target.closest('[data-cal-post]')) { viewPost(e.target.closest('[data-cal-post]').dataset.calPost); return; }
+    
+    // Filter click
     if(e.target.closest('[data-post-filter]')) { state.postFilter = e.target.closest('[data-post-filter]').dataset.postFilter; save(); render(); return; }
     if(e.target.closest('[data-media-filter]')) { state.mediaFilter = e.target.closest('[data-media-filter]').dataset.mediaFilter; save(); render(); return; }
   });
 
+  window.app.applyAI = function(p) {
+    const out = window.__aiResults?.[p];
+    if(!out || !state.draft) return;
+    state.draft.platforms[p] = state.draft.platforms[p] || {};
+    if(p === 'YouTube') {
+      state.draft.platforms.YouTube.title = out.title;
+      state.draft.platforms.YouTube.description = out.description;
+      state.draft.platforms.YouTube.tags = out.tags;
+    } else if(p === 'X') {
+      state.draft.platforms.X.text = out;
+    } else {
+      state.draft.platforms[p].caption = out;
+    }
+    state.draft.activeTab = p; save(); toast(`Đã nạp văn bản AI vào ${p}`); closeModal();
+    if(state.page !== 'create') { state.page = 'create'; }
+    render();
+  }
+
+  document.getElementById('userMenuBtn').onclick = (e) => { e.stopPropagation(); document.getElementById('userMenu').classList.toggle('show'); };
+  document.addEventListener('click', e => { if(!e.target.closest('#userMenuBtn') && !e.target.closest('#userMenu')) document.getElementById('userMenu').classList.remove('show'); });
+  document.getElementById('modalBackdrop').addEventListener('click', e => { if(e.target.id === 'modalBackdrop') closeModal(); });
+  
   document.addEventListener('change', e => {
     if(e.target.matches('[data-platform-check]')) {
       const p = e.target.dataset.platformCheck;
-      if(e.target.checked) { if(!state.draft.selectedPlatforms.includes(p)) state.draft.selectedPlatforms.push(p); state.draft.platforms[p] = state.draft.platforms[p] || defaultDraft().platforms[p]; state.draft.activeTab = p; } 
-      else { state.draft.selectedPlatforms = state.draft.selectedPlatforms.filter(x => x !== p); if(state.draft.activeTab === p) state.draft.activeTab = state.draft.selectedPlatforms[0] || 'Facebook'; }
+      if(e.target.checked) {
+        if(!state.draft.selectedPlatforms.includes(p)) state.draft.selectedPlatforms.push(p);
+        state.draft.platforms[p] = state.draft.platforms[p] || defaultDraft().platforms[p];
+        state.draft.activeTab = p;
+      } else {
+        state.draft.selectedPlatforms = state.draft.selectedPlatforms.filter(x => x !== p);
+        if(state.draft.activeTab === p) state.draft.activeTab = state.draft.selectedPlatforms[0] || 'Facebook';
+      }
       save(); render();
     }
     if(e.target.matches('.media-select-cb')) {
       const id = e.target.dataset.selectMedia;
-      if(e.target.checked) { if(!state.selectedMedia.includes(id)) state.selectedMedia.push(id); } else { state.selectedMedia = state.selectedMedia.filter(x => x !== id); }
+      if(e.target.checked) { if(!state.selectedMedia.includes(id)) state.selectedMedia.push(id); }
+      else { state.selectedMedia = state.selectedMedia.filter(x => x !== id); }
       render();
     }
     if(e.target.matches('[data-draft-account]')) { readDraftFromUI(); render(); }
     if(e.target.matches('[name=scheduleMode]')) { readDraftFromUI(); render(); }
+    if(e.target.matches('#sortPosts')) { render(); }
   });
 
+  document.addEventListener('input', e => {
+    if(e.target.matches('#postSearch')) { state.postSearch = e.target.value; save(); clearTimeout(window.__searchTimer); window.__searchTimer = setTimeout(render, 180); }
+    if(e.target.matches('#mediaSearch')) { state.postSearch = e.target.value; save(); clearTimeout(window.__searchTimer); window.__searchTimer = setTimeout(render, 180); }
+  });
+
+  window.addEventListener('keydown', e => {
+    if(e.key === 'Escape') closeModal();
+    if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); document.getElementById('globalSearch').focus(); }
+  });
+  window.addEventListener('beforeunload', save);
+  
   document.getElementById('hiddenFile').onchange = e => { handleFiles(e.target.files, state.page === 'bulk' ? 'bulk' : 'create'); e.target.value = ''; };
 
-  // KÉO THẢ KANBAN QUEUE VÀ MEDIA
+  // DRAG & DROP DELEGATION (Đã thêm Kanban Queue)
   document.addEventListener('dragover', e => {
     if(e.target.closest('#createDrop')) { e.preventDefault(); e.target.closest('#createDrop').style.background = 'var(--surface-2)'; }
+    if(e.target.closest('#bulkDrop')) { e.preventDefault(); }
+    if(e.target.closest('[data-cal-cell]')) { e.preventDefault(); }
     if(e.target.closest('.media-item')) { e.preventDefault(); e.target.closest('.media-item').classList.add('drag-over'); e.dataTransfer.dropEffect = 'move'; }
     if(e.target.closest('[data-queue-col]')) { e.preventDefault(); e.target.closest('[data-queue-col]').classList.add('drag-over'); }
   });
@@ -1649,6 +1367,14 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
   });
   document.addEventListener('drop', e => {
     if(e.target.closest('#createDrop')) { e.preventDefault(); e.target.closest('#createDrop').style.background = 'var(--surface)'; handleFiles(e.dataTransfer.files, 'create'); return; }
+    if(e.target.closest('#bulkDrop')) { e.preventDefault(); handleFiles(e.dataTransfer.files, 'bulk'); return; }
+    
+    const calCell = e.target.closest('[data-cal-cell]');
+    if(calCell) {
+      e.preventDefault(); const id = e.dataTransfer.getData('text/plain'); const p = state.posts.find(x => x.id === id); if(!p) return;
+      const time = p.schedule ? p.schedule.slice(11,16) : '18:30'; p.schedule = `${calCell.dataset.calCell}T${time}:00+07:00`; p.status = 'Scheduled';
+      audit('Rescheduled Post', `Post #${p.id}`); save(); toast('Đã đổi lịch bằng kéo & thả', 'success'); render(); return;
+    }
     
     const mediaItem = e.target.closest('.media-item');
     if(mediaItem) {
@@ -1670,7 +1396,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
         const job = state.queue.find(x => x.id === jobId);
         if(job && job.status !== targetStatus) {
            job.status = targetStatus;
-           if(targetStatus === 'Waiting') job.attempts = 0; 
+           if(targetStatus === 'Waiting') job.attempts = 0; // Reset số lần thử nếu nạp lại
            save(); toast(`Đã chuyển trạng thái Job thành ${targetStatus}`); render();
         }
       }
@@ -1678,6 +1404,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
   });
 
   document.addEventListener('dragstart', e => {
+    if(e.target.closest('[data-cal-post]')) { e.dataTransfer.setData('text/plain', e.target.closest('[data-cal-post]').dataset.calPost); }
     if(e.target.closest('[data-draft-media]')) { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('mediaId', e.target.closest('[data-draft-media]').dataset.draftMedia); }
     if(e.target.closest('[data-job-id]')) { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('jobId', e.target.closest('[data-job-id]').dataset.jobId); }
   });
