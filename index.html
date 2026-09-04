@@ -1,116 +1,164 @@
+ChatGPT:
+Chỉnh lại giao diện cho đẹp và chuyên nghiệp hơn — bản mới đây:
+
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auto Post Facebook</title>
+<title>FanPoster Pro — Đăng bài tự động</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+--primary: #1877f2;
+--primary-dark: #0d5fd1;
+--bg: #f0f2f5;
+--card-bg: #ffffff;
+--text: #1c1e21;
+--muted: #65676b;
+--border: #e4e6eb;
+}
 body {
-font-family: 'Segoe UI', Tahoma, sans-serif;
-background: linear-gradient(135deg, #1877f2, #0a4c9e);
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+background: var(--bg);
 min-height: 100vh;
 display: flex;
 justify-content: center;
 align-items: center;
 padding: 20px;
+color: var(--text);
 }
 .card {
-background: #fff;
+background: var(--card-bg);
 width: 100%;
-max-width: 560px;
-border-radius: 16px;
-box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+max-width: 600px;
+border-radius: 14px;
+box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
 overflow: hidden;
 }
 .header {
-background: #1877f2;
+background: var(--primary);
 color: #fff;
-padding: 20px 24px;
+padding: 22px 26px;
+display: flex;
+align-items: center;
+gap: 14px;
 }
-.header h1 { font-size: 20px; font-weight: 700; }
-.header p { font-size: 13px; opacity: 0.85; margin-top: 4px; }
-.body { padding: 24px; }
-label {
-display: block;
-font-size: 13px;
-font-weight: 600;
-color: #333;
-margin-bottom: 6px;
+.header .logo {
+background: rgba(255,255,255,0.18);
+width: 46px; height: 46px;
+border-radius: 12px;
+display: flex; justify-content: center; align-items: center;
+font-size: 22px;
+flex-shrink: 0;
 }
+.header h1 { font-size: 19px; font-weight: 700; letter-spacing: 0.2px; }
+.header p { font-size: 13px; opacity: 0.85; margin-top: 3px; }
+.body { padding: 26px; }
+.field-group { margin-bottom: 20px; }
+label.control {
+display: flex; justify-content: space-between; align-items: center;
+font-size: 13px; font-weight: 600; color: var(--text);
+margin-bottom: 8px;
+}
+label.control span { font-weight: 400; color: var(--muted); font-size: 12px; }
 textarea, select, input {
 width: 100%;
 padding: 12px 14px;
-border: 1px solid #ddd;
+border: 1.5px solid var(--border);
 border-radius: 8px;
 font-size: 14px;
 font-family: inherit;
-margin-bottom: 18px;
-transition: border 0.2s, box-shadow 0.2s;
+color: var(--text);
+background: #fff;
+transition: border-color 0.2s, box-shadow 0.2s;
 }
-textarea { resize: vertical; min-height: 130px; }
+textarea { resize: vertical; min-height: 140px; }
 textarea:focus, select:focus, input:focus {
 outline: none;
-border-color: #1877f2;
-box-shadow: 0 0 0 3px rgba(24,119,242,0.15);
+border-color: var(--primary);
+box-shadow: 0 0 0 3px rgba(24,119,242,0.12);
 }
+.select-wrap { position: relative; }
+.select-wrap select { appearance: none; -webkit-appearance: none; padding-right: 40px; cursor: pointer; }
+.select-wrap::after {
+content: '▾'; position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+color: var(--muted); pointer-events: none; font-size: 14px;
+}
+.refresh {
+display: inline-flex; align-items: center; gap: 5px;
+font-size: 12.5px; color: var(--primary); cursor: pointer;
+font-weight: 600; margin-top: 6px;
+}
+.refresh:hover { text-decoration: underline; }
 .btn {
 width: 100%;
-padding: 14px;
-background: #1877f2;
-color: #fff;
-border: none;
-border-radius: 8px;
-font-size: 16px;
-font-weight: 700;
-cursor: pointer;
-transition: background 0.2s, transform 0.1s;
+padding: 13px;
+background: var(--primary);
+color: #fff; border: none; border-radius: 8px;
+font-size: 15px; font-weight: 700; cursor: pointer;
+transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+box-shadow: 0 3px 10px rgba(24,119,242,0.25);
 }
-.btn:hover { background: #166fe5; }
-.btn:active { transform: scale(0.98); }
-.btn:disabled { background: #9db6d8; cursor: not-allowed; }
+.btn:hover { background: var(--primary-dark); }
+.btn:active { transform: scale(0.99); }
+.btn:disabled { background: #a8c4e8; box-shadow: none; cursor: not-allowed; }
 .status {
-margin-top: 14px;
-padding: 12px;
-border-radius: 8px;
-font-size: 14px;
-display: none;
+margin-top: 16px; padding: 13px 15px; border-radius: 8px;
+font-size: 14px; font-weight: 500; display: none;
+border: 1px solid transparent;
 }
-.status.success { display: block; background: #e8f5e9; color: #1b5e20; }
-.status.error { display: block; background: #fdecea; color: #b71c1c; }
-.status.loading { display: block; background: #e3f2fd; color: #0d47a1; }
-.small { font-size: 12px; color: #888; margin-top: 12px; line-height: 1.5; }
-.refresh {
-display: inline-block;
-font-size: 12px;
-color: #1877f2;
-cursor: pointer;
-margin-bottom: 10px;
-text-decoration: underline;
+
+ChatGPT:
+.status.success { display: flex; align-items: center; gap: 8px; background: #e8f7ee; color: #1a7f42; border-color: #b7e3c8; }
+.status.error { display: flex; align-items: center; gap: 8px; background: #fdecea; color: #cb2f2f; border-color: #f5c6c6; }
+.status.loading { display: flex; align-items: center; gap: 8px; background: #e8f1fd; color: #0d5fd1; border-color: #bcd4f2; }
+.spinner {
+width: 16px; height: 16px; border-radius: 50%;
+border: 2px solid rgba(13,95,209,0.25); border-top-color: #0d5fd1;
+animation: spin 0.7s linear infinite; flex-shrink: 0;
 }
+keyframes spin { to { transform: rotate(360deg); } }
+.footer {
+padding: 14px 26px; background: #fafbfc;
+border-top: 1px solid var(--border);
+font-size: 12px; color: var(--muted);
+display: flex; justify-content: space-between; align-items: center;
+}
+.footer .dot { color: #31a24c; }
+.image-input { position: relative; }
+.image-input input { padding-right: 40px; }
 </style>
 </head>
 <body>
 
-📢 Auto Post Facebook
-Đăng bài tự động lên fanpage của bạn
+📢
 
-<label for="page">Chọn fanpage</label>
+BulkPoster
+Đăng bài tự động lên fanpage Facebook
+
+<label class="control">Fanpage chọn trang cần đăng</label>
+
 <select id="page">
 <option value="">— Đang tải danh sách fanpage... —</option>
 </select>
-🔄 Tải lại danh sách
 
-<label for="content">Nội dung bài đăng</label>
-<textarea id="content" placeholder="Nhập nội dung bài đăng ở đây..."></textarea>
+↻ Tải lại danh sách fanpage
 
-<label for="image">Link ảnh (tùy chọn)</label>
-<input type="text" id="image" placeholder="https://... (bỏ trống nếu không có ảnh)">
+<label class="control">Nội dung bài đăng bắt buộc</label>
+<textarea id="content" placeholder="Nhập nội dung bài đăng của bạn..."></textarea>
 
-<button class="btn" id="submitBtn" onclick="postToFb()">🚀 Đăng bài</button>
+<label class="control">Ảnh đính kèm tùy chọn</label>
+
+<input type="text" id="image" placeholder="Dán link ảnh tại đây (https://...)">
+
+<button class="btn" id="submitBtn" onclick="postToFb()">🚀 Đăng bài lên fanpage</button>
+
+● Trạng thái: ● Sẵn sàng
+BulkPoster v1.0
 
 <script>
-// 🔴 THAY 2 WEBHOOK NÀY BẰNG WEBHOOK CỦA BẠN (tạo trên Make.com)
 const WEBHOOK_LIST = "https://hook.make.com/WEBHOOK-LAY-DANH-SACH";
 const WEBHOOK_POST = "https://hook.make.com/WEBHOOK-DANG-BAI";
 
@@ -126,8 +174,8 @@ select.innerHTML = '<option value="">Không có fanpage nào</option>';
 }
 pages.forEach(p => {
 const opt = document.createElement('option');
-opt.value = p.id || p.page_id;
-opt.textContent = p.name || p.page_name;
+opt.value = p.id || p.page_id;
+opt.textContent = p.name || p.page_name;
 select.appendChild(opt);
 });
 } catch (e) {
@@ -137,24 +185,21 @@ select.innerHTML = '<option value="">Lỗi tải danh sách 😢</option>';
 }
 
 async function postToFb() {
+
+ChatGPT:
 const page = document.getElementById('page').value;
 const content = document.getElementById('content').value.trim();
 const image = document.getElementById('image').value.trim();
 const status = document.getElementById('status');
 const btn = document.getElementById('submitBtn');
 
-if (!page) { showStatus('⚠️ Vui lòng chọn fanpage!', 'error'); return; }
-if (!content) { showStatus('⚠️ Vui lòng nhập nội dung!', 'error'); return; }
+if (!page) { showStatus('⚠️ Vui lòng chọn fanpage!', 'error'); return; }
+if (!content) { showStatus('⚠️ Vui lòng nhập nội dung!', 'error'); return; }
 
 btn.disabled = true;
-showStatus('⏳ Đang đăng bài...', 'loading');
+showStatus('Đang đăng bài lên fanpage...', 'loading', true);
 
-const payload = {
-page_id: page,
-content: content,
-image: image || null,
-timestamp: new Date().toISOString()
-};
+const payload = { page_id: page, content: content, image: image || null, timestamp: new Date().toISOString() };
 
 try {
 const res = await fetch(WEBHOOK_POST, {
@@ -164,27 +209,26 @@ body: JSON.stringify(payload)
 });
 const result = await res.json().catch(() => ({}));
 if (result.error) {
-showStatus('❌ Lỗi: ' + result.error, 'error');
+showStatus('Đăng bài thất bại: ' + result.error, 'error');
 } else {
-showStatus('✅ Đã gửi! Make.com đang xử lý đăng lên fanpage.', 'success');
+showStatus('Đã gửi thành công! Make.com đang xử lý đăng lên fanpage.', 'success');
 document.getElementById('content').value = '';
 document.getElementById('image').value = '';
 }
 } catch (e) {
-  showStatus('❌ Lỗi kết nối: ' + e.message, 'error');
+showStatus('Lỗi kết nối: ' + e.message, 'error');
 } finally {
 btn.disabled = false;
 }
 }
 
-function showStatus(msg, type) {
+function showStatus(msg, type, loading) {
 const el = document.getElementById('status');
 el.className = 'status ' + type;
-el.textContent = msg;
+el.innerHTML = (loading ? '' : '') + msg;
 }
 
 window.onload = loadPages;
 </script>
 </body>
 </html>
-  
