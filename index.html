@@ -5100,6 +5100,21 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     toast(`Đã ${u.status === 'Active' ? 'mở khóa' : 'khóa'} tài khoản ${u.name}`); 
   }
   
+// Hàm Bật/Tắt hiển thị mật khẩu (Con mắt)
+  window.app.togglePass = function(inputId, btn) {
+    const input = document.getElementById(inputId);
+    const icon = btn.querySelector('svg') || btn.querySelector('i');
+    
+    if (input.type === 'password') {
+      input.type = 'text';
+      if (icon) { icon.style.opacity = '1'; icon.style.color = 'var(--primary)'; }
+    } else {
+      input.type = 'password';
+      if (icon) { icon.style.opacity = '0.5'; icon.style.color = 'currentColor'; }
+    }
+  };
+
+  // Hàm Mở form đổi mật khẩu (Đã nâng cấp)
   function resetUser(id) { 
     const u = state.users.find(x => x.id === id); 
     if (!u) return; 
@@ -5116,7 +5131,21 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
         <div class="form-grid">
           <label class="field full">
             <span class="label">Mật khẩu mới</span>
-            <input class="input" type="password" id="newPassword" placeholder="Nhập ít nhất 6 ký tự...">
+            <div style="position:relative">
+              <input class="input" type="password" id="newPassword" style="padding-right: 40px" placeholder="Nhập ít nhất 6 ký tự...">
+              <button type="button" tabindex="-1" onclick="app.togglePass('newPassword', this)" style="position:absolute; right:6px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--muted); cursor:pointer; padding:4px;">
+                <i data-lucide="eye" style="opacity: 0.5; transition: 0.2s;"></i>
+              </button>
+            </div>
+          </label>
+          <label class="field full">
+            <span class="label">Nhập lại mật khẩu mới</span>
+            <div style="position:relative">
+              <input class="input" type="password" id="confirmPassword" style="padding-right: 40px" placeholder="Xác nhận lại mật khẩu...">
+              <button type="button" tabindex="-1" onclick="app.togglePass('confirmPassword', this)" style="position:absolute; right:6px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--muted); cursor:pointer; padding:4px;">
+                <i data-lucide="eye" style="opacity: 0.5; transition: 0.2s;"></i>
+              </button>
+            </div>
           </label>
         </div>
       </div>
@@ -5125,6 +5154,29 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
         <button class="btn primary" id="savePasswordBtn">Lưu Mật Khẩu</button>
       </div>
     `);
+
+    document.getElementById('savePasswordBtn').onclick = () => {
+      const newPass = document.getElementById('newPassword').value.trim();
+      const confirmPass = document.getElementById('confirmPassword').value.trim();
+
+      if (newPass.length < 6) {
+        toast('Mật khẩu phải có ít nhất 6 ký tự', 'warning');
+        return;
+      }
+      
+      if (newPass !== confirmPass) {
+        toast('Hai mật khẩu không khớp nhau. Vui lòng kiểm tra lại!', 'error');
+        return;
+      }
+
+      u.password = newPass; 
+      save();
+      toast('Đã đổi mật khẩu thành công!', 'success');
+      closeModal();
+    };
+    
+    lucide.createIcons();
+  }
 
     document.getElementById('savePasswordBtn').onclick = () => {
       const newPass = document.getElementById('newPassword').value.trim();
