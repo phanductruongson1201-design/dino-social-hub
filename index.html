@@ -5114,6 +5114,20 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     }
   };
 
+  // Hàm Bật/Tắt hiển thị mật khẩu (Con mắt)
+  window.app.togglePass = function(inputId, btn) {
+    const input = document.getElementById(inputId);
+    const icon = btn.querySelector('svg') || btn.querySelector('i');
+    
+    if (input.type === 'password') {
+      input.type = 'text';
+      if (icon) { icon.style.opacity = '1'; icon.style.color = 'var(--primary)'; }
+    } else {
+      input.type = 'password';
+      if (icon) { icon.style.opacity = '0.5'; icon.style.color = 'currentColor'; }
+    }
+  };
+
   // Hàm Mở form đổi mật khẩu (Đã nâng cấp)
   function resetUser(id) { 
     const u = state.users.find(x => x.id === id); 
@@ -5163,6 +5177,20 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
         toast('Mật khẩu phải có ít nhất 6 ký tự', 'warning');
         return;
       }
+      
+      if (newPass !== confirmPass) {
+        toast('Hai mật khẩu không khớp nhau. Vui lòng kiểm tra lại!', 'error');
+        return;
+      }
+
+      u.password = newPass; 
+      save();
+      toast('Đã đổi mật khẩu thành công!', 'success');
+      closeModal();
+    };
+    
+    lucide.createIcons();
+  }
       
       if (newPass !== confirmPass) {
         toast('Hai mật khẩu không khớp nhau. Vui lòng kiểm tra lại!', 'error');
