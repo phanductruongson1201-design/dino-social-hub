@@ -1661,22 +1661,22 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
 </head>
 <body>
 
-<!-- Giao diện Đăng nhập -->
+<!-- Giao diện Đăng nhập Kín (Chỉ nhận tài khoản do Admin cấp) -->
 <div id="loginView" class="login-wrap hidden">
   <div class="login-card">
     <div class="logo"><i data-lucide="layers-3" style="width:28px;height:28px;color:white;"></i></div>
     <h2>DINO SOCIAL HUB 4.0</h2>
-    <p>Đăng nhập vào Workspace của bạn</p>
+    <p>Hệ thống quản trị nội bộ (Private Workspace)</p>
     <div class="form-grid" style="text-align:left; grid-template-columns:1fr; gap:12px;">
-      <label class="field"><span class="label">Email</span><input class="input" id="loginEmail" placeholder="Nhập email..."></label>
-      <label class="field"><span class="label">Mật khẩu</span><input class="input" type="password" value="123456" placeholder="Nhập mật khẩu..."></label>
-      <button class="btn primary" style="width:100%; height:40px; margin-top:10px; font-size:14px;" onclick="doLogin()">Đăng nhập</button>
-    </div>
-    <div class="demo-accounts">
-      <p>Hoặc đăng nhập nhanh (Demo RBAC):</p>
-      <button class="demo-acc-btn" onclick="doLogin('son@dinohub.local')"><span><b>Sơn Dino</b> (Quyền ADMIN)</span><i data-lucide="arrow-right"></i></button>
-      <button class="demo-acc-btn" onclick="doLogin('quynh@dinohub.local')"><span><b>Ngọc Quỳnh</b> (Quyền MANAGER)</span><i data-lucide="arrow-right"></i></button>
-      <button class="demo-acc-btn" onclick="doLogin('an@dinohub.local')"><span><b>Minh An</b> (Quyền EDITOR)</span><i data-lucide="arrow-right"></i></button>
+      <label class="field">
+        <span class="label">Email đăng nhập</span>
+        <input class="input" id="loginEmail" placeholder="Nhập email do Admin cấp...">
+      </label>
+      <label class="field">
+        <span class="label">Mật khẩu</span>
+        <input class="input" type="password" id="loginPassword" placeholder="Nhập mật khẩu...">
+      </label>
+      <button class="btn primary" style="width:100%; height:40px; margin-top:10px; font-size:14px;" onclick="doLogin()">Đăng nhập Hệ thống</button>
     </div>
   </div>
 </div>
@@ -2225,24 +2225,40 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
   // 5. XÁC THỰC & PHÂN QUYỀN (AUTH & RBAC)
   // ==========================================
   
-  window.doLogin = function(emailOverride) {
-    const e = emailOverride || document.getElementById('loginEmail').value.trim(); 
-    const u = state.users.find(x => x.email === e);
-    
-    if (!u) { 
-      toast('Sai email hoặc tài khoản không tồn tại', 'error'); 
+  window.doLogin = function() {
+    const email = document.getElementById('loginEmail').value.trim(); 
+    const pass = document.getElementById('loginPassword').value.trim();
+
+    if(!email || !pass) {
+      toast('Vui lòng nhập đầy đủ Email và Mật khẩu', 'warning');
+      return;
+    }
+
+    // 1. Kiểm tra xem Email này đã được Admin tạo trong mục "Nhân sự" chưa?
+    const u = state.users.find(x => x.email === email);
+    if(!u) { 
+      toast('Tài khoản không tồn tại! Hãy liên hệ Admin để được cấp tài khoản.', 'error'); 
       return; 
     }
     
-    if (u.status !== 'Active') { 
-      toast('Tài khoản đã bị khóa', 'error'); 
+    // 2. Kiểm tra Mật khẩu (Các tài khoản tạo mới mặc định có mật khẩu là 123456)
+    const correctPass = u.password || '123456';
+    if(pass !== correctPass) {
+      toast('Sai mật khẩu đăng nhập!', 'error');
+      return;
+    }
+
+    // 3. Kiểm tra xem tài khoản có đang bị Admin khóa không?
+    if(u.status !== 'Active') { 
+      toast('Tài khoản của bạn đã bị khóa. Vui lòng liên hệ Admin.', 'error'); 
       return; 
     }
     
+    // 4. Nếu qua hết các vòng kiểm tra -> Cho phép vào hệ thống
     state.loggedInUserEmail = u.email; 
     state.profile.name = u.name; 
     save(); 
-    toast(`Đăng nhập thành công với quyền ${u.role}`, 'success'); 
+    toast(`Đăng nhập thành công! Chào mừng ${u.name}`, 'success'); 
     checkAuth();
   }
   
