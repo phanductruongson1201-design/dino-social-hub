@@ -1732,8 +1732,9 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
           <button class="user-btn" id="userMenuBtn">
             <div class="avatar">SD</div><span class="user-meta">Sơn Dino</span><i data-lucide="chevron-down" style="width:16px"></i>
           </button>
-          <div class="dropdown" id="userMenu">
+        <div class="dropdown" id="userMenu">
             <button data-action="profile">Hồ sơ cá nhân</button>
+            <button data-action="change-password">Đổi mật khẩu</button> <!-- THÊM DÒNG NÀY -->
             <button data-action="settings">Cài đặt</button>
             <button data-action="export">Xuất dữ liệu JSON</button>
             <button data-action="import">Nhập dữ liệu JSON</button>
@@ -5102,7 +5103,41 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
   function resetUser(id) { 
     const u = state.users.find(x => x.id === id); 
     if (!u) return; 
-    toast(`Đã gửi đường link đặt lại mật khẩu vào email: ${u.email}`, 'info'); 
+
+    openModal(`
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Đổi mật khẩu</div>
+          <div class="help">Tài khoản: ${escape(u.email)}</div>
+        </div>
+        <button class="close" data-close-modal><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <label class="field full">
+            <span class="label">Mật khẩu mới</span>
+            <input class="input" type="password" id="newPassword" placeholder="Nhập ít nhất 6 ký tự...">
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-close-modal>Hủy</button>
+        <button class="btn primary" id="savePasswordBtn">Lưu Mật Khẩu</button>
+      </div>
+    `);
+
+    document.getElementById('savePasswordBtn').onclick = () => {
+      const newPass = document.getElementById('newPassword').value.trim();
+      if(newPass.length < 6) {
+        toast('Mật khẩu phải có ít nhất 6 ký tự', 'warning');
+        return;
+      }
+      u.password = newPass; // Lưu mật khẩu mới vào Database (LocalStorage)
+      save();
+      toast('Đã đổi mật khẩu thành công!', 'success');
+      closeModal();
+    };
+    lucide.createIcons();
   }
   
   function deleteUser(id) { 
@@ -5177,6 +5212,14 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     const actionEl = e.target.closest('[data-action]');
     if (actionEl) {
       const a = actionEl.dataset.action;
+      
+      // ... (các lệnh export, profile cũ giữ nguyên) ...
+
+      // THÊM DÒNG NÀY VÀO: Bắt sự kiện Đổi mật khẩu
+      if (a === 'change-password') {
+        const currentUser = state.users.find(u => u.email === state.loggedInUserEmail);
+        if(currentUser) resetUser(currentUser.id);
+      }
       if (a === 'export') { 
         const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'}); 
         const url = URL.createObjectURL(blob); 
