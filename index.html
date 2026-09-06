@@ -2231,9 +2231,6 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
   // 5. XÁC THỰC & PHÂN QUYỀN (AUTH & RBAC)
   // ==========================================
   
-  window.doLogin = function(emailOverride) {
-    const e = emailOverride || document.getElementById('loginEmail').value.trim(); 
-    const u = state.users.find(x => x.email === e);
     
     if (!u) { 
       toast('Sai email hoặc tài khoản không tồn tại', 'error'); 
@@ -2257,6 +2254,55 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     save(); 
     checkAuth(); 
   }
+  
+// BỘ HÀM ĐĂNG NHẬP / ĐĂNG XUẤT CHUẨN BẢO MẬT
+  window.doLogin = function(emailOverride) {
+    // 1. Lấy giá trị từ ô nhập
+    const email = emailOverride || document.getElementById('loginEmail').value.trim();
+    const passInput = document.getElementById('loginPassword');
+    const pass = passInput ? passInput.value.trim() : '';
+
+    // 2. Chặn nếu để trống Email
+    if (!email) {
+      toast('Vui lòng nhập Email để đăng nhập', 'warning');
+      return;
+    }
+
+    // 3. Tìm tài khoản trong hệ thống
+    const u = state.users.find(x => x.email === email);
+    if (!u) { 
+      toast('Tài khoản không tồn tại! Hãy kiểm tra lại.', 'error'); 
+      return; 
+    }
+    
+    // 4. Kiểm tra Mật khẩu nghiêm ngặt (Bắt buộc phải khớp)
+    if (!emailOverride) {
+      const correctPass = u.password || '123456'; // Mặc định pass tạo mới là 123456
+      if (pass !== correctPass) {
+        toast('Sai mật khẩu đăng nhập!', 'error');
+        return;
+      }
+    }
+
+    // 5. Kiểm tra tài khoản có bị Admin khóa không
+    if (u.status !== 'Active') { 
+      toast('Tài khoản của bạn đã bị khóa!', 'error'); 
+      return; 
+    }
+    
+    // 6. Đăng nhập thành công -> Lưu phiên làm việc
+    state.loggedInUserEmail = u.email; 
+    state.profile.name = u.name; 
+    save(); 
+    toast(`Đăng nhập thành công! Chào mừng ${u.name}`, 'success'); 
+    checkAuth();
+  };
+
+  window.doLogout = function() { 
+    state.loggedInUserEmail = null; 
+    save(); 
+    checkAuth(); 
+  };
   
   function checkAuth() {
     const loginView = document.getElementById('loginView');
