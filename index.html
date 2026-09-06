@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DINO SOCIAL HUB 4.0 - Enterprise</title>
-<meta name="description" content="DINO SOCIAL HUB 4.0 — Một Nội Dung. Mọi Nền Tảng." />
+<meta name="description" content="DINO SOCIAL HUB 4.0 — Hệ thống Quản trị Nội bộ." />
 
 <script>
 // ==========================================
@@ -270,9 +270,6 @@ html[data-theme="dark"] .notice.info { background: rgba(37, 99, 235, 0.15); colo
 html[data-theme="dark"] .pill.neutral { background: var(--surface-2); color: var(--muted); border-color: var(--line); }
 html[data-theme="dark"] .login-card { background: var(--surface); border-color: var(--line); }
 html[data-theme="dark"] .login-wrap { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
-html[data-theme="dark"] .demo-acc-btn { background: var(--surface-2); border-color: var(--line); color: var(--text); }
-html[data-theme="dark"] .demo-acc-btn:hover { background: var(--primary-soft); border-color: var(--primary); }
-html[data-theme="dark"] .demo-acc-btn b { color: #93c5fd; }
 html[data-theme="dark"] .search input { background: var(--surface-2); color: var(--text); }
 html[data-theme="dark"] .icon-btn, html[data-theme="dark"] .user-btn { background: var(--surface); border-color: var(--line); color: var(--text); }
 html[data-theme="dark"] .icon-btn:hover, html[data-theme="dark"] .user-btn:hover { background: var(--surface-2); }
@@ -283,7 +280,6 @@ html[data-theme="dark"] .donut-hole { background: var(--surface); }
 html[data-theme="dark"] .media-preview-box { background: var(--bg); }
 html[data-theme="dark"] .account-avatar { background: var(--surface-2); }
 html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #93c5fd; border-color: #1d4ed8; }
-
 /* =========================================
    GIAO DIỆN ĐĂNG NHẬP (LOGIN SCREEN)
    ========================================= */
@@ -321,46 +317,26 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
   color: #fff; 
 }
 
-.login-card h2 { font-size: 18px; font-weight: 800; margin-bottom: 6px; letter-spacing: -.5px; }
-.login-card p { font-size: 12px; color: var(--muted); margin-bottom: 24px; }
-
-.demo-accounts { 
-  margin-top: 24px; 
-  text-align: left; 
-  border-top: 1px solid var(--line-2); 
-  padding-top: 20px; 
+.login-card h2 { 
+  font-size: 18px; 
+  font-weight: 800; 
+  margin-bottom: 6px; 
+  letter-spacing: -.5px; 
 }
 
-.demo-accounts p { font-size: 11px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
-
-.demo-acc-btn { 
-  display: flex; 
-  justify-content: space-between; 
-  width: 100%; 
-  padding: 10px 14px; 
-  background: var(--surface-2); 
-  border: 1px solid var(--line); 
-  border-radius: 8px; 
-  cursor: pointer; 
-  margin-bottom: 8px; 
-  font-size: 11px; 
-  align-items: center; 
-  transition: .2s; 
-  color: var(--text); 
+.login-card p { 
+  font-size: 12px; 
+  color: var(--muted); 
+  margin-bottom: 24px; 
 }
-
-.demo-acc-btn:hover { 
-  border-color: var(--primary); 
-  background: var(--primary-soft); 
-  transform: translateY(-1px); 
-}
-
-.demo-acc-btn b { color: var(--primary); font-size: 12px; }
 
 /* =========================================
    BỐ CỤC CHÍNH (APP LAYOUT)
    ========================================= */
-.app { display: flex; min-height: 100vh; }
+.app { 
+  display: flex; 
+  min-height: 100vh; 
+}
 
 .sidebar { 
   width: var(--sidebar); 
@@ -375,6 +351,7 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
 }
 
 .sidebar.collapsed { width: 72px; }
+
 .sidebar.collapsed .brand-name, 
 .sidebar.collapsed .brand-version, 
 .sidebar.collapsed .section-label, 
@@ -428,7 +405,15 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
 .brand-version { font-size: 10px; color: var(--muted); margin-top: 2px; }
 
 .nav { padding: 12px 10px; overflow: auto; }
-.section-label { font-size: 10px; font-weight: 800; letter-spacing: .08em; color: var(--muted); padding: 12px 10px 6px; text-transform: uppercase; }
+
+.section-label { 
+  font-size: 10px; 
+  font-weight: 800; 
+  letter-spacing: .08em; 
+  color: var(--muted); 
+  padding: 12px 10px 6px; 
+  text-transform: uppercase; 
+}
 
 .nav-item { 
   width: 100%; 
@@ -453,7 +438,6 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
 .nav-item.active { background: var(--primary-soft); color: var(--primary); font-weight: 700; opacity: 1; }
 
 .sidebar-footer { margin-top: auto; border-top: 1px solid var(--line-2); padding: 16px 12px; }
-.demo-badge { background: var(--warning-soft); border: 1px solid var(--warning); color: var(--warning); padding: 10px; border-radius: 8px; font-size: 11px; line-height: 1.4; opacity: .9; }
 
 .collapse-btn { 
   margin-top: 12px; 
@@ -493,12 +477,32 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
   z-index: 20; 
 }
 
-.breadcrumbs { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; white-space: nowrap; cursor: pointer; }
+.breadcrumbs { 
+  font-size: 13px; 
+  color: var(--muted); 
+  display: flex; 
+  align-items: center; 
+  gap: 8px; 
+  white-space: nowrap; 
+  cursor: pointer; 
+}
+
 .breadcrumbs:hover b { color: var(--primary); }
 .breadcrumbs b { color: var(--text); transition: .2s; }
 
 .search { position: relative; max-width: 400px; flex: 1; margin-left: auto; }
-.search input { width: 100%; height: 36px; border: 1px solid var(--line); border-radius: 8px; padding: 0 16px 0 38px; outline: none; background: var(--surface); font-size: 13px; transition: .2s; }
+.search input { 
+  width: 100%; 
+  height: 36px; 
+  border: 1px solid var(--line); 
+  border-radius: 8px; 
+  padding: 0 16px 0 38px; 
+  outline: none; 
+  background: var(--surface); 
+  font-size: 13px; 
+  transition: .2s; 
+}
+
 .search input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
 
 .top-actions { display: flex; gap: 10px; align-items: center; }
@@ -519,7 +523,16 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
 }
 
 .icon-btn:hover { background: var(--surface-2); opacity: 1; }
-.notif-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--danger); position: absolute; right: 6px; top: 6px; border: 2px solid var(--surface); }
+.notif-dot { 
+  width: 8px; 
+  height: 8px; 
+  border-radius: 50%; 
+  background: var(--danger); 
+  position: absolute; 
+  right: 6px; 
+  top: 6px; 
+  border: 2px solid var(--surface); 
+}
 
 .user-btn { 
   border: 1px solid var(--line); 
@@ -536,7 +549,18 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
 }
 
 .user-btn:hover { background: var(--surface-2); opacity: 1; }
-.avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--primary-soft); color: var(--primary); display: grid; place-items: center; font-size: 12px; font-weight: 800; }
+.avatar { 
+  width: 32px; 
+  height: 32px; 
+  border-radius: 50%; 
+  background: var(--primary-soft); 
+  color: var(--primary); 
+  display: grid; 
+  place-items: center; 
+  font-size: 12px; 
+  font-weight: 800; 
+}
+
 .user-btn span { font-size: 12px; font-weight: 700; }
 
 /* Menu thả xuống của User */
@@ -577,6 +601,7 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
 .dropdown button:hover { background: var(--surface-2); color: var(--primary); }
 .dropdown button.danger-text { color: var(--danger); }
 .dropdown button.danger-text:hover { background: var(--danger-soft); color: var(--danger); }
+
 /* =========================================
    3. GIAO DIỆN NỘI DUNG CHÍNH (MAIN CONTENT)
    ========================================= */
@@ -669,7 +694,6 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
   opacity: .55; 
   cursor: not-allowed; 
 }
-
 /* =========================================
    THẺ (CARDS) & HỆ THỐNG LƯỚI (GRIDS)
    ========================================= */
@@ -1074,8 +1098,7 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
 
 .loading { position: fixed; inset: 0; background: rgba(0,0,0,.4); backdrop-filter: blur(3px); display: none; z-index: 300; align-items: center; justify-content: center; }
 .loading.show { display: flex; }
-.spinner { width: 32px; height: 32px; border: 3px solid var(--line); border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; }
-
+.spinner { width: 32px; height: 32px; border: 3px solid var(--line); border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; }  
 /* =========================================
    LỊCH & KANBAN QUEUE
    ========================================= */
@@ -1159,6 +1182,7 @@ html[data-theme="dark"] .tab.active { background: var(--primary-soft); color: #9
 .mobile-bottom { display: none; height: 60px; }
 .file-input { display: none; }
 .footer-note { font-size: 11px; color: var(--muted); text-align: center; padding: 24px 0; }
+
 /* =========================================
    XEM TRƯỚC THIẾT BỊ (DEVICE PREVIEW)
    ========================================= */
@@ -1717,7 +1741,6 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       <button class="nav-item" data-page="settings"><i data-lucide="settings-2"></i><span class="nav-label">Cài đặt hệ thống</span></button>
     </nav>
     <div class="sidebar-footer">
-      <div class="demo-badge"><b>Chế độ Demo</b><br>Dữ liệu lưu tạm (LocalStorage).</div>
       <button class="collapse-btn" id="collapseBtn"><i data-lucide="panel-left-close"></i><span class="collapse-text">Thu gọn menu</span></button>
     </div>
   </aside>
@@ -1739,7 +1762,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
           </button>
           <div class="dropdown" id="userMenu">
             <button data-action="profile">Hồ sơ cá nhân</button>
-            <button data-action="change-password">Đổi mật khẩu</button> <!-- THÊM DÒNG NÀY -->
+            <button data-action="change-password">Đổi mật khẩu</button>
             <button data-action="settings">Cài đặt</button>
             <button data-action="export">Xuất dữ liệu JSON</button>
             <button data-action="import">Nhập dữ liệu JSON</button>
@@ -1753,7 +1776,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     <!-- KHUNG RENDER NỘI DUNG CHÍNH -->
     <section class="content fade-in" id="content"></section>
     
-    <div class="footer-note">DINO SOCIAL HUB 4.0 • Một Nội Dung. Mọi Nền Tảng.</div>
+    <div class="footer-note">DINO SOCIAL HUB 4.0 • Enterprise Workspace</div>
   </main>
 </div>
 
@@ -1829,21 +1852,19 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     postSearch: '', 
     mediaFilter: 'All', 
     mediaView: 'grid', 
-    calendarDate: '2026-09-04', 
+    calendarDate: new Date().toISOString().slice(0, 10), 
     calendarMode: 'Month',
     settings: { theme: 'Light' }, 
     onboardingDone: false, 
     selectedMedia: [],
     
     users: [ 
-      { id: 'u1', name: 'Sơn Dino', email: 'son@dinohub.local', role: 'ADMIN', status: 'Active', lastActive: '2026-09-04T10:32:00+07:00' }, 
-      { id: 'u2', name: 'Ngọc Quỳnh', email: 'quynh@dinohub.local', role: 'MANAGER', status: 'Active', lastActive: '2026-09-04T09:48:00+07:00' }, 
-      { id: 'u3', name: 'Minh An', email: 'an@dinohub.local', role: 'EDITOR', status: 'Active', lastActive: '2026-09-03T17:14:00+07:00' } 
+      { id: 'u1', name: 'Sơn Dino', email: 'son@dinohub.local', password: '123456', role: 'ADMIN', status: 'Active', lastActive: new Date().toISOString() }
     ],
     
     accounts: [ 
-      { id: 'a1', platform: 'Facebook', name: 'Dino Academy', username: 'Dino Academy', status: 'Connected', token: 'Healthy', lastSync: '2026-09-04T10:20:00+07:00' }, 
-      { id: 'a2', platform: 'TikTok', name: 'Dino Academy', username: '@dinoacademy', status: 'Token Expired', token: 'Expired', lastSync: '2026-09-04T08:10:00+07:00' }
+      { id: 'a1', platform: 'Facebook', name: 'Dino Academy', username: 'Dino Academy', status: 'Connected', token: 'Healthy', lastSync: new Date().toISOString() }, 
+      { id: 'a2', platform: 'TikTok', name: 'Dino Academy', username: '@dinoacademy', status: 'Token Expired', token: 'Expired', lastSync: new Date().toISOString() }
     ],
     
     posts: [ 
@@ -1851,9 +1872,9 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
         id: 'p1', 
         title: 'Back to School — Kỹ năng nói', 
         createdBy: 'Sơn Dino', 
-        createdAt: '2026-09-03T16:20:00+07:00', 
+        createdAt: new Date().toISOString(), 
         status: 'Published', 
-        schedule: '2026-09-04T09:00:00+07:00', 
+        schedule: new Date().toISOString(), 
         platforms: { 
           Facebook: { caption: '5 lợi ích của kỹ năng nói.', hashtag: '#kynangnoi' } 
         }, 
@@ -1884,21 +1905,21 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
         accountId: 'a2', 
         status: 'Failed', 
         attempts: 3, 
-        created: '2026-09-04T09:30:00+07:00', 
+        created: new Date().toISOString(), 
         nextRetry: '—', 
         error: 'Access Token Expired'
       } 
     ],
     
     retryLogs: [ 
-      { id: 'r1', jobId: 'j900', attempt: 1, time: '2026-09-04T09:30:00+07:00', status: 'Failed', error: 'Access Token Expired' } 
+      { id: 'r1', jobId: 'j900', attempt: 1, time: new Date().toISOString(), status: 'Failed', error: 'Access Token Expired' } 
     ],
     
     media: [], 
     bulk: [], 
     
     notifications: [
-      { id: 'n1', type: 'Error', title: 'TikTok post failed', message: 'Demo job #j900 cần xác thực lại token.', time: '2026-09-04T09:50:00+07:00', read: false }
+      { id: 'n1', type: 'Error', title: 'TikTok post failed', message: 'Demo job #j900 cần xác thực lại token.', time: new Date().toISOString(), read: false }
     ],
     
     templates: [ 
@@ -1922,7 +1943,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
   // BIẾN TRẠNG THÁI TOÀN CỤC (GLOBAL STATE)
   let state = loadState();
   let editingPostId = null; 
-  let calendarSelectedDate = '2026-09-04'; 
+  let calendarSelectedDate = new Date().toISOString().slice(0, 10); 
   let activeInboxId = 'msg1';
 
   // ==========================================
@@ -1945,7 +1966,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
         }; 
       } 
     } catch(e) {
-      console.warn("Storage empty or corrupted.");
+      console.warn("Lỗi đọc bộ nhớ trình duyệt.");
     } 
     return deepClone(seedState); 
   }
@@ -1955,7 +1976,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       localStorage.setItem(STORAGE, JSON.stringify(state)); 
     } catch(e) { 
       console.warn(e); 
-      toast('Bộ nhớ trình duyệt đầy! Ảnh lớn sẽ không lưu khi F5.', 'warning'); 
+      toast('Bộ nhớ trình duyệt đầy! Dữ liệu sẽ không lưu.', 'warning'); 
     } 
   }
   
@@ -2226,71 +2247,56 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       })
     }).catch(e => console.warn('Lỗi gửi Tele:', e));
   }
+  // ==========================================
+  // 5. XÁC THỰC, BẢO MẬT & PHÂN QUYỀN (AUTH & RBAC)
+  // ==========================================
 
-  // ==========================================
-  // 5. XÁC THỰC & PHÂN QUYỀN (AUTH & RBAC)
-  // ==========================================
-  
+  // Hàm Bật/Tắt hiển thị mật khẩu (Con mắt)
+  window.app.togglePass = function(inputId, btn) {
+    const input = document.getElementById(inputId);
+    const icon = btn.querySelector('svg') || btn.querySelector('i');
     
-    if (!u) { 
-      toast('Sai email hoặc tài khoản không tồn tại', 'error'); 
-      return; 
+    if (input.type === 'password') {
+      input.type = 'text';
+      if (icon) { icon.style.opacity = '1'; icon.style.color = 'var(--primary)'; }
+    } else {
+      input.type = 'password';
+      if (icon) { icon.style.opacity = '0.5'; icon.style.color = 'currentColor'; }
     }
-    
-    if (u.status !== 'Active') { 
-      toast('Tài khoản đã bị khóa', 'error'); 
-      return; 
-    }
-    
-    state.loggedInUserEmail = u.email; 
-    state.profile.name = u.name; 
-    save(); 
-    toast(`Đăng nhập thành công với quyền ${u.role}`, 'success'); 
-    checkAuth();
-  }
-  
-  window.doLogout = function() { 
-    state.loggedInUserEmail = null; 
-    save(); 
-    checkAuth(); 
-  }
-  
-// BỘ HÀM ĐĂNG NHẬP / ĐĂNG XUẤT CHUẨN BẢO MẬT
+  };
+
+  // Hàm Đăng nhập chuẩn bảo mật
   window.doLogin = function(emailOverride) {
-    // 1. Lấy giá trị từ ô nhập
     const email = emailOverride || document.getElementById('loginEmail').value.trim();
     const passInput = document.getElementById('loginPassword');
     const pass = passInput ? passInput.value.trim() : '';
 
-    // 2. Chặn nếu để trống Email
     if (!email) {
       toast('Vui lòng nhập Email để đăng nhập', 'warning');
       return;
     }
 
-    // 3. Tìm tài khoản trong hệ thống
     const u = state.users.find(x => x.email === email);
     if (!u) { 
       toast('Tài khoản không tồn tại! Hãy kiểm tra lại.', 'error'); 
       return; 
     }
     
-    // 4. Kiểm tra Mật khẩu nghiêm ngặt (Bắt buộc phải khớp)
+    // Kiểm tra Mật khẩu nghiêm ngặt (Bắt buộc phải khớp)
     if (!emailOverride) {
-      const correctPass = u.password || '123456'; // Mặc định pass tạo mới là 123456
+      const correctPass = u.password || '123456'; 
       if (pass !== correctPass) {
         toast('Sai mật khẩu đăng nhập!', 'error');
         return;
       }
     }
 
-    // 5. Kiểm tra tài khoản có bị Admin khóa không
     if (u.status !== 'Active') { 
-      toast('Tài khoản của bạn đã bị khóa!', 'error'); 
+      toast('Tài khoản của bạn đã bị khóa! Vui lòng liên hệ Admin.', 'error'); 
       return; 
     }
     
-    // 6. Đăng nhập thành công -> Lưu phiên làm việc
+    // Đăng nhập thành công -> Lưu phiên làm việc
     state.loggedInUserEmail = u.email; 
     state.profile.name = u.name; 
     save(); 
@@ -2326,7 +2332,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       applyRBAC(); 
       render();
       
-      // Kích hoạt Tour Hướng dẫn nếu là Admin mới
+      // Bật hướng dẫn nếu là Admin mới tinh
       if (!state.onboardingDone && u && u.role === 'ADMIN') {
         setTimeout(() => app.tour.start(), 500);
       }
@@ -2346,7 +2352,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     // Mở khóa toàn bộ trước
     document.querySelectorAll('.nav-item, .section-label').forEach(el => el.classList.remove('hidden'));
     
-    // Khóa theo quyền
+    // Khóa theo cấp độ
     if (role === 'MANAGER') { 
       hideSelector('[data-page="settings"]'); 
       hideSelector('#label-hethong'); 
@@ -2372,7 +2378,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       hideSelector('#label-hethong'); 
     }
     
-    // Chặn truy cập trực tiếp qua URL/State
+    // Chặn truy cập trực tiếp qua URL hoặc State cũ
     const forbidden = { 
       MANAGER: ['settings'], 
       EDITOR: ['accounts', 'team', 'analytics', 'settings'], 
@@ -2386,27 +2392,27 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
   }
 
   // ==========================================
-  // HÀM ĐIỀU HƯỚNG CHÍNH (MAIN RENDER DISPATCHER)
+  // 6. HÀM ĐIỀU HƯỚNG CHÍNH (MAIN RENDER DISPATCHER)
   // ==========================================
   function render() {
     try {
       const p = state.page || 'dashboard';
       
-      // Cập nhật trạng thái Menu
+      // Đổi trạng thái menu Active
       document.querySelectorAll('.nav-item').forEach(b => {
         b.classList.toggle('active', b.dataset.page === p);
       });
       
-      // Cập nhật Breadcrumb
       document.getElementById('breadcrumbCurrent').textContent = pageNames[p] || p;
       document.getElementById('sidebar').classList.toggle('collapsed', !!state.sidebarCollapsed);
       
-      // Hiệu ứng Transition khi chuyển trang
+      // Hiệu ứng Transition khi đổi trang
       const contentEl = document.getElementById('content');
       contentEl.classList.remove('page-enter'); 
-      void contentEl.offsetWidth; // Trigger reflow
+      void contentEl.offsetWidth; 
       contentEl.classList.add('page-enter');
 
+      // Tải nội dung
       let html = '';
       switch(p) {
         case 'dashboard': html = renderDashboard(); break;
@@ -2451,7 +2457,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     window.scrollTo({top: 0, behavior: 'smooth'}); 
   }
   // ==========================================
-  // 6. RENDER GIAO DIỆN CÁC TRANG (VIEWS)
+  // 7. RENDER GIAO DIỆN CÁC TRANG (VIEWS)
   // ==========================================
 
   function renderDashboard() {
@@ -2719,7 +2725,6 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
           <div class="platform-selector" style="margin-top:12px">
             ${platforms.map(p => { 
               const sel = d.selectedPlatforms.includes(p); 
-              const m = platformMeta[p]; 
               return `
                 <label class="platform-card ${sel ? 'selected' : ''}">
                   <input type="checkbox" data-platform-check="${p}" ${sel ? 'checked' : ''}>
@@ -2991,7 +2996,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       `; 
     }
     
-    // Gắn giá trị vào form sau khi DOM load
+    // Gắn giá trị vào form sau khi DOM render xong
     setTimeout(() => {
       document.querySelectorAll('[data-draft-field]').forEach(el => { 
         const parts = el.dataset.draftField.split('.'); 
@@ -3791,7 +3796,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     
     if (state.mediaView === 'grid') {
       html += `
-        <div class="media-preview" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:16px">
+        <div class="media-preview" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:16px">
           ${list.length ? list.map(m => { 
             const isSelected = (state.selectedMedia || []).includes(m.id); 
             return `
@@ -3845,11 +3850,11 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
                   <tr>
                     <td><input type="checkbox" data-select-media="${m.id}" ${isSelected ? 'checked' : ''}></td>
                     <td data-label="Tên File">
-                      <div class="media-cell">
-                        <div class="thumb">
-                          ${m.preview ? (m.type === 'video' ? `<video src="${m.preview}"></video>` : `<img src="${m.preview}">`) : '<i data-lucide="file"></i>'}
+                      <div class="media-cell" style="display:flex;gap:12px;align-items:center">
+                        <div class="thumb" style="width:40px;height:40px;border-radius:6px;overflow:hidden;background:var(--bg)">
+                          ${m.preview ? (m.type === 'video' ? `<video src="${m.preview}" style="width:100%;height:100%;object-fit:cover"></video>` : `<img src="${m.preview}" style="width:100%;height:100%;object-fit:cover">`) : '<i data-lucide="file"></i>'}
                         </div>
-                        <div><b>${escape(m.name)}</b></div>
+                        <div><b style="font-size:13px">${escape(m.name)}</b></div>
                       </div>
                     </td>
                     <td data-label="Loại">${escape(m.type === 'image' ? 'Ảnh' : 'Video')}</td>
@@ -3921,8 +3926,8 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
                 <tr>
                   <td data-label="Tên File"><b>${escape(b.name)}</b></td>
                   <td data-label="Thumbnail">
-                    <div class="thumb">
-                      ${b.preview ? (b.type === 'video' ? `<video src="${b.preview}"></video>` : `<img src="${b.preview}">`) : `<i data-lucide="${b.type === 'video' ? 'video' : 'image'}"></i>`}
+                    <div class="thumb" style="width:40px;height:40px;border-radius:6px;overflow:hidden;background:var(--bg)">
+                      ${b.preview ? (b.type === 'video' ? `<video src="${b.preview}" style="width:100%;height:100%;object-fit:cover"></video>` : `<img src="${b.preview}" style="width:100%;height:100%;object-fit:cover">`) : `<i data-lucide="${b.type === 'video' ? 'video' : 'image'}"></i>`}
                     </div>
                   </td>
                   <td data-label="Kích thước">${formatSize(b.size)}</td>
@@ -4063,7 +4068,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
                     </div>
                     <div class="job-meta">
                       Bài viết: <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;max-width:140px;vertical-align:bottom;">${escape(p?.title || j.postId)}</span><br>
-                      Gửi đến: ${escape(j.platform)} · ${escape(accountFor(j.accountId))}<br>
+                      Gửi đến: ${escape(j.platform)} · ${escape(accountFor(j.accountId).split(' · ')[0])}<br>
                       Lần thử: ${j.attempts}/5<br>
                       Tạo lúc: ${fmtDate(j.created)}<br>
                       Lần thử tiếp: ${escape(j.nextRetry || '—')}
@@ -5042,7 +5047,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
   }
 
   // ==========================================
-  // XỬ LÝ NHÂN SỰ (USERS/TEAM)
+  // XỬ LÝ NHÂN SỰ VÀ ĐỔI MẬT KHẨU BẢO MẬT
   // ==========================================
   function openUserModal(id = null) {
     const u = id ? state.users.find(x => x.id === id) : null; 
@@ -5103,7 +5108,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
           toast('Email này đã tồn tại trong hệ thống!', 'error'); 
           return; 
         } 
-        state.users.push({ id: uid('u'), name, email, role, status: 'Active', lastActive: 'Chưa đăng nhập' }); 
+        state.users.push({ id: uid('u'), name, email, password: '123456', role, status: 'Active', lastActive: 'Chưa đăng nhập' }); 
         audit('Created User', email); 
         toast('Đã thêm nhân sự mới', 'success'); 
       }
@@ -5135,21 +5140,25 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     toast(`Đã ${u.status === 'Active' ? 'mở khóa' : 'khóa'} tài khoản ${u.name}`); 
   }
   
- // Hàm Bật/Tắt hiển thị mật khẩu (Con mắt)
-  window.app.togglePass = function(inputId, btn) {
-    const input = document.getElementById(inputId);
-    const icon = btn.querySelector('svg') || btn.querySelector('i');
+  function deleteUser(id) { 
+    const u = state.users.find(x => x.id === id); 
+    if (!u) return; 
     
-    if (input.type === 'password') {
-      input.type = 'text';
-      if (icon) { icon.style.opacity = '1'; icon.style.color = 'var(--primary)'; }
-    } else {
-      input.type = 'password';
-      if (icon) { icon.style.opacity = '0.5'; icon.style.color = 'currentColor'; }
-    }
-  };
+    if (u.role === 'ADMIN') { 
+      toast('LỖI: Không thể xóa tài khoản mang quyền ADMIN!', 'error'); 
+      return; 
+    } 
+    
+    confirmModal('Xóa nhân sự', `Bạn có chắc chắn muốn xóa vĩnh viễn tài khoản của <b>${escape(u.name)}</b>? Thao tác này không thể hoàn tác.`, () => { 
+      state.users = state.users.filter(x => x.id !== id); 
+      audit('Deleted User', u.email); 
+      save(); 
+      render(); 
+      toast('Đã xóa tài khoản nhân viên khỏi hệ thống', 'success'); 
+    }); 
+  }
 
-  // Hàm Mở form đổi mật khẩu (Đã nâng cấp)
+  // HÀM ĐỔI MẬT KHẨU (NÂNG CẤP VỚI MẮT ẨN/HIỆN VÀ NHẬP 2 LẦN)
   function resetUser(id) { 
     const u = state.users.find(x => x.id === id); 
     if (!u) return; 
@@ -5212,24 +5221,6 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     
     lucide.createIcons();
   }
-  
-  function deleteUser(id) { 
-    const u = state.users.find(x => x.id === id); 
-    if (!u) return; 
-    
-    if (u.role === 'ADMIN') { 
-      toast('LỖI: Không thể xóa tài khoản mang quyền ADMIN!', 'error'); 
-      return; 
-    } 
-    
-    confirmModal('Xóa nhân sự', `Bạn có chắc chắn muốn xóa vĩnh viễn tài khoản của <b>${escape(u.name)}</b>? Thao tác này không thể hoàn tác.`, () => { 
-      state.users = state.users.filter(x => x.id !== id); 
-      audit('Deleted User', u.email); 
-      save(); 
-      render(); 
-      toast('Đã xóa tài khoản nhân viên khỏi hệ thống', 'success'); 
-    }); 
-  }
 
   // ==========================================
   // SỰ KIỆN TOÀN CỤC (GLOBAL EVENT LISTENERS)
@@ -5258,7 +5249,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
         }) 
       }).then(r => r.json()).then(d => { 
         if (d.ok) { 
-          toast('Ting ting! K.tra điện thoại của bạn nhé.', 'success'); 
+          toast('Ting ting! Kiểm tra điện thoại của bạn nhé.', 'success'); 
         } else { 
           toast('Lỗi từ Telegram: ' + d.description, 'error'); 
         } 
@@ -5267,7 +5258,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       return; 
     }
     
-    // Đóng Modal & Thu gọn Sidebar
+    // Đóng Modal & Menu
     if (e.target.closest('[data-close-modal]')) { closeModal(); return; }
     if (e.target.closest('.breadcrumbs[data-page]')) { navigate('dashboard'); return; }
     if (e.target.closest('#logoToggleSidebar') || e.target.closest('#collapseBtn')) { 
@@ -5277,22 +5268,14 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       return; 
     }
     
-    // Điều hướng Menu
+    // Điều hướng trang
     if (e.target.closest('[data-page]')) { navigate(e.target.closest('[data-page]').dataset.page); return; }
     if (e.target.closest('[data-page-go]')) { navigate(e.target.closest('[data-page-go]').dataset.pageGo); return; }
     
-    // Cài đặt User Menu Topbar
+    // Action của User Menu (Góc phải trên)
     const actionEl = e.target.closest('[data-action]');
     if (actionEl) {
       const a = actionEl.dataset.action;
-      
-      // ... (các lệnh export, profile cũ giữ nguyên) ...
-
-      // THÊM DÒNG NÀY VÀO: Bắt sự kiện Đổi mật khẩu
-      if (a === 'change-password') {
-        const currentUser = state.users.find(u => u.email === state.loggedInUserEmail);
-        if(currentUser) resetUser(currentUser.id);
-      }
       if (a === 'export') { 
         const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'}); 
         const url = URL.createObjectURL(blob); 
@@ -5305,6 +5288,10 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       }
       if (a === 'profile') { state.settingsTab = 'Profile'; navigate('settings'); }
       if (a === 'settings') { navigate('settings'); }
+      if (a === 'change-password') {
+        const currentUser = state.users.find(u => u.email === state.loggedInUserEmail);
+        if(currentUser) resetUser(currentUser.id);
+      }
       if (a === 'import') { 
         const input = document.createElement('input'); 
         input.type = 'file'; 
@@ -5333,7 +5320,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       return;
     }
 
-    // Media Multi-select Delete
+    // Xóa nhiều Media
     if (e.target.closest('#deleteSelectedMedia')) { 
       confirmModal('Xóa nhiều file', `Bạn muốn xóa vĩnh viễn ${state.selectedMedia.length} file này?`, () => { 
         state.media = state.media.filter(m => !state.selectedMedia.includes(m.id)); 
@@ -5345,7 +5332,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       return; 
     }
 
-    // Thao tác với Bài viết
+    // Bài viết (Posts)
     if (e.target.closest('[data-view-post]')) { viewPost(e.target.closest('[data-view-post]').dataset.viewPost); return; }
     if (e.target.closest('[data-edit-post]')) { editPost(e.target.closest('[data-edit-post]').dataset.editPost); return; }
     if (e.target.closest('[data-delete-post]')) { deletePost(e.target.closest('[data-delete-post]').dataset.deletePost); return; }
@@ -5353,7 +5340,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     if (e.target.closest('[data-cancel-post]')) { cancelPost(e.target.closest('[data-cancel-post]').dataset.cancelPost); return; }
     if (e.target.closest('[data-retry-post]')) { retryPost(e.target.closest('[data-retry-post]').dataset.retryPost); return; }
     
-    // Thao tác với Media
+    // Media
     if (e.target.closest('[data-preview-media]')) { previewMedia(e.target.closest('[data-preview-media]').dataset.previewMedia); return; }
     if (e.target.closest('[data-download-media]')) { downloadMedia(e.target.closest('[data-download-media]').dataset.downloadMedia); return; }
     if (e.target.closest('[data-delete-media]')) { deleteMedia(e.target.closest('[data-delete-media]').dataset.deleteMedia); return; }
@@ -5364,7 +5351,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       return; 
     }
 
-    // Thao tác hàng đợi (Queue)
+    // Queue
     if (e.target.closest('[data-retry-job]')) { 
       const id = e.target.closest('[data-retry-job]').dataset.retryJob; 
       const j = state.queue.find(x => x.id === id); 
@@ -5377,14 +5364,14 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       return; 
     }
     
-    // Thao tác Quản lý Nhân sự
+    // Quản lý Nhân sự
     if (e.target.closest('#addTeam')) { openUserModal(); return; }
     if (e.target.closest('[data-edit-user]')) { editUser(e.target.closest('[data-edit-user]').dataset.editUser); return; }
     if (e.target.closest('[data-disable-user]')) { toggleUser(e.target.closest('[data-disable-user]').dataset.disableUser); return; }
     if (e.target.closest('[data-reset-user]')) { resetUser(e.target.closest('[data-reset-user]').dataset.resetUser); return; }
     if (e.target.closest('[data-delete-user]')) { deleteUser(e.target.closest('[data-delete-user]').dataset.deleteUser); return; }
     
-    // Thao tác Tạo bài viết
+    // Chuyển Tab ở trang Tạo bài
     if (e.target.closest('[data-platform-tab]')) { 
       readDraftFromUI(); 
       state.draft.activeTab = e.target.closest('[data-platform-tab]').dataset.platformTab; 
@@ -5401,68 +5388,24 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       toast('Đã copy nội dung'); 
       return; 
     }
-    
-    if (e.target.closest('[data-apply-ai]')) { 
-      window.app.applyAI(e.target.closest('[data-apply-ai]').dataset.applyAi); 
-      return; 
-    }
-    
+    if (e.target.closest('[data-apply-ai]')) { window.app.applyAI(e.target.closest('[data-apply-ai]').dataset.applyAi); return; }
     if (e.target.closest('#openTemplates')) { openTemplatesModal(); return; }
     if (e.target.closest('#openAI') || e.target.closest('#generateAIInline')) { openAIGenerator(); return; }
     if (e.target.closest('#saveDraft')) { saveDraft(); return; }
     if (e.target.closest('#publishOrSchedule')) { savePostFromDraft(); return; }
     
-    // Các chức năng tiện ích khác
-    if (e.target.closest('#browseMedia') || e.target.closest('#uploadMediaBtn')) { 
-      document.getElementById('hiddenFile').click(); 
-      return; 
-    }
-    
-    if (e.target.closest('#mediaListToggle')) { 
-      state.mediaView = state.mediaView === 'grid' ? 'list' : 'grid'; 
-      save(); 
-      render(); 
-      return; 
-    }
-    
+    // Tiện ích
+    if (e.target.closest('#browseMedia') || e.target.closest('#uploadMediaBtn')) { document.getElementById('hiddenFile').click(); return; }
+    if (e.target.closest('#mediaListToggle')) { state.mediaView = state.mediaView === 'grid' ? 'list' : 'grid'; save(); render(); return; }
     if (e.target.closest('#processQueue')) { processQueue(); return; }
-    
-    if (e.target.closest('#clearSuccess')) { 
-      state.queue = state.queue.filter(j => j.status !== 'Success'); 
-      save(); 
-      toast('Đã dọn dẹp các Queue đẩy thành công', 'success'); 
-      render(); 
-      return; 
-    }
-    
-    if (e.target.closest('[data-toggle-notif]')) { 
-      const id = e.target.closest('[data-toggle-notif]').dataset.toggleNotif; 
-      const n = state.notifications.find(x => x.id === id); 
-      if (n) { n.read = !n.read; save(); render(); } 
-      return; 
-    }
-    
-    if (e.target.closest('[data-delete-notif]')) { 
-      const id = e.target.closest('[data-delete-notif]').dataset.deleteNotif; 
-      state.notifications = state.notifications.filter(x => x.id !== id); 
-      save(); 
-      render(); 
-      return; 
-    }
-    
+    if (e.target.closest('#clearSuccess')) { state.queue = state.queue.filter(j => j.status !== 'Success'); save(); toast('Đã dọn dẹp các Queue đẩy thành công', 'success'); render(); return; }
+    if (e.target.closest('[data-toggle-notif]')) { const id = e.target.closest('[data-toggle-notif]').dataset.toggleNotif; const n = state.notifications.find(x => x.id === id); if (n) { n.read = !n.read; save(); render(); } return; }
+    if (e.target.closest('[data-delete-notif]')) { const id = e.target.closest('[data-delete-notif]').dataset.deleteNotif; state.notifications = state.notifications.filter(x => x.id !== id); save(); render(); return; }
     if (e.target.closest('#markAllRead')) { state.notifications.forEach(n => n.read = true); save(); render(); return; }
     if (e.target.closest('#deleteRead')) { state.notifications = state.notifications.filter(n => !n.read); save(); render(); return; }
+    if (e.target.closest('#refreshAnalytics')) { state.analyticsSeed.views += 100; state.analyticsSeed.engagement += 15; save(); render(); toast('Dữ liệu đã làm mới'); return; }
     
-    if (e.target.closest('#refreshAnalytics')) { 
-      state.analyticsSeed.views += 100; 
-      state.analyticsSeed.engagement += 15; 
-      save(); 
-      render(); 
-      toast('Dữ liệu đã làm mới'); 
-      return; 
-    }
-    
-    // Lưu Cấu hình
+    // Lưu Cài đặt
     if (e.target.closest('#saveSettings')) { 
       state.settings = state.settings || {}; 
       const selectVal = document.getElementById('themeSetting').value; 
@@ -5472,88 +5415,23 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
       toast('Cấu hình Giao diện đã áp dụng thành công', 'success'); 
       return; 
     }
+    if (e.target.closest('#saveTelegram')) { state.telegram.enabled = document.getElementById('tgEnabled').checked; state.telegram.botToken = document.getElementById('tgToken').value; state.telegram.chatId = document.getElementById('tgChat').value; save(); toast('Cấu hình Telegram đã được lưu', 'success'); render(); return; }
+    if (e.target.closest('#saveAI')) { state.ai.provider = document.getElementById('aiProvider').value; state.ai.apiKey = document.getElementById('aiKey').value; save(); toast('Cấu hình AI đã được lưu', 'success'); render(); return; }
+    if (e.target.closest('#saveProfile')) { state.profile.name = document.getElementById('profileName').value.trim() || 'Sơn Dino'; save(); audit('Updated Profile', 'Profile'); toast('Đã cập nhật Hồ sơ'); render(); return; }
+    if (e.target.closest('#saveWorkspace')) { state.profile.workspace = document.getElementById('workspaceName').value.trim() || state.profile.workspace; save(); audit('Updated Workspace', 'Workspace'); toast('Đã cập nhật tên Workspace'); render(); return; }
+    if (e.target.closest('#saveTimezone')) { state.profile.timezone = document.getElementById('workspaceTimezone').value; save(); toast('Cập nhật Múi giờ thành công'); render(); return; }
     
-    if (e.target.closest('#saveTelegram')) { 
-      state.telegram.enabled = document.getElementById('tgEnabled').checked; 
-      state.telegram.botToken = document.getElementById('tgToken').value; 
-      state.telegram.chatId = document.getElementById('tgChat').value; 
-      save(); 
-      toast('Cấu hình Telegram đã được lưu', 'success'); 
-      render(); 
-      return; 
-    }
-    
-    if (e.target.closest('#saveAI')) { 
-      state.ai.provider = document.getElementById('aiProvider').value; 
-      state.ai.apiKey = document.getElementById('aiKey').value; 
-      save(); 
-      toast('Cấu hình AI đã được lưu', 'success'); 
-      render(); 
-      return; 
-    }
-    
-    if (e.target.closest('#saveProfile')) { 
-      state.profile.name = document.getElementById('profileName').value.trim() || 'Sơn Dino'; 
-      save(); 
-      audit('Updated Profile', 'Profile'); 
-      toast('Đã cập nhật Hồ sơ'); 
-      render(); 
-      return; 
-    }
-    
-    if (e.target.closest('#saveWorkspace')) { 
-      state.profile.workspace = document.getElementById('workspaceName').value.trim() || state.profile.workspace; 
-      save(); 
-      audit('Updated Workspace', 'Workspace'); 
-      toast('Đã cập nhật tên Workspace'); 
-      render(); 
-      return; 
-    }
-    
-    if (e.target.closest('#saveTimezone')) { 
-      state.profile.timezone = document.getElementById('workspaceTimezone').value; 
-      save(); 
-      toast('Cập nhật Múi giờ thành công'); 
-      render(); 
-      return; 
-    }
-    
-    // Điều hướng Lịch (Calendar)
-    if (e.target.closest('#prevMonth')) { 
-      const d = new Date(calendarSelectedDate); 
-      d.setMonth(d.getMonth() - 1); 
-      calendarSelectedDate = d.toISOString().slice(0, 10); 
-      state.calendarDate = calendarSelectedDate; 
-      save(); 
-      render(); 
-      return; 
-    }
-    
-    if (e.target.closest('#nextMonth')) { 
-      const d = new Date(calendarSelectedDate); 
-      d.setMonth(d.getMonth() + 1); 
-      calendarSelectedDate = d.toISOString().slice(0, 10); 
-      state.calendarDate = calendarSelectedDate; 
-      save(); 
-      render(); 
-      return; 
-    }
-    
-    if (e.target.closest('#todayCal')) { 
-      calendarSelectedDate = new Date().toISOString().slice(0, 10); 
-      state.calendarDate = calendarSelectedDate; 
-      save(); 
-      render(); 
-      return; 
-    }
-    
+    // Điều hướng Lịch
+    if (e.target.closest('#prevMonth')) { const d = new Date(calendarSelectedDate); d.setMonth(d.getMonth() - 1); calendarSelectedDate = d.toISOString().slice(0, 10); state.calendarDate = calendarSelectedDate; save(); render(); return; }
+    if (e.target.closest('#nextMonth')) { const d = new Date(calendarSelectedDate); d.setMonth(d.getMonth() + 1); calendarSelectedDate = d.toISOString().slice(0, 10); state.calendarDate = calendarSelectedDate; save(); render(); return; }
+    if (e.target.closest('#todayCal')) { calendarSelectedDate = new Date().toISOString().slice(0, 10); state.calendarDate = calendarSelectedDate; save(); render(); return; }
     if (e.target.closest('[data-cal-mode]')) { state.calendarMode = e.target.closest('[data-cal-mode]').dataset.calMode; save(); render(); return; }
     if (e.target.closest('[data-post-filter]')) { state.postFilter = e.target.closest('[data-post-filter]').dataset.postFilter; save(); render(); return; }
     if (e.target.closest('[data-media-filter]')) { state.mediaFilter = e.target.closest('[data-media-filter]').dataset.mediaFilter; save(); render(); return; }
     if (e.target.closest('[data-settings-tab]')) { state.settingsTab = e.target.closest('[data-settings-tab]').dataset.settingsTab; save(); render(); return; }
   });
 
-  // Ẩn / Hiện Dropdown
+  // Đóng mở User Menu
   document.getElementById('userMenuBtn').onclick = (e) => { 
     e.stopPropagation(); 
     document.getElementById('userMenu').classList.toggle('show'); 
@@ -5614,7 +5492,6 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     }
   });
 
-  // Phím tắt bàn phím
   window.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeModal();
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { 
@@ -5638,31 +5515,15 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
   // DRAG & DROP (KÉO THẢ)
   // ==========================================
   document.addEventListener('dragover', e => {
-    if (e.target.closest('#createDrop')) { 
-      e.preventDefault(); 
-      e.target.closest('#createDrop').style.background = 'var(--surface-2)'; 
-    }
-    if (e.target.closest('.media-item')) { 
-      e.preventDefault(); 
-      e.target.closest('.media-item').classList.add('drag-over'); 
-      e.dataTransfer.dropEffect = 'move'; 
-    }
-    if (e.target.closest('[data-queue-col]')) { 
-      e.preventDefault(); 
-      e.target.closest('[data-queue-col]').classList.add('drag-over'); 
-    }
+    if (e.target.closest('#createDrop')) { e.preventDefault(); e.target.closest('#createDrop').style.background = 'var(--surface-2)'; }
+    if (e.target.closest('.media-item')) { e.preventDefault(); e.target.closest('.media-item').classList.add('drag-over'); e.dataTransfer.dropEffect = 'move'; }
+    if (e.target.closest('[data-queue-col]')) { e.preventDefault(); e.target.closest('[data-queue-col]').classList.add('drag-over'); }
   });
   
   document.addEventListener('dragleave', e => {
-    if (e.target.closest('#createDrop')) { 
-      e.target.closest('#createDrop').style.background = 'var(--surface)'; 
-    }
-    if (e.target.closest('.media-item')) { 
-      e.target.closest('.media-item').classList.remove('drag-over'); 
-    }
-    if (e.target.closest('[data-queue-col]')) { 
-      e.target.closest('[data-queue-col]').classList.remove('drag-over'); 
-    }
+    if (e.target.closest('#createDrop')) { e.target.closest('#createDrop').style.background = 'var(--surface)'; }
+    if (e.target.closest('.media-item')) { e.target.closest('.media-item').classList.remove('drag-over'); }
+    if (e.target.closest('[data-queue-col]')) { e.target.closest('[data-queue-col]').classList.remove('drag-over'); }
   });
   
   document.addEventListener('drop', e => {
@@ -5733,17 +5594,9 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
   });
 
   document.addEventListener('dragstart', e => {
-    if (e.target.closest('[data-cal-post]')) { 
-      e.dataTransfer.setData('text/plain', e.target.closest('[data-cal-post]').dataset.calPost); 
-    }
-    if (e.target.closest('[data-draft-media]')) { 
-      e.dataTransfer.effectAllowed = 'move'; 
-      e.dataTransfer.setData('mediaId', e.target.closest('[data-draft-media]').dataset.draftMedia); 
-    }
-    if (e.target.closest('[data-job-id]')) { 
-      e.dataTransfer.effectAllowed = 'move'; 
-      e.dataTransfer.setData('jobId', e.target.closest('[data-job-id]').dataset.jobId); 
-    }
+    if (e.target.closest('[data-cal-post]')) { e.dataTransfer.setData('text/plain', e.target.closest('[data-cal-post]').dataset.calPost); }
+    if (e.target.closest('[data-draft-media]')) { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('mediaId', e.target.closest('[data-draft-media]').dataset.draftMedia); }
+    if (e.target.closest('[data-job-id]')) { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('jobId', e.target.closest('[data-job-id]').dataset.jobId); }
   });
 
   // ==========================================
