@@ -1661,22 +1661,22 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
 </head>
 <body>
 
-<!-- Giao diện Đăng nhập Kín (Chỉ nhận tài khoản do Admin cấp) -->
+<!-- Giao diện Đăng nhập -->
 <div id="loginView" class="login-wrap hidden">
   <div class="login-card">
     <div class="logo"><i data-lucide="layers-3" style="width:28px;height:28px;color:white;"></i></div>
     <h2>DINO SOCIAL HUB 4.0</h2>
-    <p>Hệ thống quản trị nội bộ (Private Workspace)</p>
+    <p>Đăng nhập vào Workspace của bạn</p>
     <div class="form-grid" style="text-align:left; grid-template-columns:1fr; gap:12px;">
-      <label class="field">
-        <span class="label">Email đăng nhập</span>
-        <input class="input" id="loginEmail" placeholder="Nhập email do Admin cấp...">
-      </label>
-      <label class="field">
-        <span class="label">Mật khẩu</span>
-        <input class="input" type="password" id="loginPassword" placeholder="Nhập mật khẩu...">
-      </label>
-      <button class="btn primary" style="width:100%; height:40px; margin-top:10px; font-size:14px;" onclick="doLogin()">Đăng nhập Hệ thống</button>
+      <label class="field"><span class="label">Email</span><input class="input" id="loginEmail" placeholder="Nhập email..."></label>
+      <label class="field"><span class="label">Mật khẩu</span><input class="input" type="password" value="123456" placeholder="Nhập mật khẩu..."></label>
+      <button class="btn primary" style="width:100%; height:40px; margin-top:10px; font-size:14px;" onclick="doLogin()">Đăng nhập</button>
+    </div>
+    <div class="demo-accounts">
+      <p>Hoặc đăng nhập nhanh (Demo RBAC):</p>
+      <button class="demo-acc-btn" onclick="doLogin('son@dinohub.local')"><span><b>Sơn Dino</b> (Quyền ADMIN)</span><i data-lucide="arrow-right"></i></button>
+      <button class="demo-acc-btn" onclick="doLogin('quynh@dinohub.local')"><span><b>Ngọc Quỳnh</b> (Quyền MANAGER)</span><i data-lucide="arrow-right"></i></button>
+      <button class="demo-acc-btn" onclick="doLogin('an@dinohub.local')"><span><b>Minh An</b> (Quyền EDITOR)</span><i data-lucide="arrow-right"></i></button>
     </div>
   </div>
 </div>
@@ -1732,9 +1732,8 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
           <button class="user-btn" id="userMenuBtn">
             <div class="avatar">SD</div><span class="user-meta">Sơn Dino</span><i data-lucide="chevron-down" style="width:16px"></i>
           </button>
-        <div class="dropdown" id="userMenu">
+          <div class="dropdown" id="userMenu">
             <button data-action="profile">Hồ sơ cá nhân</button>
-            <button data-action="change-password">Đổi mật khẩu</button> <!-- THÊM DÒNG NÀY -->
             <button data-action="settings">Cài đặt</button>
             <button data-action="export">Xuất dữ liệu JSON</button>
             <button data-action="import">Nhập dữ liệu JSON</button>
@@ -2226,40 +2225,24 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
   // 5. XÁC THỰC & PHÂN QUYỀN (AUTH & RBAC)
   // ==========================================
   
-  window.doLogin = function() {
-    const email = document.getElementById('loginEmail').value.trim(); 
-    const pass = document.getElementById('loginPassword').value.trim();
-
-    if(!email || !pass) {
-      toast('Vui lòng nhập đầy đủ Email và Mật khẩu', 'warning');
-      return;
-    }
-
-    // 1. Kiểm tra xem Email này đã được Admin tạo trong mục "Nhân sự" chưa?
-    const u = state.users.find(x => x.email === email);
-    if(!u) { 
-      toast('Tài khoản không tồn tại! Hãy liên hệ Admin để được cấp tài khoản.', 'error'); 
+  window.doLogin = function(emailOverride) {
+    const e = emailOverride || document.getElementById('loginEmail').value.trim(); 
+    const u = state.users.find(x => x.email === e);
+    
+    if (!u) { 
+      toast('Sai email hoặc tài khoản không tồn tại', 'error'); 
       return; 
     }
     
-    // 2. Kiểm tra Mật khẩu (Các tài khoản tạo mới mặc định có mật khẩu là 123456)
-    const correctPass = u.password || '123456';
-    if(pass !== correctPass) {
-      toast('Sai mật khẩu đăng nhập!', 'error');
-      return;
-    }
-
-    // 3. Kiểm tra xem tài khoản có đang bị Admin khóa không?
-    if(u.status !== 'Active') { 
-      toast('Tài khoản của bạn đã bị khóa. Vui lòng liên hệ Admin.', 'error'); 
+    if (u.status !== 'Active') { 
+      toast('Tài khoản đã bị khóa', 'error'); 
       return; 
     }
     
-    // 4. Nếu qua hết các vòng kiểm tra -> Cho phép vào hệ thống
     state.loggedInUserEmail = u.email; 
     state.profile.name = u.name; 
     save(); 
-    toast(`Đăng nhập thành công! Chào mừng ${u.name}`, 'success'); 
+    toast(`Đăng nhập thành công với quyền ${u.role}`, 'success'); 
     checkAuth();
   }
   
@@ -5100,124 +5083,10 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     toast(`Đã ${u.status === 'Active' ? 'mở khóa' : 'khóa'} tài khoản ${u.name}`); 
   }
   
-// Hàm Bật/Tắt hiển thị mật khẩu (Con mắt)
-  window.app.togglePass = function(inputId, btn) {
-    const input = document.getElementById(inputId);
-    const icon = btn.querySelector('svg') || btn.querySelector('i');
-    
-    if (input.type === 'password') {
-      input.type = 'text';
-      if (icon) { icon.style.opacity = '1'; icon.style.color = 'var(--primary)'; }
-    } else {
-      input.type = 'password';
-      if (icon) { icon.style.opacity = '0.5'; icon.style.color = 'currentColor'; }
-    }
-  };
-
-  // Hàm Bật/Tắt hiển thị mật khẩu (Con mắt)
-  window.app.togglePass = function(inputId, btn) {
-    const input = document.getElementById(inputId);
-    const icon = btn.querySelector('svg') || btn.querySelector('i');
-    
-    if (input.type === 'password') {
-      input.type = 'text';
-      if (icon) { icon.style.opacity = '1'; icon.style.color = 'var(--primary)'; }
-    } else {
-      input.type = 'password';
-      if (icon) { icon.style.opacity = '0.5'; icon.style.color = 'currentColor'; }
-    }
-  };
-
-  // Hàm Mở form đổi mật khẩu (Đã nâng cấp)
   function resetUser(id) { 
     const u = state.users.find(x => x.id === id); 
     if (!u) return; 
-
-    openModal(`
-      <div class="modal-header">
-        <div>
-          <div class="modal-title">Đổi mật khẩu</div>
-          <div class="help">Tài khoản: ${escape(u.email)}</div>
-        </div>
-        <button class="close" data-close-modal><i data-lucide="x"></i></button>
-      </div>
-      <div class="modal-body">
-        <div class="form-grid">
-          <label class="field full">
-            <span class="label">Mật khẩu mới</span>
-            <div style="position:relative">
-              <input class="input" type="password" id="newPassword" style="padding-right: 40px" placeholder="Nhập ít nhất 6 ký tự...">
-              <button type="button" tabindex="-1" onclick="app.togglePass('newPassword', this)" style="position:absolute; right:6px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--muted); cursor:pointer; padding:4px;">
-                <i data-lucide="eye" style="opacity: 0.5; transition: 0.2s;"></i>
-              </button>
-            </div>
-          </label>
-          <label class="field full">
-            <span class="label">Nhập lại mật khẩu mới</span>
-            <div style="position:relative">
-              <input class="input" type="password" id="confirmPassword" style="padding-right: 40px" placeholder="Xác nhận lại mật khẩu...">
-              <button type="button" tabindex="-1" onclick="app.togglePass('confirmPassword', this)" style="position:absolute; right:6px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--muted); cursor:pointer; padding:4px;">
-                <i data-lucide="eye" style="opacity: 0.5; transition: 0.2s;"></i>
-              </button>
-            </div>
-          </label>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn" data-close-modal>Hủy</button>
-        <button class="btn primary" id="savePasswordBtn">Lưu Mật Khẩu</button>
-      </div>
-    `);
-
-    document.getElementById('savePasswordBtn').onclick = () => {
-      const newPass = document.getElementById('newPassword').value.trim();
-      const confirmPass = document.getElementById('confirmPassword').value.trim();
-
-      if (newPass.length < 6) {
-        toast('Mật khẩu phải có ít nhất 6 ký tự', 'warning');
-        return;
-      }
-      
-      if (newPass !== confirmPass) {
-        toast('Hai mật khẩu không khớp nhau. Vui lòng kiểm tra lại!', 'error');
-        return;
-      }
-
-      u.password = newPass; 
-      save();
-      toast('Đã đổi mật khẩu thành công!', 'success');
-      closeModal();
-    };
-    
-    lucide.createIcons();
-  }
-      
-      if (newPass !== confirmPass) {
-        toast('Hai mật khẩu không khớp nhau. Vui lòng kiểm tra lại!', 'error');
-        return;
-      }
-
-      u.password = newPass; 
-      save();
-      toast('Đã đổi mật khẩu thành công!', 'success');
-      closeModal();
-    };
-    
-    lucide.createIcons();
-  }
-
-    document.getElementById('savePasswordBtn').onclick = () => {
-      const newPass = document.getElementById('newPassword').value.trim();
-      if(newPass.length < 6) {
-        toast('Mật khẩu phải có ít nhất 6 ký tự', 'warning');
-        return;
-      }
-      u.password = newPass; // Lưu mật khẩu mới vào Database (LocalStorage)
-      save();
-      toast('Đã đổi mật khẩu thành công!', 'success');
-      closeModal();
-    };
-    lucide.createIcons();
+    toast(`Đã gửi đường link đặt lại mật khẩu vào email: ${u.email}`, 'info'); 
   }
   
   function deleteUser(id) { 
@@ -5292,14 +5161,6 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     const actionEl = e.target.closest('[data-action]');
     if (actionEl) {
       const a = actionEl.dataset.action;
-      
-      // ... (các lệnh export, profile cũ giữ nguyên) ...
-
-      // THÊM DÒNG NÀY VÀO: Bắt sự kiện Đổi mật khẩu
-      if (a === 'change-password') {
-        const currentUser = state.users.find(u => u.email === state.loggedInUserEmail);
-        if(currentUser) resetUser(currentUser.id);
-      }
       if (a === 'export') { 
         const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'}); 
         const url = URL.createObjectURL(blob); 
