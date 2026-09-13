@@ -1777,81 +1777,47 @@ svg { max-width: 100% !important; }
   }
 }
 
-@media (max-width: 768px) {
-  /* Hiện nút Menu 3 gạch và Logo tròn trên Topbar */
-  .mobile-menu-btn { display: flex !important; align-items: center; justify-content: center; }
-  .mobile-top-logo { display: block; }
-  .mobile-hide { display: none !important; }
-  .topbar .search { display: none !important; }
-
-  /* Biến Sidebar thành Menu trượt ẩn ngoài rìa trái */
-  /* Ép Sidebar hiển thị và trượt ra ngoài, đè mọi code cũ */
-  .sidebar {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    z-index: 10001 !important; /* Phải lớn hơn 10000 của lớp phủ mờ */
-    transform: translateX(-100%) !important;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    width: 270px !important;
-    box-shadow: 4px 0 20px rgba(0,0,0,0.5) !important;
-    background-color: var(--surface, #1e293b) !important; /* Đảm bảo có màu nền */
-    display: flex !important; /* Chống bị đè bởi lệnh display: none */
-  }
-
-  .sidebar.show-mobile {
-    transform: translateX(0) !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-
-  /* Tạo thanh cuộn ngang cho các bảng dữ liệu để không bị tràn */
-  .table-wrap {
-    width: 100% !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-  }
-}
 /* =========================================
-   ÉP SIDEBAR MOBILE BUNG RỘNG VÀ HIỆN CHỮ
+   FIX TOÀN DIỆN: BUNG RỘNG MENU & HIỆN CHỮ
    ========================================= */
 @media (max-width: 768px) {
-  /* Ép chiều rộng thanh Sidebar */
-  .sidebar.show-mobile {
-    width: 280px !important;
-  }
+  /* Ép chiều rộng Sidebar bung to, không bị thu gọn thành 1 cột dọc */
+  .sidebar.show-mobile { width: 280px !important; }
   
-  /* Bắt buộc hiện lại toàn bộ Text đã bị giấu */
-  .sidebar.show-mobile .nav-label,
-  .sidebar.show-mobile .brand-text,
-  .sidebar.show-mobile .section-label,
-  .sidebar.show-mobile .badge-count {
-    display: block !important;
+  /* Căn chỉnh lại cụm Logo và Chữ Dino Social Hub bên trong Sidebar */
+  .sidebar.show-mobile .brand {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    padding-left: 20px !important;
+    cursor: pointer !important; /* Báo hiệu có thể bấm để đóng */
+  }
+
+  .sidebar.show-mobile .brand-text {
+    display: flex !important;
+    flex-direction: column !important;
     opacity: 1 !important;
     visibility: visible !important;
-  }
-
-  /* Căn lề lại các Icon và Chữ cho thẳng hàng sang trái */
-  .sidebar.show-mobile .nav-item {
-    justify-content: flex-start !important;
-    padding-left: 20px !important;
-  }
-  
-  .sidebar.show-mobile .brand {
-    justify-content: flex-start !important;
-    padding-left: 20px !important;
-  }
-
-  /* Tạo khoảng cách giữa Icon và Chữ */
-  .sidebar.show-mobile .nav-label {
     margin-left: 12px !important;
   }
 
-  /* Ẩn nút "Thu gọn menu" ở dưới cùng vì trên Mobile không cần đến */
-  .sidebar.show-mobile .sidebar-footer {
-    display: none !important;
+  .sidebar.show-mobile .brand-name {
+    display: block !important; font-size: 16px !important; color: #fff !important;
   }
+  .sidebar.show-mobile .brand-version { display: block !important; color: #94a3b8 !important; }
+  
+  /* Bắt buộc hiện chữ các mục (Tổng quan, Tạo bài, Cài đặt...) */
+  .sidebar.show-mobile .nav-label,
+  .sidebar.show-mobile .section-label,
+  .sidebar.show-mobile .badge-count {
+    display: block !important; opacity: 1 !important; visibility: visible !important;
+  }
+  .sidebar.show-mobile .nav-item {
+    justify-content: flex-start !important; padding-left: 20px !important;
+  }
+  .sidebar.show-mobile .nav-label { margin-left: 12px !important; }
+  .sidebar.show-mobile .sidebar-footer { display: none !important; }
 }  
 </style>
 </head>
@@ -1918,16 +1884,16 @@ svg { max-width: 100% !important; }
   <main class="main">
     <header class="topbar">
       <div class="breadcrumbs" data-page="dashboard" style="display: flex; align-items: center; gap: 8px;">
-        <!-- Nút Menu 3 gạch (Chỉ hiện trên Mobile) -->
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Mở menu"><i data-lucide="menu"></i></button>
+        <!-- Nút Menu 3 gạch bằng mã SVG (Cam kết không bị lỗi hình tròn) -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" style="background: transparent; border: none; color: #fff; padding: 4px; margin-right: 8px; cursor: pointer; display: flex; align-items: center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
         
-        <!-- Logo bo tròn -->
-        <img src="https://cdn.upanhlaylink.com/i/vdcRhmqY.jpg" class="mobile-top-logo" alt="Logo" style="width: 32px; height: 32px; border-radius: 50%; object-fit: contain; box-shadow: 0 2px 8px rgba(0,112,243,0.4);">
+        <!-- Logo và Chữ (Sẽ đóng vai trò như nút bấm thứ 2) -->
+        <img src="dino-logo-tron.jpg" class="mobile-top-logo" alt="Logo" style="width: 32px; height: 32px; border-radius: 50%; object-fit: contain; box-shadow: 0 2px 8px rgba(0,112,243,0.4); cursor: pointer;">
+        <span class="brand-name" style="cursor: pointer; font-size: 16px; font-weight: bold;">Dino Social Hub</span>
         
-        <!-- Chữ Dino Social Hub -->
-        <span class="brand-name" style="cursor:pointer; font-size: 16px;">Dino Social Hub</span>
-        
-        <!-- Các phần tử tự ẩn trên Mobile -->
+        <!-- Các mục tự ẩn -->
         <i data-lucide="chevron-right" class="mobile-hide" style="width:14px; margin-left: 4px;"></i>
         <b id="breadcrumbCurrent" class="mobile-hide">Tổng quan</b>
       </div>
@@ -5859,35 +5825,43 @@ svg { max-width: 100% !important; }
 </script>
 <script>
   // =========================================
-  // LOGIC ĐIỀU KHIỂN MENU TRƯỢT TRÊN MOBILE
+  // LOGIC ĐIỀU KHIỂN MENU TRƯỢT (NÚT 3 GẠCH + LOGO + CHỮ)
   // =========================================
   document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('mobileMenuBtn');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebarOverlay');
     
+    // Nhận diện Logo và Chữ trên Topbar
+    const topbarBrandName = document.querySelector('.breadcrumbs .brand-name');
+    const topbarLogo = document.querySelector('.mobile-top-logo');
+    
     if (btn && sidebar && overlay) {
-      // 1. Mở menu khi bấm nút 3 gạch trên Topbar
-      btn.addEventListener('click', (e) => {
+      const openMenu = (e) => {
         e.stopPropagation();
         sidebar.classList.add('show-mobile');
         overlay.classList.add('show');
-        document.body.style.overflow = 'hidden'; // Khóa cuộn trang nền bên dưới
-      });
-      
-      // 2. Đóng menu khi người dùng bấm vào vùng tối (overlay) bên ngoài
-      overlay.addEventListener('click', () => {
+        document.body.style.overflow = 'hidden'; 
+      };
+
+      const closeMenu = () => {
         sidebar.classList.remove('show-mobile');
         overlay.classList.remove('show');
-        document.body.style.overflow = ''; // Mở lại cuộn trang nền
-      });
+        document.body.style.overflow = ''; 
+      };
+
+      // 1. Mở menu bằng 3 cách: Nút 3 gạch / Logo Topbar / Chữ Topbar
+      btn.addEventListener('click', openMenu);
+      if (topbarBrandName) topbarBrandName.addEventListener('click', openMenu);
+      if (topbarLogo) topbarLogo.addEventListener('click', openMenu);
       
-      // 3. Tự động đóng menu trượt sau khi đã chọn xong 1 mục bất kỳ trong Sidebar
+      // 2. Đóng menu khi bấm nền tối
+      overlay.addEventListener('click', closeMenu);
+      
+      // 3. Đóng menu khi chọn mục HOẶC bấm vào cụm Logo/Chữ bên trong Sidebar
       sidebar.addEventListener('click', (e) => {
-        if (e.target.closest('.nav-item') || e.target.closest('[data-page]')) {
-          sidebar.classList.remove('show-mobile');
-          overlay.classList.remove('show');
-          document.body.style.overflow = '';
+        if (e.target.closest('.nav-item') || e.target.closest('[data-page]') || e.target.closest('.brand')) {
+          closeMenu();
         }
       });
     }
