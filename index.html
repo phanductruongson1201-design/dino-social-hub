@@ -1778,44 +1778,53 @@ svg { max-width: 100% !important; }
 }
 
 /* =========================================
-   FIX TOÀN DIỆN: BUNG RỘNG MENU & HIỆN CHỮ
+   CSS TỔNG HỢP CHO MOBILE (TOPBAR & SIDEBAR)
    ========================================= */
+/* Lớp phủ nền mờ (Mặc định ẩn) */
+.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 10000; backdrop-filter: blur(3px); }
+.sidebar-overlay.show { display: block; }
+
+/* Các nút Topbar mặc định ẩn trên Máy tính */
+.mobile-menu-btn { display: none; }
+.mobile-top-logo { display: none; }
+
 @media (max-width: 768px) {
-  /* Ép chiều rộng Sidebar bung to, không bị thu gọn thành 1 cột dọc */
-  .sidebar.show-mobile { width: 280px !important; }
+  /* 1. HIỆN NÚT 3 GẠCH VÀ LOGO TRÊN TOPBAR */
+  .mobile-menu-btn { display: flex !important; }
+  .mobile-top-logo { display: block !important; }
+  .mobile-hide { display: none !important; }
+  .topbar .search { display: none !important; }
+
+  /* 2. CẤU HÌNH SIDEBAR TRƯỢT TỪ NGOÀI VÀO */
+  .sidebar {
+    position: fixed !important;
+    top: 0; left: 0; height: 100vh;
+    z-index: 10001 !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    width: 280px !important; /* Ép Sidebar bung rộng */
+    background-color: var(--surface, #1e293b) !important;
+    display: flex !important;
+  }
   
-  /* Căn chỉnh lại cụm Logo và Chữ Dino Social Hub bên trong Sidebar */
-  .sidebar.show-mobile .brand {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    width: 100% !important;
-    padding-left: 20px !important;
-    cursor: pointer !important; /* Báo hiệu có thể bấm để đóng */
-  }
-
-  .sidebar.show-mobile .brand-text {
-    display: flex !important;
-    flex-direction: column !important;
-    opacity: 1 !important;
+  /* Lệnh kích hoạt trượt vào */
+  .sidebar.show-mobile {
+    transform: translateX(0) !important;
     visibility: visible !important;
-    margin-left: 12px !important;
+    opacity: 1 !important;
   }
-
-  .sidebar.show-mobile .brand-name {
-    display: block !important; font-size: 16px !important; color: #fff !important;
-  }
+  
+  /* 3. BẮT BUỘC HIỆN CHỮ BÊN TRONG SIDEBAR */
+  .sidebar.show-mobile .brand { display: flex !important; align-items: center !important; justify-content: flex-start !important; width: 100% !important; padding-left: 20px !important; cursor: pointer !important; }
+  .sidebar.show-mobile .brand-text { display: flex !important; flex-direction: column !important; opacity: 1 !important; visibility: visible !important; margin-left: 12px !important; }
+  .sidebar.show-mobile .brand-name { display: block !important; font-size: 16px !important; color: #fff !important; }
   .sidebar.show-mobile .brand-version { display: block !important; color: #94a3b8 !important; }
   
-  /* Bắt buộc hiện chữ các mục (Tổng quan, Tạo bài, Cài đặt...) */
   .sidebar.show-mobile .nav-label,
   .sidebar.show-mobile .section-label,
-  .sidebar.show-mobile .badge-count {
-    display: block !important; opacity: 1 !important; visibility: visible !important;
-  }
-  .sidebar.show-mobile .nav-item {
-    justify-content: flex-start !important; padding-left: 20px !important;
-  }
+  .sidebar.show-mobile .badge-count { display: block !important; opacity: 1 !important; visibility: visible !important; }
+  
+  .sidebar.show-mobile .nav-item { justify-content: flex-start !important; padding-left: 20px !important; }
   .sidebar.show-mobile .nav-label { margin-left: 12px !important; }
   .sidebar.show-mobile .sidebar-footer { display: none !important; }
 }  
