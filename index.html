@@ -3440,7 +3440,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     
     save();
   }
-  function renderInbox() {
+function renderInbox() {
     let html = pageShell(
       'Hộp thư hợp nhất', 
       'Quản lý Tin nhắn và Bình luận từ Facebook, TikTok, Instagram tại một nơi duy nhất.'
@@ -3451,34 +3451,35 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     
     html += `
       <div class="inbox-layout">
+        <!-- CỘT 1: DANH SÁCH -->
         <div class="inbox-sidebar">
           <div class="inbox-head">
-            <div class="search" style="max-width:100%">
+            <div class="search" style="max-width:100%; margin-bottom:12px;">
               <i data-lucide="search"></i>
-              <input placeholder="Tìm người gửi, nội dung..." style="height:36px; background:var(--surface-2)"/>
+              <input placeholder="Tìm người gửi, nội dung..." style="height:36px; background:var(--surface-2); border-radius:8px; border:none;"/>
             </div>
-            <div class="inbox-filters">
-              <button class="inbox-filter-btn active">Tất cả</button>
-              <button class="inbox-filter-btn">Chưa đọc</button>
-              <button class="inbox-filter-btn">Tin nhắn</button>
+            <div class="inbox-filters" style="display:flex; gap:8px;">
+              <button class="inbox-filter-btn active" style="background:var(--primary); color:#fff; border:none; padding:6px 16px;">Tất cả</button>
+              <button class="inbox-filter-btn" style="background:transparent; border:1px solid var(--line); padding:6px 16px;">Chưa đọc</button>
+              <button class="inbox-filter-btn" style="background:transparent; border:1px solid var(--line); padding:6px 16px;">Tin nhắn</button>
             </div>
           </div>
           <div class="inbox-list">
             ${messages.map(m => {
               const mMeta = platformMeta[m.platform];
               return `
-                <div class="inbox-item ${m.id === activeInboxId ? 'active' : ''}" onclick="app.selectInbox('${m.id}')">
+                <div class="inbox-item ${m.id === activeInboxId ? 'active' : ''}" onclick="app.selectInbox('${m.id}')" style="border-left: ${m.id === activeInboxId ? '4px solid var(--primary)' : '4px solid transparent'}">
                   <div class="inbox-avatar">
                     <div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px">
                       ${m.avatar}
                     </div>
                     <div class="inbox-plat-icon" style="background:#fff; color:${mMeta?.cls === 'fb' ? '#1877f2' : mMeta?.cls === 'ig' ? '#c026d3' : mMeta?.cls === 'yt' ? '#ef4444' : '#111'}">
-                      <i data-lucide="${mMeta?.icon || 'circle'}" style="width:8px;height:8px"></i>
+                      <i data-lucide="${mMeta?.icon || 'circle'}" style="width:10px;height:10px"></i>
                     </div>
                   </div>
                   <div class="inbox-info">
                     <div class="inbox-name-row">
-                      <span class="inbox-name" style="${!m.read ? 'font-weight:800;color:var(--primary)' : ''}">${escape(m.name)}</span>
+                      <span class="inbox-name" style="${!m.read ? 'font-weight:800;color:var(--text)' : 'font-weight:600'}">${escape(m.name)}</span>
                       <span class="inbox-time">${m.time}</span>
                     </div>
                     <div class="inbox-preview" style="${!m.read ? 'font-weight:600;color:var(--text)' : ''}">
@@ -3491,65 +3492,83 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
           </div>
         </div>
         
-        <div class="inbox-chat">
+        <!-- CỘT 2: KHUNG CHAT -->
+        <div class="inbox-chat" style="border-right: 1px solid var(--line);">
           ${activeMsg ? `
-            <div class="chat-head">
-              <div class="chat-user-info">
-                <div class="inbox-avatar" style="width:46px;height:46px">
-                  <div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:16px">
+            <div class="chat-head" style="background:var(--surface); display:flex; justify-content:space-between; align-items:center; padding:16px 24px; border-bottom:1px solid var(--line);">
+              <div class="chat-user-info" style="display:flex; align-items:center; gap:12px;">
+                <div class="inbox-avatar" style="width:40px;height:40px">
+                  <div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px">
                     ${activeMsg.avatar}
                   </div>
+                  <div style="position:absolute; bottom:0; right:0; width:12px; height:12px; background:#10b981; border-radius:50%; border:2px solid var(--surface);"></div>
                 </div>
                 <div class="chat-meta">
-                  <b style="font-size:16px">${escape(activeMsg.name)}</b>
-                  <span>Qua ${activeMsg.type} ${activeMsg.platform}</span>
+                  <b style="font-size:15px; display:block;">${escape(activeMsg.name)}</b>
+                  <span style="font-size:12px; color:var(--muted);"><span style="color:#10b981">●</span> Qua ${escape(activeMsg.type)} · ${escape(activeMsg.platform)}</span>
                 </div>
               </div>
               <div class="actions">
-                <button class="btn small"><i data-lucide="check-check"></i> Đánh dấu xong</button>
-                <button class="btn small"><i data-lucide="more-horizontal"></i></button>
+                <button class="btn small" style="background:var(--surface-2); border-color:var(--line);"><i data-lucide="check"></i> Xong</button>
+                <button class="btn small" style="background:var(--surface-2); border-color:var(--line);"><i data-lucide="more-horizontal"></i></button>
               </div>
             </div>
             
-            <div class="chat-body">
+            <div class="chat-body" style="background:var(--bg); flex:1; padding:24px; overflow-y:auto; display:flex; flex-direction:column; gap:20px;">
+              <div style="text-align:center; position:relative; margin: 10px 0;">
+                 <hr style="border:0; border-top:1px solid var(--line); position:absolute; top:50%; left:0; right:0; z-index:1;">
+                 <span style="background:var(--bg); padding:0 12px; position:relative; z-index:2; font-size:11px; font-weight:600; color:var(--muted);">Hôm nay</span>
+              </div>
+
               <div class="chat-bubble-row them">
-                <div class="inbox-avatar" style="width:32px;height:32px">
-                  <div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px">
+                <div class="inbox-avatar" style="width:32px;height:32px; margin-top:auto;">
+                  <div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:11px">
                     ${activeMsg.avatar}
                   </div>
                 </div>
                 <div>
-                  <div class="chat-bubble">${escape(activeMsg.text)}</div>
+                  <div class="chat-bubble" style="background:var(--surface-2); border:1px solid var(--line); color:var(--text); border-radius:18px; border-bottom-left-radius:4px; padding:12px 16px;">
+                    ${escape(activeMsg.text)}
+                  </div>
                   ${activeMsg.type === 'Bình luận' ? `
-                    <div class="chat-actions">
-                      <span>Thích</span> · <span style="color:var(--danger)">Ẩn bình luận</span>
+                    <div class="chat-actions" style="margin-top:8px; font-size:11px; margin-left:4px;">
+                      <span style="color:var(--text); cursor:pointer; font-weight:600;">Thích</span> ·
+                      <span style="color:var(--danger); cursor:pointer; font-weight:600;">Ẩn bình luận</span>
                     </div>
                   ` : ''}
-                  <div class="chat-time">${activeMsg.time}</div>
+                  <div class="chat-time" style="font-size:11px; color:var(--muted); margin-top:4px; margin-left:4px; text-align:left;">${activeMsg.time}</div>
                 </div>
               </div>
               
               ${activeMsg.replied ? `
                 <div class="chat-bubble-row me">
                   <div>
-                    <div class="chat-bubble">${escape(activeMsg.replyText)}</div>
-                    <div class="chat-time">Vừa xong</div>
+                    <div class="chat-bubble" style="background:var(--primary); color:#fff; border-radius:18px; border-bottom-right-radius:4px; padding:12px 16px;">
+                      ${escape(activeMsg.replyText)}
+                    </div>
+                    <div class="chat-time" style="font-size:11px; color:var(--muted); margin-top:4px; text-align:right;">Vừa xong</div>
                   </div>
                 </div>
               ` : ''}
             </div>
             
-            <div class="chat-foot">
-              <div class="chat-input-wrap">
-                <button class="icon-btn" style="border:none;background:transparent;color:var(--muted)">
-                  <i data-lucide="image"></i>
+            <div class="chat-foot" style="background:var(--surface); padding:16px 24px;">
+              <!-- KHUNG NHẬP TRẠNG THÁI ĐỘNG (EXPANDABLE INPUT) -->
+              <div id="chatInputContainer" style="display:flex; align-items:center; background:var(--surface-2); border:1px solid var(--line); border-radius:24px; padding:8px 12px; transition:all 0.3s ease;">
+                <button class="icon-btn" style="border:none;background:transparent;color:var(--muted); width:32px; height:32px;">
+                  <i data-lucide="image" style="width:18px;"></i>
                 </button>
-                <button class="icon-btn" style="border:none;background:transparent;color:var(--muted);margin-right:10px" onclick="app.ui.showToast('Gợi ý câu trả lời AI','Tính năng đang phát triển','info')">
-                  <i data-lucide="sparkles"></i>
+                <button class="icon-btn" style="border:none;background:transparent;color:var(--muted); width:32px; height:32px; margin-right:8px;" onclick="app.ui.showToast('Gợi ý AI','Tính năng đang phát triển','info')">
+                  <i data-lucide="sparkles" style="width:18px;"></i>
                 </button>
-                <textarea id="inboxReply" class="chat-textarea" placeholder="Nhập câu trả lời... (Enter để gửi)"></textarea>
-                <button class="chat-send-btn" onclick="app.sendInboxReply()">
-                  <i data-lucide="send"></i>
+                
+                <textarea id="inboxReply" placeholder="Nhắn tin..." style="flex:1; background:transparent; border:none; outline:none; color:var(--text); resize:none; font-family:inherit; font-size:14px; padding:8px 0; height:24px; min-height:24px; transition:height 0.3s ease;"
+                  onfocus="document.getElementById('chatInputContainer').style.borderRadius = '12px'; document.getElementById('chatInputContainer').style.alignItems = 'flex-end'; this.style.height = '80px';"
+                  onblur="if(!this.value){ document.getElementById('chatInputContainer').style.borderRadius = '24px'; document.getElementById('chatInputContainer').style.alignItems = 'center'; this.style.height = '24px'; }"
+                ></textarea>
+                
+                <button style="background:var(--primary); border:none; border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; color:#fff; cursor:pointer; margin-left:8px;" onclick="app.sendInboxReply()">
+                  <i data-lucide="send" style="width:16px; margin-left:-2px;"></i>
                 </button>
               </div>
             </div>
@@ -3561,30 +3580,40 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
           `}
         </div>
         
-        <div class="inbox-crm">
+        <!-- CỘT 3: CRM (THÔNG TIN KHÁCH HÀNG) -->
+        <div class="inbox-crm" style="background:var(--surface-2); padding:24px;">
           ${activeMsg ? `
-            <div class="crm-item">
-              <div class="crm-label">Tên khách hàng</div>
-              <div class="crm-val">${escape(activeMsg.name)}</div>
-            </div>
-            <div class="crm-item">
-              <div class="crm-label">Số điện thoại</div>
-              <div class="crm-val">${activeMsg.phone || '<i style="color:var(--muted);font-weight:normal">Chưa có</i>'}</div>
-            </div>
-            <div class="crm-item">
-              <div class="crm-label">Phân loại (Tags)</div>
-              <div>${(activeMsg.tags || []).map(t => `<span class="pill neutral" style="margin:0 6px 6px 0">${t}</span>`).join('') || '<span class="muted">Chưa gắn tag</span>'}</div>
+            <div style="font-size:11px; font-weight:800; color:var(--muted); text-transform:uppercase; margin-bottom:16px; letter-spacing:0.05em;">Thông tin khách hàng</div>
+            
+            <div class="crm-item" style="margin-bottom:16px;">
+              <div style="font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:4px;">Tên khách hàng</div>
+              <div style="font-size:14px; font-weight:700; color:var(--text);">${escape(activeMsg.name)}</div>
             </div>
             
-            <div style="border-top:1px solid var(--line); margin:20px 0;"></div>
+            <div class="crm-item" style="margin-bottom:16px;">
+              <div style="font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:4px;">Số điện thoại</div>
+              <div style="font-size:14px; font-weight:600; color:var(--text);">${activeMsg.phone || '<i style="color:var(--muted);font-weight:normal">Chưa có</i>'}</div>
+            </div>
+            
+            <div class="crm-item" style="margin-bottom:16px;">
+              <div style="font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:4px;">Kênh liên lạc</div>
+              <div style="font-size:14px; font-weight:600; color:var(--text);">${escape(activeMsg.platform)} · ${escape(activeMsg.type)}</div>
+            </div>
+            
+            <div class="crm-item" style="margin-bottom:24px;">
+              <div style="font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:8px;">Tags phân loại</div>
+              <div>${(activeMsg.tags || []).map(t => `<span style="display:inline-block; padding:4px 12px; background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:99px; font-size:12px; font-weight:500; margin:0 6px 6px 0;">${t}</span>`).join('') || '<span class="muted">Chưa gắn tag</span>'}</div>
+            </div>
+            
+            <div style="border-top:1px solid var(--line); margin:24px 0;"></div>
             
             <div class="crm-item">
-              <div class="crm-label">CÂU TRẢ LỜI NHANH</div>
+              <div style="font-size:11px; font-weight:800; color:var(--muted); text-transform:uppercase; margin-bottom:16px; letter-spacing:0.05em;">Trả lời nhanh</div>
               <div style="display:flex; flex-direction:column; gap:8px;">
                 ${state.quickReplies.map(qr => `
-                  <span class="quick-reply-pill" onclick="document.getElementById('inboxReply').value += '${escape(qr)} '">
+                  <button style="text-align:left; padding:10px 14px; background:var(--surface); border:1px solid var(--line); border-radius:8px; font-size:12px; color:var(--text); cursor:pointer; transition:0.2s;" onclick="const txt = document.getElementById('inboxReply'); txt.value += '${escape(qr)} '; txt.focus();">
                     ${escape(qr)}
-                  </span>
+                  </button>
                 `).join('')}
               </div>
             </div>
