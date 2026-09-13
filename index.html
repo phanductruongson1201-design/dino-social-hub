@@ -3446,44 +3446,40 @@ function renderInbox() {
       'Quản lý Tin nhắn và Bình luận từ Facebook, TikTok, Instagram tại một nơi duy nhất.'
     );
     
-    // 1. KHỞI TẠO BỘ LỌC VÀ LẤY TRẠNG THÁI
+    // Khởi tạo trạng thái
     state.inboxFilter = state.inboxFilter || 'All';
     state.inboxSearch = state.inboxSearch || '';
-    
-    // Bỏ chọn tin nhắn mặc định, ưu tiên lấy ID khách hàng đang được click
     const currentActiveId = state.activeInboxId || null; 
-
     let messages = state.inbox || []; 
     
-    // 2. XỬ LÝ LỌC TIN NHẮN THEO TỪ KHÓA TÌM KIẾM
+    // Lọc theo tìm kiếm
     if (state.inboxSearch) {
         const q = state.inboxSearch.toLowerCase();
         messages = messages.filter(m => m.name.toLowerCase().includes(q) || m.text.toLowerCase().includes(q));
     }
 
-    // 3. XỬ LÝ NÚT BẤM (TẤT CẢ / CHƯA ĐỌC / TIN NHẮN)
+    // Lọc theo Tabs
     if (state.inboxFilter === 'Unread') {
         messages = messages.filter(m => !m.read);
     } else if (state.inboxFilter === 'Messages') {
         messages = messages.filter(m => m.type === 'Tin nhắn');
     }
 
-    // Chỉ hiện chat khi có khách hàng được chọn
     const activeMsg = messages.find(m => m.id === currentActiveId);
 
-    // Style cho các nút bấm phân loại
+    // Style Tabs
     const btnAll = state.inboxFilter === 'All' ? 'background:var(--primary); color:#fff; border:none;' : 'background:transparent; border:1px solid var(--line); color:var(--text);';
     const btnUnread = state.inboxFilter === 'Unread' ? 'background:var(--primary); color:#fff; border:none;' : 'background:transparent; border:1px solid var(--line); color:var(--text);';
     const btnMsg = state.inboxFilter === 'Messages' ? 'background:var(--primary); color:#fff; border:none;' : 'background:transparent; border:1px solid var(--line); color:var(--text);';
 
     html += `
       <div class="inbox-layout">
-        <!-- CỘT 1: DANH SÁCH KHÁCH HÀNG -->
+        <!-- CỘT 1: DANH SÁCH -->
         <div class="inbox-sidebar">
           <div class="inbox-head">
             <div class="search" style="max-width:100%; margin-bottom:12px;">
               <i data-lucide="search"></i>
-              <input placeholder="Tìm người gửi, nội dung..." value="${escape(state.inboxSearch)}" oninput="app.setInboxSearch(this.value)" style="height:36px; background:var(--surface-2); border-radius:8px; border:none; width: 100%; padding-left: 36px;"/>
+              <input placeholder="Tìm người gửi, nội dung..." value="${escape(state.inboxSearch)}" oninput="app.setInboxSearch(this.value)" style="height:36px; background:var(--surface-2); border-radius:8px; border:none; width: 100%; padding-left: 36px; outline:none;"/>
             </div>
             <div class="inbox-filters" style="display:flex; gap:8px;">
               <button class="inbox-filter-btn" style="border-radius:20px; padding:6px 16px; font-weight:600; cursor:pointer; font-size:12px; transition:0.2s; ${btnAll}" onclick="app.setInboxFilter('All')">Tất cả</button>
@@ -3524,10 +3520,10 @@ function renderInbox() {
           </div>
         </div>
         
-        <!-- CỘT 2: KHUNG CHAT -->
-        <div class="inbox-chat" style="border-right: 1px solid var(--line);">
+        <!-- CỘT 2: KHUNG CHAT (ĐÃ KHÓA CHIỀU CAO CHỐNG TRÀN CHỮ) -->
+        <div class="inbox-chat" style="border-right: 1px solid var(--line); display:flex; flex-direction:column; overflow:hidden; height:100%; width:100%;">
           ${activeMsg ? `
-            <div class="chat-head" style="background:var(--surface); display:flex; justify-content:space-between; align-items:center; padding:16px 24px; border-bottom:1px solid var(--line);">
+            <div class="chat-head" style="flex-shrink:0; background:var(--surface); display:flex; justify-content:space-between; align-items:center; padding:16px 24px; border-bottom:1px solid var(--line);">
               <div class="chat-user-info" style="display:flex; align-items:center; gap:12px;">
                 <div class="inbox-avatar" style="width:40px;height:40px">
                   <div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px">
@@ -3546,7 +3542,7 @@ function renderInbox() {
               </div>
             </div>
             
-            <div class="chat-body" style="background:var(--bg); flex:1; padding:24px; overflow-y:auto; display:flex; flex-direction:column; gap:20px;">
+            <div class="chat-body" style="background:var(--bg); flex:1; min-height:0; padding:24px; overflow-y:auto; display:flex; flex-direction:column; gap:20px;">
               <div style="text-align:center; position:relative; margin: 10px 0;">
                  <hr style="border:0; border-top:1px solid var(--line); position:absolute; top:50%; left:0; right:0; z-index:1;">
                  <span style="background:var(--bg); padding:0 12px; position:relative; z-index:2; font-size:11px; font-weight:600; color:var(--muted);">Hôm nay</span>
@@ -3584,7 +3580,7 @@ function renderInbox() {
               ` : ''}
             </div>
             
-            <div class="chat-foot" style="background:var(--surface); padding:16px 24px;">
+            <div class="chat-foot" style="flex-shrink:0; background:var(--surface); padding:16px 24px; border-top:1px solid var(--line);">
               <div id="chatInputContainer" style="display:flex; align-items:center; background:var(--surface-2); border:1px solid var(--line); border-radius:24px; padding:8px 12px; transition:all 0.3s ease;">
                 <button class="icon-btn" style="border:none;background:transparent;color:var(--muted); width:32px; height:32px;">
                   <i data-lucide="image" style="width:18px;"></i>
@@ -3604,9 +3600,8 @@ function renderInbox() {
               </div>
             </div>
           ` : `
-            <!-- MÀN HÌNH CHỜ KHI CHƯA CLICK VÀO TIN NHẮN -->
             <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; background:var(--bg);">
-              <i data-lucide="messages-square" style="width:64px; height:64px; color:var(--muted); opacity:0.3; margin-bottom:16px;"></i>
+              <i data-lucide="message-square" style="width:64px; height:64px; color:var(--muted); opacity:0.3; margin-bottom:16px;"></i>
               <b style="font-size:18px; color:var(--text); margin-bottom:8px;">Hộp thư đa kênh</b>
               <span style="font-size:14px; color:var(--muted);">Hãy chọn một cuộc hội thoại từ danh sách bên trái.</span>
             </div>
@@ -3614,7 +3609,7 @@ function renderInbox() {
         </div>
         
         <!-- CỘT 3: CRM (THÔNG TIN KHÁCH HÀNG) -->
-        <div class="inbox-crm" style="background:var(--surface-2); padding:24px;">
+        <div class="inbox-crm" style="background:var(--surface-2); padding:24px; overflow-y:auto;">
           ${activeMsg ? `
             <div style="font-size:11px; font-weight:800; color:var(--muted); text-transform:uppercase; margin-bottom:16px; letter-spacing:0.05em;">Thông tin khách hàng</div>
             
@@ -3663,6 +3658,82 @@ function renderInbox() {
     return html;
   }
 
+  // ==========================================
+  // CÁC HÀM XỬ LÝ SỰ KIỆN CỦA INBOX
+  // ==========================================
+  window.app.setInboxFilter = function(filterName) {
+    state.inboxFilter = filterName;
+    state.activeInboxId = null;
+    save();
+    render();
+  };
+
+  window.app.setInboxSearch = function(val) {
+    state.inboxSearch = val;
+    clearTimeout(window.__inboxSearchTimer);
+    window.__inboxSearchTimer = setTimeout(() => {
+       state.activeInboxId = null; 
+       render();
+    }, 300);
+  };
+
+  window.app.selectInbox = function(id) { 
+    state.activeInboxId = id; 
+    const msg = state.inbox.find(m => m.id === id); 
+    if (msg && !msg.read) { 
+      msg.read = true; 
+    } 
+    save(); 
+    render(); 
+
+    // ĐẢM BẢO KHUNG CHAT LUÔN MỞ RA TRÊN ĐIỆN THOẠI
+    if (window.innerWidth <= 768) {
+        document.body.classList.add('show-mobile-chat');
+        setTimeout(() => {
+            const chatHead = document.querySelector('.chat-head');
+            if (chatHead && !document.getElementById('mobileInboxBack')) {
+                const backBtn = document.createElement('button');
+                backBtn.id = 'mobileInboxBack';
+                backBtn.className = 'btn small primary';
+                backBtn.style.cssText = 'margin-right: 12px; display: flex; align-items: center;';
+                backBtn.innerHTML = '<svg style="width:14px;height:14px;margin-right:4px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Trở lại';
+                backBtn.onclick = () => document.body.classList.remove('show-mobile-chat');
+                chatHead.insertBefore(backBtn, chatHead.firstChild);
+            }
+        }, 50);
+    }
+  };
+
+  window.app.sendInboxReply = function() { 
+    const text = document.getElementById('inboxReply').value.trim(); 
+    if (!text) return; 
+    
+    const msg = state.inbox.find(m => m.id === state.activeInboxId); 
+    if (msg) { 
+      msg.replied = true; 
+      msg.replyText = text; 
+      save(); 
+      render(); 
+      app.ui.showToast('Đã gửi phản hồi', 'success'); 
+      
+      // Giữ nguyên khung chat trên điện thoại sau khi bấm Gửi
+      if (window.innerWidth <= 768) {
+          document.body.classList.add('show-mobile-chat');
+          setTimeout(() => {
+            const chatHead = document.querySelector('.chat-head');
+            if (chatHead && !document.getElementById('mobileInboxBack')) {
+                const backBtn = document.createElement('button');
+                backBtn.id = 'mobileInboxBack';
+                backBtn.className = 'btn small primary';
+                backBtn.style.cssText = 'margin-right: 12px; display: flex; align-items: center;';
+                backBtn.innerHTML = '<svg style="width:14px;height:14px;margin-right:4px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Trở lại';
+                backBtn.onclick = () => document.body.classList.remove('show-mobile-chat');
+                chatHead.insertBefore(backBtn, chatHead.firstChild);
+            }
+        }, 50);
+      }
+    } 
+  };
   // ==========================================
   // CÁC HÀM XỬ LÝ SỰ KIỆN CỦA INBOX (Dán nối tiếp ngay phía dưới hàm renderInbox)
   // ==========================================
