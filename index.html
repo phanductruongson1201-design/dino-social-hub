@@ -1706,9 +1706,10 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
   .btn { padding-left: 10px; padding-right: 10px; }
 }
 /* =========================================
-   TỔNG HỢP RESPONSIVE MOBILE TOÀN DIỆN
+   TỔNG HỢP RESPONSIVE MOBILE TOÀN DIỆN (ĐÃ DỌN SẠCH LỖI)
    ========================================= */
-/* 1. Khóa tràn ngang toàn trang */
+
+/* 1. KHÓA TRÀN NGANG & ĐẨY TRANG TRÁNH TOPBAR */
 html, body {
   overflow-x: hidden !important; 
   width: 100% !important;
@@ -1718,21 +1719,14 @@ html, body {
   width: 100% !important;
   max-width: 100vw !important;
   overflow-x: hidden !important;
+  padding-top: 70px !important; 
 }
 svg { max-width: 100% !important; }
 
-/* 2. Hiệu ứng chữ nhấp nháy Neon */
+/* 2. HIỆU ỨNG CHỮ NEON DINO HUB */
 @keyframes neonPulse {
-  0%, 100% { 
-    opacity: 1; 
-    text-shadow: 0 0 8px rgba(56, 189, 248, 0.9), 0 0 15px rgba(56, 189, 248, 0.5); 
-    color: #ffffff;
-  }
-  50% { 
-    opacity: 0.6; 
-    text-shadow: 0 0 2px rgba(56, 189, 248, 0.2); 
-    color: #94a3b8;
-  }
+  0%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(56, 189, 248, 0.9), 0 0 15px rgba(56, 189, 248, 0.5); color: #ffffff; }
+  50% { opacity: 0.6; text-shadow: 0 0 2px rgba(56, 189, 248, 0.2); color: #94a3b8; }
 }
 .brand-name {
   animation: neonPulse 2s ease-in-out infinite;
@@ -1740,71 +1734,12 @@ svg { max-width: 100% !important; }
   letter-spacing: 0.5px;
 }
 
-/* 3. Nút menu & Lớp phủ Sidebar (Mặc định ẩn trên Desktop) */
-.mobile-menu-btn { display: none; background: transparent; border: none; color: var(--text); padding: 4px; cursor: pointer; }
-.mobile-top-logo { display: none; }
-.sidebar-overlay { 
-  display: none; 
-  position: fixed; 
-  inset: 0; 
-  background: rgba(0,0,0,0.6); 
-  z-index: 10000; 
-  backdrop-filter: blur(3px); 
-}
-.sidebar-overlay.show { display: block; }
-
-/* 4. Tinh chỉnh giao diện khi màn hình nhỏ (Tablet & Phone) */
-@media (max-width: 900px) {
-  /* Sửa lỗi bóp méo trang Tạo bài viết */
-  .content > div[style*="flex-start"] {
-    flex-direction: column !important;
-    gap: 20px !important;
-  }
-  .content > div[style*="flex-start"] > div {
-    width: 100% !important;
-    max-width: 100vw !important;
-    position: static !important; 
-  }
-  .platform-selector {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 12px !important;
-  }
-  .device-wrapper {
-    transform: scale(0.95);
-    transform-origin: top center;
-    margin-bottom: 20px;
-  }
-}
-
-/* =========================================
-   CSS TỔNG HỢP CHO MOBILE (TOPBAR & SIDEBAR)
-   ========================================= */
-/* Lớp phủ nền mờ (Mặc định ẩn) */
-.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 10000; backdrop-filter: blur(3px); }
-.sidebar-overlay.show { display: block; }
-
-/* Các nút Topbar mặc định ẩn trên Máy tính */
-.mobile-menu-btn { display: none; }
-.mobile-top-logo { display: none; }
-
-@media (max-width: 768px) {
-  /* 1. HIỆN NÚT 3 GẠCH VÀ LOGO TRÊN TOPBAR */
-  .mobile-menu-btn { display: flex !important; }
-  .mobile-top-logo { display: block !important; }
-  .mobile-hide { display: none !important; }
-  .topbar .search { display: none !important; }
-
-  /* =========================================
-   BỘ CSS GỘP CHUẨN NHẤT CHO MOBILE (XÓA HẾT MÃ LỖI CŨ)
-   ========================================= */
-
-/* --- 1. LỚP PHỦ MENU VÀ FIX CHẠM NHẦM KÍNH TÀNG HÌNH --- */
+/* 3. LỚP PHỦ MENU VÀ FIX CHẠM NHẦM TÀNG HÌNH */
 .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 10000; backdrop-filter: blur(3px); }
 .sidebar-overlay.show { display: block; }
 .sidebar-overlay:not(.show) { pointer-events: none !important; }
 
-/* --- 2. ĐÓNG ĐINH TOPBAR KHI CUỘN (LUÔN NỔI TRÊN CÙNG) --- */
+/* 4. ĐÓNG ĐINH TOPBAR NỔI TRÊN CÙNG */
 .topbar {
   position: fixed !important;
   top: 0 !important;
@@ -1814,28 +1749,30 @@ svg { max-width: 100% !important; }
   background-color: var(--surface, #1e293b) !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
 }
-/* Đẩy thân trang xuống để không bị Topbar che mất phần đỉnh */
-.main, .content { padding-top: 70px !important; }
 
-/* Các nút Topbar mặc định ẩn trên PC */
-.mobile-menu-btn { display: none; }
+/* 5. ẨN NÚT MOBILE TRÊN MÁY TÍNH */
+.mobile-menu-btn { display: none; background: transparent; border: none; color: var(--text); padding: 4px; cursor: pointer; }
 .mobile-top-logo { display: none; }
+
+/* =========================================
+   TINH CHỈNH TABLET (DƯỚI 900px)
+   ========================================= */
+@media (max-width: 900px) {
+  .content > div[style*="flex-start"] { flex-direction: column !important; gap: 20px !important; }
+  .content > div[style*="flex-start"] > div { width: 100% !important; max-width: 100vw !important; position: static !important; }
+  .platform-selector { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .device-wrapper { transform: scale(0.95); transform-origin: top center; margin-bottom: 20px; }
+}
 
 /* =========================================
    GIAO DIỆN ĐIỆN THOẠI (DƯỚI 768px)
    ========================================= */
 @media (max-width: 768px) {
   
-  /* --- 3. ÉP KHUNG MÀN HÌNH CHỐNG TRÀN LỀ PHẢI --- */
-  html, body { overflow-x: hidden !important; width: 100% !important; }
-  .content, .main { 
-    width: 100% !important; max-width: 100vw !important; 
-    box-sizing: border-box !important; 
-    padding-left: 10px !important; padding-right: 10px !important; 
-    overflow-x: hidden !important;
-  }
+  /* --- Ép khung màn hình không tràn lề --- */
+  .content, .main { padding-left: 10px !important; padding-right: 10px !important; }
 
-  /* --- 4. TOPBAR VÀ MENU TRƯỢT --- */
+  /* --- Topbar & Menu trượt --- */
   .mobile-menu-btn { display: flex !important; }
   .mobile-top-logo { display: block !important; }
   .mobile-hide { display: none !important; }
@@ -1862,58 +1799,44 @@ svg { max-width: 100% !important; }
   .sidebar.show-mobile .nav-label { margin-left: 12px !important; }
   .sidebar.show-mobile .sidebar-footer { display: none !important; }
 
-  /* --- 5. SỬA CÁC THẺ CARD (LỊCH, HOẠT ĐỘNG, BIỂU ĐỒ) --- */
+  /* --- Sửa các thẻ Card (Lịch, Hoạt động, Nền tảng) --- */
   .card, .panel {
     width: 100% !important; max-width: 100% !important;
     box-sizing: border-box !important;
-    overflow: visible !important; /* Không bị cắt mất chữ X dưới đáy */
+    overflow: visible !important; 
     margin-bottom: 20px !important;
   }
-  
-  /* Ép chữ bẻ dòng chuẩn, không bị dọc (b/à/i) */
   .card *, .panel * {
-    max-width: 100% !important;
-    box-sizing: border-box !important;
+    max-width: 100% !important; box-sizing: border-box !important;
   }
   .card p, .card span, .card h1, .card h2, .card h3, .card h4, .card h5, .card h6, .card div, .empty-state, [style*="text-align: center"] {
     white-space: normal !important;
     overflow-wrap: break-word !important;
-    word-break: normal !important; /* Bắt buộc để không gãy từng chữ cái */
+    word-break: normal !important; 
   }
-
   .card [style*="display: flex"], .card .d-flex {
-    flex-wrap: wrap !important;
-    min-width: 0 !important;
+    flex-wrap: wrap !important; min-width: 0 !important;
   }
-
-  /* Biểu đồ nền tảng xếp dọc thay vì ép ngang */
   .card > div[style*="display: flex"] {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 16px !important;
+    flex-direction: column !important; align-items: flex-start !important; gap: 16px !important;
   }
   .card canvas, .card svg { 
-    max-width: 100% !important; 
-    height: auto !important; 
-    margin: 0 auto 10px auto !important; 
+    max-width: 100% !important; height: auto !important; margin: 0 auto 10px auto !important; 
   }
 
-  /* --- 6. SỬA LỖI LIỆT CẢM ỨNG HỘP THƯ --- */
+  /* --- Sửa lỗi liệt cảm ứng Hộp thư --- */
   .inbox-layout {
     display: flex !important;
-    flex-direction: column !important; /* Tin nhắn trên, chat dưới */
-    height: auto !important;
-    gap: 20px !important;
+    flex-direction: column !important; 
+    height: auto !important; gap: 20px !important;
   }
   .inbox-list, .inbox-detail, .inbox-crm {
     width: 100% !important; max-width: 100% !important;
-    position: relative !important;
-    z-index: 10 !important;
+    position: relative !important; z-index: 10 !important;
     pointer-events: auto !important;
   }
   .inbox-list button, .inbox-list .msg-item, .inbox-list div {
-    pointer-events: auto !important;
-    cursor: pointer !important;
+    pointer-events: auto !important; cursor: pointer !important;
   }
 }
 </style>
