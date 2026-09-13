@@ -1903,6 +1903,54 @@ svg { max-width: 100% !important; }
     margin: 0 auto !important;
   }
 }  
+/* =========================================
+   1. GHIM CỐ ĐỊNH THANH TOPBAR KHI CUỘN
+   ========================================= */
+.topbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 999 !important; /* Nổi lên trên mọi nội dung trang */
+  background-color: #161f32 !important; /* Phủ màu nền để không bị trong suốt khi cuộn */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important; /* Đổ bóng nhẹ phân cách với thân trang */
+}
+
+/* Đảm bảo phần thân trang cho phép hoạt động cuộn dính (sticky) */
+html, body {
+  overflow-y: auto !important;
+}
+
+/* =========================================
+   2. FIX LỖI LIỆT CẢM ỨNG TRONG HỘP THƯ
+   ========================================= */
+@media (max-width: 768px) {
+  /* Ép cột danh sách tin nhắn nổi lên mặt trên cùng */
+  .inbox-layout > div:first-child,
+  .inbox-list {
+    position: relative !important;
+    z-index: 50 !important;
+    pointer-events: auto !important; 
+  }
+  
+  /* Nhấn chìm các cột chức năng phụ/ẩn (vô tình đè lên danh sách) xuống đáy */
+  .inbox-layout > div:nth-child(2),
+  .inbox-layout > div:nth-child(3),
+  .inbox-detail, 
+  .inbox-crm {
+    position: relative !important;
+    z-index: 10 !important;
+  }
+
+  /* Bắt buộc các nút Lọc (Tất cả, Chưa đọc) và Thẻ tin nhắn phải nhận lệnh chạm */
+  .inbox-list button, 
+  .inbox-list .msg-item,
+  .inbox-list [class*="item"],
+  [style*="border-radius: 20px"] {
+    position: relative !important;
+    z-index: 51 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+  }
+}
 </style>
 </head>
 <!-- Giao diện Đăng nhập Kín (Chỉ nhận tài khoản do Admin cấp) -->
