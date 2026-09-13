@@ -3483,7 +3483,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     save();
   }
 function renderInbox() {
-    // 1. Loại bỏ hoàn toàn chữ tiêu đề "Hộp thư hợp nhất"
+    // Loại bỏ hoàn toàn chữ tiêu đề "Hộp thư hợp nhất"
     let html = '';
     
     state.inboxFilter = state.inboxFilter || 'All';
@@ -3505,22 +3505,23 @@ function renderInbox() {
     const btnMsg = state.inboxFilter === 'Messages' ? 'background:var(--primary); color:#fff; border:none;' : 'background:transparent; border:1px solid var(--line); color:var(--text);';
 
     html += `<style>
-      /* Khóa các nút rác tự sinh */
       #mobileInboxBack { display: none !important; }
       .btn-back-chat { display: none !important; }
       
       @media(max-width:980px) { 
-        .inbox-crm { display:none !important; } 
+        #content .inbox-crm { display:none !important; } 
       }
       
       @media(max-width:768px) {
-        /* Ép chiều cao danh sách lấp đầy hoàn toàn màn hình Mobile */
-        .inbox-layout { height: calc(100vh - 145px) !important; border: none !important; border-radius: 0 !important; background: var(--bg) !important; }
-        .inbox-sidebar { width: 100% !important; flex: 1 !important; height: 100% !important; border: none !important; display: flex !important; flex-direction: column !important; }
-        .inbox-chat { display: none !important; }
+        /* ÉP QUYỀN TUYỆT ĐỐI (#content) ĐỂ PHÁ VỠ MỌI GIỚI HẠN 320PX CŨ */
+        #content .inbox-layout { height: calc(100vh - 145px) !important; border: none !important; border-radius: 0 !important; background: var(--bg) !important; }
         
-        body.show-mobile-chat .inbox-sidebar { display: none !important; }
-        body.show-mobile-chat .inbox-chat { 
+        #content .inbox-sidebar { width: 100% !important; flex: 1 !important; height: 100% !important; max-height: 100vh !important; border: none !important; display: flex !important; flex-direction: column !important; }
+        
+        #content .inbox-chat { display: none !important; }
+        
+        body.show-mobile-chat #content .inbox-sidebar { display: none !important; }
+        body.show-mobile-chat #content .inbox-chat { 
             display: flex !important; 
             position: fixed !important;
             top: 60px !important;
@@ -3534,23 +3535,22 @@ function renderInbox() {
             border: none !important;
         }
         
-        .hide-on-mobile { display: none !important; }
-        .btn-back-chat { display: flex !important; pointer-events: auto !important; z-index: 101 !important; }
+        #content .hide-on-mobile { display: none !important; }
+        #content .btn-back-chat { display: flex !important; pointer-events: auto !important; z-index: 101 !important; }
         
-        /* Chống lỗi lửng lơ cắt cụt danh sách */
-        .inbox-list { padding: 0 0 20px 0 !important; flex: 1 !important; height: 100% !important; max-height: none !important; overflow-y: auto !important; }
-        .chat-head { padding: 12px 16px !important; gap: 8px !important; border-bottom: 1px solid var(--line) !important; }
-        .chat-user-info { gap: 8px !important; }
-        .chat-meta b { font-size: 14px !important; }
-        .chat-meta span { font-size: 11px !important; }
-        .inbox-avatar.header-avatar { width: 36px !important; height: 36px !important; }
+        /* Giải phóng hoàn toàn danh sách cuộn mượt mà chạm đáy */
+        #content .inbox-list { padding: 0 0 20px 0 !important; flex: 1 !important; height: 100% !important; max-height: none !important; overflow-y: auto !important; }
+        #content .chat-head { padding: 12px 16px !important; gap: 8px !important; border-bottom: 1px solid var(--line) !important; }
+        #content .chat-user-info { gap: 8px !important; }
+        #content .chat-meta b { font-size: 14px !important; }
+        #content .chat-meta span { font-size: 11px !important; }
+        #content .inbox-avatar.header-avatar { width: 36px !important; height: 36px !important; }
       }
     </style>`;
     
-    // 2. Khung tổng máy tính giãn cao lên calc(100vh - 80px) do không còn chữ tiêu đề
     html += `<div class="inbox-layout" style="display:flex; height:calc(100vh - 80px); border:1px solid var(--line); border-radius:12px; background:var(--surface); overflow:hidden; width:100%; position:relative; z-index:50;">`;
 
-    // CỘT 1: DANH SÁCH (Sử dụng lệnh chuẩn app.selectInbox)
+    // CỘT 1: DANH SÁCH KHÁCH HÀNG
     html += `
     <div class="inbox-sidebar" style="width:340px; flex-shrink:0; display:flex; flex-direction:column; background:var(--bg); border-right:1px solid var(--line);">
       <div class="inbox-head" style="padding: 20px 24px; background:var(--surface); border-bottom:1px solid var(--line);">
@@ -3695,7 +3695,7 @@ function renderInbox() {
     </div>
     `;
 
-    // CỘT 3: CRM
+    // CỘT 3: CRM (Tự ẩn trên điện thoại)
     html += `
     <div class="inbox-crm" style="width:320px; border-left:1px solid var(--line); background:var(--surface-2); padding:24px; overflow-y:auto; flex-shrink:0;">
       ${activeMsg ? `
