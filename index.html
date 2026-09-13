@@ -1590,8 +1590,23 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
 .tour-btn { display: flex; justify-content: space-between; }
 
 /* =========================================
-   ĐIỀU CHỈNH ĐÁP ỨNG (RESPONSIVE)
+   ĐIỀU CHỈNH ĐÁP ỨNG (RESPONSIVE) - BẢN FIX CHUẨN MỰC
    ========================================= */
+
+/* Lớp phủ màn hình & Hiệu ứng chữ (Dùng chung mọi thiết bị) */
+.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 10000; backdrop-filter: blur(3px); }
+.sidebar-overlay.show { display: block; }
+.sidebar-overlay:not(.show) { pointer-events: none !important; }
+
+@keyframes neonPulse {
+  0%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(56, 189, 248, 0.9), 0 0 15px rgba(56, 189, 248, 0.5); color: #ffffff; }
+  50% { opacity: 0.6; text-shadow: 0 0 2px rgba(56, 189, 248, 0.2); color: #94a3b8; }
+}
+.brand-name { animation: neonPulse 2s ease-in-out infinite; font-weight: 800; letter-spacing: 0.5px; }
+
+/* Ẩn nút 3 gạch trên Máy tính */
+.mobile-menu-btn, .mobile-top-logo { display: none; }
+
 @media(max-width: 1300px) { 
   .grid-8 { grid-template-columns: repeat(4, minmax(0, 1fr)); } 
   .account-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } 
@@ -1600,24 +1615,10 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
 
 @media(max-width: 980px) {
   .sidebar { width: 72px; }
-  .sidebar .brand-name, 
-  .sidebar .brand-version, 
-  .sidebar .section-label, 
-  .sidebar .nav-label, 
-  .sidebar .user-meta, 
-  .sidebar .collapse-text, 
-  .sidebar .demo-badge { display: none; }
-  
-  .sidebar .brand { justify-content: center; }
-  .sidebar .nav-item { justify-content: center; }
-  
-  .main, .sidebar.collapsed ~ .main { 
-    margin-left: 72px; 
-    width: calc(100% - 72px); 
-  }
-  
-  .two-col, .three-col { grid-template-columns: 1fr; }
-  .settings-layout { grid-template-columns: 1fr; }
+  .sidebar .brand-name, .sidebar .brand-version, .sidebar .section-label, .sidebar .nav-label, .sidebar .user-meta, .sidebar .collapse-text, .sidebar .demo-badge { display: none; }
+  .sidebar .brand, .sidebar .nav-item { justify-content: center; }
+  .main, .sidebar.collapsed ~ .main { margin-left: 72px; width: calc(100% - 72px); }
+  .two-col, .three-col, .settings-layout { grid-template-columns: 1fr; }
   .settings-nav { flex-direction: row; overflow: auto; }
   .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .kanban { grid-template-columns: 1fr 1fr; }
@@ -1626,218 +1627,77 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
   .inbox-crm { display: none; }
 }
 
+/* =========================================
+   GIAO DIỆN ĐIỆN THOẠI (Gộp chung mọi bản vá)
+   ========================================= */
 @media(max-width: 700px) {
-  .sidebar { display: none; }
-  
-  .main, .sidebar.collapsed ~ .main { 
-    margin-left: 0 !important; 
-    width: 100% !important; 
+  /* 1. KHÓA TRÀN NGANG */
+  html, body { overflow-x: hidden !important; width: 100% !important; max-width: 100vw !important; }
+
+  /* 2. ĐÓNG ĐINH TOPBAR & BẢO VỆ NỘI DUNG Ở GIỮA */
+  .topbar { 
+    position: fixed !important; top: 0; left: 0; width: 100% !important; 
+    z-index: 9999 !important; background-color: var(--surface, #1e293b) !important; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important; 
+    padding: 0 12px !important; height: 60px !important; gap: 10px; 
   }
-  
-  .content { padding: 12px 12px 80px; }
-  .topbar { padding: 0 12px; height: 56px; gap: 10px; }
+  .content { 
+    padding: 75px 12px 80px !important; /* Dịch nội dung xuống tránh Topbar và né Bottom bar */
+    width: 100% !important; max-width: 100vw !important; box-sizing: border-box !important; overflow-x: hidden !important;
+  }
+  .main, .sidebar.collapsed ~ .main { margin-left: 0 !important; width: 100% !important; }
+
+  /* 3. MENU TRƯỢT TỪ NGOÀI VÀO */
+  .mobile-menu-btn { display: flex !important; background: transparent; border: none; color: #fff; cursor: pointer; }
+  .mobile-top-logo { display: block !important; }
   .breadcrumbs { display: none; }
-  .search { max-width: none; }
-  .search input { font-size: 13px; }
+  .search { display: none !important; } /* Tạm ẩn Search để không chèn ép Logo */
   .top-actions .user-btn span { display: none; }
-  
-  .grid-8 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .quick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .platform-selector { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .form-grid { grid-template-columns: 1fr; }
-  .field.full { grid-column: auto; }
-  .account-grid { grid-template-columns: 1fr; }
-  .kanban { grid-template-columns: 1fr; }
-  
-  .page-header { flex-direction: column; }
-  .page-header .actions { width: 100%; }
-  .page-header .actions .btn { flex: 1; }
-  
-  /* Thanh Bottom Navigation cho điện thoại */
-  .mobile-bottom { 
-    display: flex; 
-    position: fixed; 
-    inset: auto 0 0 0; 
-    height: 60px; 
-    background: var(--surface); 
-    border-top: 1px solid var(--line); 
-    z-index: 50; 
-    width: 100%; 
-    justify-content: space-around; 
+
+  .sidebar { 
+    display: flex !important; position: fixed !important; top: 0; left: 0; height: 100vh; 
+    z-index: 10001 !important; transform: translateX(-100%); transition: transform 0.3s ease; 
+    width: 280px !important; background-color: var(--surface, #1e293b) !important; 
   }
-  
-  .mobile-bottom button { 
-    flex: 1; 
-    border: 0; 
-    background: var(--surface); 
-    font-size: 10px; 
-    color: var(--muted); 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
-    gap: 6px; 
-    cursor: pointer; 
-  }
-  
-  .mobile-bottom button.active { 
-    color: var(--primary); 
-    font-weight: 800; 
-  }
-  
+  .sidebar.show-mobile { transform: translateX(0); visibility: visible !important; opacity: 1 !important; }
+  .sidebar .brand { display: flex !important; align-items: center !important; justify-content: space-between !important; width: 100% !important; padding-left: 20px !important; }
+  .sidebar .brand-text { display: flex !important; flex-direction: column !important; margin-left: 12px !important; }
+  .sidebar .brand-name, .sidebar .brand-version, .sidebar .nav-label, .sidebar .section-label, .sidebar .badge-count { display: block !important; }
+  .sidebar .nav-item { justify-content: flex-start !important; padding-left: 20px !important; }
+  .sidebar .nav-label { margin-left: 12px !important; }
+
+  /* 4. CHỐNG TRÀN VIỀN LỊCH / HOẠT ĐỘNG / BIỂU ĐỒ */
+  .grid-8, .quick-grid, .platform-selector { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .form-grid, .account-grid, .kanban { grid-template-columns: 1fr; }
+  .card, .panel { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; overflow: visible !important; }
+  .card *, .panel * { max-width: 100% !important; box-sizing: border-box !important; }
+  .card p, .card span, .card div { white-space: normal !important; overflow-wrap: break-word !important; word-break: normal !important; }
+  .card > div[style*="display: flex"], .card .d-flex { flex-wrap: wrap !important; min-width: 0 !important; }
+  .card canvas, .card svg { max-width: 100% !important; height: auto !important; margin: 0 auto 10px auto !important; }
+
+  /* 5. CỨU HỘP THƯ LIỆT CẢM ỨNG */
+  .inbox-layout { display: flex !important; flex-direction: column !important; }
+  .inbox-chat { display: none !important; }
+  .inbox-list { width: 100% !important; max-width: 100% !important; position: relative !important; z-index: 50 !important; pointer-events: auto !important; }
+  .inbox-list button, .inbox-list .msg-item { pointer-events: auto !important; cursor: pointer !important; }
+
+  /* 6. THANH ĐIỀU HƯỚNG ĐÁY (Giữ nguyên của bạn) */
+  .mobile-bottom { display: flex; position: fixed; inset: auto 0 0 0; height: 60px; background: var(--surface); border-top: 1px solid var(--line); z-index: 50; width: 100%; justify-content: space-around; }
+  .mobile-bottom button { flex: 1; border: 0; background: var(--surface); font-size: 10px; color: var(--muted); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; cursor: pointer; }
+  .mobile-bottom button.active { color: var(--primary); font-weight: 800; }
   .modal { max-height: 88vh; }
   .cal-cell { min-height: 80px; padding: 6px; }
   .event span { display: none; }
   .event { padding: 6px; }
-  .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .inbox-layout { grid-template-columns: 1fr; }
-  .inbox-chat { display: none; }
 }
 
 @media(max-width: 420px) {
-  .topbar { padding: 0 10px; gap: 8px; }
-  .search { min-width: 0; }
-  .search input { padding-left: 36px; }
+  .topbar { padding: 0 10px !important; gap: 8px; }
   .top-actions { gap: 6px; }
   #helpBtn { display: none; }
   .user-btn { border: 0; padding: 4px; }
-  .grid-8, .metric-grid { grid-template-columns: 1fr 1fr; }
-  .quick-grid { grid-template-columns: 1fr 1fr; }
+  .grid-8, .metric-grid, .quick-grid { grid-template-columns: 1fr 1fr; }
   .btn { padding-left: 10px; padding-right: 10px; }
-}
-/* =========================================
-   TỔNG HỢP RESPONSIVE MOBILE TOÀN DIỆN (ĐÃ DỌN SẠCH LỖI)
-   ========================================= */
-
-/* 1. KHÓA TRÀN NGANG & ĐẨY TRANG TRÁNH TOPBAR */
-html, body {
-  overflow-x: hidden !important; 
-  width: 100% !important;
-  max-width: 100vw !important;
-}
-.main, .content {
-  width: 100% !important;
-  max-width: 100vw !important;
-  overflow-x: hidden !important;
-  padding-top: 70px !important; 
-}
-svg { max-width: 100% !important; }
-
-/* 2. HIỆU ỨNG CHỮ NEON DINO HUB */
-@keyframes neonPulse {
-  0%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(56, 189, 248, 0.9), 0 0 15px rgba(56, 189, 248, 0.5); color: #ffffff; }
-  50% { opacity: 0.6; text-shadow: 0 0 2px rgba(56, 189, 248, 0.2); color: #94a3b8; }
-}
-.brand-name {
-  animation: neonPulse 2s ease-in-out infinite;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-}
-
-/* 3. LỚP PHỦ MENU VÀ FIX CHẠM NHẦM TÀNG HÌNH */
-.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 10000; backdrop-filter: blur(3px); }
-.sidebar-overlay.show { display: block; }
-.sidebar-overlay:not(.show) { pointer-events: none !important; }
-
-/* 4. ĐÓNG ĐINH TOPBAR NỔI TRÊN CÙNG */
-.topbar {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  z-index: 9999 !important; 
-  background-color: var(--surface, #1e293b) !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
-}
-
-/* 5. ẨN NÚT MOBILE TRÊN MÁY TÍNH */
-.mobile-menu-btn { display: none; background: transparent; border: none; color: var(--text); padding: 4px; cursor: pointer; }
-.mobile-top-logo { display: none; }
-
-/* =========================================
-   TINH CHỈNH TABLET (DƯỚI 900px)
-   ========================================= */
-@media (max-width: 900px) {
-  .content > div[style*="flex-start"] { flex-direction: column !important; gap: 20px !important; }
-  .content > div[style*="flex-start"] > div { width: 100% !important; max-width: 100vw !important; position: static !important; }
-  .platform-selector { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
-  .device-wrapper { transform: scale(0.95); transform-origin: top center; margin-bottom: 20px; }
-}
-
-/* =========================================
-   GIAO DIỆN ĐIỆN THOẠI (DƯỚI 768px)
-   ========================================= */
-@media (max-width: 768px) {
-  
-  /* --- Ép khung màn hình không tràn lề --- */
-  .content, .main { padding-left: 10px !important; padding-right: 10px !important; }
-
-  /* --- Topbar & Menu trượt --- */
-  .mobile-menu-btn { display: flex !important; }
-  .mobile-top-logo { display: block !important; }
-  .mobile-hide { display: none !important; }
-  .topbar .search { display: none !important; }
-
-  .sidebar {
-    position: fixed !important;
-    top: 0; left: 0; height: 100vh;
-    z-index: 10001 !important;
-    transform: translateX(-100%) !important;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    width: 280px !important; 
-    background-color: var(--surface, #1e293b) !important;
-    display: flex !important;
-  }
-  .sidebar.show-mobile { transform: translateX(0) !important; visibility: visible !important; opacity: 1 !important; }
-  
-  .sidebar.show-mobile .brand { display: flex !important; align-items: center !important; justify-content: flex-start !important; width: 100% !important; padding-left: 20px !important; cursor: pointer !important; }
-  .sidebar.show-mobile .brand-text { display: flex !important; flex-direction: column !important; opacity: 1 !important; visibility: visible !important; margin-left: 12px !important; }
-  .sidebar.show-mobile .brand-name { display: block !important; font-size: 16px !important; color: #fff !important; }
-  .sidebar.show-mobile .brand-version { display: block !important; color: #94a3b8 !important; }
-  .sidebar.show-mobile .nav-label, .sidebar.show-mobile .section-label, .sidebar.show-mobile .badge-count { display: block !important; opacity: 1 !important; visibility: visible !important; }
-  .sidebar.show-mobile .nav-item { justify-content: flex-start !important; padding-left: 20px !important; }
-  .sidebar.show-mobile .nav-label { margin-left: 12px !important; }
-  .sidebar.show-mobile .sidebar-footer { display: none !important; }
-
-  /* --- Sửa các thẻ Card (Lịch, Hoạt động, Nền tảng) --- */
-  .card, .panel {
-    width: 100% !important; max-width: 100% !important;
-    box-sizing: border-box !important;
-    overflow: visible !important; 
-    margin-bottom: 20px !important;
-  }
-  .card *, .panel * {
-    max-width: 100% !important; box-sizing: border-box !important;
-  }
-  .card p, .card span, .card h1, .card h2, .card h3, .card h4, .card h5, .card h6, .card div, .empty-state, [style*="text-align: center"] {
-    white-space: normal !important;
-    overflow-wrap: break-word !important;
-    word-break: normal !important; 
-  }
-  .card [style*="display: flex"], .card .d-flex {
-    flex-wrap: wrap !important; min-width: 0 !important;
-  }
-  .card > div[style*="display: flex"] {
-    flex-direction: column !important; align-items: flex-start !important; gap: 16px !important;
-  }
-  .card canvas, .card svg { 
-    max-width: 100% !important; height: auto !important; margin: 0 auto 10px auto !important; 
-  }
-
-  /* --- Sửa lỗi liệt cảm ứng Hộp thư --- */
-  .inbox-layout {
-    display: flex !important;
-    flex-direction: column !important; 
-    height: auto !important; gap: 20px !important;
-  }
-  .inbox-list, .inbox-detail, .inbox-crm {
-    width: 100% !important; max-width: 100% !important;
-    position: relative !important; z-index: 10 !important;
-    pointer-events: auto !important;
-  }
-  .inbox-list button, .inbox-list .msg-item, .inbox-list div {
-    pointer-events: auto !important; cursor: pointer !important;
-  }
 }
 </style>
 </head>
