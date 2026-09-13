@@ -1833,6 +1833,26 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     display: inline-block !important;
   }
 }
+/* =========================================
+   PHỤC HỒI CHUYỂN CẢNH HỘP THƯ (MOBILE)
+   ========================================= */
+@media (max-width: 768px) {
+  /* Mặc định trên Điện thoại: Giấu khung chat, chỉ hiện Danh sách khách hàng */
+  .inbox-layout .inbox-chat, 
+  .inbox-layout .inbox-crm { 
+    display: none !important; 
+  }
+  
+  /* Khi click vào khách hàng: Giấu Danh sách, Bung khung chat ra toàn màn hình */
+  body.show-mobile-chat .inbox-layout .inbox-sidebar { 
+    display: none !important; 
+  }
+  body.show-mobile-chat .inbox-layout .inbox-chat { 
+    display: flex !important; 
+    height: 88vh !important; 
+    border: none !important;
+  }
+}
 </style>
 </head>
 <!-- Giao diện Đăng nhập Kín (Chỉ nhận tài khoản do Admin cấp) -->
