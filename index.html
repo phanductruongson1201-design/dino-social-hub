@@ -1813,6 +1813,46 @@ svg { max-width: 100% !important; }
     -webkit-overflow-scrolling: touch;
   }
 }
+/* =========================================
+   ÉP SIDEBAR MOBILE BUNG RỘNG VÀ HIỆN CHỮ
+   ========================================= */
+@media (max-width: 768px) {
+  /* Ép chiều rộng thanh Sidebar */
+  .sidebar.show-mobile {
+    width: 280px !important;
+  }
+  
+  /* Bắt buộc hiện lại toàn bộ Text đã bị giấu */
+  .sidebar.show-mobile .nav-label,
+  .sidebar.show-mobile .brand-text,
+  .sidebar.show-mobile .section-label,
+  .sidebar.show-mobile .badge-count {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Căn lề lại các Icon và Chữ cho thẳng hàng sang trái */
+  .sidebar.show-mobile .nav-item {
+    justify-content: flex-start !important;
+    padding-left: 20px !important;
+  }
+  
+  .sidebar.show-mobile .brand {
+    justify-content: flex-start !important;
+    padding-left: 20px !important;
+  }
+
+  /* Tạo khoảng cách giữa Icon và Chữ */
+  .sidebar.show-mobile .nav-label {
+    margin-left: 12px !important;
+  }
+
+  /* Ẩn nút "Thu gọn menu" ở dưới cùng vì trên Mobile không cần đến */
+  .sidebar.show-mobile .sidebar-footer {
+    display: none !important;
+  }
+}  
 </style>
 </head>
 <!-- Giao diện Đăng nhập Kín (Chỉ nhận tài khoản do Admin cấp) -->
