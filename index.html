@@ -3446,29 +3446,56 @@ function renderInbox() {
       'Quản lý Tin nhắn và Bình luận từ Facebook, TikTok, Instagram tại một nơi duy nhất.'
     );
     
-    const messages = state.inbox || []; 
-    const activeMsg = messages.find(m => m.id === activeInboxId) || messages[0];
+    // 1. KHỞI TẠO BỘ LỌC VÀ LẤY TRẠNG THÁI
+    state.inboxFilter = state.inboxFilter || 'All';
+    state.inboxSearch = state.inboxSearch || '';
     
+    // Bỏ chọn tin nhắn mặc định, ưu tiên lấy ID khách hàng đang được click
+    const currentActiveId = state.activeInboxId || null; 
+
+    let messages = state.inbox || []; 
+    
+    // 2. XỬ LÝ LỌC TIN NHẮN THEO TỪ KHÓA TÌM KIẾM
+    if (state.inboxSearch) {
+        const q = state.inboxSearch.toLowerCase();
+        messages = messages.filter(m => m.name.toLowerCase().includes(q) || m.text.toLowerCase().includes(q));
+    }
+
+    // 3. XỬ LÝ NÚT BẤM (TẤT CẢ / CHƯA ĐỌC / TIN NHẮN)
+    if (state.inboxFilter === 'Unread') {
+        messages = messages.filter(m => !m.read);
+    } else if (state.inboxFilter === 'Messages') {
+        messages = messages.filter(m => m.type === 'Tin nhắn');
+    }
+
+    // Chỉ hiện chat khi có khách hàng được chọn
+    const activeMsg = messages.find(m => m.id === currentActiveId);
+
+    // Style cho các nút bấm phân loại
+    const btnAll = state.inboxFilter === 'All' ? 'background:var(--primary); color:#fff; border:none;' : 'background:transparent; border:1px solid var(--line); color:var(--text);';
+    const btnUnread = state.inboxFilter === 'Unread' ? 'background:var(--primary); color:#fff; border:none;' : 'background:transparent; border:1px solid var(--line); color:var(--text);';
+    const btnMsg = state.inboxFilter === 'Messages' ? 'background:var(--primary); color:#fff; border:none;' : 'background:transparent; border:1px solid var(--line); color:var(--text);';
+
     html += `
       <div class="inbox-layout">
-        <!-- CỘT 1: DANH SÁCH -->
+        <!-- CỘT 1: DANH SÁCH KHÁCH HÀNG -->
         <div class="inbox-sidebar">
           <div class="inbox-head">
             <div class="search" style="max-width:100%; margin-bottom:12px;">
               <i data-lucide="search"></i>
-              <input placeholder="Tìm người gửi, nội dung..." style="height:36px; background:var(--surface-2); border-radius:8px; border:none;"/>
+              <input placeholder="Tìm người gửi, nội dung..." value="${escape(state.inboxSearch)}" oninput="app.setInboxSearch(this.value)" style="height:36px; background:var(--surface-2); border-radius:8px; border:none; width: 100%; padding-left: 36px;"/>
             </div>
             <div class="inbox-filters" style="display:flex; gap:8px;">
-              <button class="inbox-filter-btn active" style="background:var(--primary); color:#fff; border:none; padding:6px 16px;">Tất cả</button>
-              <button class="inbox-filter-btn" style="background:transparent; border:1px solid var(--line); padding:6px 16px;">Chưa đọc</button>
-              <button class="inbox-filter-btn" style="background:transparent; border:1px solid var(--line); padding:6px 16px;">Tin nhắn</button>
+              <button class="inbox-filter-btn" style="border-radius:20px; padding:6px 16px; font-weight:600; cursor:pointer; font-size:12px; transition:0.2s; ${btnAll}" onclick="app.setInboxFilter('All')">Tất cả</button>
+              <button class="inbox-filter-btn" style="border-radius:20px; padding:6px 16px; font-weight:600; cursor:pointer; font-size:12px; transition:0.2s; ${btnUnread}" onclick="app.setInboxFilter('Unread')">Chưa đọc</button>
+              <button class="inbox-filter-btn" style="border-radius:20px; padding:6px 16px; font-weight:600; cursor:pointer; font-size:12px; transition:0.2s; ${btnMsg}" onclick="app.setInboxFilter('Messages')">Tin nhắn</button>
             </div>
           </div>
           <div class="inbox-list">
-            ${messages.map(m => {
+            ${messages.length ? messages.map(m => {
               const mMeta = platformMeta[m.platform];
               return `
-                <div class="inbox-item ${m.id === activeInboxId ? 'active' : ''}" onclick="app.selectInbox('${m.id}')" style="border-left: ${m.id === activeInboxId ? '4px solid var(--primary)' : '4px solid transparent'}">
+                <div class="inbox-item ${m.id === currentActiveId ? 'active' : ''}" onclick="app.selectInbox('${m.id}')" style="border-left: ${m.id === currentActiveId ? '4px solid var(--primary)' : '4px solid transparent'}">
                   <div class="inbox-avatar">
                     <div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px">
                       ${m.avatar}
@@ -3488,7 +3515,12 @@ function renderInbox() {
                   </div>
                 </div>
               `;
-            }).join('')}
+            }).join('') : `
+              <div class="empty" style="padding:40px 20px; border:none;">
+                 <i data-lucide="inbox" style="margin-bottom:8px"></i>
+                 <b>Không tìm thấy tin nhắn</b>
+              </div>
+            `}
           </div>
         </div>
         
@@ -3553,7 +3585,6 @@ function renderInbox() {
             </div>
             
             <div class="chat-foot" style="background:var(--surface); padding:16px 24px;">
-              <!-- KHUNG NHẬP TRẠNG THÁI ĐỘNG (EXPANDABLE INPUT) -->
               <div id="chatInputContainer" style="display:flex; align-items:center; background:var(--surface-2); border:1px solid var(--line); border-radius:24px; padding:8px 12px; transition:all 0.3s ease;">
                 <button class="icon-btn" style="border:none;background:transparent;color:var(--muted); width:32px; height:32px;">
                   <i data-lucide="image" style="width:18px;"></i>
@@ -3573,9 +3604,11 @@ function renderInbox() {
               </div>
             </div>
           ` : `
-            <div class="empty" style="margin:auto">
-              <i data-lucide="message-square"></i>
-              <b>Chọn một cuộc hội thoại để bắt đầu</b>
+            <!-- MÀN HÌNH CHỜ KHI CHƯA CLICK VÀO TIN NHẮN -->
+            <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; background:var(--bg);">
+              <i data-lucide="messages-square" style="width:64px; height:64px; color:var(--muted); opacity:0.3; margin-bottom:16px;"></i>
+              <b style="font-size:18px; color:var(--text); margin-bottom:8px;">Hộp thư đa kênh</b>
+              <span style="font-size:14px; color:var(--muted);">Hãy chọn một cuộc hội thoại từ danh sách bên trái.</span>
             </div>
           `}
         </div>
@@ -3617,13 +3650,61 @@ function renderInbox() {
                 `).join('')}
               </div>
             </div>
-          ` : ''}
+          ` : `
+             <div style="text-align:center; color:var(--muted); margin-top:80px;">
+               <i data-lucide="user" style="width:48px; height:48px; opacity:0.3; margin-bottom:12px;"></i>
+               <br><span>Chưa có thông tin</span>
+             </div>
+          `}
         </div>
       </div>
     `;
     
     return html;
   }
+
+  // ==========================================
+  // CÁC HÀM XỬ LÝ SỰ KIỆN CỦA INBOX (Dán nối tiếp ngay phía dưới hàm renderInbox)
+  // ==========================================
+  window.app.setInboxFilter = function(filterName) {
+    state.inboxFilter = filterName;
+    state.activeInboxId = null; // Khi bấm lọc thì xóa tin nhắn đang xem để trả về màn hình chờ
+    save();
+    render();
+  };
+
+  window.app.setInboxSearch = function(val) {
+    state.inboxSearch = val;
+    clearTimeout(window.__inboxSearchTimer);
+    window.__inboxSearchTimer = setTimeout(() => {
+       state.activeInboxId = null; 
+       render();
+    }, 300);
+  };
+
+  window.app.selectInbox = function(id) { 
+    state.activeInboxId = id; 
+    const msg = state.inbox.find(m => m.id === id); 
+    if (msg && !msg.read) { 
+      msg.read = true; 
+      save(); 
+    } 
+    render(); 
+  };
+
+  window.app.sendInboxReply = function() { 
+    const text = document.getElementById('inboxReply').value.trim(); 
+    if (!text) return; 
+    
+    const msg = state.inbox.find(m => m.id === state.activeInboxId); 
+    if (msg) { 
+      msg.replied = true; 
+      msg.replyText = text; 
+      save(); 
+      render(); 
+      app.ui.showToast('Đã gửi phản hồi', 'success'); 
+    } 
+  };
   
   window.app.selectInbox = function(id) { 
     activeInboxId = id; 
