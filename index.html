@@ -1780,24 +1780,32 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
    FIX ẨN/HIỆN CHỮ TOPBAR THEO TRẠNG THÁI MENU (PC)
    ========================================= */
 @media (min-width: 769px) {
-  /* 1. Luôn ẩn nút 3 gạch và Logo tròn trên máy tính */
+  /* 1. Xóa sổ mọi nút bấm, thẻ X, và logo tròn trên Desktop */
   .topbar .breadcrumbs button,
-  .topbar .breadcrumbs img {
+  .topbar .breadcrumbs img,
+  #mobileMenuBtn,
+  .mobile-menu-btn {
     display: none !important;
   }
 
-  /* 2. KHI MENU MỞ: Ẩn chữ Dino Hub và dấu mũi tên (>) trên Topbar (Chỉ hiện "Tổng quan") */
+  /* TIÊU DIỆT DẤU X: Ẩn mọi mã vẽ SVG hoặc Icon đứng trơ trọi (Ngoại trừ dấu mũi tên >) */
+  .topbar .breadcrumbs svg:not(.lucide-chevron-right),
+  .topbar .breadcrumbs i:not([data-lucide="chevron-right"]) {
+    display: none !important;
+  }
+
+  /* 2. KHI MENU MỞ: Ẩn chữ Dino Hub và dấu mũi tên (>) */
   .sidebar:not(.collapsed) ~ .main .breadcrumbs .brand-name,
-  .sidebar:not(.collapsed) ~ .main .breadcrumbs i[data-lucide="chevron-right"] {
+  .sidebar:not(.collapsed) ~ .main .breadcrumbs i[data-lucide="chevron-right"],
+  .sidebar:not(.collapsed) ~ .main .breadcrumbs svg.lucide-chevron-right {
     display: none !important;
   }
 
-  /* 3. KHI MENU BỊ THU GỌN: Hiện lại dòng "Dino Social Hub > Tổng quan" */
-  .sidebar.collapsed ~ .main .breadcrumbs .brand-name {
-    display: inline-block !important;
-  }
-  .sidebar.collapsed ~ .main .breadcrumbs i[data-lucide="chevron-right"] {
-    display: inline-block !important;
+  /* 3. KHI MENU THU GỌN: Hiện lại chữ Dino Hub và dấu mũi tên (>) */
+  .sidebar.collapsed ~ .main .breadcrumbs .brand-name,
+  .sidebar.collapsed ~ .main .breadcrumbs i[data-lucide="chevron-right"],
+  .sidebar.collapsed ~ .main .breadcrumbs svg.lucide-chevron-right {
+    display: inline-flex !important;
   }
 }
 </style>
