@@ -1828,6 +1828,51 @@ svg { max-width: 100% !important; }
   .sidebar.show-mobile .nav-label { margin-left: 12px !important; }
   .sidebar.show-mobile .sidebar-footer { display: none !important; }
 }  
+/* =========================================
+   FIX TRÀN VIỀN: BIỂU ĐỒ, LỊCH & HOẠT ĐỘNG GẦN ĐÂY
+   ========================================= */
+@media (max-width: 768px) {
+  /* 1. Ép tất cả các Khung (Card) phải tự cắt bỏ phần thừa (Fix lỗi biểu đồ chảy xệ) */
+  .card, .panel {
+    overflow: hidden !important; 
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  .card svg, .chart-area svg {
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 100% !important;
+  }
+
+  /* 2. Ép tất cả các thẻ con bên trong không được bành trướng */
+  .card *, .panel * {
+    max-width: 100% !important;
+  }
+
+  /* 3. Bắt buộc mọi đoạn Text dài phải tự bẻ xuống dòng (Fix lỗi Lịch & Hoạt động) */
+  .card p, .card span, .card h1, .card h2, .card h3, .card h4, .card h5, .card h6, .card div,
+  .empty-state, [style*="text-align: center"] {
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+
+  /* 4. Phá vỡ cấu trúc "khối cứng ngang" để nút bấm/thời gian rớt xuống hàng dưới */
+  .card [style*="display: flex"], 
+  .card .d-flex {
+    flex-wrap: wrap !important;
+    min-width: 0 !important;
+  }
+
+  /* 5. Căn chỉnh lại padding cho các dòng danh sách hoạt động vừa khít 100% */
+  .card > div > div, 
+  .card .list-item, 
+  .card [style*="border"] {
+    box-sizing: border-box !important;
+    width: 100% !important;
+  }
+}
 </style>
 </head>
 <!-- Giao diện Đăng nhập Kín (Chỉ nhận tài khoản do Admin cấp) -->
