@@ -1918,37 +1918,54 @@ svg { max-width: 100% !important; }
 html, body {
   overflow-y: auto !important;
 }
+/* =========================================
+   1. ĐÓNG ĐINH TOPBAR (DÙNG FIXED THAY VÌ STICKY)
+   ========================================= */
+.topbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important; /* Cao nhất toàn trang */
+  background-color: var(--surface, #1e293b) !important; /* Phủ màu nền để không bị trong suốt */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+/* Đẩy toàn bộ nội dung trang xuống 70px để không bị Topbar đè mất phần đỉnh */
+.main, .content {
+  padding-top: 70px !important;
+}
 
 /* =========================================
-   2. FIX LỖI LIỆT CẢM ỨNG TRONG HỘP THƯ
+   2. TIÊU DIỆT LỚP TÀNG HÌNH Ở HỘP THƯ
    ========================================= */
 @media (max-width: 768px) {
-  /* Ép cột danh sách tin nhắn nổi lên mặt trên cùng */
-  .inbox-layout > div:first-child,
-  .inbox-list {
-    position: relative !important;
-    z-index: 50 !important;
-    pointer-events: auto !important; 
+  /* Phá vỡ cấu trúc Grid (lưới ngang) để ngăn các cột chèn ép nhau */
+  .inbox-layout {
+    display: block !important; 
   }
   
-  /* Nhấn chìm các cột chức năng phụ/ẩn (vô tình đè lên danh sách) xuống đáy */
-  .inbox-layout > div:nth-child(2),
-  .inbox-layout > div:nth-child(3),
-  .inbox-detail, 
-  .inbox-crm {
-    position: relative !important;
-    z-index: 10 !important;
+  /* Cất cột Chi tiết trò chuyện đi để nó không tạo lớp kính tàng hình che màn hình */
+  .inbox-detail, .inbox-crm {
+    display: none !important; 
   }
 
-  /* Bắt buộc các nút Lọc (Tất cả, Chưa đọc) và Thẻ tin nhắn phải nhận lệnh chạm */
-  .inbox-list button, 
-  .inbox-list .msg-item,
-  .inbox-list [class*="item"],
-  [style*="border-radius: 20px"] {
+  /* Ép cột Danh sách tin nhắn nổi lên mặt trên cùng */
+  .inbox-list {
+    display: block !important;
     position: relative !important;
-    z-index: 51 !important;
-    cursor: pointer !important;
+    z-index: 1000 !important;
+    width: 100% !important;
+    height: auto !important;
     pointer-events: auto !important;
+  }
+  
+  /* Bắt buộc toàn bộ nút bấm, tab Lọc (Chưa đọc, Tin nhắn) phải nhận thao tác chạm */
+  .inbox-list button, 
+  .inbox-list div,
+  .inbox-list .msg-item {
+    pointer-events: auto !important;
+    cursor: pointer !important;
   }
 }
 </style>
