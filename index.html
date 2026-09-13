@@ -1699,6 +1699,50 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
   .grid-8, .metric-grid, .quick-grid { grid-template-columns: 1fr 1fr; }
   .btn { padding-left: 10px; padding-right: 10px; }
 }
+/* =========================================
+   BỘ GIẢI CỨU LỖI INLINE HTML (DÁN CUỐI CÙNG)
+   ========================================= */
+@media (max-width: 768px) {
+  /* 1. Giải cứu Nút 3 gạch & Logo khỏi thẻ breadcrumbs bị ẩn */
+  .topbar .breadcrumbs { display: flex !important; width: 100%; justify-content: flex-start; }
+  .topbar .breadcrumbs .mobile-hide { display: none !important; }
+
+  /* 2. Phá vỡ lệnh cấm rớt chữ (Sửa tràn viền Lịch & Hoạt động) */
+  .card b[style*="nowrap"],
+  .card div[style*="nowrap"],
+  .timeline-item b {
+    white-space: normal !important;
+    max-width: 100% !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+  .split { flex-wrap: wrap !important; }
+
+  /* 3. Phá vỡ chiều cao cứng (Sửa cắt đáy biểu đồ) */
+  .card div[style*="height:188px"],
+  .card div[style*="height: 188px"] {
+    height: auto !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding-bottom: 20px !important;
+  }
+
+  /* 4. Khôi phục Hộp thư (Hiện danh sách trên, Chat dưới) */
+  .inbox-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+  }
+  .inbox-sidebar {
+    max-height: 320px !important; /* Tạo cuộn cho danh sách */
+    overflow-y: auto !important;
+    border-bottom: 4px solid var(--line) !important;
+  }
+  .inbox-chat {
+    display: flex !important; /* Hiện lại khung gõ trả lời bị giấu */
+    min-height: 500px !important;
+  }
+}
 </style>
 </head>
 <!-- Giao diện Đăng nhập Kín (Chỉ nhận tài khoản do Admin cấp) -->
