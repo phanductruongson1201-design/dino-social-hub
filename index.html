@@ -3469,221 +3469,239 @@ function renderInbox() {
     // Khởi tạo trạng thái
     state.inboxFilter = state.inboxFilter || 'All';
     state.inboxSearch = state.inboxSearch || '';
+    
+    // Lấy ID tin nhắn đang được chọn (Nếu không có ai được chọn = Màn hình Danh sách)
     const currentActiveId = state.activeInboxId || null; 
     let messages = state.inbox || []; 
     
-    // Lọc theo tìm kiếm
+    // Xử lý Lọc
     if (state.inboxSearch) {
         const q = state.inboxSearch.toLowerCase();
         messages = messages.filter(m => m.name.toLowerCase().includes(q) || m.text.toLowerCase().includes(q));
     }
-
-    // Lọc theo Tabs
-    if (state.inboxFilter === 'Unread') {
-        messages = messages.filter(m => !m.read);
-    } else if (state.inboxFilter === 'Messages') {
-        messages = messages.filter(m => m.type === 'Tin nhắn');
-    }
+    if (state.inboxFilter === 'Unread') messages = messages.filter(m => !m.read);
+    else if (state.inboxFilter === 'Messages') messages = messages.filter(m => m.type === 'Tin nhắn');
 
     const activeMsg = messages.find(m => m.id === currentActiveId);
 
-    // Style Tabs
+    // Style cho các nút bấm Tabs
     const btnAll = state.inboxFilter === 'All' ? 'background:var(--primary); color:#fff; border:none;' : 'background:transparent; border:1px solid var(--line); color:var(--text);';
     const btnUnread = state.inboxFilter === 'Unread' ? 'background:var(--primary); color:#fff; border:none;' : 'background:transparent; border:1px solid var(--line); color:var(--text);';
     const btnMsg = state.inboxFilter === 'Messages' ? 'background:var(--primary); color:#fff; border:none;' : 'background:transparent; border:1px solid var(--line); color:var(--text);';
 
-    html += `
-      <div class="inbox-layout">
-        <!-- CỘT 1: DANH SÁCH -->
-        <div class="inbox-sidebar">
-          <div class="inbox-head">
-            <div class="search" style="max-width:100%; margin-bottom:12px;">
-              <i data-lucide="search"></i>
-              <input placeholder="Tìm người gửi, nội dung..." value="${escape(state.inboxSearch)}" oninput="app.setInboxSearch(this.value)" style="height:36px; background:var(--surface-2); border-radius:8px; border:none; width: 100%; padding-left: 36px; outline:none;"/>
+    // CSS phụ trợ để đảm bảo ẩn cột CRM trên điện thoại
+    html += `<style>@media(max-width:980px){ .inbox-crm-panel { display:none !important; } }</style>`;
+    
+    // Khung Layout chính
+    html += `<div class="inbox-layout" style="display:flex; height:calc(100vh - 160px); border:1px solid var(--line); border-radius:12px; background:var(--surface); overflow:hidden; width:100%;">`;
+
+    if (!activeMsg) {
+        // ========================================================
+        // MÀN HÌNH 1: KHÔNG CÓ AI ĐƯỢC CHỌN -> CHỈ HIỆN DANH SÁCH (FULL MÀN HÌNH)
+        // ========================================================
+        html += `
+        <div class="inbox-sidebar" style="flex:1; display:flex; flex-direction:column; background:var(--bg);">
+          <div class="inbox-head" style="padding: 20px 24px; background:var(--surface); border-bottom:1px solid var(--line);">
+            <div class="search" style="max-width:100%; margin-bottom:16px;">
+              <i data-lucide="search" style="top:12px; left:16px; color:var(--muted)"></i>
+              <input placeholder="Tìm kiếm tên khách hàng, nội dung tin nhắn..." value="${escape(state.inboxSearch)}" oninput="app.setInboxSearch(this.value)" style="height:44px; background:var(--surface-2); border-radius:10px; border:1px solid var(--line); width: 100%; padding-left: 44px; outline:none; font-size:14px; transition:0.2s;" onfocus="this.style.borderColor='var(--primary)'; this.style.backgroundColor='var(--surface)'" onblur="this.style.borderColor='var(--line)'; this.style.backgroundColor='var(--surface-2)'"/>
             </div>
-            <div class="inbox-filters" style="display:flex; gap:8px;">
-              <button class="inbox-filter-btn" style="border-radius:20px; padding:6px 16px; font-weight:600; cursor:pointer; font-size:12px; transition:0.2s; ${btnAll}" onclick="app.setInboxFilter('All')">Tất cả</button>
-              <button class="inbox-filter-btn" style="border-radius:20px; padding:6px 16px; font-weight:600; cursor:pointer; font-size:12px; transition:0.2s; ${btnUnread}" onclick="app.setInboxFilter('Unread')">Chưa đọc</button>
-              <button class="inbox-filter-btn" style="border-radius:20px; padding:6px 16px; font-weight:600; cursor:pointer; font-size:12px; transition:0.2s; ${btnMsg}" onclick="app.setInboxFilter('Messages')">Tin nhắn</button>
+            <div class="inbox-filters" style="display:flex; gap:10px;">
+              <button class="inbox-filter-btn" style="border-radius:20px; padding:8px 20px; font-weight:700; cursor:pointer; font-size:13px; transition:0.2s; ${btnAll}" onclick="app.setInboxFilter('All')">Tất cả hội thoại</button>
+              <button class="inbox-filter-btn" style="border-radius:20px; padding:8px 20px; font-weight:700; cursor:pointer; font-size:13px; transition:0.2s; ${btnUnread}" onclick="app.setInboxFilter('Unread')">Chưa đọc</button>
+              <button class="inbox-filter-btn" style="border-radius:20px; padding:8px 20px; font-weight:700; cursor:pointer; font-size:13px; transition:0.2s; ${btnMsg}" onclick="app.setInboxFilter('Messages')">Tin nhắn</button>
             </div>
           </div>
-          <div class="inbox-list">
+          
+          <div class="inbox-list" style="flex:1; overflow-y:auto; padding: 24px;">
+            <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px;">
             ${messages.length ? messages.map(m => {
               const mMeta = platformMeta[m.platform];
               return `
-                <div class="inbox-item ${m.id === currentActiveId ? 'active' : ''}" onclick="app.selectInbox('${m.id}')" style="border-left: ${m.id === currentActiveId ? '4px solid var(--primary)' : '4px solid transparent'}">
-                  <div class="inbox-avatar">
-                    <div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px">
+                <div class="inbox-item" onclick="app.selectInbox('${m.id}')" style="border:1px solid var(--line); border-radius:16px; padding:20px; display:flex; gap:16px; background:var(--surface); cursor:pointer; transition:all 0.2s; box-shadow:0 4px 12px rgba(0,0,0,0.02);" onmouseover="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--line)'; this.style.transform='none';">
+                  <div class="inbox-avatar" style="width:52px; height:52px; position:relative; flex-shrink:0;">
+                    <div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:16px">
                       ${m.avatar}
                     </div>
-                    <div class="inbox-plat-icon" style="background:#fff; color:${mMeta?.cls === 'fb' ? '#1877f2' : mMeta?.cls === 'ig' ? '#c026d3' : mMeta?.cls === 'yt' ? '#ef4444' : '#111'}">
-                      <i data-lucide="${mMeta?.icon || 'circle'}" style="width:10px;height:10px"></i>
+                    <div class="inbox-plat-icon" style="background:#fff; color:${mMeta?.cls === 'fb' ? '#1877f2' : mMeta?.cls === 'ig' ? '#c026d3' : mMeta?.cls === 'yt' ? '#ef4444' : '#111'}; width:22px; height:22px; position:absolute; bottom:-4px; right:-4px; border-radius:50%; border:2px solid var(--surface); display:grid; place-items:center;">
+                      <i data-lucide="${mMeta?.icon || 'circle'}" style="width:14px;height:14px"></i>
                     </div>
                   </div>
-                  <div class="inbox-info">
-                    <div class="inbox-name-row">
-                      <span class="inbox-name" style="${!m.read ? 'font-weight:800;color:var(--text)' : 'font-weight:600'}">${escape(m.name)}</span>
-                      <span class="inbox-time">${m.time}</span>
+                  <div class="inbox-info" style="flex:1; min-width:0; display:flex; flex-direction:column; justify-content:center;">
+                    <div class="inbox-name-row" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                      <span class="inbox-name" style="${!m.read ? 'font-weight:800;color:var(--text);font-size:16px;' : 'font-weight:700;font-size:16px;'}">${escape(m.name)}</span>
+                      <span class="inbox-time" style="font-size:12px; color:var(--muted);">${m.time}</span>
                     </div>
-                    <div class="inbox-preview" style="${!m.read ? 'font-weight:600;color:var(--text)' : ''}">
-                      ${escape(m.type)}: ${escape(m.text)}
+                    <div class="inbox-preview" style="${!m.read ? 'font-weight:600;color:var(--text);font-size:14px;' : 'font-size:14px; color:var(--muted);'} white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                      <span style="color:var(--primary); font-weight:700;">${escape(m.type)}:</span> ${escape(m.text)}
                     </div>
                   </div>
                 </div>
               `;
             }).join('') : `
-              <div class="empty" style="padding:40px 20px; border:none;">
-                 <i data-lucide="inbox" style="margin-bottom:8px"></i>
-                 <b>Không tìm thấy tin nhắn</b>
+              <div class="empty" style="grid-column: 1 / -1; padding:80px 20px; border:none; background:transparent;">
+                 <i data-lucide="inbox" style="margin-bottom:16px; width:64px; height:64px; opacity:0.2;"></i>
+                 <b style="font-size:18px;">Không tìm thấy cuộc hội thoại nào</b>
+                 <span style="display:block; margin-top:8px; font-size:14px;">Hãy thử thay đổi bộ lọc hoặc từ khóa tìm kiếm.</span>
               </div>
             `}
+            </div>
+          </div>
+        </div>
+        `;
+    } else {
+        // ========================================================
+        // MÀN HÌNH 2: ĐÃ CHỌN KHÁCH HÀNG -> BUNG KHUNG CHAT VÀ NÚT TRỞ VỀ
+        // ========================================================
+        html += `
+        <!-- CỘT CHAT BUNG RỘNG -->
+        <div class="inbox-chat" style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0; background:var(--surface);">
+          
+          <!-- THANH HEADER CỦA CHAT -->
+          <div class="chat-head" style="flex-shrink:0; background:var(--surface); display:flex; justify-content:space-between; align-items:center; padding:16px 24px; border-bottom:1px solid var(--line);">
+            <div class="chat-user-info" style="display:flex; align-items:center; gap:16px;">
+              <!-- NÚT TRỞ VỀ DANH SÁCH -->
+              <button class="btn primary" onclick="app.closeInboxChat()" style="display:flex; align-items:center; gap:8px; padding:0 16px; height:42px; border-radius:10px; font-size:14px; box-shadow:0 4px 12px rgba(37,99,235,0.15); transition:0.2s;" onmouseover="this.style.transform='translateX(-2px)'" onmouseout="this.style.transform='none'">
+                <i data-lucide="chevron-left" style="width:18px;"></i> Trở về Danh sách
+              </button>
+              
+              <div style="width:1px; height:28px; background:var(--line); margin: 0 8px;"></div>
+              
+              <div class="inbox-avatar" style="width:44px;height:44px; position:relative;">
+                <div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:16px">
+                  ${activeMsg.avatar}
+                </div>
+                <div style="position:absolute; bottom:0; right:0; width:14px; height:14px; background:#10b981; border-radius:50%; border:2px solid var(--surface);"></div>
+              </div>
+              <div class="chat-meta">
+                <b style="font-size:16px; display:block; margin-bottom:2px; letter-spacing:-0.02em;">${escape(activeMsg.name)}</b>
+                <span style="font-size:12px; color:var(--muted); font-weight:500;"><span style="color:#10b981">●</span> Đang hoạt động qua ${escape(activeMsg.platform)}</span>
+              </div>
+            </div>
+            
+            <div class="actions">
+              <button class="btn" style="background:var(--surface-2); border-color:var(--line); height:40px; border-radius:10px; padding:0 16px; font-weight:700;"><i data-lucide="check" style="color:var(--success)"></i> Đánh dấu xong</button>
+            </div>
+          </div>
+          
+          <!-- KHUNG NỘI DUNG CHAT -->
+          <div class="chat-body" style="background:var(--bg); flex:1; min-height:0; padding:24px; overflow-y:auto; display:flex; flex-direction:column; gap:24px;">
+            <div style="text-align:center; position:relative; margin: 10px 0;">
+               <hr style="border:0; border-top:1px solid var(--line); position:absolute; top:50%; left:0; right:0; z-index:1;">
+               <span style="background:var(--bg); padding:0 16px; position:relative; z-index:2; font-size:12px; font-weight:700; color:var(--muted); border-radius:99px;">Hôm nay</span>
+            </div>
+
+            <!-- TIN NHẮN KHÁCH GỬI -->
+            <div class="chat-bubble-row them" style="display:flex; gap:12px; max-width:85%;">
+              <div class="inbox-avatar" style="width:36px;height:36px; margin-top:auto; flex-shrink:0;">
+                <div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px">
+                  ${activeMsg.avatar}
+                </div>
+              </div>
+              <div>
+                <div class="chat-bubble" style="background:var(--surface); border:1px solid var(--line); color:var(--text); border-radius:20px; border-bottom-left-radius:4px; padding:16px 20px; font-size:15px; box-shadow:0 4px 12px rgba(0,0,0,0.03); line-height:1.5;">
+                  ${escape(activeMsg.text)}
+                </div>
+                ${activeMsg.type === 'Bình luận' ? `
+                  <div class="chat-actions" style="margin-top:8px; font-size:12px; margin-left:6px; display:flex; gap:12px;">
+                    <span style="color:var(--primary); cursor:pointer; font-weight:700; transition:0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Thích</span> ·
+                    <span style="color:var(--danger); cursor:pointer; font-weight:700; transition:0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Ẩn bình luận</span>
+                  </div>
+                ` : ''}
+                <div class="chat-time" style="font-size:12px; color:var(--muted); margin-top:8px; margin-left:6px; text-align:left;">${activeMsg.time}</div>
+              </div>
+            </div>
+            
+            <!-- TIN NHẮN MÌNH TRẢ LỜI -->
+            ${activeMsg.replied ? `
+              <div class="chat-bubble-row me" style="display:flex; gap:12px; max-width:85%; align-self:flex-end; flex-direction:row-reverse;">
+                <div>
+                  <div class="chat-bubble" style="background:var(--primary); color:#fff; border-radius:20px; border-bottom-right-radius:4px; padding:16px 20px; font-size:15px; box-shadow:0 4px 16px rgba(37,99,235,0.25); line-height:1.5;">
+                    ${escape(activeMsg.replyText)}
+                  </div>
+                  <div class="chat-time" style="font-size:12px; color:var(--muted); margin-top:8px; text-align:right; font-weight:500;">Vừa xong · <i data-lucide="check-check" style="width:14px; margin-left:2px; color:var(--primary);"></i> Đã gửi</div>
+                </div>
+              </div>
+            ` : ''}
+          </div>
+          
+          <!-- KHUNG GÕ CHỮ -->
+          <div class="chat-foot" style="flex-shrink:0; background:var(--surface); padding:20px 24px; border-top:1px solid var(--line);">
+            <div id="chatInputContainer" style="display:flex; align-items:center; background:var(--surface-2); border:1px solid var(--line); border-radius:24px; padding:10px 14px; transition:all 0.3s ease;">
+              <button class="icon-btn" style="border:none;background:transparent;color:var(--muted); width:40px; height:40px; border-radius:50%; transition:0.2s;" onmouseover="this.style.backgroundColor='var(--line)'" onmouseout="this.style.backgroundColor='transparent'">
+                <i data-lucide="image" style="width:20px;"></i>
+              </button>
+              <button class="icon-btn" style="border:none;background:transparent;color:var(--muted); width:40px; height:40px; border-radius:50%; margin-right:12px; transition:0.2s;" onmouseover="this.style.backgroundColor='var(--line)'" onmouseout="this.style.backgroundColor='transparent'" onclick="app.ui.showToast('Gợi ý AI','Tính năng đang phát triển','info')">
+                <i data-lucide="sparkles" style="width:20px;"></i>
+              </button>
+              
+              <textarea id="inboxReply" placeholder="Nhập tin nhắn trả lời..." style="flex:1; background:transparent; border:none; outline:none; color:var(--text); resize:none; font-family:inherit; font-size:15px; padding:10px 0; height:24px; min-height:24px; transition:height 0.3s ease; line-height:1.5;"
+                onfocus="document.getElementById('chatInputContainer').style.borderRadius = '16px'; document.getElementById('chatInputContainer').style.alignItems = 'flex-end'; this.style.height = '100px'; document.getElementById('chatInputContainer').style.borderColor = 'var(--primary)'; document.getElementById('chatInputContainer').style.boxShadow = '0 0 0 4px var(--primary-soft)';"
+                onblur="if(!this.value){ document.getElementById('chatInputContainer').style.borderRadius = '24px'; document.getElementById('chatInputContainer').style.alignItems = 'center'; this.style.height = '24px'; document.getElementById('chatInputContainer').style.borderColor = 'var(--line)'; document.getElementById('chatInputContainer').style.boxShadow = 'none'; }"
+              ></textarea>
+              
+              <button style="background:var(--primary); border:none; border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center; color:#fff; cursor:pointer; margin-left:16px; box-shadow:0 4px 12px rgba(37,99,235,0.3); transition:0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onclick="app.sendInboxReply()">
+                <i data-lucide="send" style="width:20px; margin-left:-2px;"></i>
+              </button>
+            </div>
           </div>
         </div>
         
-        <!-- CỘT 2: KHUNG CHAT (ĐÃ KHÓA CHIỀU CAO CHỐNG TRÀN CHỮ) -->
-        <div class="inbox-chat" style="border-right: 1px solid var(--line); display:flex; flex-direction:column; overflow:hidden; height:100%; width:100%;">
-          ${activeMsg ? `
-            <div class="chat-head" style="flex-shrink:0; background:var(--surface); display:flex; justify-content:space-between; align-items:center; padding:16px 24px; border-bottom:1px solid var(--line);">
-              <div class="chat-user-info" style="display:flex; align-items:center; gap:12px;">
-                <div class="inbox-avatar" style="width:40px;height:40px">
-                  <div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px">
-                    ${activeMsg.avatar}
-                  </div>
-                  <div style="position:absolute; bottom:0; right:0; width:12px; height:12px; background:#10b981; border-radius:50%; border:2px solid var(--surface);"></div>
-                </div>
-                <div class="chat-meta">
-                  <b style="font-size:15px; display:block;">${escape(activeMsg.name)}</b>
-                  <span style="font-size:12px; color:var(--muted);"><span style="color:#10b981">●</span> Qua ${escape(activeMsg.type)} · ${escape(activeMsg.platform)}</span>
-                </div>
-              </div>
-              <div class="actions">
-                <button class="btn small" style="background:var(--surface-2); border-color:var(--line);"><i data-lucide="check"></i> Xong</button>
-                <button class="btn small" style="background:var(--surface-2); border-color:var(--line);"><i data-lucide="more-horizontal"></i></button>
-              </div>
+        <!-- CỘT CRM THÔNG TIN BÊN PHẢI (Sẽ tự ẩn trên điện thoại) -->
+        <div class="inbox-crm-panel" style="width:360px; border-left:1px solid var(--line); background:var(--surface-2); padding:32px 24px; overflow-y:auto; flex-shrink:0;">
+          <div style="font-size:12px; font-weight:800; color:var(--muted); text-transform:uppercase; margin-bottom:24px; letter-spacing:0.05em;">Thông tin khách hàng</div>
+          
+          <div class="crm-item" style="margin-bottom:24px; background:var(--surface); padding:16px; border-radius:12px; border:1px solid var(--line);">
+            <div style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:6px;">Tên khách hàng</div>
+            <div style="font-size:16px; font-weight:800; color:var(--text);">${escape(activeMsg.name)}</div>
+          </div>
+          
+          <div class="crm-item" style="margin-bottom:24px; background:var(--surface); padding:16px; border-radius:12px; border:1px solid var(--line);">
+            <div style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:6px;">Số điện thoại</div>
+            <div style="font-size:15px; font-weight:600; color:var(--text);">${activeMsg.phone || '<i style="color:var(--muted);font-weight:normal">Chưa cung cấp</i>'}</div>
+          </div>
+          
+          <div class="crm-item" style="margin-bottom:24px; background:var(--surface); padding:16px; border-radius:12px; border:1px solid var(--line);">
+            <div style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:8px;">Kênh liên lạc</div>
+            <div style="font-size:14px; font-weight:600; color:var(--text); display:flex; align-items:center; gap:8px;">
+              ${platformBadge(activeMsg.platform)} <span style="color:var(--muted)">·</span> <span>${escape(activeMsg.type)}</span>
             </div>
-            
-            <div class="chat-body" style="background:var(--bg); flex:1; min-height:0; padding:24px; overflow-y:auto; display:flex; flex-direction:column; gap:20px;">
-              <div style="text-align:center; position:relative; margin: 10px 0;">
-                 <hr style="border:0; border-top:1px solid var(--line); position:absolute; top:50%; left:0; right:0; z-index:1;">
-                 <span style="background:var(--bg); padding:0 12px; position:relative; z-index:2; font-size:11px; font-weight:600; color:var(--muted);">Hôm nay</span>
-              </div>
+          </div>
+          
+          <div class="crm-item" style="margin-bottom:32px;">
+            <div style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:12px;">Tags phân loại</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              ${(activeMsg.tags || []).map(t => `<span style="padding:6px 14px; background:var(--primary-soft); border:1px solid var(--primary); border-radius:99px; font-size:12px; font-weight:700; color:var(--primary);">${t}</span>`).join('') || '<span class="muted">Chưa gắn tag</span>'}
+              <button style="padding:6px 14px; background:var(--surface); border:1px dashed var(--muted); border-radius:99px; font-size:12px; font-weight:600; color:var(--muted); cursor:pointer; transition:0.2s;" onmouseover="this.style.borderColor='var(--text)'; this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--muted)'; this.style.color='var(--muted)'"><i data-lucide="plus" style="width:12px; margin-right:4px;"></i>Thêm</button>
+            </div>
+          </div>
+          
+          <div style="border-top:1px dashed var(--line-2); margin:32px 0;"></div>
+          
+          <div class="crm-item">
+            <div style="font-size:12px; font-weight:800; color:var(--muted); text-transform:uppercase; margin-bottom:16px; letter-spacing:0.05em;">Kịch bản trả lời nhanh</div>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              ${state.quickReplies.map(qr => `
+                <button style="text-align:left; padding:14px 18px; background:var(--surface); border:1px solid var(--line); border-radius:12px; font-size:14px; font-weight:500; color:var(--text); cursor:pointer; transition:0.2s; box-shadow:0 2px 6px rgba(0,0,0,0.02); line-height:1.5;" onmouseover="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--line)'; this.style.transform='none';" onclick="const txt = document.getElementById('inboxReply'); txt.value += '${escape(qr)} '; txt.focus();">
+                  ${escape(qr)}
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+        `;
+    }
 
-              <div class="chat-bubble-row them">
-                <div class="inbox-avatar" style="width:32px;height:32px; margin-top:auto;">
-                  <div style="width:100%;height:100%;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:11px">
-                    ${activeMsg.avatar}
-                  </div>
-                </div>
-                <div>
-                  <div class="chat-bubble" style="background:var(--surface-2); border:1px solid var(--line); color:var(--text); border-radius:18px; border-bottom-left-radius:4px; padding:12px 16px;">
-                    ${escape(activeMsg.text)}
-                  </div>
-                  ${activeMsg.type === 'Bình luận' ? `
-                    <div class="chat-actions" style="margin-top:8px; font-size:11px; margin-left:4px;">
-                      <span style="color:var(--text); cursor:pointer; font-weight:600;">Thích</span> ·
-                      <span style="color:var(--danger); cursor:pointer; font-weight:600;">Ẩn bình luận</span>
-                    </div>
-                  ` : ''}
-                  <div class="chat-time" style="font-size:11px; color:var(--muted); margin-top:4px; margin-left:4px; text-align:left;">${activeMsg.time}</div>
-                </div>
-              </div>
-              
-              ${activeMsg.replied ? `
-                <div class="chat-bubble-row me">
-                  <div>
-                    <div class="chat-bubble" style="background:var(--primary); color:#fff; border-radius:18px; border-bottom-right-radius:4px; padding:12px 16px;">
-                      ${escape(activeMsg.replyText)}
-                    </div>
-                    <div class="chat-time" style="font-size:11px; color:var(--muted); margin-top:4px; text-align:right;">Vừa xong</div>
-                  </div>
-                </div>
-              ` : ''}
-            </div>
-            
-            <div class="chat-foot" style="flex-shrink:0; background:var(--surface); padding:16px 24px; border-top:1px solid var(--line);">
-              <div id="chatInputContainer" style="display:flex; align-items:center; background:var(--surface-2); border:1px solid var(--line); border-radius:24px; padding:8px 12px; transition:all 0.3s ease;">
-                <button class="icon-btn" style="border:none;background:transparent;color:var(--muted); width:32px; height:32px;">
-                  <i data-lucide="image" style="width:18px;"></i>
-                </button>
-                <button class="icon-btn" style="border:none;background:transparent;color:var(--muted); width:32px; height:32px; margin-right:8px;" onclick="app.ui.showToast('Gợi ý AI','Tính năng đang phát triển','info')">
-                  <i data-lucide="sparkles" style="width:18px;"></i>
-                </button>
-                
-                <textarea id="inboxReply" placeholder="Nhắn tin..." style="flex:1; background:transparent; border:none; outline:none; color:var(--text); resize:none; font-family:inherit; font-size:14px; padding:8px 0; height:24px; min-height:24px; transition:height 0.3s ease;"
-                  onfocus="document.getElementById('chatInputContainer').style.borderRadius = '12px'; document.getElementById('chatInputContainer').style.alignItems = 'flex-end'; this.style.height = '80px';"
-                  onblur="if(!this.value){ document.getElementById('chatInputContainer').style.borderRadius = '24px'; document.getElementById('chatInputContainer').style.alignItems = 'center'; this.style.height = '24px'; }"
-                ></textarea>
-                
-                <button style="background:var(--primary); border:none; border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; color:#fff; cursor:pointer; margin-left:8px;" onclick="app.sendInboxReply()">
-                  <i data-lucide="send" style="width:16px; margin-left:-2px;"></i>
-                </button>
-              </div>
-            </div>
-          ` : `
-            <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; background:var(--bg);">
-              <i data-lucide="message-square" style="width:64px; height:64px; color:var(--muted); opacity:0.3; margin-bottom:16px;"></i>
-              <b style="font-size:18px; color:var(--text); margin-bottom:8px;">Hộp thư đa kênh</b>
-              <span style="font-size:14px; color:var(--muted);">Hãy chọn một cuộc hội thoại từ danh sách bên trái.</span>
-            </div>
-          `}
-        </div>
-        
-        <!-- CỘT 3: CRM (THÔNG TIN KHÁCH HÀNG) -->
-        <div class="inbox-crm" style="background:var(--surface-2); padding:24px; overflow-y:auto;">
-          ${activeMsg ? `
-            <div style="font-size:11px; font-weight:800; color:var(--muted); text-transform:uppercase; margin-bottom:16px; letter-spacing:0.05em;">Thông tin khách hàng</div>
-            
-            <div class="crm-item" style="margin-bottom:16px;">
-              <div style="font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:4px;">Tên khách hàng</div>
-              <div style="font-size:14px; font-weight:700; color:var(--text);">${escape(activeMsg.name)}</div>
-            </div>
-            
-            <div class="crm-item" style="margin-bottom:16px;">
-              <div style="font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:4px;">Số điện thoại</div>
-              <div style="font-size:14px; font-weight:600; color:var(--text);">${activeMsg.phone || '<i style="color:var(--muted);font-weight:normal">Chưa có</i>'}</div>
-            </div>
-            
-            <div class="crm-item" style="margin-bottom:16px;">
-              <div style="font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:4px;">Kênh liên lạc</div>
-              <div style="font-size:14px; font-weight:600; color:var(--text);">${escape(activeMsg.platform)} · ${escape(activeMsg.type)}</div>
-            </div>
-            
-            <div class="crm-item" style="margin-bottom:24px;">
-              <div style="font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:8px;">Tags phân loại</div>
-              <div>${(activeMsg.tags || []).map(t => `<span style="display:inline-block; padding:4px 12px; background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:99px; font-size:12px; font-weight:500; margin:0 6px 6px 0;">${t}</span>`).join('') || '<span class="muted">Chưa gắn tag</span>'}</div>
-            </div>
-            
-            <div style="border-top:1px solid var(--line); margin:24px 0;"></div>
-            
-            <div class="crm-item">
-              <div style="font-size:11px; font-weight:800; color:var(--muted); text-transform:uppercase; margin-bottom:16px; letter-spacing:0.05em;">Trả lời nhanh</div>
-              <div style="display:flex; flex-direction:column; gap:8px;">
-                ${state.quickReplies.map(qr => `
-                  <button style="text-align:left; padding:10px 14px; background:var(--surface); border:1px solid var(--line); border-radius:8px; font-size:12px; color:var(--text); cursor:pointer; transition:0.2s;" onclick="const txt = document.getElementById('inboxReply'); txt.value += '${escape(qr)} '; txt.focus();">
-                    ${escape(qr)}
-                  </button>
-                `).join('')}
-              </div>
-            </div>
-          ` : `
-             <div style="text-align:center; color:var(--muted); margin-top:80px;">
-               <i data-lucide="user" style="width:48px; height:48px; opacity:0.3; margin-bottom:12px;"></i>
-               <br><span>Chưa có thông tin</span>
-             </div>
-          `}
-        </div>
-      </div>
-    `;
-    
+    html += `</div>`;
     return html;
   }
 
   // ==========================================
-  // CÁC HÀM XỬ LÝ SỰ KIỆN CỦA INBOX
+  // CÁC HÀM XỬ LÝ SỰ KIỆN ĐI KÈM THEO GIAO DIỆN MỚI
   // ==========================================
   window.app.setInboxFilter = function(filterName) {
     state.inboxFilter = filterName;
-    state.activeInboxId = null;
+    state.activeInboxId = null; 
     save();
     render();
   };
@@ -3697,144 +3715,35 @@ function renderInbox() {
     }, 300);
   };
 
-  window.app.selectInbox = function(id) { 
-    state.activeInboxId = id; 
-    const msg = state.inbox.find(m => m.id === id); 
-    if (msg && !msg.read) { 
-      msg.read = true; 
-    } 
-    save(); 
-    render(); 
-
-    // ĐẢM BẢO KHUNG CHAT LUÔN MỞ RA TRÊN ĐIỆN THOẠI
-    if (window.innerWidth <= 768) {
-        document.body.classList.add('show-mobile-chat');
-        setTimeout(() => {
-            const chatHead = document.querySelector('.chat-head');
-            if (chatHead && !document.getElementById('mobileInboxBack')) {
-                const backBtn = document.createElement('button');
-                backBtn.id = 'mobileInboxBack';
-                backBtn.className = 'btn small primary';
-                backBtn.style.cssText = 'margin-right: 12px; display: flex; align-items: center;';
-                backBtn.innerHTML = '<svg style="width:14px;height:14px;margin-right:4px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Trở lại';
-                backBtn.onclick = () => document.body.classList.remove('show-mobile-chat');
-                chatHead.insertBefore(backBtn, chatHead.firstChild);
-            }
-        }, 50);
+  window.app.selectInbox = function(id) {
+    state.activeInboxId = id;
+    const msg = state.inbox.find(m => m.id === id);
+    if (msg && !msg.read) {
+      msg.read = true;
+      save();
     }
+    render(); 
   };
 
-  window.app.sendInboxReply = function() { 
-    const text = document.getElementById('inboxReply').value.trim(); 
-    if (!text) return; 
-    
-    const msg = state.inbox.find(m => m.id === state.activeInboxId); 
-    if (msg) { 
-      msg.replied = true; 
-      msg.replyText = text; 
-      save(); 
-      render(); 
-      app.ui.showToast('Đã gửi phản hồi', 'success'); 
-      
-      // Giữ nguyên khung chat trên điện thoại sau khi bấm Gửi
-      if (window.innerWidth <= 768) {
-          document.body.classList.add('show-mobile-chat');
-          setTimeout(() => {
-            const chatHead = document.querySelector('.chat-head');
-            if (chatHead && !document.getElementById('mobileInboxBack')) {
-                const backBtn = document.createElement('button');
-                backBtn.id = 'mobileInboxBack';
-                backBtn.className = 'btn small primary';
-                backBtn.style.cssText = 'margin-right: 12px; display: flex; align-items: center;';
-                backBtn.innerHTML = '<svg style="width:14px;height:14px;margin-right:4px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Trở lại';
-                backBtn.onclick = () => document.body.classList.remove('show-mobile-chat');
-                chatHead.insertBefore(backBtn, chatHead.firstChild);
-            }
-        }, 50);
-      }
-    } 
-  };
-  // ==========================================
-  // CÁC HÀM XỬ LÝ SỰ KIỆN CỦA INBOX (BẢN SẠCH - ĐÃ GỘP)
-  // ==========================================
-  window.app.setInboxFilter = function(filterName) {
-    state.inboxFilter = filterName;
-    state.activeInboxId = null;
-    save();
+  // Hàm Nút Trở Về Mới Chế Tạo
+  window.app.closeInboxChat = function() {
+    state.activeInboxId = null; 
     render();
   };
 
-  window.app.setInboxSearch = function(val) {
-    state.inboxSearch = val;
-    clearTimeout(window.__inboxSearchTimer);
-    window.__inboxSearchTimer = setTimeout(() => {
-       state.activeInboxId = null; 
-       render();
-    }, 300);
-  };
+  window.app.sendInboxReply = function() {
+    const text = document.getElementById('inboxReply').value.trim();
+    if (!text) return;
 
-  window.app.selectInbox = function(id) { 
-    state.activeInboxId = id; 
-    const msg = state.inbox.find(m => m.id === id); 
-    if (msg && !msg.read) { 
-      msg.read = true; 
-    } 
-    save(); 
-    render(); 
-
-    // DÙNG JAVASCRIPT ÉP BUỘC HIỂN THỊ KHUNG CHAT TRÊN ĐIỆN THOẠI
-    if (window.innerWidth <= 768) {
-        setTimeout(() => {
-            const sidebar = document.querySelector('.inbox-sidebar');
-            const chat = document.querySelector('.inbox-chat');
-            
-            // Ép ẩn danh sách, ép bung khung chat (Xử lý tuyệt đối)
-            if (sidebar) sidebar.style.setProperty('display', 'none', 'important');
-            if (chat) {
-                chat.style.setProperty('display', 'flex', 'important');
-                chat.style.setProperty('height', '88vh', 'important');
-            }
-
-            // Tạo nút Trở lại
-            const chatHead = document.querySelector('.chat-head');
-            if (chatHead && !document.getElementById('mobileInboxBack')) {
-                const backBtn = document.createElement('button');
-                backBtn.id = 'mobileInboxBack';
-                backBtn.className = 'btn small primary';
-                backBtn.style.cssText = 'margin-right: 12px; display: flex; align-items: center;';
-                backBtn.innerHTML = '<svg style="width:14px;height:14px;margin-right:4px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Trở lại';
-                
-                // Khi bấm Trở lại: Hủy ID đang chọn và tải lại danh sách
-                backBtn.onclick = () => {
-                    state.activeInboxId = null;
-                    render();
-                };
-                
-                chatHead.insertBefore(backBtn, chatHead.firstChild);
-            }
-        }, 50);
+    const msg = state.inbox.find(m => m.id === state.activeInboxId);
+    if (msg) {
+      msg.replied = true;
+      msg.replyText = text;
+      save();
+      render(); 
+      app.ui.showToast('Đã gửi phản hồi', 'success');
     }
   };
-
-  window.app.sendInboxReply = function() { 
-    const text = document.getElementById('inboxReply').value.trim(); 
-    if (!text) return; 
-    
-    const msg = state.inbox.find(m => m.id === state.activeInboxId); 
-    if (msg) { 
-      msg.replied = true; 
-      msg.replyText = text; 
-      save(); 
-      render(); 
-      app.ui.showToast('Đã gửi phản hồi', 'success'); 
-      
-      // Khôi phục lại khung chat trên mobile sau khi bấm Gửi
-      if (window.innerWidth <= 768) {
-          app.selectInbox(state.activeInboxId);
-      }
-    } 
-  };
-
   function renderPosts() {
     let q = state.postSearch.toLowerCase();
     
