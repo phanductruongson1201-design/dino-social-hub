@@ -1853,6 +1853,28 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     border: none !important;
   }
 }
+/* =========================================
+   FIX LỖI HIỂN THỊ TRANG TẠO BÀI VIẾT (MOBILE)
+   ========================================= */
+@media (max-width: 980px) {
+  /* 1. Chuyển bố cục 2 cột nằm ngang thành 1 cột dọc (trên xuống dưới) */
+  #content > div[style*="display:flex; gap:20px"] {
+    flex-direction: column !important;
+  }
+  
+  /* 2. Phóng to Cột Soạn thảo và Cột Xem trước giãn rộng 100% màn hình */
+  #content > div[style*="display:flex; gap:20px"] > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+    position: static !important; /* Gỡ bỏ hiệu ứng dính (sticky) bị lơ lửng */
+  }
+
+  /* 3. Đảm bảo Khung Điện thoại ảo không bị tràn viền trên màn hình nhỏ */
+  .device-frame {
+    max-width: 100% !important;
+  }
+}
 </style>
 </head>
 <!-- Giao diện Đăng nhập Kín (Chỉ nhận tài khoản do Admin cấp) -->
