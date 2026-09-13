@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="vi">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DINO SOCIAL HUB 4.0 - Enterprise</title>
@@ -1704,7 +1705,119 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
   .quick-grid { grid-template-columns: 1fr 1fr; }
   .btn { padding-left: 10px; padding-right: 10px; }
 }
+/* =========================================
+   TỔNG HỢP RESPONSIVE MOBILE TOÀN DIỆN
+   ========================================= */
+/* 1. Khóa tràn ngang toàn trang */
+html, body {
+  overflow-x: hidden !important; 
+  width: 100% !important;
+  max-width: 100vw !important;
+}
+.main, .content {
+  width: 100% !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+}
+svg { max-width: 100% !important; }
 
+/* 2. Hiệu ứng chữ nhấp nháy Neon */
+@keyframes neonPulse {
+  0%, 100% { 
+    opacity: 1; 
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.9), 0 0 15px rgba(56, 189, 248, 0.5); 
+    color: #ffffff;
+  }
+  50% { 
+    opacity: 0.6; 
+    text-shadow: 0 0 2px rgba(56, 189, 248, 0.2); 
+    color: #94a3b8;
+  }
+}
+.brand-name {
+  animation: neonPulse 2s ease-in-out infinite;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* 3. Nút menu & Lớp phủ Sidebar (Mặc định ẩn trên Desktop) */
+.mobile-menu-btn { display: none; background: transparent; border: none; color: var(--text); padding: 4px; cursor: pointer; }
+.mobile-top-logo { display: none; }
+.sidebar-overlay { 
+  display: none; 
+  position: fixed; 
+  inset: 0; 
+  background: rgba(0,0,0,0.6); 
+  z-index: 10000; 
+  backdrop-filter: blur(3px); 
+}
+.sidebar-overlay.show { display: block; }
+
+/* 4. Tinh chỉnh giao diện khi màn hình nhỏ (Tablet & Phone) */
+@media (max-width: 900px) {
+  /* Sửa lỗi bóp méo trang Tạo bài viết */
+  .content > div[style*="flex-start"] {
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+  .content > div[style*="flex-start"] > div {
+    width: 100% !important;
+    max-width: 100vw !important;
+    position: static !important; 
+  }
+  .platform-selector {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+  .device-wrapper {
+    transform: scale(0.95);
+    transform-origin: top center;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hiện nút Menu 3 gạch và Logo tròn trên Topbar */
+  .mobile-menu-btn { display: flex !important; align-items: center; justify-content: center; }
+  .mobile-top-logo { display: block; }
+  .mobile-hide { display: none !important; }
+  .topbar .search { display: none !important; }
+
+  /* Biến Sidebar thành Menu trượt ẩn ngoài rìa trái */
+  .sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 10001 !important;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 270px !important;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+  }
+  
+  /* Lớp này dùng để gọi Menu trượt vào bằng JavaScript (Bước 3) */
+  .sidebar.show-mobile {
+    transform: translateX(0);
+  }
+
+  /* Sắp xếp lại Dashboard thành 2 cột */
+  .grid-8, .metric-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  .two-col, .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Tạo thanh cuộn ngang cho các bảng dữ liệu để không bị tràn */
+  .table-wrap {
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+}
 </style>
 </head>
 <!-- Giao diện Đăng nhập Kín (Chỉ nhận tài khoản do Admin cấp) -->
@@ -1733,6 +1846,7 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
 
 <!-- Giao diện Ứng dụng chính -->
 <div class="app hidden" id="appView">
+<div class="sidebar-overlay" id="sidebarOverlay"></div>  
   <aside class="sidebar" id="sidebar">
     <div class="brand" id="logoToggleSidebar" title="Thu gọn / Mở rộng Menu">
       <img src="https://cdn.upanhlaylink.com/i/9yOCA7tr.jpg" alt="Dino" style="width: 36px; height: 36px; border-radius: 50%; object-fit: contain; box-shadow: 0 3px 8px rgba(0, 112, 243, 0.4);">
@@ -1768,8 +1882,19 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
 
   <main class="main">
     <header class="topbar">
-      <div class="breadcrumbs" data-page="dashboard">
-        <span style="cursor:pointer">Dino Social Hub</span><i data-lucide="chevron-right" style="width:14px"></i><b id="breadcrumbCurrent">Tổng quan</b>
+      <div class="breadcrumbs" data-page="dashboard" style="display: flex; align-items: center; gap: 8px;">
+        <!-- Nút Menu 3 gạch (Chỉ hiện trên Mobile) -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Mở menu"><i data-lucide="menu"></i></button>
+        
+        <!-- Logo bo tròn -->
+        <img src="dino-logo-tron.jpg" class="mobile-top-logo" alt="Logo" style="width: 32px; height: 32px; border-radius: 50%; object-fit: contain; box-shadow: 0 2px 8px rgba(0,112,243,0.4);">
+        
+        <!-- Chữ Dino Social Hub -->
+        <span class="brand-name" style="cursor:pointer; font-size: 16px;">Dino Social Hub</span>
+        
+        <!-- Các phần tử tự ẩn trên Mobile -->
+        <i data-lucide="chevron-right" class="mobile-hide" style="width:14px; margin-left: 4px;"></i>
+        <b id="breadcrumbCurrent" class="mobile-hide">Tổng quan</b>
       </div>
       <div class="search">
         <i data-lucide="search"></i><input id="globalSearch" placeholder="Tìm kiếm nhanh..." />
@@ -5696,6 +5821,42 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
   checkAuth();
 
 })();
+</script>
+<script>
+  // =========================================
+  // LOGIC ĐIỀU KHIỂN MENU TRƯỢT TRÊN MOBILE
+  // =========================================
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    
+    if (btn && sidebar && overlay) {
+      // 1. Mở menu khi bấm nút 3 gạch trên Topbar
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.add('show-mobile');
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Khóa cuộn trang nền bên dưới
+      });
+      
+      // 2. Đóng menu khi người dùng bấm vào vùng tối (overlay) bên ngoài
+      overlay.addEventListener('click', () => {
+        sidebar.classList.remove('show-mobile');
+        overlay.classList.remove('show');
+        document.body.style.overflow = ''; // Mở lại cuộn trang nền
+      });
+      
+      // 3. Tự động đóng menu trượt sau khi đã chọn xong 1 mục bất kỳ trong Sidebar
+      sidebar.addEventListener('click', (e) => {
+        if (e.target.closest('.nav-item') || e.target.closest('[data-page]')) {
+          sidebar.classList.remove('show-mobile');
+          overlay.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  });
 </script>
 </body>
 </html>
