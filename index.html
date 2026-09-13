@@ -1809,6 +1809,30 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     margin-right: 4px !important;
   }
 }
+/* =========================================
+   ẨN NÚT 3 GẠCH VÀ LOGIC CHỮ TOPBAR TRÊN MÁY TÍNH
+   ========================================= */
+@media (min-width: 769px) {
+  /* 1. Xóa sổ nút 3 gạch và logo tròn trên thanh Topbar (chỉ dành cho điện thoại) */
+  #mobileMenuBtn, 
+  .mobile-top-logo { 
+    display: none !important; 
+  }
+
+  /* 2. KHI MENU TRÁI MỞ RỘNG: Tự động giấu chữ Dino Hub và dấu mũi tên (>) trên Topbar để không bị lặp */
+  .sidebar:not(.collapsed) ~ .main .breadcrumbs .brand-name,
+  .sidebar:not(.collapsed) ~ .main .breadcrumbs svg.lucide-chevron-right,
+  .sidebar:not(.collapsed) ~ .main .breadcrumbs i[data-lucide="chevron-right"] {
+    display: none !important;
+  }
+
+  /* 3. KHI MENU TRÁI THU GỌN: Hiện lại chữ Dino Hub và dấu mũi tên (>) trên Topbar */
+  .sidebar.collapsed ~ .main .breadcrumbs .brand-name,
+  .sidebar.collapsed ~ .main .breadcrumbs svg.lucide-chevron-right,
+  .sidebar.collapsed ~ .main .breadcrumbs i[data-lucide="chevron-right"] {
+    display: inline-block !important;
+  }
+}
 </style>
 </head>
 <!-- Giao diện Đăng nhập Kín (Chỉ nhận tài khoản do Admin cấp) -->
