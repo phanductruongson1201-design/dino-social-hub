@@ -1775,43 +1775,35 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
     max-width: 100vw !important;
     overflow-x: hidden !important;
   }
-}/* =========================================
-   ĐẶC TRỊ 100%: XÓA NÚT X THỪA VÀ LOGIC CHỮ
+/* =========================================
+   VŨ KHÍ TỐI THƯỢNG: DIỆT SẠCH MỌI NÚT THỪA (DẤU X, MENU)
    ========================================= */
 
-/* 1. Lệnh cấm tuyệt đối: Giấu toàn bộ nút bấm và logo tròn trên thanh Topbar ở mọi kích thước màn hình để diệt lệnh HTML gốc */
-.topbar .breadcrumbs button,
-.topbar .breadcrumbs img,
-#mobileMenuBtn,
-.mobile-menu-btn {
-  display: none !important;
-}
-
-/* 2. Chỉ cấp phép hiển thị nút trở lại khi ĐÚNG LÀ ĐIỆN THOẠI (Dưới 700px) */
+/* Dành cho Điện thoại: Trả lại nút bấm để sử dụng bình thường */
 @media (max-width: 700px) {
   .topbar .breadcrumbs button,
   #mobileMenuBtn,
-  .mobile-menu-btn {
-    display: flex !important;
-  }
-  .topbar .breadcrumbs img {
-    display: block !important;
-  }
+  .mobile-menu-btn { display: flex !important; }
+  .topbar .breadcrumbs img { display: block !important; }
 }
 
-/* 3. LOGIC ẨN/HIỆN CHỮ TOPBAR (Chỉ kích hoạt trên Máy tính & Tablet) */
+/* Dành cho Máy tính (Trên 700px): Lưới lọc tuyệt đối */
 @media (min-width: 701px) {
-  /* Khi menu TRÁI ĐANG BUNG RỘNG -> Ẩn chữ và dấu mũi tên > */
-  .sidebar:not(.collapsed) ~ .main .breadcrumbs .brand-name,
-  .sidebar:not(.collapsed) ~ .main .breadcrumbs i[data-lucide="chevron-right"],
-  .sidebar:not(.collapsed) ~ .main .breadcrumbs svg.lucide-chevron-right {
+  /* 1. CHÉM BAY MỌI THỨ: Giấu tất cả các phần tử (bất kể là X, menu, ảnh, icon...) */
+  .topbar .breadcrumbs > * {
     display: none !important;
   }
 
-  /* Khi menu TRÁI THU GỌN -> Hiện lại chữ và dấu mũi tên > */
+  /* 2. TRẠNG THÁI MENU BUNG RỘNG: Chỉ "hồi sinh" duy nhất chữ "Tổng quan" */
+  .sidebar:not(.collapsed) ~ .main .breadcrumbs b#breadcrumbCurrent {
+    display: inline-block !important;
+  }
+
+  /* 3. TRẠNG THÁI MENU THU LẠI: "Hồi sinh" bộ 3 chữ (Dino Hub > Tổng quan) */
   .sidebar.collapsed ~ .main .breadcrumbs .brand-name,
   .sidebar.collapsed ~ .main .breadcrumbs i[data-lucide="chevron-right"],
-  .sidebar.collapsed ~ .main .breadcrumbs svg.lucide-chevron-right {
+  .sidebar.collapsed ~ .main .breadcrumbs svg.lucide-chevron-right,
+  .sidebar.collapsed ~ .main .breadcrumbs b#breadcrumbCurrent {
     display: inline-flex !important;
     align-items: center !important;
   }
