@@ -5749,70 +5749,103 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
 </script>
 <script>
   // =========================================
-  // LOGIC MENU (MỞ BẰNG 3 GẠCH, CÓ NÚT X ĐÓNG, LOGO VỀ HOME)
+  // BỘ ĐIỀU KHIỂN MOBILE THÔNG MINH (CHỐT HẠ 100% LỖI)
   // =========================================
   document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. TIÊM CSS "KÌM CỘNG LỰC" PHÁ VỠ LỚP GIÁP BỊ VIẾT CỨNG TRONG HTML
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @media (max-width: 768px) {
+        /* THUẬT TOÁN HỘP THƯ: CHỈ HIỆN DANH SÁCH, BẤM VÀO MỚI HIỆN CHAT */
+        .inbox-chat, .inbox-crm { display: none !important; }
+        body.show-mobile-chat .inbox-sidebar { display: none !important; }
+        body.show-mobile-chat .inbox-chat { display: flex !important; min-height: 85vh !important; }
+
+        /* PHÁ VỠ CHIỀU CAO CỨNG 188px CỦA BIỂU ĐỒ NỀN TẢNG */
+        .card.chart > div[style*="display:flex"],
+        .card.chart > div[style*="display: flex"] {
+           display: block !important;
+           height: auto !important;
+           padding-bottom: 24px !important;
+        }
+        .donut { margin: 10px auto 30px auto !important; }
+
+        /* PHÁ VỠ LỆNH CẤM XUỐNG DÒNG CỦA LỊCH & HOẠT ĐỘNG */
+        .timeline-item .split b, .media-cell b {
+           white-space: normal !important;
+           max-width: 100% !important;
+           display: block !important;
+           line-height: 1.4 !important;
+        }
+        .timeline-item .split { flex-wrap: wrap !important; gap: 6px !important; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // 2. LOGIC MENU & ĐÓNG/MỞ SIDEBAR (Giữ nguyên bản đang mượt)
     const btn = document.getElementById('mobileMenuBtn');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebarOverlay');
-    
-    // Nhận diện Logo và Chữ trên Topbar
     const topbarBrandName = document.querySelector('.breadcrumbs .brand-name');
     const topbarLogo = document.querySelector('.mobile-top-logo');
-    
+
     if (btn && sidebar && overlay) {
-      const openMenu = (e) => {
-        e.stopPropagation();
-        sidebar.classList.add('show-mobile');
-        overlay.classList.add('show');
-        document.body.style.overflow = 'hidden'; 
-      };
+      const openMenu = (e) => { e.stopPropagation(); sidebar.classList.add('show-mobile'); overlay.classList.add('show'); document.body.style.overflow = 'hidden'; };
+      const closeMenu = () => { sidebar.classList.remove('show-mobile'); overlay.classList.remove('show'); document.body.style.overflow = ''; };
 
-      const closeMenu = () => {
-        sidebar.classList.remove('show-mobile');
-        overlay.classList.remove('show');
-        document.body.style.overflow = ''; 
-      };
-
-      // 1. CHỈ mở menu khi bấm nút 3 gạch
       btn.addEventListener('click', openMenu);
-      
-      // 2. Bấm Logo / Chữ Dino Hub trên Topbar -> Về trang chủ (Tải lại trang gốc)
-      const goHome = (e) => {
-        e.preventDefault();
-        window.location.href = window.location.pathname; 
-      };
+      const goHome = (e) => { e.preventDefault(); window.location.href = window.location.pathname; };
       if (topbarBrandName) topbarBrandName.addEventListener('click', goHome);
       if (topbarLogo) topbarLogo.addEventListener('click', goHome);
-      
-      // 3. Đóng menu khi bấm nền tối
       overlay.addEventListener('click', closeMenu);
-      
-      // 4. Tự động THÊM NÚT ĐÓNG [X] vào góc thanh Sidebar (nếu chưa có)
+      sidebar.addEventListener('click', (e) => {
+        if (e.target.closest('.nav-item') || e.target.closest('[data-page]') || e.target.closest('.close-sidebar-btn')) closeMenu();
+      });
+
       const sidebarBrand = sidebar.querySelector('.brand');
       if (sidebarBrand && !sidebar.querySelector('.close-sidebar-btn')) {
          const closeBtn = document.createElement('button');
          closeBtn.className = 'close-sidebar-btn';
-         // Vẽ icon X bằng SVG
          closeBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
          closeBtn.style.cssText = 'background:none; border:none; cursor:pointer; margin-left:auto; display:flex; padding:4px;';
-         
-         // Dàn hàng ngang khu vực logo để nút X nằm bên phải
-         sidebarBrand.style.display = 'flex';
-         sidebarBrand.style.alignItems = 'center';
-         sidebarBrand.style.width = '100%';
-         sidebarBrand.style.justifyContent = 'space-between';
-         
+         sidebarBrand.style.display = 'flex'; sidebarBrand.style.alignItems = 'center'; sidebarBrand.style.width = '100%'; sidebarBrand.style.justifyContent = 'space-between';
          sidebarBrand.appendChild(closeBtn);
       }
-
-      // 5. Đóng menu khi chọn một mục bất kỳ, HOẶC bấm vào nút [X] vừa tạo
-      sidebar.addEventListener('click', (e) => {
-        if (e.target.closest('.nav-item') || e.target.closest('[data-page]') || e.target.closest('.close-sidebar-btn')) {
-          closeMenu();
-        }
-      });
     }
+
+    // 3. LOGIC HỘP THƯ: ẨN/HIỆN THÔNG MINH + NÚT TRỞ LẠI
+    const oldSelect = window.app.selectInbox;
+    window.app.selectInbox = function(id) {
+       if (oldSelect) oldSelect(id);
+       if (window.innerWidth <= 768) {
+           document.body.classList.add('show-mobile-chat');
+           
+           // Đợi hệ thống tải xong khung Chat, tự động vẽ thêm nút "Trở lại"
+           setTimeout(() => {
+               const chatHead = document.querySelector('.chat-head');
+               if (chatHead && !document.getElementById('mobileInboxBack')) {
+                   const backBtn = document.createElement('button');
+                   backBtn.id = 'mobileInboxBack';
+                   backBtn.className = 'btn small primary';
+                   backBtn.style.cssText = 'margin-right: 12px; display: flex; align-items: center;';
+                   backBtn.innerHTML = '<svg style="width:14px;height:14px;margin-right:4px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Trở lại';
+                   
+                   // Bấm nút "Trở lại" -> Đóng Chat, hiện lại Danh sách
+                   backBtn.onclick = () => document.body.classList.remove('show-mobile-chat');
+                   chatHead.insertBefore(backBtn, chatHead.firstChild);
+               }
+           }, 50);
+       }
+    };
+
+    // Tự động Reset Hộp thư về danh sách khi bấm chuyển trang khác
+    document.addEventListener('click', (e) => {
+       if (e.target.closest('[data-page]') || e.target.closest('.mobile-bottom button')) {
+           document.body.classList.remove('show-mobile-chat');
+       }
+    });
+
   });
 </script>
 </body>
