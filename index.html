@@ -3755,11 +3755,11 @@ function renderInbox() {
     } 
   };
   // ==========================================
-  // CÁC HÀM XỬ LÝ SỰ KIỆN CỦA INBOX (Dán nối tiếp ngay phía dưới hàm renderInbox)
+  // CÁC HÀM XỬ LÝ SỰ KIỆN CỦA INBOX (BẢN SẠCH - ĐÃ GỘP)
   // ==========================================
   window.app.setInboxFilter = function(filterName) {
     state.inboxFilter = filterName;
-    state.activeInboxId = null; // Khi bấm lọc thì xóa tin nhắn đang xem để trả về màn hình chờ
+    state.activeInboxId = null;
     save();
     render();
   };
@@ -3778,9 +3778,42 @@ function renderInbox() {
     const msg = state.inbox.find(m => m.id === id); 
     if (msg && !msg.read) { 
       msg.read = true; 
-      save(); 
     } 
+    save(); 
     render(); 
+
+    // DÙNG JAVASCRIPT ÉP BUỘC HIỂN THỊ KHUNG CHAT TRÊN ĐIỆN THOẠI
+    if (window.innerWidth <= 768) {
+        setTimeout(() => {
+            const sidebar = document.querySelector('.inbox-sidebar');
+            const chat = document.querySelector('.inbox-chat');
+            
+            // Ép ẩn danh sách, ép bung khung chat (Xử lý tuyệt đối)
+            if (sidebar) sidebar.style.setProperty('display', 'none', 'important');
+            if (chat) {
+                chat.style.setProperty('display', 'flex', 'important');
+                chat.style.setProperty('height', '88vh', 'important');
+            }
+
+            // Tạo nút Trở lại
+            const chatHead = document.querySelector('.chat-head');
+            if (chatHead && !document.getElementById('mobileInboxBack')) {
+                const backBtn = document.createElement('button');
+                backBtn.id = 'mobileInboxBack';
+                backBtn.className = 'btn small primary';
+                backBtn.style.cssText = 'margin-right: 12px; display: flex; align-items: center;';
+                backBtn.innerHTML = '<svg style="width:14px;height:14px;margin-right:4px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Trở lại';
+                
+                // Khi bấm Trở lại: Hủy ID đang chọn và tải lại danh sách
+                backBtn.onclick = () => {
+                    state.activeInboxId = null;
+                    render();
+                };
+                
+                chatHead.insertBefore(backBtn, chatHead.firstChild);
+            }
+        }, 50);
+    }
   };
 
   window.app.sendInboxReply = function() { 
@@ -3794,32 +3827,13 @@ function renderInbox() {
       save(); 
       render(); 
       app.ui.showToast('Đã gửi phản hồi', 'success'); 
+      
+      // Khôi phục lại khung chat trên mobile sau khi bấm Gửi
+      if (window.innerWidth <= 768) {
+          app.selectInbox(state.activeInboxId);
+      }
     } 
   };
-  
-  window.app.selectInbox = function(id) { 
-    activeInboxId = id; 
-    const msg = state.inbox.find(m => m.id === id); 
-    if (msg && !msg.read) { 
-      msg.read = true; 
-      save(); 
-    } 
-    render(); 
-  }
-  
-  window.app.sendInboxReply = function() { 
-    const text = document.getElementById('inboxReply').value.trim(); 
-    if (!text) return; 
-    
-    const msg = state.inbox.find(m => m.id === activeInboxId); 
-    if (msg) { 
-      msg.replied = true; 
-      msg.replyText = text; 
-      save(); 
-      render(); 
-      toast('Đã gửi phản hồi', 'success'); 
-    } 
-  }
 
   function renderPosts() {
     let q = state.postSearch.toLowerCase();
