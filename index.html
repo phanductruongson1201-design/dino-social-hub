@@ -5908,6 +5908,48 @@ html[data-theme="dark"] .prev-x-img { border-color: #334155; }
        }
     });
 
+    // ========================================================
+    // 4. KIỂM SOÁT TOPBAR TRÊN MÁY TÍNH BẰNG JAVASCRIPT (ĐẶC TRỊ)
+    // ========================================================
+    const adjustTopbar = () => {
+        const isDesktop = window.innerWidth > 768;
+        const isCollapsed = sidebar && sidebar.classList.contains('collapsed');
+        
+        // Quét tìm tất cả các phần tử trên Topbar
+        const topBtn = document.getElementById('mobileMenuBtn');
+        const topLogo = document.querySelector('.mobile-top-logo');
+        const topBrand = document.querySelector('.breadcrumbs .brand-name');
+        const topChevronList = document.querySelectorAll('.breadcrumbs i[data-lucide="chevron-right"], .breadcrumbs svg.lucide-chevron-right');
+
+        if (isDesktop) {
+            // Trên PC: Tiêu diệt nút 3 gạch và logo tròn ngay lập tức
+            if (topBtn) topBtn.style.setProperty('display', 'none', 'important');
+            if (topLogo) topLogo.style.setProperty('display', 'none', 'important');
+
+            // Logic chữ: Khi mở menu trái -> ẩn chữ "Dino Hub". Khi thu gọn -> Hiện lại chữ
+            if (topBrand) topBrand.style.setProperty('display', isCollapsed ? 'inline-block' : 'none', 'important');
+            topChevronList.forEach(el => el.style.setProperty('display', isCollapsed ? 'inline-block' : 'none', 'important'));
+        } else {
+            // Trên Mobile: Trả lại mọi thứ để dùng bình thường
+            if (topBtn) topBtn.style.setProperty('display', 'flex', 'important');
+            if (topLogo) topLogo.style.setProperty('display', 'block', 'important');
+            if (topBrand) topBrand.style.setProperty('display', 'inline-block', 'important');
+            topChevronList.forEach(el => el.style.setProperty('display', 'inline-block', 'important'));
+        }
+    };
+
+    // Chạy kiểm tra Topbar ngay khi web vừa tải xong
+    adjustTopbar();
+
+    // Chạy lại kiểm tra nếu người dùng kéo giãn cửa sổ web
+    window.addEventListener('resize', adjustTopbar);
+
+    // Chạy kiểm tra mỗi khi bạn bấm nút Thu Gọn / Mở Rộng Menu
+    const collapseBtn = document.getElementById('collapseBtn');
+    const logoToggleSidebar = document.getElementById('logoToggleSidebar');
+    if (collapseBtn) collapseBtn.addEventListener('click', () => setTimeout(adjustTopbar, 50));
+    if (logoToggleSidebar) logoToggleSidebar.addEventListener('click', () => setTimeout(adjustTopbar, 50));
+
   });
 </script>
 </body>
